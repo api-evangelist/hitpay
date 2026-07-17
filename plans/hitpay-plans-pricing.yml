@@ -1,0 +1,150 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: HitPay
+providerId: hitpay
+created: '2026-07-17'
+modified: '2026-07-17'
+reconciled: true
+tags:
+- Payments
+- Fintech
+- PayNow
+- Southeast Asia
+- SMB
+- Plans
+description: >-
+  HitPay uses a pay-per-transaction model with no setup, subscription, or
+  monthly fees on its core payment gateway - businesses only pay when a payment
+  is successfully processed. Fees vary by payment method and by online vs.
+  in-person (POS) acceptance. Rates below are HitPay Singapore (SGD) published
+  rates for 2026; other markets (Malaysia, Philippines, etc.) and hardware
+  terminals are priced separately.
+notes: >-
+  Foreign-currency card transactions incur an additional ~2% conversion fee.
+  Rates change and vary by market and negotiated volume; verify on the HitPay
+  pricing page before relying on these figures.
+sources:
+- https://www.hitpayapp.com/sg/pricing
+- https://www.hitpayapp.com/sg/blog/hitpay-transaction-fee
+- https://hitpay.zendesk.com/hc/en-us/articles/34511596146457-What-are-the-fees-for-PayNow-transactions
+plans:
+- id: hitpay-online-payments
+  name: Online Payments (pay-per-transaction)
+  type: usage
+  description: >-
+    Per-transaction fees for online / API-collected payments in Singapore (SGD).
+    No monthly or setup fee.
+  entries:
+  - label: PayNow (online)
+    name: paynow_online
+    type: usage
+    metric: transaction
+    limit: -1
+    timeFrame: transaction
+    geo: SG
+    unit: 1
+    price: 0.65% + S$0.30 (approx; ~0.9% min S$0.20 on small transactions)
+    userMultiplied: false
+  - label: Domestic Cards
+    name: card_domestic
+    type: usage
+    metric: transaction
+    limit: -1
+    timeFrame: transaction
+    geo: SG
+    unit: 1
+    price: 2.8% + S$0.50
+    userMultiplied: false
+  - label: International Cards
+    name: card_international
+    type: usage
+    metric: transaction
+    limit: -1
+    timeFrame: transaction
+    geo: global
+    unit: 1
+    price: 3.65% + S$0.50 (+2% for foreign currency)
+    userMultiplied: false
+  - label: GrabPay
+    name: grabpay
+    type: usage
+    metric: transaction
+    limit: -1
+    timeFrame: transaction
+    geo: SG
+    unit: 1
+    price: 2.2%
+    userMultiplied: false
+  elements:
+  - name: Payment Requests API
+  - name: Recurring Billing API
+  - name: PayNow
+  - name: GrabPay
+  - name: WeChat Pay
+  - name: Alipay
+  - name: ShopeePay
+  - name: Atome
+  - name: Cards
+- id: hitpay-in-person
+  name: In-Person / POS Payments
+  type: usage
+  description: >-
+    Per-transaction fees for in-person point-of-sale acceptance in Singapore
+    (SGD).
+  entries:
+  - label: PayNow (in-person)
+    name: paynow_pos
+    type: usage
+    metric: transaction
+    limit: -1
+    timeFrame: transaction
+    geo: SG
+    unit: 1
+    price: 0.4% (S$0.10 minimum)
+    userMultiplied: false
+  - label: Domestic Cards (in-person)
+    name: card_domestic_pos
+    type: usage
+    metric: transaction
+    limit: -1
+    timeFrame: transaction
+    geo: SG
+    unit: 1
+    price: 2.5% (S$0.20 minimum)
+    userMultiplied: false
+  - label: GrabPay (in-person)
+    name: grabpay_pos
+    type: usage
+    metric: transaction
+    limit: -1
+    timeFrame: transaction
+    geo: SG
+    unit: 1
+    price: 2.2%
+    userMultiplied: false
+  elements:
+  - name: Point of Sale
+  - name: Card Terminal
+- id: hitpay-refunds
+  name: Refunds
+  type: usage
+  description: >-
+    No additional fee is charged to process a refund; however the original
+    transaction fees are non-refundable.
+  entries:
+  - label: Refund processing
+    name: refund
+    type: flat
+    metric: transaction
+    limit: -1
+    timeFrame: transaction
+    geo: global
+    unit: 1
+    price: no additional fee (original transaction fee non-refundable)
+    userMultiplied: false
+  elements:
+  - name: Refunds API
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

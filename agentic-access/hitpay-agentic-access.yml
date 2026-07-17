@@ -1,0 +1,187 @@
+generated: '2026-07-17'
+method: generated
+source: openapi/hitpay-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents - review and bind
+  audience per deployment. Payment mutations are money-movement operations; treat writes as
+  high-value and require human-in-the-loop by default. See research/curity/agentic-governance/.
+summary:
+  operations: 12
+  by_action_class:
+    acting: 8
+    connected: 4
+  by_consequence:
+    write: 8
+    read: 4
+  human_in_the_loop_required: 8
+operations:
+- path: /payment-requests
+  method: post
+  operationId: createPaymentRequest
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: required
+      triggers:
+      - money-movement
+      - high-value
+      - abnormal
+    audit: required
+- path: /payment-requests
+  method: get
+  operationId: listPaymentRequests
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /payment-requests/{id}
+  method: get
+  operationId: getPaymentRequest
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /payment-requests/{id}
+  method: delete
+  operationId: deletePaymentRequest
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: required
+      triggers:
+      - money-movement
+      - abnormal
+    audit: required
+- path: /refund
+  method: post
+  operationId: createRefund
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: required
+      triggers:
+      - money-movement
+      - high-value
+      - irreversible
+    audit: required
+- path: /recurring-billing
+  method: post
+  operationId: createRecurringBilling
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: required
+      triggers:
+      - money-movement
+      - recurring-commitment
+      - high-value
+    audit: required
+- path: /recurring-billing/{id}
+  method: get
+  operationId: getRecurringBilling
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /recurring-billing/{id}
+  method: delete
+  operationId: cancelRecurringBilling
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: required
+      triggers:
+      - money-movement
+      - abnormal
+    audit: required
+- path: /charge/{recurring_billing_id}
+  method: post
+  operationId: chargeRecurringBilling
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: required
+      triggers:
+      - money-movement
+      - high-value
+    audit: required
+- path: /subscription-plan
+  method: get
+  operationId: listSubscriptionPlans
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /subscription-plan
+  method: post
+  operationId: createSubscriptionPlan
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /subscription-plan/{id}
+  method: delete
+  operationId: deleteSubscriptionPlan
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+    audit: required

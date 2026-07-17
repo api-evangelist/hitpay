@@ -1,0 +1,27 @@
+generated: '2026-07-17'
+method: searched
+probe: true
+source: https://www.hitpayapp.com/security
+url: https://www.hitpayapp.com/security
+certifications:
+- PCI DSS
+- MAS Major Payment Institution (MPI)
+regulatory:
+- Regulated by the Monetary Authority of Singapore (MAS)
+- Regulated across multiple Asia-Pacific jurisdictions
+evidence:
+- source: https://docs.hitpayapp.com/apis
+  keywords:
+  - pci dss
+  - api key
+  - salt
+- source: https://www.hitpayapp.com/
+  keywords:
+  - regulated
+  - major payment institution
+  - mas
+notes: >-
+  HitPay does not publish a formal SOC 2 / ISO 27001 trust portal at a discrete
+  URL that could be confirmed on probe; its trust posture is stated as PCI DSS
+  compliance plus payment-institution regulation (MAS MPI). Verify current
+  certifications directly with HitPay for contractual use.

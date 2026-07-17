@@ -1,0 +1,99 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: HitPay
+providerId: hitpay
+created: '2026-07-17'
+modified: '2026-07-17'
+reconciled: true
+tags:
+- Payments
+- Fintech
+- PayNow
+- Southeast Asia
+- SMB
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of HitPay costs. HitPay charges no platform subscription fee for
+  its core gateway; cost is driven purely by successful-transaction processing
+  fees that vary by payment method (PayNow, cards, GrabPay, e-wallets, BNPL) and
+  by online vs. in-person acceptance. There is no per-API-call software fee - the
+  API is a means to initiate charges whose cost is the payment-processing fee.
+notes: >-
+  Because cost is a percentage-plus-fixed fee per transaction, cost management is
+  primarily about routing to the cheapest acceptable method (PayNow is far
+  cheaper than cards in Singapore) and minimizing refunds/chargebacks, since the
+  original transaction fee is non-refundable. Verify current rates per market.
+sources:
+- https://www.hitpayapp.com/sg/pricing
+- https://www.hitpayapp.com/sg/blog/hitpay-transaction-fee
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: HitPay
+serviceCategory: Financial Services
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Per-Transaction
+  billingCurrency: SGD
+  chargeCategories:
+  - Usage
+  - Adjustment
+focusColumns:
+  ServiceName: HitPay Payments
+  ServiceCategory: Financial Services
+  ProviderName: HitPay
+  PublisherName: HitPay
+  InvoiceIssuerName: HitPay
+  BillingCurrency: SGD
+  ChargeCategory: Usage
+  PricingCategory: Usage-Based
+meters:
+- name: paynow_transaction_fee
+  description: Per-transaction fee on PayNow collections (percentage + fixed, online or POS).
+  unit: transactions
+  aggregation: sum
+  dimensions:
+  - merchant
+  - channel
+  - method
+- name: card_transaction_fee
+  description: Per-transaction fee on domestic and international card charges (percentage + fixed).
+  unit: transactions
+  aggregation: sum
+  dimensions:
+  - merchant
+  - card_region
+  - channel
+- name: ewallet_transaction_fee
+  description: Per-transaction fee on GrabPay, WeChat Pay, Alipay, ShopeePay and other wallets.
+  unit: transactions
+  aggregation: sum
+  dimensions:
+  - merchant
+  - method
+- name: fx_conversion_fee
+  description: Additional conversion fee (~2%) applied to foreign-currency card transactions.
+  unit: transactions
+  aggregation: sum
+  dimensions:
+  - merchant
+  - currency
+principles:
+- name: Visibility
+  description: Pull HitPay settlement/transaction reports; attribute fees per payment method and channel.
+- name: Allocation
+  description: Tag payment requests with reference_number to map transaction fees to orders and cost centers.
+- name: Optimization
+  description: Steer payers to PayNow (lowest fee in SG) over cards; avoid unnecessary FX by billing in local currency; reduce refunds/chargebacks since transaction fees are non-refundable.
+- name: Accountability
+  description: Review method-mix and effective fee rate monthly against revenue.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

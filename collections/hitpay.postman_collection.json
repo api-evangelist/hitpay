@@ -1,0 +1,297 @@
+{
+  "info": {
+    "name": "HitPay Payments API",
+    "description": "HitPay all-in-one payments API for SMBs across Asia-Pacific. Covers Payment Requests, Refunds, Recurring Billing, and Subscription Plans. Auth is the X-BUSINESS-API-KEY header (Platform calls add X-PLATFORM-KEY). Set {{baseUrl}} to https://api.hit-pay.com/v1 (production) or https://api.sandbox.hit-pay.com/v1 (sandbox). Modeled from https://docs.hitpayapp.com/apis.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.hit-pay.com/v1"
+    },
+    {
+      "key": "apiKey",
+      "value": "YOUR_BUSINESS_API_KEY"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      { "key": "key", "value": "X-BUSINESS-API-KEY" },
+      { "key": "value", "value": "{{apiKey}}" },
+      { "key": "in", "value": "header" }
+    ]
+  },
+  "item": [
+    {
+      "name": "Payment Requests",
+      "item": [
+        {
+          "name": "Create payment request",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "X-BUSINESS-API-KEY", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/x-www-form-urlencoded" },
+              { "key": "X-Requested-With", "value": "XMLHttpRequest" }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "amount", "value": "199.00" },
+                { "key": "currency", "value": "sgd" },
+                { "key": "email", "value": "customer@example.com" },
+                { "key": "name", "value": "Jane Tan" },
+                { "key": "purpose", "value": "Order #1042" },
+                { "key": "reference_number", "value": "1042" },
+                { "key": "redirect_url", "value": "https://merchant.example.com/thank-you" }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/payment-requests",
+              "host": ["{{baseUrl}}"],
+              "path": ["payment-requests"]
+            },
+            "description": "Creates a hosted payment request and returns a checkout URL plus a payment request id."
+          }
+        },
+        {
+          "name": "Get payment request",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "X-BUSINESS-API-KEY", "value": "{{apiKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/payment-requests/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["payment-requests", ":id"],
+              "variable": [ { "key": "id", "value": "PAYMENT_REQUEST_ID" } ]
+            }
+          }
+        },
+        {
+          "name": "List payment requests",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "X-BUSINESS-API-KEY", "value": "{{apiKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/payment-requests?limit=50",
+              "host": ["{{baseUrl}}"],
+              "path": ["payment-requests"],
+              "query": [ { "key": "limit", "value": "50" } ]
+            }
+          }
+        },
+        {
+          "name": "Delete payment request",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "X-BUSINESS-API-KEY", "value": "{{apiKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/payment-requests/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["payment-requests", ":id"],
+              "variable": [ { "key": "id", "value": "PAYMENT_REQUEST_ID" } ]
+            },
+            "description": "Cancels an open card payment request. QR methods (PayNow, GrabPay) cannot be cancelled once generated."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Refunds",
+      "item": [
+        {
+          "name": "Refund a charge",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "X-BUSINESS-API-KEY", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/x-www-form-urlencoded" }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "payment_id", "value": "PAYMENT_ID" },
+                { "key": "amount", "value": "199.00" }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/refund",
+              "host": ["{{baseUrl}}"],
+              "path": ["refund"]
+            },
+            "description": "Full or partial refund. One refund per transaction; PayNow or card only; original fees non-refundable."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Recurring Billing",
+      "item": [
+        {
+          "name": "Create recurring billing",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "X-BUSINESS-API-KEY", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/x-www-form-urlencoded" }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "plan_id", "value": "" },
+                { "key": "name", "value": "Monthly Membership" },
+                { "key": "cycle", "value": "monthly" },
+                { "key": "amount", "value": "29.90" },
+                { "key": "currency", "value": "sgd" },
+                { "key": "customer_email", "value": "customer@example.com" },
+                { "key": "start_date", "value": "2026-08-01" },
+                { "key": "save_card", "value": "true" },
+                { "key": "redirect_url", "value": "https://merchant.example.com/subscribed" }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/recurring-billing",
+              "host": ["{{baseUrl}}"],
+              "path": ["recurring-billing"]
+            },
+            "description": "Starts a subscription against a saved card. Pass plan_id, or leave it blank with name/cycle/amount for an inline plan."
+          }
+        },
+        {
+          "name": "Get recurring billing",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "X-BUSINESS-API-KEY", "value": "{{apiKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/recurring-billing/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["recurring-billing", ":id"],
+              "variable": [ { "key": "id", "value": "RECURRING_BILLING_ID" } ]
+            }
+          }
+        },
+        {
+          "name": "Cancel recurring billing",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "X-BUSINESS-API-KEY", "value": "{{apiKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/recurring-billing/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["recurring-billing", ":id"],
+              "variable": [ { "key": "id", "value": "RECURRING_BILLING_ID" } ]
+            }
+          }
+        },
+        {
+          "name": "Charge saved card",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "X-BUSINESS-API-KEY", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/x-www-form-urlencoded" }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "amount", "value": "49.00" },
+                { "key": "currency", "value": "sgd" }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/charge/:recurring_billing_id",
+              "host": ["{{baseUrl}}"],
+              "path": ["charge", ":recurring_billing_id"],
+              "variable": [ { "key": "recurring_billing_id", "value": "RECURRING_BILLING_ID" } ]
+            },
+            "description": "Charges the saved card tied to a recurring billing subscription for an ad-hoc amount."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Subscription Plans",
+      "item": [
+        {
+          "name": "List subscription plans",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "X-BUSINESS-API-KEY", "value": "{{apiKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/subscription-plan",
+              "host": ["{{baseUrl}}"],
+              "path": ["subscription-plan"]
+            }
+          }
+        },
+        {
+          "name": "Create subscription plan",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "X-BUSINESS-API-KEY", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/x-www-form-urlencoded" }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "name", "value": "Pro Monthly" },
+                { "key": "amount", "value": "29.90" },
+                { "key": "currency", "value": "sgd" },
+                { "key": "cycle", "value": "monthly" }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/subscription-plan",
+              "host": ["{{baseUrl}}"],
+              "path": ["subscription-plan"]
+            }
+          }
+        },
+        {
+          "name": "Get subscription plan",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "X-BUSINESS-API-KEY", "value": "{{apiKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/subscription-plan/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["subscription-plan", ":id"],
+              "variable": [ { "key": "id", "value": "SUBSCRIPTION_PLAN_ID" } ]
+            }
+          }
+        },
+        {
+          "name": "Delete subscription plan",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "X-BUSINESS-API-KEY", "value": "{{apiKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/subscription-plan/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["subscription-plan", ":id"],
+              "variable": [ { "key": "id", "value": "SUBSCRIPTION_PLAN_ID" } ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

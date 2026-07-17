@@ -1,0 +1,483 @@
+# Provenance: modeled-from-docs (2026-07-17).
+# HitPay does not publish a downloadable first-party OpenAPI/Swagger file. This
+# document was modeled from HitPay's public developer docs at
+# https://docs.hitpayapp.com/apis and community SDK wrappers (hit-pay/woocommerce,
+# hit-pay/hitpay_php_wrapper). Hosts, the X-BUSINESS-API-KEY auth header, and the
+# form-encoded Payment Request / Recurring Billing / Refund operations are grounded
+# in those docs. Field lists are representative, not exhaustive; verify against the
+# live docs before production use.
+openapi: 3.0.3
+info:
+  title: HitPay Payments API
+  description: >-
+    HitPay is an all-in-one payments platform for small and medium businesses
+    across Asia-Pacific (Singapore HQ). Its REST API lets merchants create hosted
+    Payment Requests (payment links / checkout), run Recurring Billing on saved
+    cards, and issue Refunds. Southeast-Asian local methods are first-class:
+    PayNow (Singapore real-time QR), GrabPay, WeChat Pay, Alipay, ShopeePay and
+    Atome buy-now-pay-later, alongside domestic and international cards. All
+    amounts are settled in the merchant's account currency (SGD by default in
+    Singapore). Requests authenticate with the X-BUSINESS-API-KEY header; Platform
+    (aggregator) calls add X-PLATFORM-KEY.
+  termsOfService: https://www.hitpayapp.com/terms
+  contact:
+    name: HitPay Support
+    url: https://docs.hitpayapp.com/apis
+  version: '1.0'
+servers:
+  - url: https://api.hit-pay.com/v1
+    description: Production
+  - url: https://api.sandbox.hit-pay.com/v1
+    description: Sandbox (test)
+security:
+  - businessApiKey: []
+tags:
+  - name: Payment Requests
+    description: Create and manage hosted payment links / checkout sessions.
+  - name: Refunds
+    description: Refund completed PayNow or card charges.
+  - name: Recurring Billing
+    description: Subscriptions and charges against saved cards.
+  - name: Subscription Plans
+    description: Reusable recurring-billing plan templates.
+paths:
+  /payment-requests:
+    post:
+      operationId: createPaymentRequest
+      tags:
+        - Payment Requests
+      summary: Create a payment request
+      description: >-
+        Creates a hosted payment request (payment link / checkout page) for the
+        given amount and currency. Returns a URL to redirect the payer to and a
+        payment request id used to track status. Register webhook URLs in the
+        dashboard (the inline `webhook` field is deprecated).
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PaymentRequestCreate'
+      responses:
+        '201':
+          description: Payment request created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentRequest'
+    get:
+      operationId: listPaymentRequests
+      tags:
+        - Payment Requests
+      summary: List payment requests
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 50
+      responses:
+        '200':
+          description: A page of payment requests.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PaymentRequest'
+  /payment-requests/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      operationId: getPaymentRequest
+      tags:
+        - Payment Requests
+      summary: Get a payment request
+      responses:
+        '200':
+          description: The payment request and its current status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentRequest'
+    delete:
+      operationId: deletePaymentRequest
+      tags:
+        - Payment Requests
+      summary: Delete / cancel a payment request
+      description: >-
+        Cancels an open card payment request. QR-based methods (PayNow, GrabPay)
+        cannot be cancelled once generated.
+      responses:
+        '200':
+          description: Payment request deleted.
+  /refund:
+    post:
+      operationId: createRefund
+      tags:
+        - Refunds
+      summary: Refund a charge
+      description: >-
+        Issues a full or partial refund against a completed payment. Only one
+        refund is allowed per transaction, and only PayNow or card charges are
+        refundable. Original transaction fees are non-refundable.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RefundCreate'
+      responses:
+        '201':
+          description: Refund created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Refund'
+  /recurring-billing:
+    post:
+      operationId: createRecurringBilling
+      tags:
+        - Recurring Billing
+      summary: Create a recurring billing subscription
+      description: >-
+        Starts a subscription against a saved card. Provide a `plan_id`, or pass
+        `plan_id=null` with `name`, `cycle`, `amount`, `customer_email` and
+        `start_date` to define an ad-hoc plan inline.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RecurringBillingCreate'
+      responses:
+        '201':
+          description: Recurring billing created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecurringBilling'
+  /recurring-billing/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      operationId: getRecurringBilling
+      tags:
+        - Recurring Billing
+      summary: Get a recurring billing subscription
+      responses:
+        '200':
+          description: The recurring billing subscription.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecurringBilling'
+    delete:
+      operationId: cancelRecurringBilling
+      tags:
+        - Recurring Billing
+      summary: Cancel a recurring billing subscription
+      responses:
+        '200':
+          description: Recurring billing cancelled.
+  /charge/{recurring_billing_id}:
+    post:
+      operationId: chargeRecurringBilling
+      tags:
+        - Recurring Billing
+      summary: Charge a saved card
+      description: >-
+        Charges the saved card associated with a recurring billing subscription
+        for an ad-hoc amount.
+      parameters:
+        - name: recurring_billing_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ChargeCreate'
+      responses:
+        '201':
+          description: Charge created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Charge'
+  /subscription-plan:
+    get:
+      operationId: listSubscriptionPlans
+      tags:
+        - Subscription Plans
+      summary: List subscription plans
+      responses:
+        '200':
+          description: A list of subscription plans.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SubscriptionPlan'
+    post:
+      operationId: createSubscriptionPlan
+      tags:
+        - Subscription Plans
+      summary: Create a subscription plan
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SubscriptionPlanCreate'
+      responses:
+        '201':
+          description: Subscription plan created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionPlan'
+  /subscription-plan/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      operationId: getSubscriptionPlan
+      tags:
+        - Subscription Plans
+      summary: Get a subscription plan
+      responses:
+        '200':
+          description: The subscription plan.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionPlan'
+    delete:
+      operationId: deleteSubscriptionPlan
+      tags:
+        - Subscription Plans
+      summary: Delete a subscription plan
+      responses:
+        '200':
+          description: Subscription plan deleted.
+components:
+  securitySchemes:
+    businessApiKey:
+      type: apiKey
+      in: header
+      name: X-BUSINESS-API-KEY
+      description: >-
+        Per-merchant business API key from Dashboard > Settings > Payment Gateway
+        > API Keys. Platform/aggregator requests additionally send X-PLATFORM-KEY.
+  schemas:
+    PaymentRequestCreate:
+      type: object
+      required:
+        - amount
+        - currency
+      properties:
+        amount:
+          type: string
+          description: Amount to collect, e.g. "199.00".
+          example: '199.00'
+        currency:
+          type: string
+          description: ISO 4217 currency code (lowercase accepted), e.g. "sgd".
+          example: sgd
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+        purpose:
+          type: string
+        reference_number:
+          type: string
+        redirect_url:
+          type: string
+          format: uri
+        payment_methods:
+          type: array
+          description: Restrict to specific methods (paynow_online, card, grabpay, wechat, alipay, shopee, atome).
+          items:
+            type: string
+        send_email:
+          type: boolean
+        send_sms:
+          type: boolean
+    PaymentRequest:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          enum: [pending, completed, failed, expired]
+        amount:
+          type: string
+        currency:
+          type: string
+        url:
+          type: string
+          format: uri
+          description: Hosted checkout URL to redirect the payer to.
+        reference_number:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    RefundCreate:
+      type: object
+      required:
+        - amount
+        - payment_id
+      properties:
+        payment_id:
+          type: string
+          description: The id of the completed payment to refund.
+        amount:
+          type: string
+          description: Amount to refund (full or partial).
+    Refund:
+      type: object
+      properties:
+        id:
+          type: string
+        payment_id:
+          type: string
+        amount_refunded:
+          type: string
+        currency:
+          type: string
+        status:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    RecurringBillingCreate:
+      type: object
+      required:
+        - customer_email
+        - start_date
+      properties:
+        plan_id:
+          type: string
+          nullable: true
+          description: Existing plan id, or null to define an inline plan.
+        customer_email:
+          type: string
+          format: email
+        start_date:
+          type: string
+          format: date
+        name:
+          type: string
+        cycle:
+          type: string
+          enum: [weekly, monthly, yearly]
+        amount:
+          type: string
+        currency:
+          type: string
+        save_card:
+          type: boolean
+        redirect_url:
+          type: string
+          format: uri
+    RecurringBilling:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        customer_email:
+          type: string
+        plan_id:
+          type: string
+          nullable: true
+        amount:
+          type: string
+        currency:
+          type: string
+        url:
+          type: string
+          format: uri
+        created_at:
+          type: string
+          format: date-time
+    ChargeCreate:
+      type: object
+      required:
+        - amount
+        - currency
+      properties:
+        amount:
+          type: string
+        currency:
+          type: string
+    Charge:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        amount:
+          type: string
+        currency:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    SubscriptionPlanCreate:
+      type: object
+      required:
+        - name
+        - amount
+        - currency
+        - cycle
+      properties:
+        name:
+          type: string
+        amount:
+          type: string
+        currency:
+          type: string
+        cycle:
+          type: string
+          enum: [weekly, monthly, yearly]
+        reference:
+          type: string
+    SubscriptionPlan:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        amount:
+          type: string
+        currency:
+          type: string
+        cycle:
+          type: string
+        created_at:
+          type: string
+          format: date-time

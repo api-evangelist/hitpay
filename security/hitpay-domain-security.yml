@@ -1,0 +1,50 @@
+generated: '2026-07-17'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.hitpayapp.com
+  https: true
+  tls_version: TLSv1.3
+  cert_issuer: Let's Encrypt
+  cert_expires: Sep 24 10:31:35 2026 GMT
+  hsts: true
+  hsts_max_age: 2592000
+  hsts_include_subdomains: true
+  hsts_preload: true
+- host: api.hit-pay.com
+  https: true
+  tls_version: TLSv1.3
+  cert_issuer: GoDaddy Secure Certificate Authority - G2
+  cert_expires: Jan 21 10:38:35 2027 GMT
+  hsts: true
+  hsts_max_age: 2592000
+  hsts_include_subdomains: true
+  hsts_preload: true
+  note: Root path returns 404; API base is /v1 and requires X-BUSINESS-API-KEY.
+- host: docs.hitpayapp.com
+  https: true
+  tls_version: TLSv1.3
+  cert_issuer: Let's Encrypt
+  cert_expires: Sep 24 10:31:35 2026 GMT
+  hsts: true
+  hsts_max_age: 2592000
+  hsts_include_subdomains: true
+  hsts_preload: true
+domains:
+- domain: hitpayapp.com
+  dnssec: false
+  caa: []
+  note: No CAA records returned on probe.
+- domain: hit-pay.com
+  dnssec: false
+  caa: []
+  note: No CAA records returned on probe. API served from api.hit-pay.com.
+securityTxt:
+  present: false
+  note: No /.well-known/security.txt served (request 308-redirects without a file).
+compliance:
+  pci_dss: true
+  note: >-
+    HitPay is PCI DSS compliant and is a regulated payment institution; it holds
+    a Major Payment Institution (MPI) posture with the Monetary Authority of
+    Singapore (MAS) and is regulated across multiple APAC jurisdictions.

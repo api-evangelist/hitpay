@@ -1,0 +1,47 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: HitPay
+providerId: hitpay
+created: '2026-07-17'
+modified: '2026-07-17'
+reconciled: false
+tags:
+- Payments
+- Fintech
+- PayNow
+- Southeast Asia
+- SMB
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  HitPay does not publish specific numeric API rate limits in its public
+  developer documentation. As a regulated payment gateway it applies standard
+  abuse-prevention throttling and returns HTTP 429 on excessive requests;
+  clients should implement retries with exponential backoff. Concrete
+  per-endpoint or per-merchant limits are not documented and are not reconciled
+  in this artifact.
+notes: >-
+  Confirm any applicable limits with HitPay support during integration. Values
+  here are not asserted; only the documented throttling behavior (HTTP 429) and
+  recommended client backoff are recorded.
+sources:
+- https://docs.hitpayapp.com/apis
+- https://docs.hitpayapp.com/apis/guide/online-payments
+responseCodes:
+  throttled: 429
+limits:
+- name: API Requests
+  scope: merchant
+  metric: requests
+  limit: see provider documentation
+  notes: No public numeric rate limit is documented; abuse-prevention throttling applies.
+policies:
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter on HTTP 429 and honor Retry-After when present.
+- name: Idempotency
+  description: Use reference_number on payment requests to correlate and de-duplicate retried creations.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

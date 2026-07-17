@@ -1,0 +1,147 @@
+aid: hitpay
+url: https://raw.githubusercontent.com/api-evangelist/hitpay/refs/heads/main/apis.yml
+name: HitPay
+kind: company
+description: HitPay is a Singapore-headquartered all-in-one payments platform for
+  small and medium businesses across Asia-Pacific, unifying online checkout, point
+  of sale, and B2B billing. Its REST API creates hosted Payment Requests, runs
+  Recurring Billing on saved cards, and issues Refunds, with first-class Southeast
+  Asian local methods (PayNow, GrabPay, WeChat Pay, Alipay, ShopeePay, Atome)
+  alongside cards. Requests authenticate with the X-BUSINESS-API-KEY header.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Payments
+- Fintech
+- PayNow
+- Southeast Asia
+- SMB
+created: '2026-07-17'
+modified: '2026-07-17'
+specificationVersion: '0.19'
+apis:
+- aid: hitpay:hitpay-payment-requests-api
+  name: HitPay Payment Requests API
+  tags:
+  - Payments
+  - Checkout
+  - Payment Links
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.hitpayapp.com/apis/guide/online-payments
+  baseURL: https://api.hit-pay.com/v1
+  properties:
+  - url: https://docs.hitpayapp.com/apis/guide/online-payments
+    type: Documentation
+  - url: https://docs.hitpayapp.com/apis
+    type: APIReference
+  - url: openapi/hitpay-openapi.yml
+    type: OpenAPI
+  - url: collections/hitpay.postman_collection.json
+    type: PostmanCollection
+  description: Creates hosted payment requests (payment links and checkout pages)
+    for a given amount and currency, returning a redirect URL and a payment id to
+    track status. Supports PayNow, GrabPay, WeChat Pay, Alipay, ShopeePay, Atome
+    and cards; payment status is delivered via dashboard-registered webhooks.
+- aid: hitpay:hitpay-recurring-billing-api
+  name: HitPay Recurring Billing API
+  tags:
+  - Recurring
+  - Subscriptions
+  - Saved Cards
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.hitpayapp.com/apis/guide/recurring-billing
+  baseURL: https://api.hit-pay.com/v1
+  properties:
+  - url: https://docs.hitpayapp.com/apis/guide/recurring-billing
+    type: Documentation
+  - url: https://docs.hitpayapp.com/apis/recurring-billing/create-billing
+    type: APIReference
+  - url: openapi/hitpay-openapi.yml
+    type: OpenAPI
+  - url: collections/hitpay.postman_collection.json
+    type: PostmanCollection
+  description: Starts and manages subscriptions billed against saved cards, either
+    from a reusable subscription plan or an inline ad-hoc plan (name/cycle/amount),
+    and charges saved cards for one-off amounts.
+- aid: hitpay:hitpay-subscription-plans-api
+  name: HitPay Subscription Plans API
+  tags:
+  - Plans
+  - Subscriptions
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
+  baseURL: https://api.hit-pay.com/v1
+  properties:
+  - url: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
+    type: Documentation
+  - url: openapi/hitpay-openapi.yml
+    type: OpenAPI
+  - url: collections/hitpay.postman_collection.json
+    type: PostmanCollection
+  description: Creates and lists reusable subscription plan templates (name, amount,
+    currency, billing cycle) referenced by recurring billing subscriptions.
+- aid: hitpay:hitpay-refunds-api
+  name: HitPay Refunds API
+  tags:
+  - Refunds
+  - Payments
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.hitpayapp.com/apis/guide/online-payments
+  baseURL: https://api.hit-pay.com/v1
+  properties:
+  - url: https://docs.hitpayapp.com/apis/guide/online-payments
+    type: Documentation
+  - url: openapi/hitpay-openapi.yml
+    type: OpenAPI
+  - url: collections/hitpay.postman_collection.json
+    type: PostmanCollection
+  description: Issues full or partial refunds against completed payments. One refund
+    is allowed per transaction and only PayNow or card charges are refundable;
+    original transaction fees are non-refundable.
+- aid: hitpay:hitpay-platform-api
+  name: HitPay Platform API
+  tags:
+  - Platform
+  - Aggregator
+  - Marketplace
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.hitpayapp.com/apis/guide/platform-apis
+  baseURL: https://api.hit-pay.com/v1
+  properties:
+  - url: https://docs.hitpayapp.com/apis/guide/platform-apis
+    type: Documentation
+  - url: openapi/hitpay-openapi.yml
+    type: OpenAPI
+  description: Extension of the Payment Request APIs for e-commerce platforms and
+    aggregators that host sub-merchants, allowing a platform to create payment
+    requests on behalf of onboarded merchants using an additional X-PLATFORM-KEY
+    header.
+common:
+- type: AgenticAccess
+  url: agentic-access/hitpay-agentic-access.yml
+- type: TrustCenter
+  url: security/hitpay-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/hitpay-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/hitpay-domain-security.yml
+- type: Authentication
+  url: authentication/hitpay-authentication.yml
+- type: GitHubOrganization
+  url: https://github.com/hit-pay
+- type: LinkedIn
+  url: https://www.linkedin.com/company/hit-pay
+- type: Website
+  url: https://www.hitpayapp.com/
+- type: Documentation
+  url: https://docs.hitpayapp.com/apis
+- type: Plans
+  url: plans/hitpay-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/hitpay-rate-limits.yml
+- type: FinOps
+  url: finops/hitpay-finops.yml
+- url: https://www.hitpayapp.com/blog
+  type: Blog
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,70 @@
+aid: hitpay
+name: HitPay
+review:
+  question: Does HitPay expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-17'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was created. HitPay delivers asynchronous payment
+    status via HTTP webhooks (merchant-registered callback URLs), not via a
+    WebSocket, SSE, or message-broker streaming surface. HTTP webhooks are
+    request/response callbacks and are out of scope for AsyncAPI modeling
+    under current API Evangelist scope, so no asyncapi/ artifact was written.
+findings:
+  summary: |
+    HitPay does not publish a documented public WebSocket API. The HitPay
+    developer platform (docs.hitpayapp.com/apis) exposes only REST (HTTPS)
+    endpoints under https://api.hit-pay.com/v1 (production) and
+    https://api.sandbox.hit-pay.com/v1 (sandbox). Real-time payment
+    notifications are delivered by HTTP webhooks configured in the merchant
+    dashboard, with an HMAC-SHA256 Hitpay-Signature header verified using the
+    merchant's salt value. No realtime, bidirectional ws:// or wss:// endpoint
+    is documented for payment requests, recurring billing, or point of sale.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.hit-pay.com/v1
+      documented: true
+    - protocol: Webhook
+      scheme: https
+      note: >-
+        Outbound HTTP POST callbacks to merchant-registered URLs, signed with
+        HMAC-SHA256 (Hitpay-Signature header, salt as secret). Not WebSocket.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: >-
+        No WebSocket endpoint is documented in HitPay's API reference or product
+        guides (online payments, recurring billing, in-person payments, platform
+        APIs) as of the review date.
+  endpointsConfirmedRest:
+    - POST   https://api.hit-pay.com/v1/payment-requests
+    - GET    https://api.hit-pay.com/v1/payment-requests/{id}
+    - DELETE https://api.hit-pay.com/v1/payment-requests/{id}
+    - POST   https://api.hit-pay.com/v1/refund
+    - POST   https://api.hit-pay.com/v1/recurring-billing
+    - GET    https://api.hit-pay.com/v1/recurring-billing/{id}
+    - DELETE https://api.hit-pay.com/v1/recurring-billing/{id}
+    - POST   https://api.hit-pay.com/v1/charge/{recurring_billing_id}
+    - GET    https://api.hit-pay.com/v1/subscription-plan
+    - POST   https://api.hit-pay.com/v1/subscription-plan
+sources:
+  - url: https://docs.hitpayapp.com/apis
+    type: APIReference
+    note: Developer docs list REST base URLs and X-BUSINESS-API-KEY auth; no WebSocket mentioned.
+  - url: https://docs.hitpayapp.com/apis/guide/online-payments
+    type: Documentation
+    note: Payment status delivered via dashboard-registered HTTP webhooks, not WebSocket.
+  - url: https://docs.hitpayapp.com/apis/guide/recurring-billing
+    type: Documentation
+    note: Recurring billing is REST; no streaming/WebSocket surface.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: false
+  reason: |
+    No WebSocket or streaming protocol surface exists. Payment eventing is HTTP
+    webhook based, which is out of scope for AsyncAPI under current guidance, so
+    no asyncapi/ artifact and no AsyncAPI apis.yml pointer were added.

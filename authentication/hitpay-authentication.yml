@@ -1,0 +1,35 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/hitpay-openapi.yml
+summary:
+  types:
+  - apiKey
+schemes:
+- name: businessApiKey
+  type: apiKey
+  in: header
+  headerName: X-BUSINESS-API-KEY
+  description: >-
+    Per-merchant business API key from Dashboard > Settings > Payment Gateway >
+    API Keys. Sent on every request. Sandbox uses a separate test key against
+    https://api.sandbox.hit-pay.com/v1.
+  sources:
+  - openapi/hitpay-openapi.yml
+  - https://docs.hitpayapp.com/apis
+- name: platformKey
+  type: apiKey
+  in: header
+  headerName: X-PLATFORM-KEY
+  description: >-
+    Additional key sent alongside X-BUSINESS-API-KEY by e-commerce platforms /
+    aggregators using the Platform APIs to act on behalf of onboarded merchants.
+  sources:
+  - https://docs.hitpayapp.com/apis/guide/platform-apis
+webhookVerification:
+  header: Hitpay-Signature
+  algorithm: HMAC-SHA256
+  secret: merchant salt value (Dashboard > Payment Gateway > API)
+  note: >-
+    Webhook authenticity is verified by computing HMAC-SHA256 of the JSON payload
+    using the salt value as the key and comparing against the Hitpay-Signature
+    header. This is inbound webhook verification, distinct from request auth.
