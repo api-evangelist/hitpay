@@ -1,0 +1,90 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/hitpay-openapi-original.json
+notes: >-
+  Entity-relationship graph derived from the HitPay v1 API surface (paths + id
+  reference fields). Relationships are inferred from id-reference parameters
+  (e.g. recurring_billing_id, plan_id, payment_id/charge_id, customer_id,
+  beneficiary_id) across the 79-operation spec.
+entities:
+  - name: payment_request
+    id_field: id
+    operations: [create-payment-request, get-payment-requests, get-payment-status, update-payment-request, delete-payment-request]
+    relationships:
+      - has_many: charge
+        via: payment_request_id
+  - name: charge
+    id_field: charge_id
+    operations: [get-all-charges, get-charge, export-charges, print-charge-receipt]
+    relationships:
+      - belongs_to: payment_request
+        via: payment_request_id
+      - has_many: refund
+        via: payment_id
+  - name: refund
+    id_field: refund_id
+    operations: [refund, get-refund]
+    relationships:
+      - belongs_to: charge
+        via: payment_id
+  - name: subscription_plan
+    id_field: plan_id
+    operations: [get-all-subscription-plan, create-subscription-plan, get-a-subscription-plan-detail, update-recurring-billing-plan, delete-subscription]
+    relationships:
+      - has_many: recurring_billing
+        via: plan_id
+  - name: recurring_billing
+    id_field: recurring_billing_id
+    operations: [create-a-recurring-billing, get-all-recurring-billing, get-saved-card-details, update-recurring-billing, delete-a-recurring-billing-detail, charge-the-saved-card]
+    relationships:
+      - belongs_to: subscription_plan
+        via: plan_id
+      - belongs_to: customer
+        via: customer_email
+  - name: customer
+    id_field: customer_id
+    operations: [get-all-customers, create-customer, get-customer-details, update-customer, delete-customer]
+  - name: order
+    id_field: order_id
+    operations: [get-all-orders, create-order, get-order, update-the-order, delete-order]
+  - name: invoice
+    id_field: invoice_id
+    operations: [get-invoices, create-invoice, update-the-invoice, delete-invoice]
+    relationships:
+      - belongs_to: customer
+        via: customer_email
+  - name: product
+    id_field: product_id
+    operations: [get-all-products, create-product, get-product, update-product, delete-product, get-all-product-category]
+  - name: balance
+    id_field: balance_provider
+    operations: [get-balances, get-balance-transactions, export-transactions]
+  - name: beneficiary
+    id_field: beneficiary_id
+    operations: [get-schema, create-beneficiary, get-all-beneficiary, get-beneficiary-detail, update-beneficiary, delete-beneficiary]
+  - name: remitter
+    id_field: remitter_id
+    operations: [get-remitters, create-remitter, get-remitter, delete-remitter]
+  - name: transfer
+    id_field: transfer_id
+    operations: [get-transfers, create-transfer, get-transfer-detail, estimate-fee]
+    relationships:
+      - belongs_to: beneficiary
+        via: beneficiary_id
+      - belongs_to: remitter
+        via: remitter_id
+  - name: webhook_event
+    id_field: webhook_event_id
+    operations: [get-webhook-events-list, create-webhook-event, get-webhook-event, update-webhook-event, delete-webhook-event]
+  - name: static_qr
+    id_field: static_qr_id
+    operations: [get-static-qr, create-static-qr, get-static-qr-details, update-static-qr, delete-static-qr]
+  - name: reader
+    id_field: reader_id
+    operations: [get-card-reader, cancel-reader]
+  - name: virtual_account
+    id_field: virtual_account_id
+    operations: [get-virtual-accounts, create-virtual-account, get-virtual-account]
+  - name: staff
+    id_field: staff_id
+    operations: [get-all-staffs, get-staff-detail]

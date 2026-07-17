@@ -1,0 +1,60 @@
+generated: '2026-07-17'
+method: searched
+source: https://docs.hitpayapp.com/apis/guide/sandbox
+docs:
+  - https://docs.hitpayapp.com/apis/guide/sandbox
+  - https://docs.hitpayapp.com/apis/guide/in-person-payments/testing
+environments:
+  live:
+    api_base: https://api.hit-pay.com/v1
+    dashboard: https://dashboard.hit-pay.com
+  sandbox:
+    api_base: https://api.sandbox.hit-pay.com/v1
+    dashboard: https://dashboard.sandbox.hit-pay.com
+    note: >-
+      A sandbox account is separate from the live account. Register at
+      dashboard.sandbox.hit-pay.com and generate a test Business API Key and Salt
+      under Settings > Payment Gateway > API Keys. Sandbox transactions are fully
+      isolated from live (separate dashboard, no settlement/reporting impact).
+key_separation:
+  mechanism: separate account + separate host
+  note: >-
+    HitPay separates test from live by environment host (api.sandbox.hit-pay.com
+    vs api.hit-pay.com) and a distinct sandbox account/API key, not by a key prefix.
+    The Claude Code plugin defaults HITPAY_ENV=sandbox until explicitly set to
+    production.
+test_cards:
+  - number: "4242 4242 4242 4242"
+    expiry: any valid future date (e.g. 12/34)
+    cvc: any 3 digits
+    outcome: successful card payment
+    note: Verbatim from HitPay sandbox docs; use on the Test-mode checkout page.
+supported_sandbox_methods:
+  - paynow_online
+  - card
+  - shopee (ShopeePay)
+  - grabpay
+  - grabpay_paylater
+  - atome
+  - doku (QRIS)
+test_qr_payments:
+  method: paynow_online (and other supported QR methods)
+  how: >-
+    Set generate_qr=true on a sandbox payment request; scan the returned QR with a
+    personal mobile payment app that supports the method. Sandbox scans do not
+    result in real charges.
+in_person_testing:
+  note: >-
+    In-person (terminal) sandbox testing requires physical hardware: a real Wi-Fi
+    terminal connected to the sandbox environment and physical test cards obtained
+    from HitPay support. There is no virtual terminal simulator. Use payment method
+    `wifi_card_reader` with a `wifi_terminal_id`.
+failure_testing:
+  cards: >-
+    Decline testing uses a decline-configured physical test card (request from
+    HitPay support). Failed payments surface as status=failed with an
+    error_message field on the webhook/payment object.
+webhook_testing:
+  local_forwarding: hitpay listen --forward-to http://localhost:3000/webhook   # via CLI
+  simulate_event: hitpay trigger charge.created                                 # via CLI
+  tools: [webhook.site, ngrok]

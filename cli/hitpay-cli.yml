@@ -1,0 +1,81 @@
+generated: '2026-07-17'
+method: searched
+source: https://github.com/hit-pay/cli
+docs: https://docs.hitpayapp.com/apis/guide/cli
+cli:
+  name: hitpay
+  binary: hitpay
+  package: "@hit-pay/cli"
+  runtime: Node 18+
+  official: true
+  install:
+    - method: npm
+      command: npm install -g @hit-pay/cli
+    - method: npx
+      command: npx @hit-pay/cli --help
+  auth:
+    login: hitpay login
+    non_interactive: hitpay login --api-key sk-live-xxx
+    logout: hitpay logout
+    whoami: hitpay whoami
+  config:
+    environment: hitpay config set environment production   # sandbox <> production
+    currency: hitpay config set currency SGD
+    get: hitpay config get environment
+    list: hitpay config list
+command_groups:
+  - group: payment
+    commands:
+      - hitpay payment create --amount 100 --currency SGD --email buyer@example.com
+      - hitpay payment create --amount 25 --currency SGD --method paynow_online --qr
+      - hitpay payment get <payment-id>
+      - hitpay payment list --limit 10 --status completed
+      - hitpay payment cancel <payment-id>
+  - group: charge
+    commands:
+      - hitpay charge list --status succeeded --date-from 2026-03-01 --limit 20
+      - hitpay charge get <charge-id>            # includes fee breakdown
+      - hitpay charge export --date-from 2026-03-01 --date-to 2026-03-31
+  - group: refund
+    commands:
+      - hitpay refund --payment-id <charge-id> --amount 50.00   # partial
+      - hitpay refund --payment-id <charge-id>                  # full
+      - hitpay refund --payment-id <charge-id> --yes            # skip confirm
+  - group: customer
+    commands:
+      - hitpay customer create --name "John Doe" --email john@example.com
+      - hitpay customer list --search "john"
+      - hitpay customer get <customer-id>
+      - hitpay customer update <customer-id> --email new@example.com
+      - hitpay customer delete <customer-id>
+  - group: invoice
+    commands:
+      - hitpay invoice create --amount 500 --currency SGD --customer-email john@example.com
+      - hitpay invoice list --status pending
+      - hitpay invoice delete <invoice-id>
+  - group: plan
+    commands:
+      - hitpay plan create --name "Pro Monthly" --amount 49.99 --currency SGD --cycle monthly
+      - hitpay plan list
+      - hitpay plan get <plan-id>
+      - hitpay plan delete <plan-id>
+  - group: subscription
+    commands:
+      - hitpay subscription create --plan-id <id> --customer-email user@example.com
+      - hitpay subscription list --status active
+      - hitpay subscription get <subscription-id>
+      - hitpay subscription cancel <subscription-id>
+  - group: qr
+    commands:
+      - hitpay qr create --amount 10 --currency SGD --method paynow_online
+  - group: balance
+    commands:
+      - hitpay balance
+key_developer_flows:
+  webhook_forwarding: hitpay listen --forward-to http://localhost:3000/webhook
+  webhook_trigger: hitpay trigger charge.created
+  webhook_trigger_list: hitpay trigger --list
+  note: >-
+    `listen` tunnels live webhook events to a local endpoint; `trigger` posts a
+    signed test payload to whichever endpoint `listen` is forwarding, exercising
+    signature verification, idempotency, and event routing without a real payment.

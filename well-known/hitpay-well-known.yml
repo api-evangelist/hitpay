@@ -1,0 +1,24 @@
+generated: '2026-07-17'
+method: searched
+notes: >-
+  Probed the /.well-known/ discovery surface on the HitPay website and API hosts.
+  No documents were served (all 404/308). Recorded honestly; no WellKnown or
+  SecurityTxt pointer is emitted because nothing returned 200.
+hosts:
+  - host: https://www.hitpayapp.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 308
+        note: Redirect without a served file (no RFC 9116 file present).
+      - path: /.well-known/ai-plugin.json
+        status: 308
+  - host: https://api.hit-pay.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404

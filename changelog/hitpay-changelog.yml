@@ -1,0 +1,44 @@
+generated: '2026-07-17'
+method: searched
+source: https://docs.hitpayapp.com/changelog
+scheme: dated (Update entries labeled "Month DD, YYYY"), tagged by product area
+current_version: v1 (API path /v1)
+window: recent
+notes: >-
+  HitPay publishes a dated product changelog. Entries are product/feature updates
+  (payment methods, integrations, platform features) rather than strict API
+  version bumps. Recent window captured verbatim below; full history at the source
+  URL back to 2023.
+entries:
+  - date: '2026-06-25'
+    tag: Payment Methods
+    breaking: false
+    title: WeChat Pay for Philippines
+    highlight: Accept PHP payments via WeChat Pay with settlement to PHP.
+    url: https://docs.hitpayapp.com/changelog/2026-06-25-wechat-pay-ph
+  - date: '2026-06-17'
+    tag: Dashboard
+    breaking: false
+    title: AI Assistant
+    highlight: In-dashboard natural-language assistant for account-scoped questions.
+    url: https://docs.hitpayapp.com/changelog/2026-06-17-ai-assistant
+  - date: '2026-06-08'
+    tag: Payment Methods
+    breaking: false
+    title: LINE Pay
+    highlight: Accept THB via LINE Pay across Online, POS, Borderless QR, and Recurring Billing.
+    url: https://docs.hitpayapp.com/changelog/2026-06-08-line-pay
+  - date: '2026-06-05'
+    tag: API
+    breaking: false
+    title: Embed Alternative Payment Flows Directly in Your App
+    highlight: >-
+      Direct-link support to embed the full APM payment experience in-app, plus
+      wallet top-up for Malaysia and Philippines merchants.
+    url: https://docs.hitpayapp.com/changelog/2026-06-05-embedded-payments-direct-link
+  - date: '2026-05-26'
+    tag: Integrations
+    breaking: false
+    title: Bukku Accounting Integration
+    highlight: Sync HitPay payments with Bukku accounting.
+    url: https://docs.hitpayapp.com/changelog

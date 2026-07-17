@@ -1,0 +1,99 @@
+generated: '2026-07-17'
+method: searched
+status: published
+source: https://github.com/hit-pay/claude-code-plugin/blob/main/.mcp.json
+docs: https://docs.hitpayapp.com/apis/guide/claude-code-plugin
+server:
+  name: hitpay-api
+  transport: http
+  url: https://hitpay-mcp.vercel.app/api/mcp
+  auth:
+    headers:
+      x-hitpay-api-key: "${HITPAY_API_KEY}"
+      x-hitpay-environment: "${HITPAY_ENV:-sandbox}"
+    note: >-
+      Per-merchant HitPay Business API key passed as x-hitpay-api-key; environment
+      (sandbox|production) selected via x-hitpay-environment, defaulting to sandbox.
+  distribution:
+    plugin: hit-pay/claude-code-plugin
+    marketplace: "/plugin marketplace add hit-pay/claude-code-plugin"
+    install: "/plugin install hitpay@hitpay-plugins"
+notes: >-
+  Official HitPay hosted MCP server. The published Claude Code plugin advertises
+  28 live API tools; the .mcp.json in the plugin repo wires the hosted HTTP
+  endpoint above. The README enumerates the read and create tools captured below
+  (a safe-by-default subset — refunds, deletions, transfers and cancellations are
+  intentionally excluded from the skill/tool surface). Tools are grounded in real
+  OpenAPI operationIds from openapi/hitpay-openapi-original.json.
+tools:
+  # Read operations
+  - name: get_account_status
+    description: Check KYC status and enabled providers.
+    source_operation: openapi/hitpay-openapi-original.json#get-account-status
+  - name: get_balances
+    description: Current account balances.
+    source_operation: openapi/hitpay-openapi-original.json#get-balances
+  - name: get_payment_request
+    description: Payment request details.
+    source_operation: openapi/hitpay-openapi-original.json#get-payment-status
+  - name: list_payment_requests
+    description: List payment requests.
+    source_operation: openapi/hitpay-openapi-original.json#get-payment-requests
+  - name: list_charges
+    description: List charges with filters.
+    source_operation: openapi/hitpay-openapi-original.json#get-all-charges
+  - name: get_charge_detail
+    description: Charge details incl. fee breakdown.
+    source_operation: openapi/hitpay-openapi-original.json#get-charge
+  - name: list_customers
+    description: List customers.
+    source_operation: openapi/hitpay-openapi-original.json#get-all-customers
+  - name: get_customer
+    description: Customer details.
+    source_operation: openapi/hitpay-openapi-original.json#get-customer-details
+  - name: list_invoices
+    description: List invoices.
+    source_operation: openapi/hitpay-openapi-original.json#get-invoices
+  - name: list_subscription_plans
+    description: List subscription plans.
+    source_operation: openapi/hitpay-openapi-original.json#get-all-subscription-plan
+  - name: list_static_qrs
+    description: List static QR codes.
+    source_operation: openapi/hitpay-openapi-original.json#get-static-qr
+  - name: get_supported_qr_methods
+    description: Available QR payment methods.
+    source_operation: docs
+  - name: get_account_info
+    description: Account summary.
+    source_operation: openapi/hitpay-openapi-original.json#get-account-status
+  # Create operations
+  - name: create_payment_request
+    description: Create a payment request with a checkout URL.
+    source_operation: openapi/hitpay-openapi-original.json#create-payment-request
+  - name: create_customer
+    description: Create a customer record.
+    source_operation: openapi/hitpay-openapi-original.json#create-customer
+  - name: create_invoice
+    description: Create an invoice.
+    source_operation: openapi/hitpay-openapi-original.json#create-invoice
+  - name: create_embedded_qr
+    description: Generate a QR for payment collection.
+    source_operation: docs
+  - name: create_static_qr
+    description: Create a permanent (POS) QR.
+    source_operation: openapi/hitpay-openapi-original.json#create-static-qr
+  - name: create_webhook_event
+    description: Register a webhook URL.
+    source_operation: openapi/hitpay-openapi-original.json#create-webhook-event
+  - name: create_recurring_billing
+    description: Set up a subscription.
+    source_operation: openapi/hitpay-openapi-original.json#create-a-recurring-billing
+commands:
+  - name: "/hitpay:init"
+    description: Scaffold a complete integration (e.g. `/hitpay:init nextjs sg,my`).
+  - name: "/hitpay:methods"
+    description: Look up payment methods by country.
+  - name: "/hitpay:webhook-test"
+    description: Generate a test webhook payload + curl.
+  - name: "/hitpay:qr-checkout"
+    description: Generate a QR payment page with scannable codes.

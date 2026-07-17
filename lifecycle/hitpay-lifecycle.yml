@@ -1,0 +1,37 @@
+generated: '2026-07-17'
+method: searched
+source: https://docs.hitpayapp.com/apis
+versioning:
+  scheme: uri-path
+  current: v1
+  base: https://api.hit-pay.com/v1
+  docs: https://docs.hitpayapp.com/apis/overview
+  note: >-
+    Single major version (v1) in the URL path. HitPay ships two webhook payload
+    generations (form-encoded "Webhook v1" and JSON "Webhook Events"); both remain
+    supported. New capabilities are shipped additively and announced on the dated
+    changelog rather than via API version bumps.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: >-
+    No formal RFC 8594 Sunset/Deprecation-header policy is published. Specific
+    fields are marked deprecated in-docs (e.g. the inline `webhook` field on
+    create-payment-request is deprecated in favor of dashboard-registered webhook
+    endpoints). No dedicated deprecation-policy page was found on probe.
+sla:
+  url: null
+  uptime_target: null
+  note: No public SLA / uptime commitment page was located.
+status_page:
+  url: null
+  note: >-
+    No dedicated public status page (status.hitpayapp.com / statuspage.io) was
+    found on probe. Operational/incident communication is via support
+    (support@hitpayapp.com) and the Zendesk help center.
+changelog: https://docs.hitpayapp.com/changelog
+deprecated_operations: []
+deprecated_fields:
+  - spec: openapi/hitpay-openapi.yml
+    field: PaymentRequestCreate.webhook (inline)
+    replacement: dashboard-registered webhook endpoints (create-webhook-event)

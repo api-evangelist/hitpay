@@ -1,0 +1,39 @@
+generated: '2026-07-17'
+method: generated
+notes: >-
+  Two sets: (1) API Evangelist packaged Agent Skills generated from the HitPay
+  OpenAPI + conventions, grounded in real operationIds; (2) HitPay's own published
+  Agent Skills shipped in the hit-pay/claude-code-plugin (5 auto-triggered skills)
+  and documented at https://docs.hitpayapp.com/apis/guide/ai-skills — referenced
+  here by source (work with Claude Code, Cursor, Copilot, Windsurf).
+skills:
+  - file: hitpay-collect-payment.md
+    name: Collect a payment with HitPay
+    api: openapi/hitpay-openapi-original.json
+    operations: [create-payment-request, get-payment-status, create-webhook-event]
+  - file: hitpay-refund-charge.md
+    name: Refund a HitPay charge
+    api: openapi/hitpay-openapi-original.json
+    operations: [get-charge, refund, get-refund]
+  - file: hitpay-recurring-billing.md
+    name: Set up HitPay recurring billing
+    api: openapi/hitpay-openapi-original.json
+    operations: [create-subscription-plan, create-a-recurring-billing, charge-the-saved-card, get-saved-card-details]
+  - file: hitpay-verify-webhook.md
+    name: Verify a HitPay webhook
+    api: openapi/hitpay-openapi-original.json
+    operations: [create-webhook-event, get-webhook-events-list, get-webhook-event]
+provider_published_skills:
+  source: https://github.com/hit-pay/claude-code-plugin/tree/main/skills
+  docs: https://docs.hitpayapp.com/apis/guide/ai-skills
+  skills:
+    - name: payment-integration
+      teaches: API routes, redirect/QR/selector flows, auth headers, test cards.
+    - name: webhook-handler
+      teaches: HMAC-SHA256 verification, event types, IP allowlisting, idempotency.
+    - name: payment-methods
+      teaches: Country-to-method mapping, API values, currencies, availability.
+    - name: drop-in-ui
+      teaches: HitPay.js script, init options, Next.js integration, event handling.
+    - name: qr-checkout
+      teaches: Pre-rendered QR images, local HTML page, offline-capable.

@@ -1,0 +1,44 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/hitpay-openapi-original.json
+format: plain-json
+notes: >-
+  HitPay does not emit RFC 9457 application/problem+json. Errors are conveyed with
+  standard HTTP status codes and a JSON body carrying a `message` (and, on failed
+  payments, an `error_message`). Failed payment/charge outcomes are also delivered
+  as webhook events (charge.failed, payment_request.failed) rather than only as
+  synchronous errors. The status classes below are derived from the API contract
+  and documented behavior; there is no published numeric error-code registry to
+  enrich titles further.
+error_envelope:
+  fields:
+    - message         # human-readable error description
+    - errors          # field-level validation detail (on 422)
+    - error_message   # on failed payment objects/webhooks
+problems:
+  - status: 400
+    title: Bad Request
+    meaning: Malformed request or invalid parameter combination.
+  - status: 401
+    title: Unauthorized
+    meaning: Missing or invalid X-BUSINESS-API-KEY (or X-PLATFORM-KEY on platform calls).
+  - status: 403
+    title: Forbidden
+    meaning: Key lacks permission for the resource, or wrong environment (sandbox vs live).
+  - status: 404
+    title: Not Found
+    meaning: Referenced resource (payment request, charge, customer, plan) does not exist.
+  - status: 422
+    title: Unprocessable Entity
+    meaning: Validation failed; per-field detail returned in `errors`.
+  - status: 429
+    title: Too Many Requests
+    meaning: Rate limit exceeded. See rate-limits/hitpay-rate-limits.yml.
+  - status: 500
+    title: Internal Server Error
+    meaning: Unexpected server-side failure; retry with backoff.
+payment_failure_signals:
+  note: >-
+    Declines/failures surface as status=failed on the payment/charge object with an
+    error_message field, and as charge.failed / payment_request.failed webhook
+    events, rather than as a dedicated numeric decline-code catalog.

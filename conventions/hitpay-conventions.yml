@@ -1,0 +1,52 @@
+generated: '2026-07-17'
+method: searched
+source: https://docs.hitpayapp.com/apis
+notes: >-
+  Cross-cutting request/response semantics for the HitPay API, searched from the
+  developer docs and derived from openapi/hitpay-openapi-original.json.
+authentication:
+  style: API key (header)
+  header: X-BUSINESS-API-KEY
+  platform_header: X-PLATFORM-KEY
+  note: >-
+    Per-merchant Business API key on every request; aggregators additionally send
+    X-PLATFORM-KEY. See authentication/hitpay-authentication.yml.
+request_encoding:
+  content_type: application/x-www-form-urlencoded
+  note: Write operations accept form-encoded bodies; responses are application/json.
+idempotency:
+  request_idempotency_key: false
+  note: >-
+    HitPay does not document a request-level Idempotency-Key header. De-duplication
+    on the merchant side is supported at the webhook/event layer: each webhook
+    event carries an id and the docs recommend idempotent event handling (the CLI
+    `trigger` command is explicitly for exercising handler idempotency). Payment
+    requests can carry a merchant `reference_number` for correlation. Because there
+    is no first-class request idempotency contract, no Idempotency rating pointer
+    is emitted for this provider.
+pagination:
+  style: query-param limit (+ list endpoints)
+  params: [limit]
+  note: >-
+    List endpoints (e.g. get-payment-requests, get-all-charges, get-all-customers)
+    accept a `limit`; charges/transactions list endpoints also accept date-range
+    filters (date-from/date-to). Cursor semantics are not uniformly documented.
+versioning:
+  style: uri-path
+  current: v1
+  see: lifecycle/hitpay-lifecycle.yml
+error_envelope:
+  shape: JSON object with message/error fields; failed payments carry error_message
+  format: not RFC 9457 (no application/problem+json)
+  see: errors/hitpay-problem-types.yml
+webhooks:
+  signature_header: Hitpay-Signature
+  event_type_header: Hitpay-Event-Type
+  algorithm: HMAC-SHA256
+  see: asyncapi/hitpay-events-webhooks.yml
+rate_limiting:
+  see: rate-limits/hitpay-rate-limits.yml
+currency_amounts:
+  note: >-
+    Amounts are strings (e.g. "199.00"); currency is an ISO 4217 code (lowercase
+    accepted). Settlement is in the merchant account currency.

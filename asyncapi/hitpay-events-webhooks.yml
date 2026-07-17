@@ -1,0 +1,88 @@
+generated: '2026-07-17'
+method: searched
+source: https://docs.hitpayapp.com/apis/guide/events
+spec_type: Webhooks
+notes: >-
+  HitPay documents an HTTP webhook (event) surface but does not publish an
+  AsyncAPI document, so this is captured as a Webhooks catalog (type: Webhooks),
+  not an AsyncAPI spec. Event webhooks are registered per-endpoint under
+  Developers > Webhooks and each endpoint has its own salt.
+transport: https-webhook
+delivery: HTTP POST to a merchant-registered endpoint
+registration:
+  where: Dashboard > Developers > Webhooks (also API Keys screen for legacy callbacks)
+  api: openapi/hitpay-openapi-original.json#create-webhook-event
+  management_operations:
+    - get-webhook-events-list
+    - create-webhook-event
+    - get-webhook-event
+    - update-webhook-event
+    - delete-webhook-event
+signature:
+  event_webhooks:
+    header: Hitpay-Signature
+    algorithm: HMAC-SHA256
+    signed_over: raw request body
+    secret: per-webhook salt (webhook detail view after creation)
+    event_type_header: Hitpay-Event-Type
+  legacy_callbacks:
+    field: hmac
+    algorithm: HMAC-SHA256
+    signed_over: sorted+concatenated callback parameters
+    secret: API-key salt (Developers page)
+    used_for:
+      - Payment Request webhook and redirect callbacks
+      - Recurring payment callbacks
+      - Order and checkout callbacks
+      - Plugin HMAC validation (Shopify, Wix, Xero)
+events:
+  - name: charge.created
+    when: A payment is successfully completed.
+  - name: charge.updated
+    when: A payment is refunded / partially refunded.
+  - name: charge.failed
+    when: A charge attempt failed (e.g. insufficient wallet funds).
+  - name: payout.created
+    when: A payout is successfully completed.
+  - name: order.created
+    when: An order is created successfully.
+  - name: order.updated
+    when: An order status is updated.
+  - name: invoice.created
+    when: An invoice is created.
+  - name: transfer.created
+    when: A transfer is created.
+  - name: transfer.updated
+    when: A transfer is updated.
+  - name: transfer.processing
+    when: A transfer is processing.
+  - name: transfer.scheduled
+    when: A transfer is scheduled.
+  - name: transfer.paid
+    when: A transfer is paid.
+  - name: transfer.failed
+    when: A transfer failed.
+  - name: transfer.canceled
+    when: A transfer is canceled.
+  - name: payment_request.completed
+    when: A payment request has been paid.
+  - name: payment_request.failed
+    when: A payment request received an error.
+  - name: recurring_billing.method_attached
+    when: A payment method is attached to a subscription.
+  - name: recurring_billing.method_detached
+    when: A payment method (APM) is detached from a subscription.
+  - name: recurring_billing.subscription_updated
+    when: A subscription is updated (status change or dashboard edit).
+platform_webhooks:
+  note: >-
+    For sub-account payments made via Platform APIs, charge events
+    (charge.created/charge.failed/charge.updated) are delivered to the platform
+    account's registered endpoints (identify the sub-account via business_id in
+    the payload); payment_request events are delivered to the sub-account's
+    endpoints.
+failed_delivery:
+  note: >-
+    HitPay retries failed webhook deliveries; two payload formats exist
+    (form-encoded Webhook v1 and JSON Event webhooks). See
+    https://docs.hitpayapp.com/apis/guide/events for retry/format detail.

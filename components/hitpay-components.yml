@@ -1,0 +1,40 @@
+generated: '2026-07-17'
+method: searched
+source: https://docs.hitpayapp.com/apis/guide/online-payments
+notes: >-
+  Client-side / embeddable surfaces HitPay ships for merchants, distinct from
+  server-side SDKs (see packages/). Captured verbatim from the developer docs.
+families:
+  - family: Drop-In UI
+    description: >-
+      Embedded checkout that renders HitPay's payment experience inside the
+      merchant's own page (the customer never leaves the site). Requires the
+      merchant Default Link (Dashboard > Payment Links > Default link) plus the
+      payment_request_id returned by create-payment-request.
+      Does not support Apple Pay.
+    loader: HitPay.js
+    example: https://github.com/hit-pay/hitpay-js-example/blob/master/index.html
+    docs: https://docs.hitpayapp.com/apis/guide/online-payments
+  - family: Hosted Checkout (redirect)
+    description: >-
+      Fully-hosted checkout page; redirect the payer to the `url` returned by
+      create-payment-request. PCI scope stays with HitPay (card/CVV never touch
+      the merchant server).
+    docs: https://docs.hitpayapp.com/apis/guide/online-payments
+  - family: Embedded QR Code Payments
+    description: >-
+      Generate and display QR codes (PayNow, QRIS, GrabPay, DuitNow, PromptPay,
+      and more) directly inside the merchant app via generate_qr / generate_direct_link,
+      with no redirect to hosted checkout.
+    example: https://github.com/hit-pay/hitpay-embedded-payments-example
+    docs: https://docs.hitpayapp.com/apis/guide/embedded-qr-code-payments
+  - family: In-Person / Terminal
+    description: >-
+      Wi-Fi card reader / terminal payment surface (wifi_card_reader method with a
+      wifi_terminal_id) for POS card and QR acceptance.
+    docs: https://docs.hitpayapp.com/apis/guide/in-person-payments/overview
+mobile:
+  - name: iOS SDK example
+    url: https://github.com/hit-pay/ios-sdk-example
+  - name: Android SDK example
+    url: https://github.com/hit-pay/android-sdk-example

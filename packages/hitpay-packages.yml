@@ -1,0 +1,78 @@
+generated: '2026-07-17'
+method: searched
+source: https://github.com/hit-pay
+notes: >-
+  HitPay distributes developer tooling primarily as a terminal CLI, a Claude Code
+  plugin (MCP + skills), platform e-commerce extensions, and community language
+  wrappers hosted in its GitHub org (github.com/hit-pay). It does not ship a
+  first-party multi-language SDK matrix; language integrations are largely
+  community/org-hosted wrappers. official:true is used only for tooling HitPay
+  authors and maintains itself.
+packages:
+  - language: javascript
+    registry: npm
+    name: "@hit-pay/cli"
+    url: https://github.com/hit-pay/cli
+    install: npm install -g @hit-pay/cli
+    official: true
+    kind: cli
+    note: >-
+      Official HitPay developer CLI (repo hit-pay/cli). Documented install is
+      `npm install -g @hit-pay/cli` (Node 18+). The npm package was not yet
+      resolvable on the public registry at probe (404); source is on GitHub.
+  - language: javascript
+    registry: github
+    name: hit-pay/claude-code-plugin
+    url: https://github.com/hit-pay/claude-code-plugin
+    install: "/plugin marketplace add hit-pay/claude-code-plugin"
+    official: true
+    kind: agent-plugin
+    note: >-
+      Claude Code plugin bundling a hosted MCP server (28 tools), 5 auto-triggered
+      Agent Skills, and 4 slash commands. See mcp/ and skills/ artifacts.
+  - language: php
+    registry: github
+    name: hit-pay/php-sdk
+    url: https://github.com/hit-pay/php-sdk
+    install: composer require softbuild/hitpay-sdk
+    official: false
+    kind: sdk
+    note: >-
+      PHP client library hosted in the HitPay org but authored by a community
+      contributor (composer name softbuild/hitpay-sdk). Not published to Packagist
+      under a hitpay namespace at probe.
+  - language: php
+    registry: github
+    name: hit-pay/hitpay_php_wrapper
+    url: https://github.com/hit-pay/hitpay_php_wrapper
+    install: git clone https://github.com/hit-pay/hitpay_php_wrapper
+    official: false
+    kind: wrapper
+    note: Archived PHP wrapper for the Payment Request APIs.
+  - language: elixir
+    registry: github
+    name: hit-pay/elixir-wrapper
+    url: https://github.com/hit-pay/elixir-wrapper
+    install: "{:hitpay, github: \"hit-pay/elixir-wrapper\"}"
+    official: false
+    kind: wrapper
+    note: Community Elixir client (fork) hosted in the HitPay org.
+platform_extensions:
+  - name: WooCommerce
+    url: https://github.com/hit-pay/woocommerce
+    official: true
+  - name: Magento 2
+    url: https://github.com/hit-pay/magento2-extension
+    official: true
+  - name: PrestaShop 1.7/1.8
+    url: https://github.com/hit-pay/prestashop1.8-extension
+    official: true
+  - name: OpenCart 4
+    url: https://github.com/hit-pay/opencart4-extension
+    official: true
+  - name: Odoo
+    url: https://github.com/hit-pay/odoo-extension
+    official: true
+  - name: WHMCS
+    url: https://github.com/hit-pay/WHCMS-extension
+    official: true

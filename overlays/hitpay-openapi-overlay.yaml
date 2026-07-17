@@ -1,0 +1,44 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for HitPay Payments API
+  version: 1.0.0
+# Provenance: generated 2026-07-17, method generated.
+# Non-destructive enhancement layer over the modeled spec. The authoritative
+# richer spec is openapi/hitpay-openapi-original.json (79 ops, searched from
+# https://docs.hitpayapp.com/openapi.json); this overlay annotates the curated
+# modeled spec that carries securitySchemes/tags.
+extends: openapi/hitpay-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-enriched: true
+      x-apievangelist-artifacts:
+        authoritative-spec: openapi/hitpay-openapi-original.json
+        mcp: mcp/hitpay-mcp.yml
+        cli: cli/hitpay-cli.yml
+        skills: skills/_index.yml
+        webhooks: asyncapi/hitpay-events-webhooks.yml
+        sandbox: sandbox/hitpay-sandbox.yml
+        conventions: conventions/hitpay-conventions.yml
+        components: components/hitpay-components.yml
+        data-model: data-model/hitpay-data-model.yml
+        errors: errors/hitpay-problem-types.yml
+        conformance: conformance/hitpay-conformance.yml
+  - target: $.info
+    update:
+      x-agentic-access: agentic-access/hitpay-agentic-access.yml
+      x-compliance:
+        - PCI DSS
+        - MAS Major Payment Institution (Singapore)
+  - target: $.components.securitySchemes.businessApiKey
+    update:
+      x-apievangelist-note: >-
+        Per-merchant Business API key. Sandbox uses a separate account/key against
+        https://api.sandbox.hit-pay.com/v1. See authentication/hitpay-authentication.yml.
+  - target: "$.paths['/payment-requests'].post"
+    update:
+      x-webhook-events:
+        - payment_request.completed
+        - payment_request.failed
+        - charge.created
+      x-drop-in-ui: components/hitpay-components.yml
