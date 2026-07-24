@@ -1,0 +1,224 @@
+openapi: 3.1.1
+info:
+  title: HitPay Account Status Readers API
+  description: 'Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com'
+  version: '1.0'
+servers:
+- url: https://api.hit-pay.com
+  description: Production
+- url: https://api.sandbox.hit-pay.com
+  description: Sandbox
+tags:
+- name: Readers
+paths:
+  /v1/readers:
+    get:
+      summary: Get all card readers
+      description: Get all card readers
+      operationId: get-card-reader
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: limit
+        in: query
+        description: ' The number of items in page.'
+        schema:
+          type: number
+          default: 10
+          maximum: 100
+      - name: page
+        in: query
+        schema:
+          type: number
+          default: 1
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        device_type:
+                          type: string
+                        details:
+                          type: object
+                          properties:
+                            title:
+                              type: string
+                            image:
+                              type: string
+                          required:
+                          - title
+                          - image
+                        data:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            serial_number:
+                              type: string
+                          required:
+                          - id
+                          - serial_number
+                        created_at:
+                          type: string
+                        updated_at:
+                          type: string
+                      required:
+                      - id
+                      - name
+                      - device_type
+                      - details
+                      - data
+                      - created_at
+                      - updated_at
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                      last:
+                        type: string
+                      prev: {}
+                      next: {}
+                    required:
+                    - first
+                    - last
+                    - prev
+                    - next
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: number
+                      from:
+                        type: number
+                      last_page:
+                        type: number
+                      links:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                            label:
+                              type: string
+                            active:
+                              type: boolean
+                          required:
+                          - label
+                          - active
+                      path:
+                        type: string
+                      per_page:
+                        type: number
+                      to:
+                        type: number
+                      total:
+                        type: number
+                    required:
+                    - current_page
+                    - from
+                    - last_page
+                    - links
+                    - path
+                    - per_page
+                    - to
+                    - total
+                required:
+                - data
+                - links
+                - meta
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location 'https://api.sandbox.hit-pay.com/v1/readers' \\n--header 'X-BUSINESS-API-KEY: 9011d0e1e03c1e2d79cdcf1fd7147eaa6d339e4ba5e42df38d8b495e7ed8e9fc' \\\n --header 'X-Requested-With: XMLHttpRequest'"
+          name: Example request
+        samples-languages:
+        - curl
+      tags:
+      - Readers
+  /v1/readers/cancel:
+    post:
+      summary: Cancel the terminal reader
+      description: Cancel the terminal reader.
+      operationId: cancel-reader
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - reader_id
+              properties:
+                reader_id:
+                  type: string
+                  example: tmr_FTQMPAL1boM2kE
+                  description: The reader id
+      responses:
+        '204':
+          description: '204'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: 1
+              schema:
+                type: integer
+                example: 1
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    message: This terminal is not connected to your business. Please go to Settings > Check Reader Connection > Select a terminal, or contact support@hit-pay.com if you face any issues.
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                - message
+      deprecated: false
+      x-readme:
+        code-samples:
+        - {}
+        samples-languages:
+        - curl
+      tags:
+      - Readers
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true
+x-readme-fauxas: true

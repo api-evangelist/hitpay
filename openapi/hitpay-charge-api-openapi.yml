@@ -1,0 +1,109 @@
+openapi: 3.1.1
+info:
+  title: HitPay Account Status Charge API
+  description: 'Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com'
+  version: '1.0'
+servers:
+- url: https://api.hit-pay.com
+  description: Production
+- url: https://api.sandbox.hit-pay.com
+  description: Sandbox
+tags:
+- name: Charge
+paths:
+  /v1/charge/recurring-billing/{recurring_billing_id}:
+    post:
+      summary: Charge the saved card
+      description: Once the card is saved you can charged the card anytime using the charge API
+      operationId: charge-the-saved-card
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: recurring_billing_id
+        in: path
+        description: id value from the create recurring billing API
+        schema:
+          type: string
+          format: uuid
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - amount
+              - currency
+              properties:
+                amount:
+                  type: integer
+                  maximum: 9999999.99
+                  description: 'Amount to charge the card. Minimum value: it depends on the currency'
+                  format: int32
+                  example: 100
+                currency:
+                  type: string
+                  example: SGD
+                  description: The currency
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"payment_id\": \"9746f906-bdbb-4064-8372-642cf5877e0c\",\n    \"recurring_billing_id\": \"9746f8c2-2b7c-4c78-8832-012f203ae687\",\n    \"amount\": 100,\n    \"currency\": \"usd\",\n    \"status\": \"succeeded\"\n}"
+              schema:
+                type: object
+                properties:
+                  payment_id:
+                    type: string
+                    examples:
+                    - 9746f906-bdbb-4064-8372-642cf5877e0c
+                  recurring_billing_id:
+                    type: string
+                    examples:
+                    - 9746f8c2-2b7c-4c78-8832-012f203ae687
+                  amount:
+                    type: integer
+                    examples:
+                    - 100
+                    default: 0
+                  currency:
+                    type: string
+                    examples:
+                    - usd
+                  status:
+                    type: string
+                    examples:
+                    - succeeded
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No query results for model [App\\\\Business\\\\RecurringBilling] 9746f9b2-a2ef-47a2-ac68-358ae3d202fe\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    examples:
+                    - No query results for model [App\Business\RecurringBilling] 9746f9b2-a2ef-47a2-ac68-358ae3d202fe
+      deprecated: false
+      security: []
+      tags:
+      - Charge
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true
+x-readme-fauxas: true

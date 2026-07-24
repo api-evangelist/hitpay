@@ -1,0 +1,70 @@
+openapi: 3.1.1
+info:
+  title: HitPay Account Status Refunds API
+  description: 'Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com'
+  version: '1.0'
+servers:
+- url: https://api.hit-pay.com
+  description: Production
+- url: https://api.sandbox.hit-pay.com
+  description: Sandbox
+tags:
+- name: Refunds
+  description: Refund completed PayNow or card charges.
+paths:
+  /refund:
+    post:
+      operationId: createRefund
+      tags:
+      - Refunds
+      summary: Refund a charge
+      description: Issues a full or partial refund against a completed payment. Only one refund is allowed per transaction, and only PayNow or card charges are refundable. Original transaction fees are non-refundable.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RefundCreate'
+      responses:
+        '201':
+          description: Refund created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Refund'
+components:
+  schemas:
+    Refund:
+      type: object
+      properties:
+        id:
+          type: string
+        payment_id:
+          type: string
+        amount_refunded:
+          type: string
+        currency:
+          type: string
+        status:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    RefundCreate:
+      type: object
+      required:
+      - amount
+      - payment_id
+      properties:
+        payment_id:
+          type: string
+          description: The id of the completed payment to refund.
+        amount:
+          type: string
+          description: Amount to refund (full or partial).
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true
+x-readme-fauxas: true

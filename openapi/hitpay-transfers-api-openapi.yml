@@ -1,0 +1,1051 @@
+openapi: 3.1.1
+info:
+  title: HitPay Account Status Transfers API
+  description: 'Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com'
+  version: '1.0'
+servers:
+- url: https://api.hit-pay.com
+  description: Production
+- url: https://api.sandbox.hit-pay.com
+  description: Sandbox
+tags:
+- name: Transfers
+paths:
+  /v1/transfers:
+    get:
+      summary: Get list of transfers
+      description: Get list of transfers
+      operationId: get-transfers
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: beneficiary_id
+        in: query
+        description: The Beneficiary id
+        schema:
+          type: string
+          format: uuid
+      - name: keywords
+        description: The keywords to search by ID, beneficiary name and remark
+        in: query
+        schema:
+          type: string
+          format: uuid
+      - name: status
+        description: The status of the transfer
+        in: query
+        schema:
+          type: string
+          enum:
+          - scheduled
+          - processing
+          - paid
+          - failed
+          - canceled
+      - name: per_page
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 10
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    data:
+                    - id: 9ec02ec7-a121-457f-9efc-1c4610fbe4e6
+                      beneficiary:
+                        id: 9ec01865-7af1-4937-813d-7801912d2cd1
+                        status: approved
+                        country: sg
+                        currency: sgd
+                        transfer_method: bank_transfer
+                        transfer_type: local
+                        nickname: null
+                        remark: null
+                        holder_name: John Test
+                        holder_type: individual
+                        account_number: '1409828'
+                        bank_name: BANK OF AMERICA
+                        bank_id: BOFASG2XXXX[7065]
+                        email: null
+                        bank_swift_code: BOFASG2XXXX
+                        is_favourite: false
+                        created_at: '2025-04-24T15:13:22+08:00'
+                        updated_at: '2025-04-24T15:13:22+08:00'
+                        deleted_at: null
+                      payment_currency: sgd
+                      payment_amount: 20
+                      source_currency: usd
+                      source_amount: 15.45
+                      exchange_rate: '1.293876'
+                      fee:
+                        amount: 0
+                        currency: usd
+                        paid_by: payer
+                      remark: Remark In deserunt voluptates aspernatur aut nisi occaecati.
+                      reference: null
+                      status: scheduled
+                      attachment: null
+                      created_at: '2025-04-24T16:15:57+08:00'
+                    - id: 9ec01866-a609-4ce4-a3d1-e3e230872509
+                      beneficiary:
+                        id: 9ec01865-7af1-4937-813d-7801912d2cd1
+                        status: approved
+                        country: sg
+                        currency: sgd
+                        transfer_method: bank_transfer
+                        transfer_type: local
+                        nickname: null
+                        remark: null
+                        holder_name: John Test
+                        holder_type: individual
+                        account_number: '1409828'
+                        bank_name: BANK OF AMERICA
+                        bank_id: BOFASG2XXXX[7065]
+                        email: null
+                        bank_swift_code: BOFASG2XXXX
+                        is_favourite: false
+                        created_at: '2025-04-24T15:13:22+08:00'
+                        updated_at: '2025-04-24T15:13:22+08:00'
+                        deleted_at: null
+                      payment_currency: sgd
+                      payment_amount: 20
+                      source_currency: usd
+                      source_amount: 15.45
+                      exchange_rate: '1.293876'
+                      fee:
+                        amount: 0
+                        currency: usd
+                        paid_by: payer
+                      remark: Remark Quia provident cumque molestiae corrupti molestiae.
+                      reference: null
+                      status: scheduled
+                      attachment: null
+                      created_at: '2025-04-24T15:13:22+08:00'
+                    links:
+                      first: null
+                      last: null
+                      prev: null
+                      next: null
+                    meta:
+                      path: https://api.sandbox.hit-pay.com/v1/transfers
+                      per_page: 25
+                      next_cursor: null
+                      prev_cursor: null
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        beneficiary:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            status:
+                              type: string
+                            country:
+                              type: string
+                            currency:
+                              type: string
+                            transfer_method:
+                              type: string
+                            transfer_type:
+                              type: string
+                            nickname:
+                              type: string
+                            remark:
+                              type: string
+                            holder_name:
+                              type: string
+                            holder_type:
+                              type: string
+                            bank_branch_code:
+                              type: string
+                            bank_routing_number:
+                              type: string
+                            account_number:
+                              type: string
+                            bank_name:
+                              type: string
+                            bank_id:
+                              type: string
+                            email:
+                              type: string
+                            is_favourite:
+                              type: boolean
+                            created_at:
+                              type: string
+                            updated_at:
+                              type: string
+                            deleted_at: {}
+                          required:
+                          - id
+                          - is_external
+                          - country
+                          - currency
+                          - transfer_method
+                          - nickname
+                          - remark
+                          - holder_name
+                          - holder_type
+                          - email
+                          - bank_routing_number
+                          - account_number
+                          - is_favourite
+                          - created_at
+                          - updated_at
+                          - deleted_at
+                        payment_currency:
+                          type: string
+                        payment_amount:
+                          type: number
+                        source_currency:
+                          type: string
+                        source_amount:
+                          type: number
+                        exchange_rate:
+                          type: string
+                        fee:
+                          type: object
+                          properties:
+                            paid_by:
+                              type: string
+                              enum:
+                              - payer
+                              - beneficiary
+                            amount:
+                              type: number
+                            currency:
+                              type: string
+                        discount_fee_rate:
+                          type: number
+                        fixed_fee:
+                          type: number
+                        discount_fee:
+                          type: number
+                        remark:
+                          type: string
+                        status:
+                          type: string
+                          enum:
+                          - scheduled
+                          - processing
+                          - paid
+                          - failed
+                          - canceled
+                        attachment:
+                          type: string
+                        created_at:
+                          type: string
+                      required:
+                      - id
+                      - beneficiary
+                      - payment_currency
+                      - payment_amount
+                      - source_currency
+                      - source_amount
+                      - exchange_rate
+                      - fixed_fee
+                      - discount_fee
+                      - discount_fee_rate
+                      - fee
+                      - status
+                      - remark
+                      - status
+                      - source_type
+                      - attachment
+                      - created_at
+                  links:
+                    type: object
+                    properties:
+                      first: {}
+                      last: {}
+                      prev: {}
+                      next:
+                        type: string
+                    required:
+                    - first
+                    - last
+                    - prev
+                    - next
+                  meta:
+                    type: object
+                    properties:
+                      path:
+                        type: string
+                      per_page:
+                        type: number
+                      next_cursor:
+                        type: string
+                      prev_cursor: {}
+                    required:
+                    - path
+                    - per_page
+                    - next_cursor
+                    - prev_cursor
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: 'curl --location ''https://api.sandbox.hit-pay.com/v1/transfers?perPage=10'' \
+
+            --header ''X-BUSINESS-API-KEY: apikey'' \
+
+            --header ''X-Requested-With: XMLHttpRequest'''
+          name: Example request
+        samples-languages:
+        - curl
+      tags:
+      - Transfers
+    post:
+      summary: Create a new transfer
+      description: Create a new transfer
+      operationId: create-transfer
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                beneficiary:
+                  type: object
+                  description: The beneficiary information. Only required if 'beneficiary_id' is not set. The payload depends on the country and payment method. Please refer `Create Beneficiary` for addtional fields
+                  externalDocs:
+                    description: More info here
+                    url: https://docs.hitpayapp.com/apis/payout/create-beneficiary
+                  properties:
+                    country:
+                      type: string
+                      description: The country code
+                      enum:
+                      - sg
+                      - bd
+                      - ph
+                      - vn
+                      - au
+                    currency:
+                      type: string
+                      description: The currency code
+                      enum:
+                      - sgd
+                      - bdt
+                      - php
+                      - vnd
+                      - aud
+                    transfer_method:
+                      type: string
+                      description: The transfer method
+                    transfer_type:
+                      type: string
+                      description: The transfer type
+                      enum:
+                      - local
+                      example: local
+                    holder_type:
+                      type: string
+                      description: The Holder Type
+                      enum:
+                      - individual
+                      example: individual
+                    holder_name:
+                      type: string
+                      required: true
+                      description: The Holder Name
+                      example: John Doe
+                      maxLength: 255
+                beneficiary_id:
+                  type: string
+                  required: 'true'
+                  format: uuid
+                  description: The Beneficiary id. Only required if 'beneficiary' is not set.
+                source_currency:
+                  type: string
+                  example: sgd
+                  description: It is beneficiary bank account currency.
+                source_amount:
+                  type: number
+                  minimum: 1
+                  description: The amount to be transferred. Only required if 'payment_amount' is not set.
+                  example: 112.42
+                  format: double
+                payment_amount:
+                  type: number
+                  minimum: 1
+                  description: The amount to be transferred. Only required if `source_amount` is not set.
+                  example: 10000.5
+                  format: double
+                remitter_id:
+                  type: string
+                  description: The remitter id. Only pass either `remitter` or `remitter_id`.
+                  example: 9b294222-3a53-427f-9393-95dc6d63ee6c
+                remitter:
+                  type: object
+                  description: The remitter information. Only pass either `remitter` or `remitter_id`.
+                  properties:
+                    entity_type:
+                      type: string
+                      example: individual
+                      enum:
+                      - individual
+                      - company
+                    full_name:
+                      type: string
+                      maxLength: 255
+                      example: John Doe
+                    id_number:
+                      type: string
+                      maxLength: 255
+                      example: FB123456
+                    id_type:
+                      type: string
+                      example: passport
+                      enum:
+                      - passport
+                      - national_id
+                      - driving_license
+                    date_of_birth:
+                      type: string
+                      maxLength: 255
+                      example: '1990-01-01'
+                      format: date
+                    place_of_birth:
+                      type: string
+                      example: Singapore
+                    nationality:
+                      type: string
+                      description: 2 letter code, lowercase
+                      minLength: 2
+                      maxLength: 2
+                      example: sg
+                    contact_number:
+                      type: string
+                      maxLength: 100
+                      example: '+6598765432'
+                    email:
+                      type: string
+                      maxLength: 255
+                      example: abc@gmail.com
+                    address:
+                      type: object
+                      properties:
+                        street_address:
+                          type: string
+                          maxLength: 255
+                          example: 1 Keong Saik Road
+                        city:
+                          type: string
+                          maxLength: 100
+                          example: Singapore
+                        state:
+                          type: string
+                          maxLength: 100
+                          example: SG
+                        postal_code:
+                          type: string
+                          maxLength: 30
+                          example: 089109
+                        country:
+                          type: string
+                          description: 2 letter code, lowercase
+                          minLength: 2
+                          maxLength: 2
+                          example: sg
+                      required:
+                      - street
+                      - city
+                      - state
+                      - postcode
+                    company_name:
+                      type: string
+                      maxLength: 255
+                      description: Only required if entity_type is company
+                      example: HitPay Pte Ltd
+                remark:
+                  type: string
+                  maxLength: 120
+                  description: Transfer note for internal use only
+                reference:
+                  type: string
+                  maxLength: 120
+                  description: The reference for the transfer
+            examples:
+              Result:
+                value:
+                  beneficiary_id: 9e64eb6c-90dd-45e0-afaf-bd9fa0253674
+                  source_currency: sgd
+                  source_amount: 112.42
+                  payment_amount: 10000.5
+                  remitter:
+                    entity_type: company
+                    full_name: Test Sender
+                    id_number: FB123456
+                    id_type: passport
+                    date_of_birth: '1990-10-28'
+                    place_of_birth: Singapore
+                    nationality: sg
+                    contact_number: '+6598644718'
+                    email: email@gmail.com
+                    address:
+                      street_address: 1 Keong Saik Road
+                      city: Singapore
+                      state: Singapore
+                      postal_code: 089109
+                      country: sg
+                    company_name: HitPay
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    id: 9e64f9b8-0039-4bc1-bb98-be1c88212a7e
+                    beneficiary:
+                      id: 9e64eb6c-90dd-45e0-afaf-bd9fa0253674
+                      status: approved
+                      country: bd
+                      currency: bdt
+                      transfer_method: local
+                      holder_name: SHAH ALAM HERA
+                      holder_type: individual
+                      account_number: '1503201781283001'
+                      bank_name: BRAC Bank Ltd.
+                      bank_id: brc-20
+                      email: null
+                      bank_routing_number: '060261726'
+                      created_at: '2025-03-10T07:27:16+08:00'
+                      updated_at: '2025-03-10T07:27:18+08:00'
+                    payment_currency: bdt
+                    payment_amount: 10000.5
+                    source_currency: sgd
+                    source_amount: 112.42
+                    exchange_rate: '88.949505'
+                    fee:
+                      amount: 0
+                      currency: sgd
+                      paid_by: payer
+                    status: scheduled
+                    created_at: '2025-03-10T08:07:15+08:00'
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  beneficiary:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      status:
+                        type: string
+                      country:
+                        type: string
+                      currency:
+                        type: string
+                      transfer_method:
+                        type: string
+                      holder_name:
+                        type: string
+                      holder_type:
+                        type: string
+                      account_number:
+                        type: string
+                      bank_name:
+                        type: string
+                      bank_id:
+                        type: string
+                      email:
+                        type:
+                        - string
+                        - 'null'
+                      bank_routing_number:
+                        type: string
+                      created_at:
+                        type: string
+                      updated_at:
+                        type: string
+                    required:
+                    - id
+                    - status
+                    - country
+                    - currency
+                    - transfer_method
+                    - holder_name
+                    - holder_type
+                    - account_number
+                    - bank_name
+                    - bank_id
+                    - email
+                    - bank_routing_number
+                    - created_at
+                    - updated_at
+                  payment_currency:
+                    type: string
+                  payment_amount:
+                    type: number
+                  source_currency:
+                    type: string
+                  source_amount:
+                    type: number
+                  exchange_rate:
+                    type: string
+                  fee:
+                    type: object
+                    properties:
+                      amount:
+                        type: number
+                      currency:
+                        type: string
+                      paid_by:
+                        type: string
+                        enum:
+                        - payer
+                        - beneficiary
+                    required:
+                    - amount
+                    - currency
+                    - paid_by
+                  status:
+                    type: string
+                    enum:
+                    - scheduled
+                    - processing
+                    - paid
+                    - failed
+                    - canceled
+                  created_at:
+                    type: string
+                required:
+                - id
+                - beneficiary
+                - payment_currency
+                - payment_amount
+                - source_currency
+                - source_amount
+                - exchange_rate
+                - fee
+                - status
+                - created_at
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    message: The beneficiary id field is required when beneficiary is not present. (and 4 more errors)
+                    errors:
+                      beneficiary_id:
+                      - The beneficiary id field is required when beneficiary is not present.
+                      beneficiary:
+                      - The beneficiary field is required when beneficiary id is not present.
+                      source_currency:
+                      - The source currency field is required.
+                      source_amount:
+                      - The source amount field is required when payment amount is not present.
+                      payment_amount:
+                      - The payment amount field is required when source amount is not present.
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location 'https://api.sandbox.hit-pay.com/v1/transfers' \\n--header 'X-BUSINESS-API-KEY: 9011d0e1e03c1e2d79cdcf1fd7147eaa6d339e4ba5e42df38d8b495e7ed8e9fc' \\\n --header 'X-Requested-With: XMLHttpRequest' \\\n --form "
+          name: Example request
+        samples-languages:
+        - curl
+      tags:
+      - Transfers
+  /v1/transfers/{transfer_id}:
+    get:
+      summary: Get transfer by ID
+      description: Get transfer by ID
+      operationId: get-transfer-detail
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: transfer_id
+        in: path
+        description: The Beneficiary id
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    id: 9eb3d44a-bb68-4107-b445-cc61cd27607c
+                    beneficiary:
+                      id: 9eb3d3ff-3fb0-450e-bb61-7c0753974398
+                      status: approved
+                      country: sg
+                      currency: sgd
+                      transfer_method: bank_transfer
+                      transfer_type: local
+                      nickname: Test QA
+                      remark: Test QA
+                      holder_name: Test QA
+                      holder_type: individual
+                      bank_branch_code: '001'
+                      account_number: '173737377'
+                      bank_name: AMERICAN EXPRESS BANK LTD
+                      bank_id: AEIBSGSXXXX[7454]
+                      email: test@gmail.com
+                      is_favourite: true
+                      created_at: '2025-04-18T12:52:10+08:00'
+                      updated_at: '2025-04-18T12:52:10+08:00'
+                      deleted_at: null
+                    payment_currency: sgd
+                    payment_amount: 100
+                    source_currency: sgd
+                    source_amount: 100
+                    exchange_rate: '1.00000'
+                    fee:
+                      amount: 10
+                      currency: sgd
+                      paid_by: payer
+                    discount_fee_rate: 0
+                    fixed_fee: 0
+                    discount_fee: 0
+                    remark: Tessting Remark
+                    status: scheduled
+                    attachment: https://hitpay-sandbox-public.s3.ap-southeast-1.amazonaws.com/transfer-attachments/9eb3d44a-bb68-4107-b445-cc61cd27607c/9eb3d44ae7034b2a9e6feb52d3da185d.jpg?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAZ4FHSA4HSL4WZS7J%2F20250418%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Date=20250418T045412Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Signature=c2057c3ce12abaf669effe9e685b8d1d082bb8b2ce64998bfa009fcd1151ff87
+                    created_by: null
+                    approved_by: null
+                    rejected_by: null
+                    created_at: '2025-04-18T12:53:00+08:00'
+              schema:
+                $schema: http://json-schema.org/draft-07/schema#
+                title: Generated schema for Root
+                type: object
+                properties:
+                  id:
+                    type: string
+                  beneficiary:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      status:
+                        type: string
+                      country:
+                        type: string
+                      currency:
+                        type: string
+                      transfer_method:
+                        type: string
+                      transfer_type:
+                        type: string
+                      nickname:
+                        type: string
+                      remark:
+                        type:
+                        - string
+                        - 'null'
+                      holder_name:
+                        type: string
+                      holder_type:
+                        type: string
+                      bank_branch_code:
+                        type: string
+                      account_number:
+                        type: string
+                      bank_name:
+                        type: string
+                      bank_id:
+                        type: string
+                      email:
+                        type: string
+                      is_favourite:
+                        type: boolean
+                      created_at:
+                        type: string
+                      updated_at:
+                        type: string
+                      deleted_at:
+                        type:
+                        - string
+                        - 'null'
+                    required:
+                    - id
+                    - status
+                    - country
+                    - currency
+                    - transfer_method
+                    - transfer_type
+                    - nickname
+                    - remark
+                    - holder_name
+                    - holder_type
+                    - bank_branch_code
+                    - account_number
+                    - bank_name
+                    - bank_id
+                    - email
+                    - is_favourite
+                    - created_at
+                    - updated_at
+                    - deleted_at
+                  payment_currency:
+                    type: string
+                  payment_amount:
+                    type: number
+                  source_currency:
+                    type: string
+                  source_amount:
+                    type: number
+                  exchange_rate:
+                    type: string
+                  fee:
+                    type: object
+                    properties:
+                      amount:
+                        type: number
+                      currency:
+                        type: string
+                      paid_by:
+                        type: string
+                        enum:
+                        - payer
+                        - beneficiary
+                    required:
+                    - amount
+                    - currency
+                    - paid_by
+                  discount_fee_rate:
+                    type: number
+                  fixed_fee:
+                    type: number
+                  discount_fee:
+                    type: number
+                  remark:
+                    type:
+                    - string
+                    - 'null'
+                  status:
+                    type: string
+                    enum:
+                    - scheduled
+                    - processing
+                    - paid
+                    - failed
+                    - canceled
+                  attachment:
+                    type:
+                    - string
+                    - 'null'
+                  created_by:
+                    type:
+                    - object
+                    - 'null'
+                  approved_by:
+                    type:
+                    - object
+                    - 'null'
+                  rejected_by:
+                    type:
+                    - object
+                    - 'null'
+                  created_at:
+                    type: string
+                required:
+                - id
+                - beneficiary
+                - payment_currency
+                - payment_amount
+                - source_currency
+                - source_amount
+                - exchange_rate
+                - fee
+                - discount_fee_rate
+                - fixed_fee
+                - discount_fee
+                - remark
+                - status
+                - attachment
+                - created_by
+                - approved_by
+                - rejected_by
+                - created_at
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: 'curl --location ''https://api.sandbox.hit-pay.com/v1/transfers/99f01cd1-b111-4ba5-8887-c89d7dffeaec'' \
+
+            --header ''X-BUSINESS-API-KEY: apikey'' \
+
+            --header ''X-Requested-With: XMLHttpRequest'''
+          name: Example request
+        samples-languages:
+        - curl
+      tags:
+      - Transfers
+  /v1/transfers/estimate:
+    post:
+      summary: Estimate transfer fees
+      description: ''
+      operationId: estimate-fee
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - beneficiary_id
+              - source_currency
+              properties:
+                beneficiary_id:
+                  type: string
+                  description: The Beneficiary id
+                  examples: 9ad4789a-c864-48a6-a657-7fdfc57ba1fc
+                source_currency:
+                  type: string
+                  example: sgd
+                  description: 'The supported currency. '
+                source_amount:
+                  type: number
+                  minimum: 1
+                  description: The amount to be transferred. Only required if 'payment_amount' is not set.
+                  example: 112.42
+                  format: double
+                payment_amount:
+                  type: number
+                  minimum: 1
+                  description: The amount to be transferred. Only required if 'source_amount' is not set.
+                  example: 10000.5
+                  format: double
+            examples:
+              Result:
+                value:
+                  beneficiary_id: 9e3320ed-a47b-495b-8e60-e1b1347eb3e8
+                  source_currency: sgd
+                  source_amount: 100
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    source_amount: 100
+                    source_amount_fees: 0
+                    source_currency: sgd
+                    exchange_rate: '1'
+                    fx_pair: sgdsgd
+                    payment_amount: 100
+                    payment_amount_fees: 0
+                    payment_currency: sgd
+                    fee_payer: beneficiary
+                    fee_currency: sgd
+              schema:
+                type: object
+                properties:
+                  source_amount:
+                    type: number
+                  source_amount_fees:
+                    type: number
+                  source_currency:
+                    type: string
+                  exchange_rate:
+                    type: string
+                  fx_pair:
+                    type: string
+                  payment_amount:
+                    type: number
+                  payment_amount_fees:
+                    type: number
+                  fee_payer:
+                    type: string
+                    enum:
+                    - payer
+                    - beneficiary
+                  fee_currency:
+                    type: string
+                required:
+                - source_amount
+                - source_amount_fees
+                - source_currency
+                - exchange_rate
+                - payment_amount
+                - payment_amount_fees
+                - payment_currency
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    message: The beneficiary id field is required. (and 3 more errors)
+                    errors:
+                      beneficiary_id:
+                      - The beneficiary id field is required.
+                      source_currency:
+                      - The source currency field is required.
+                      source_amount:
+                      - The source amount field is required when payment amount is not present.
+                      payment_amount:
+                      - The payment amount field is required when source amount is not present.
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location 'https://api.sandbox.hit-pay.com/v1/transfers/estimate' \\\n--header 'X-BUSINESS-API-KEY: apikey' \\\n--header 'X-Requested-With: XMLHttpRequest' \\\n--header 'Content-Type: application/json' \\\n--data '{\n    \"beneficiary_id\": \"9a3d60cb-2c8d-4050-abd0-bbd6725acb3e\",\n    \"source_currency\": \"sgd\",\n    \"source_amount\": 129,\n    \"payment_amount\": 100\n}'"
+          name: Example request
+        samples-languages:
+        - curl
+      tags:
+      - Transfers
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true
+x-readme-fauxas: true

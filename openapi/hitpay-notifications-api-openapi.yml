@@ -1,0 +1,172 @@
+openapi: 3.1.1
+info:
+  title: HitPay Account Status Notifications API
+  description: 'Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com'
+  version: '1.0'
+servers:
+- url: https://api.hit-pay.com
+  description: Production
+- url: https://api.sandbox.hit-pay.com
+  description: Sandbox
+tags:
+- name: Notifications
+paths:
+  /v1/notifications:
+    get:
+      summary: Get Notifications Setting
+      description: Use this API to get the notification setting
+      operationId: get-notification-setting
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                  - event: customer_receipt
+                    channel: email
+                  - event: daily_collection
+                    channel: email
+                  - event: daily_collection
+                    channel: push_notification
+                  - event: daily_payout
+                    channel: email
+                  - event: incoming_payment
+                    channel: email
+                  - event: incoming_payment
+                    channel: push_notification
+                  - event: new_order
+                    channel: email
+                  - event: new_order
+                    channel: push_notification
+                  - event: mall_gto_sync
+                    channel: email
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    event:
+                      type: string
+                    channel:
+                      type: string
+                  required:
+                  - event
+                  - channel
+      deprecated: false
+      tags:
+      - Notifications
+    put:
+      summary: Update Notifications Setting
+      description: Use this API to update the notification setting
+      operationId: update-notification-setting
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer_receipt@email:
+                  type: boolean
+                  examples:
+                  - true
+                daily_collection@email:
+                  type: boolean
+                  examples:
+                  - true
+                daily_collection@push_notification:
+                  type: boolean
+                  examples:
+                  - true
+                daily_payout@email:
+                  type: boolean
+                  examples:
+                  - true
+                incoming_payment@email:
+                  type: boolean
+                  examples:
+                  - true
+                incoming_payment@push_notification:
+                  type: boolean
+                  examples:
+                  - true
+                new_order@email:
+                  type: boolean
+                  examples:
+                  - true
+                new_order@push_notification:
+                  type: boolean
+                  examples:
+                  - true
+                pending_order@email:
+                  type: boolean
+                  examples:
+                  - true
+                mall_gto_sync@email:
+                  type: boolean
+                  examples:
+                  - true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                  - event: customer_receipt
+                    channel: email
+                  - event: daily_collection
+                    channel: email
+                  - event: daily_collection
+                    channel: push_notification
+                  - event: daily_payout
+                    channel: email
+                  - event: incoming_payment
+                    channel: email
+                  - event: incoming_payment
+                    channel: push_notification
+                  - event: new_order
+                    channel: email
+                  - event: new_order
+                    channel: push_notification
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    event:
+                      type: string
+                    channel:
+                      type: string
+                  required:
+                  - event
+                  - channel
+      deprecated: false
+      tags:
+      - Notifications
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true
+x-readme-fauxas: true

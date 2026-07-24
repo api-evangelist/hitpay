@@ -1,0 +1,120 @@
+openapi: 3.1.1
+info:
+  title: HitPay Account Status Subscription Plans API
+  description: 'Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com'
+  version: '1.0'
+servers:
+- url: https://api.hit-pay.com
+  description: Production
+- url: https://api.sandbox.hit-pay.com
+  description: Sandbox
+tags:
+- name: Subscription Plans
+  description: Reusable recurring-billing plan templates.
+paths:
+  /subscription-plan:
+    get:
+      operationId: listSubscriptionPlans
+      tags:
+      - Subscription Plans
+      summary: List subscription plans
+      responses:
+        '200':
+          description: A list of subscription plans.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SubscriptionPlan'
+    post:
+      operationId: createSubscriptionPlan
+      tags:
+      - Subscription Plans
+      summary: Create a subscription plan
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SubscriptionPlanCreate'
+      responses:
+        '201':
+          description: Subscription plan created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionPlan'
+  /subscription-plan/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: getSubscriptionPlan
+      tags:
+      - Subscription Plans
+      summary: Get a subscription plan
+      responses:
+        '200':
+          description: The subscription plan.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionPlan'
+    delete:
+      operationId: deleteSubscriptionPlan
+      tags:
+      - Subscription Plans
+      summary: Delete a subscription plan
+      responses:
+        '200':
+          description: Subscription plan deleted.
+components:
+  schemas:
+    SubscriptionPlan:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        amount:
+          type: string
+        currency:
+          type: string
+        cycle:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    SubscriptionPlanCreate:
+      type: object
+      required:
+      - name
+      - amount
+      - currency
+      - cycle
+      properties:
+        name:
+          type: string
+        amount:
+          type: string
+        currency:
+          type: string
+        cycle:
+          type: string
+          enum:
+          - weekly
+          - monthly
+          - yearly
+        reference:
+          type: string
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true
+x-readme-fauxas: true

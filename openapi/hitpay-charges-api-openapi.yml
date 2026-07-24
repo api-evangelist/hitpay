@@ -1,0 +1,879 @@
+openapi: 3.1.1
+info:
+  title: HitPay Account Status Charges API
+  description: 'Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com'
+  version: '1.0'
+servers:
+- url: https://api.hit-pay.com
+  description: Production
+- url: https://api.sandbox.hit-pay.com
+  description: Sandbox
+tags:
+- name: Charges
+paths:
+  /v1/charges/export:
+    get:
+      summary: Export Charges
+      description: Export charges
+      operationId: export-charges
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: perPage
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 25
+      - name: version
+        in: query
+        description: The order version.
+        schema:
+          type: string
+          default: '1.0'
+      - name: keywords
+        in: query
+        description: 'Search for fields: amount ,created_at ,id remark, customer_name'
+        schema:
+          type: string
+      - name: before
+        in: query
+        description: It's optional field and it's charge_id
+        schema:
+          type: string
+      - name: after
+        in: query
+        description: It's optional field and it's charge_id
+        schema:
+          type: string
+      - name: payment_method
+        in: query
+        description: 'The payment methods: card, alipay, paypal_card.. etc.'
+        schema:
+          type: string
+      - name: statuses[]
+        in: query
+        description: The statuses are in "completed" , "pending", "sent", "draft", "expired"
+        schema:
+          type: string
+      - name: dateFrom
+        in: query
+        description: The from of created order
+        schema:
+          type: string
+      - name: dateTo
+        in: query
+        description: The To of created order
+        schema:
+          type: string
+      - name: with
+        in: query
+        description: 'If you want to display more charge and products objects. Example: charges,products'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content: {}
+      deprecated: false
+      tags:
+      - Charges
+  /v1/charges:
+    get:
+      summary: Get All Charges
+      description: Get all charges
+      operationId: get-all-charges
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: per_page
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 25
+      - name: cursor
+        in: query
+        schema:
+          type: string
+          description: The cursor parameter accepts a next_cursor value obtained from the previous response's meta object (meta.next_cursor). Use this parameter to fetch the next page of results when implementing pagination.
+      - name: keywords
+        in: query
+        description: 'Search for fields: amount ,charge_id ,customer_email, remark'
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: It's charge status
+        schema:
+          type: string
+          enum:
+          - succeeded
+          - failed
+          - refunded
+      - name: location_ids
+        in: query
+        description: The location ids
+        schema:
+          type: array
+          items:
+            type: string
+            format: uuid
+      - name: user_ids
+        in: query
+        description: The user's id, support both uuid and number id
+        schema:
+          type: array
+          items:
+            type: string
+      - name: statuses
+        in: query
+        description: It's charge status.
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - success
+            - succeeded_manually
+            - pending
+            - failed
+            - refunded
+            - cancelled
+            - partially_refunded
+            - void
+      - name: date_from
+        in: query
+        description: The from of created order
+        schema:
+          type: string
+          example: '2024-10-05'
+      - name: date_to
+        in: query
+        description: The to of created order
+        schema:
+          type: string
+          example: '2024-10-05'
+      - name: amount_from
+        in: query
+        description: The from of amount
+        schema:
+          type: number
+          example: 100
+      - name: amount_to
+        in: query
+        description: The to of amount
+        schema:
+          type: number
+          example: 200
+      - name: payment_request_id
+        in: query
+        description: The payment request id
+        schema:
+          type: string
+          format: uuid
+      - name: customer_id
+        in: query
+        description: The customer id
+        schema:
+          type: string
+          format: uuid
+      - name: payout_id
+        in: query
+        description: The payout id
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Successful payment
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    data:
+                    - id: 9ced76ac-1638-44df-b702-3f43f6592e2a
+                      currency: sgd
+                      home_currency: sgd
+                      exchange_rate: '1.00000'
+                      amount: 70.56
+                      fixed_fee: 0.6
+                      discount_fee: 2.57
+                      discount_fee_rate: 3.65
+                      remark: 'Order #9ced76aa-580f-4664-866d-a0d6df1cfc57'
+                      status: succeeded
+                      payment_method:
+                        name: card
+                        display_logo:
+                          sm: https://api.hitpayapp.test/icons/methods/sm/visa.png
+                          md: https://api.hitpayapp.test/icons/methods/md/visa.png
+                          lg: https://api.hitpayapp.test/icons/methods/lg/visa.png
+                          svg: https://api.hitpayapp.test/icons/methods/svg/visa.svg
+                          svg_square: https://api.hitpayapp.test/icons/methods/svg_square/visa.svg
+                          png_square: https://api.hitpayapp.test/icons/methods/png_square/visa.png
+                        method_logo:
+                          sm: https://api.hitpayapp.test/icons/methods/sm/card.png
+                          md: https://api.hitpayapp.test/icons/methods/md/card.png
+                          lg: https://api.hitpayapp.test/icons/methods/lg/card.png
+                          svg: https://api.hitpayapp.test/icons/methods/svg/card.svg
+                          svg_square: https://api.hitpayapp.test/icons/methods/svg_square/card.svg
+                          png_square: https://api.hitpayapp.test/icons/methods/png_square/card.png
+                        data:
+                          brand: Visa
+                          last4: '4242'
+                          country_code: US
+                          country: United States of America
+                      customer_id: 9ce1111d-e6c9-4511-95f9-6277d06299c1
+                      customer:
+                        name: Ari
+                        email: hiaribahtiar@gmail.com
+                        phone_number: '6285787995896'
+                      payment_request_id: 9ced76aa-ea65-46a1-a13a-16e9ae39620f
+                      webhook_status: false
+                      order_reference_number: '1007'
+                      executor: null
+                      location:
+                        id: 96e21521-3c8a-4c21-b76d-558d2cb8b846
+                        name: location 1
+                        address: jl ampera, west java, sg, 14023
+                      channel: api_store
+                      admin_fee: false
+                      closed_at: '2024-09-04T16:05:37+08:00'
+                      created_at: '2024-09-04T16:05:21+08:00'
+                      updated_at: '2024-09-04T16:35:40+08:00'
+                    links:
+                      first: null
+                      last: null
+                      prev: null
+                      next: https://api.sandbox.hit-pay.com/v1/charges?apiKey%5Bincrementing%5D=1&apiKey%5BpreventsLazyLoading%5D=0&apiKey%5Bexists%5D=1&apiKey%5BwasRecentlyCreated%5D=0&apiKey%5Btimestamps%5D=1&apiKey%5BusesUniqueIds%5D=0&statuses%5B0%5D=succeeded&statuses%5B1%5D=succeeded_manually&statuses%5B2%5D=refunded&statuses%5B3%5D=void&cursor=eyJidXNpbmVzc19jaGFyZ2VzLmlkIjoiOWQyZjJiYTYtZWQ2Yi00NGVjLWFmMGQtODg2NDk3YTEyMDJlIiwiX3BvaW50c1RvTmV4dEl0ZW1zIjp0cnVlfQ
+                    meta:
+                      path: https://api.sandbox.hit-pay.com/v1/charges
+                      per_page: 25
+                      next_cursor: eyJidXNpbmVzc19jaGFyZ2VzLmlkIjoiOWQyZjJiYTYtZWQ2Yi00NGVjLWFmMGQtODg2NDk3YTEyMDJlIiwiX3BvaW50c1RvTmV4dEl0ZW1zIjp0cnVlfQ
+                      prev_cursor: null
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        currency:
+                          type: string
+                        home_currency:
+                          type: string
+                        exchange_rate:
+                          type:
+                          - string
+                          - 'null'
+                        amount:
+                          type: number
+                        fixed_fee:
+                          type: number
+                        discount_fee:
+                          type: number
+                        discount_fee_rate:
+                          type: number
+                        remark: {}
+                        status:
+                          type: string
+                        payment_method:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            display_logo:
+                              type: object
+                              properties:
+                                sm:
+                                  type: string
+                                md:
+                                  type: string
+                                lg:
+                                  type: string
+                                svg:
+                                  type: string
+                                svg_square:
+                                  type: string
+                                png_square:
+                                  type: string
+                                method:
+                                  type: string
+                                iconName:
+                                  type: string
+                                displayName:
+                                  type: string
+                              required:
+                              - sm
+                              - md
+                              - lg
+                              - svg
+                              - svg_square
+                              - png_square
+                              - method
+                              - iconName
+                              - displayName
+                            method_logo:
+                              type: object
+                              properties:
+                                sm:
+                                  type: string
+                                md:
+                                  type: string
+                                lg:
+                                  type: string
+                                svg:
+                                  type: string
+                                svg_square:
+                                  type: string
+                                png_square:
+                                  type: string
+                                method:
+                                  type: string
+                                iconName:
+                                  type: string
+                                displayName:
+                                  type: string
+                              required:
+                              - sm
+                              - md
+                              - lg
+                              - svg
+                              - svg_square
+                              - png_square
+                              - method
+                              - iconName
+                              - displayName
+                            data:
+                              type: object
+                              properties:
+                                brand:
+                                  type: string
+                                last4:
+                                  type: string
+                                country_code:
+                                  type: string
+                                country:
+                                  type: string
+                              required:
+                              - brand
+                              - last4
+                              - country_code
+                              - country
+                          required:
+                          - name
+                          - display_logo
+                          - method_logo
+                          - data
+                        customer_id:
+                          type: string
+                          nullable: true
+                        customer:
+                          type: object
+                          nullable: true
+                          properties:
+                            name:
+                              type: string
+                            email:
+                              type: string
+                            phone_number: {}
+                          required:
+                          - name
+                          - email
+                          - phone_number
+                        payment_request_id: {}
+                        webhook_status:
+                          type: boolean
+                        order_reference_number:
+                          type: string
+                        executor:
+                          type:
+                          - object
+                          - 'null'
+                          properties:
+                            id:
+                              type: string
+                            display_name:
+                              type: string
+                            email:
+                              type: string
+                          required:
+                          - id
+                          - display_name
+                          - email
+                        location:
+                          type:
+                          - object
+                          - 'null'
+                          properties:
+                            id:
+                              type: string
+                            name:
+                              type: string
+                            address:
+                              type: string
+                          required:
+                          - id
+                          - name
+                          - address
+                        channel:
+                          type: string
+                        admin_fee:
+                          type: boolean
+                        closed_at:
+                          type: string
+                        created_at:
+                          type: string
+                        updated_at:
+                          type: string
+                      required:
+                      - id
+                      - currency
+                      - home_currency
+                      - exchange_rate
+                      - amount
+                      - fixed_fee
+                      - discount_fee
+                      - discount_fee_rate
+                      - remark
+                      - status
+                      - payment_method
+                      - customer_id
+                      - customer
+                      - payment_request_id
+                      - webhook_status
+                      - order_reference_number
+                      - executor
+                      - location
+                      - channel
+                      - admin_fee
+                      - closed_at
+                      - created_at
+                      - updated_at
+                  links:
+                    type: object
+                    properties:
+                      first: {}
+                      last: {}
+                      prev: {}
+                      next:
+                        type: string
+                    required:
+                    - first
+                    - last
+                    - prev
+                    - next
+                  meta:
+                    type: object
+                    properties:
+                      path:
+                        type: string
+                      per_page:
+                        type: number
+                      next_cursor:
+                        type: string
+                      prev_cursor: {}
+                    required:
+                    - path
+                    - per_page
+                    - next_cursor
+                    - prev_cursor
+                required:
+                - data
+                - links
+                - meta
+      deprecated: false
+      x-readme:
+        code-samples:
+        - lang: shell
+          source: 'curl -X GET "https://api.sandbox.hit-pay.com/v1/charges" -H "X-BUSINESS-API-KEY: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"'
+        samples-languages:
+        - curl
+      tags:
+      - Charges
+  /v1/charges/{charge_id}:
+    get:
+      summary: Get Charge Details
+      description: Get charge details
+      operationId: get-charge
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: charge_id
+        in: path
+        description: The charge id
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful payment
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    id: 9cecc92d-9d93-49d6-bd3f-2bb74dcbb283
+                    currency: sgd
+                    home_currency: sgd
+                    exchange_rate: null
+                    amount: 100
+                    amount_without_fees: 95.85
+                    refunded_amount: 0
+                    fixed_fee: 0.5
+                    discount_fee: 3.65
+                    discount_fee_rate: 3.65
+                    remark: NEWUI from 2024-08-31 To 2024-08-31
+                    status: succeeded
+                    payment_method:
+                      code: stripe_sg
+                      display_logo:
+                        sm: https://api.sandbox.hit-pay.com/icons/methods/sm/visa.png
+                        md: https://api.sandbox.hit-pay.com/icons/methods/md/visa.png
+                        lg: https://api.sandbox.hit-pay.com/icons/methods/lg/visa.png
+                        svg: https://api.sandbox.hit-pay.com/icons/methods/svg/visa.svg
+                        svg_square: https://api.sandbox.hit-pay.com/icons/methods/svg_square/visa.svg
+                        png_square: https://api.sandbox.hit-pay.com/icons/methods/png_square/visa.png
+                        method: visa
+                        iconName: visa
+                        displayName: Visa
+                      provider_reference: ch_3Pv6duAMHowMCIhZ2P9NCA6j
+                      type: charge
+                      name: card
+                      method_logo:
+                        sm: https://api.sandbox.hit-pay.com/icons/methods/sm/card.png
+                        md: https://api.sandbox.hit-pay.com/icons/methods/md/card.png
+                        lg: https://api.sandbox.hit-pay.com/icons/methods/lg/card.png
+                        svg: https://api.sandbox.hit-pay.com/icons/methods/svg/card.svg
+                        svg_square: https://api.sandbox.hit-pay.com/icons/methods/svg_square/card.svg
+                        png_square: https://api.sandbox.hit-pay.com/icons/methods/png_square/card.png
+                        method: card
+                        iconName: card
+                        displayName: Cards
+                      data:
+                        brand: Visa
+                        last4: '4242'
+                        country_code: US
+                        country: United States of America
+                    customer_id: 9a659602-eafd-4731-972d-424aef24fb2f
+                    customer:
+                      name: KimC
+                      email: cherykim@yopmail.com
+                      phone_number: '993348342'
+                    payment_request_id: null
+                    webhook_status: false
+                    order_reference_number: null
+                    target_id: 9c0fd92e-1cc8-478f-8b2e-71ee8a218ec5
+                    target_type: business_recurring_plan
+                    executor: null
+                    location: null
+                    channel: api_recurring_dashboard
+                    admin_fee: false
+                    refunds: []
+                    webhook_logs: []
+                    terminal_id: null
+                    closed_at: '2024-09-04T08:00:16+08:00'
+                    created_at: '2024-09-04T08:00:17+08:00'
+                    updated_at: '2024-09-04T08:01:19+08:00'
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 9cecc92d-9d93-49d6-bd3f-2bb74dcbb283
+                  currency:
+                    type: string
+                    example: sgd
+                  home_currency:
+                    type: string
+                    example: sgd
+                  exchange_rate:
+                    type: string
+                    nullable: true
+                    example: null
+                  amount:
+                    type: number
+                    example: 100
+                  amount_without_fees:
+                    type: number
+                    example: 95.85
+                  refunded_amount:
+                    type: number
+                    example: 0
+                  fixed_fee:
+                    type: number
+                    example: 0.5
+                  discount_fee:
+                    type: number
+                    example: 3.65
+                  discount_fee_rate:
+                    type: number
+                    example: 3.65
+                  remark:
+                    type: string
+                    example: NEWUI from 2024-08-31 To 2024-08-31
+                  status:
+                    type: string
+                    example: succeeded
+                  payment_method:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                        example: stripe_sg
+                      display_logo:
+                        type: object
+                        properties:
+                          sm:
+                            type: string
+                            example: https://api.sandbox.hit-pay.com/icons/methods/sm/visa.png
+                          md:
+                            type: string
+                            example: https://api.sandbox.hit-pay.com/icons/methods/md/visa.png
+                          lg:
+                            type: string
+                            example: https://api.sandbox.hit-pay.com/icons/methods/lg/visa.png
+                          svg:
+                            type: string
+                            example: https://api.sandbox.hit-pay.com/icons/methods/svg/visa.svg
+                          svg_square:
+                            type: string
+                            example: https://api.sandbox.hit-pay.com/icons/methods/svg_square/visa.svg
+                          png_square:
+                            type: string
+                            example: https://api.sandbox.hit-pay.com/icons/methods/png_square/visa.png
+                          method:
+                            type: string
+                            example: visa
+                          iconName:
+                            type: string
+                            example: visa
+                          displayName:
+                            type: string
+                            example: Visa
+                      provider_reference:
+                        type: string
+                        example: ch_3Pv6duAMHowMCIhZ2P9NCA6j
+                      type:
+                        type: string
+                        example: charge
+                      name:
+                        type: string
+                        example: card
+                      method_logo:
+                        type: object
+                        properties:
+                          sm:
+                            type: string
+                            example: https://api.sandbox.hit-pay.com/icons/methods/sm/card.png
+                          md:
+                            type: string
+                            example: https://api.sandbox.hit-pay.com/icons/methods/md/card.png
+                          lg:
+                            type: string
+                            example: https://api.sandbox.hit-pay.com/icons/methods/lg/card.png
+                          svg:
+                            type: string
+                            example: https://api.sandbox.hit-pay.com/icons/methods/svg/card.svg
+                          svg_square:
+                            type: string
+                            example: https://api.sandbox.hit-pay.com/icons/methods/svg_square/card.svg
+                          png_square:
+                            type: string
+                            example: https://api.sandbox.hit-pay.com/icons/methods/png_square/card.png
+                          method:
+                            type: string
+                            example: card
+                          iconName:
+                            type: string
+                            example: card
+                          displayName:
+                            type: string
+                            example: Cards
+                      data:
+                        type: object
+                        properties:
+                          brand:
+                            type: string
+                            example: Visa
+                          last4:
+                            type: string
+                            example: '4242'
+                          country_code:
+                            type: string
+                            example: US
+                          country:
+                            type: string
+                            example: United States of America
+                  customer_id:
+                    type: string
+                    example: 9a659602-eafd-4731-972d-424aef24fb2f
+                  customer:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: KimC
+                      email:
+                        type: string
+                        example: cherykim@yopmail.com
+                      phone_number:
+                        type: string
+                        example: '993348342'
+                  payment_request_id:
+                    type: string
+                    nullable: true
+                    example: null
+                  webhook_status:
+                    type: boolean
+                    example: false
+                  order_reference_number:
+                    type: string
+                    nullable: true
+                    example: null
+                  target_id:
+                    type: string
+                    example: 9c0fd92e-1cc8-478f-8b2e-71ee8a218ec5
+                  target_type:
+                    type: string
+                    example: business_recurring_plan
+                  executor:
+                    type: string
+                    nullable: true
+                    example: null
+                  location:
+                    type: object
+                    nullable: true
+                    properties:
+                      id:
+                        type: string
+                        example: null
+                      name:
+                        type: string
+                        example: null
+                      address:
+                        type: string
+                        example: null
+                  channel:
+                    type: string
+                    example: api_recurring_dashboard
+                  admin_fee:
+                    type: boolean
+                    example: false
+                  refunds:
+                    type: array
+                    items:
+                      type: object
+                    example: []
+                  webhook_logs:
+                    type: array
+                    items:
+                      type: object
+                    example: []
+                  terminal_id:
+                    type: string
+                    nullable: true
+                    example: null
+                  closed_at:
+                    type: string
+                    example: '2024-09-04T08:00:16+08:00'
+                  created_at:
+                    type: string
+                    example: '2024-09-04T08:00:17+08:00'
+                  updated_at:
+                    type: string
+                    example: '2024-09-04T08:01:19+08:00'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - lang: shell
+          source: 'curl -X GET "https://api.sandbox.hit-pay.com/v1/charges/{charge_id}" -H "X-BUSINESS-API-KEY: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"'
+        samples-languages:
+        - curl
+      tags:
+      - Charges
+  /v1/charges/{charge_id}/receipt/print:
+    post:
+      summary: Print Receipt
+      description: Print out charge and refund receipts. Applicable for Singapore merchants who use an All-in-One Terminal only.
+      operationId: print-charge-receipt
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: charge_id
+        in: path
+        description: The charge_id belongs to the business.
+        schema:
+          type: string
+        required: true
+        example: 9f12c35b-ae2a-4a6f-8853-6f1f00830bd7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - terminal_id
+              properties:
+                terminal_id:
+                  type: string
+                  description: The terminal id belongs to the business.
+                  example: S1F2-000158240536593
+      responses:
+        '204':
+          description: '204'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: 1
+              schema: {}
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    message: The given data was invalid. Terminal not found
+                    errors:
+                      terminal_id:
+                      - Terminal not found
+              schema: {}
+      deprecated: false
+      tags:
+      - Charges
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true
+x-readme-fauxas: true

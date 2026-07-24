@@ -1,0 +1,466 @@
+openapi: 3.1.1
+info:
+  title: HitPay Account Status Webhook Events API
+  description: 'Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com'
+  version: '1.0'
+servers:
+- url: https://api.hit-pay.com
+  description: Production
+- url: https://api.sandbox.hit-pay.com
+  description: Sandbox
+tags:
+- name: Webhook Events
+paths:
+  /v1/webhook-events:
+    get:
+      summary: Get All Webhook Events
+      description: This endpoint allows you to get all webhook events. The webhook event will listen to the event types that you specify and send a POST request to the URL that you specify.
+      operationId: get-webhook-events-list
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    business_id:
+                      type: string
+                    name:
+                      type: string
+                    url:
+                      type: string
+                    event_types:
+                      type: array
+                      items:
+                        type: string
+                    created_at:
+                      type: string
+                    updated_at:
+                      type: string
+                  required:
+                  - id
+                  - business_id
+                  - name
+                  - url
+                  - event_types
+                  - created_at
+                  - updated_at
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location 'https://api.sandbox.hit-pay.com/v1/webhook-events' \\n--header 'X-BUSINESS-API-KEY: 9011d0e1e03c1e2d79cdcf1fd7147eaa6d339e4ba5e42df38d8b495e7ed8e9fc' \\\n --header 'X-Requested-With: XMLHttpRequest' \\\n --form "
+          name: Example request
+        samples-languages:
+        - curl
+      tags:
+      - Webhook Events
+    post:
+      summary: Create a Webhook Event
+      description: This endpoint allows you to create a webhook event. The webhook event will listen to the event types that you specify and send a POST request to the URL that you specify.
+      operationId: create-webhook-event
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              - url
+              - event_types
+              properties:
+                name:
+                  type: string
+                  maxLength: 255
+                  examples:
+                  - Test Webhook Event
+                  description: The name of the webhook event.
+                url:
+                  type: string
+                  format: uri
+                  description: The URL of the webhook, must be a valid URL with `https` protocol
+                event_types:
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                    - charge.created
+                    - charge.updated
+                    - payout.created
+                    - order.created
+                    - order.updated
+                    - invoice.created
+                    - invoice.updated
+                    - transfer.created
+                    - transfer.updated
+                  description: 'The event types that the webhook will listen to. The available events: charge.created, charge.updated, payout.created, order.created, order.updated, invoice.created, transfer.created, transfer.updated'
+                  examples:
+                  - charge.created
+                  - charge.updated
+                  - payout.created
+                  - order.created
+                  - order.updated
+                  - invoice.created
+                  - invoice.updated
+                  - transfer.created
+                  - transfer.updated
+                  - transfer.scheduled
+                  - transfer.processing
+                  - transfer.paid
+                  - transfer.failed
+                  - transfer.canceled
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    id: 9b2ada28-be3c-47ab-883f-ba72e5d8305d
+                    business_id: 9b294222-3a53-427f-9393-95dc6d63ee6c
+                    name: Test Webhook Event
+                    url: https://google.com
+                    event_types:
+                    - transfer.created
+                    - transfer.updated
+                    created_at: '2024-01-24T16:05:10+08:00'
+                    updated_at: '2024-01-24T16:05:10+08:00'
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  business_id:
+                    type: string
+                  name:
+                    type: string
+                  url:
+                    type: string
+                  event_types:
+                    type: array
+                    items:
+                      type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                required:
+                - id
+                - business_id
+                - name
+                - url
+                - event_types
+                - created_at
+                - updated_at
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location 'https://api.sandbox.hit-pay.com/v1/webhook-events' \\n--header 'X-BUSINESS-API-KEY: 9011d0e1e03c1e2d79cdcf1fd7147eaa6d339e4ba5e42df38d8b495e7ed8e9fc' \\\n --header 'X-Requested-With: XMLHttpRequest' \\\n --form "
+          name: Example request
+        samples-languages:
+        - curl
+      tags:
+      - Webhook Events
+  /v1/webhook-events/{webhook_event_id}:
+    get:
+      summary: Get Webhook Event Detail
+      description: This endpoint allows you to get a webhook event's details. You can use the `webhook_event_id` to get the webhook event's details.
+      operationId: get-webhook-event
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: webhook_event_id
+        in: path
+        description: The Webhook Event id
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    id: 9b29471a-17bf-4332-835b-a6af8e0cc430
+                    business_id: 9b294222-3a53-427f-9393-95dc6d63ee6c
+                    name: Test Webhook Event
+                    url: https://google.com
+                    event_types:
+                    - transfer.created
+                    - transfer.updated
+                    created_at: '2024-01-24T16:05:10+08:00'
+                    updated_at: '2024-01-24T16:05:10+08:00'
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  business_id:
+                    type: string
+                  name:
+                    type: string
+                  url:
+                    type: string
+                  event_types:
+                    type: array
+                    items:
+                      type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                required:
+                - id
+                - business_id
+                - name
+                - url
+                - event_types
+                - created_at
+                - updated_at
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No query results for model [App\\\\Business\\\\Webhook] 973ee456-d28f-4418-93c5-d37e4b311685\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    examples:
+                    - No query results for model [App\Business\Webhook] 973ee456-d28f-4418-93c5-d37e4b311685
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: 'curl --location ''https://api.sandbox.hit-pay.com/v1/webhook-events/9b29471a-17bf-4332-835b-a6af8e0cc430'' \
+
+            --header ''X-BUSINESS-API-KEY: apikey'' \
+
+            --header ''X-Requested-With: XMLHttpRequest'''
+          name: Example request
+        samples-languages:
+        - curl
+      tags:
+      - Webhook Events
+    put:
+      summary: Update Webhook Event
+      description: This endpoint allows you to update a webhook event. You can use the `webhook_event_id` to update the webhook event's details.
+      operationId: update-webhook-event
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: webhook_event_id
+        in: path
+        description: The Webhook Event id
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  examples:
+                  - Test Webhook Event
+                  description: The name of the webhook event. It is a required field.
+                url:
+                  type: string
+                  description: The URL of the webhook, must be a valid URL with `https` protocol. This is the URL that the webhook will send the event data to. It is a required field.
+                event_types:
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                    - charge.created
+                    - charge.updated
+                    - payout.created
+                    - order.created
+                    - order.updated
+                    - invoice.created
+                    - invoice.updated
+                    - transfer.created
+                    - transfer.updated
+                    - transfer.scheduled
+                    - transfer.processing
+                    - transfer.paid
+                    - transfer.failed
+                    - transfer.canceled
+                  description: The event types that the webhook will listen to. It is a required field.
+                  examples:
+                  - transfer.created
+                  - transfer.updated
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    id: 9b2ada28-be3c-47ab-883f-ba72e5d8305d
+                    business_id: 9b294222-3a53-427f-9393-95dc6d63ee6c
+                    name: Test Webhook Event
+                    url: https://google.com
+                    event_types:
+                    - transfer.created
+                    - transfer.updated
+                    created_at: '2024-01-24T16:05:10+08:00'
+                    updated_at: '2024-01-24T16:05:10+08:00'
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  business_id:
+                    type: string
+                  name:
+                    type: string
+                  url:
+                    type: string
+                  event_types:
+                    type: array
+                    items:
+                      type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                required:
+                - id
+                - business_id
+                - name
+                - url
+                - event_types
+                - created_at
+                - updated_at
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No query results for model [App\\\\Business\\\\Webhook] 973ee456-d28f-4418-93c5-d37e4b311685\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    examples:
+                    - No query results for model [App\Business\Webhook] 973ee456-d28f-4418-93c5-d37e4b311685
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location 'https://api.sandbox.hit-pay.com/v1/webhook-events/9b2ada28-be3c-47ab-883f-ba72e5d8305d' \\n--header 'X-BUSINESS-API-KEY: 9011d0e1e03c1e2d79cdcf1fd7147eaa6d339e4ba5e42df38d8b495e7ed8e9fc' \\\n --header 'X-Requested-With: XMLHttpRequest' \\\n --form "
+          name: Example request
+        samples-languages:
+        - curl
+      tags:
+      - Webhook Events
+    delete:
+      summary: Delete Webhook Event
+      description: This endpoint allows you to delete a webhook event. You can use the `webhook_event_id` to delete the webhook event.
+      operationId: delete-webhook-event
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: webhook_event_id
+        in: path
+        description: The Webhook Event id
+        schema:
+          type: string
+        required: true
+      responses:
+        '204':
+          description: '204'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '1'
+              schema:
+                type: integer
+                examples:
+                - 1
+                default: 0
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No query results for model [App\\\\Business\\\\Webhook] 973ee456-d28f-4418-93c5-d37e4b311685\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    examples:
+                    - No query results for model [App\Business\Webhook] 973ee456-d28f-4418-93c5-d37e4b311685
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location --request DELETE 'https://api.sandbox.hit-pay.com/v1/webhook-events/9b2ada28-be3c-47ab-883f-ba72e5d8305d' \\n--header 'X-BUSINESS-API-KEY: 9011d0e1e03c1e2d79cdcf1fd7147eaa6d339e4ba5e42df38d8b495e7ed8e9fc' \\\n --header 'X-Requested-With: XMLHttpRequest'"
+          name: Example request
+        samples-languages:
+        - curl
+      tags:
+      - Webhook Events
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true
+x-readme-fauxas: true

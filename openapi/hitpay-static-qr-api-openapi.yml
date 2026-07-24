@@ -1,0 +1,849 @@
+openapi: 3.1.1
+info:
+  title: HitPay Account Status Static Qr API
+  description: 'Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com'
+  version: '1.0'
+servers:
+- url: https://api.hit-pay.com
+  description: Production
+- url: https://api.sandbox.hit-pay.com
+  description: Sandbox
+tags:
+- name: Static Qr
+paths:
+  /v1/static_qr:
+    get:
+      summary: Get All Static QRs
+      description: This endpoint allows you to get all static QR codes. The static QR codes are the QR codes that you can use to receive payments.
+      operationId: get-static-qr
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        reference:
+                          type: string
+                        payment_provider:
+                          type: string
+                        payment_provider_method:
+                          type: string
+                        amount:
+                          type: number
+                        currency:
+                          type: string
+                        payment_provider_method_logos:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              sm:
+                                type: string
+                              md:
+                                type: string
+                              lg:
+                                type: string
+                              svg:
+                                type: string
+                              svg_square:
+                                type: string
+                              png_square:
+                                type: string
+                              method:
+                                type: string
+                              iconName:
+                                type: string
+                              displayName:
+                                type: string
+                            required:
+                            - sm
+                            - md
+                            - lg
+                            - svg
+                            - svg_square
+                            - png_square
+                            - method
+                            - iconName
+                            - displayName
+                        payment_provider_method_main_logo:
+                          type: object
+                          properties:
+                            sm:
+                              type: string
+                            md:
+                              type: string
+                            lg:
+                              type: string
+                            svg:
+                              type: string
+                            svg_square:
+                              type: string
+                            png_square:
+                              type: string
+                            method:
+                              type: string
+                            iconName:
+                              type: string
+                            displayName:
+                              type: string
+                          required:
+                          - sm
+                          - md
+                          - lg
+                          - svg
+                          - svg_square
+                          - png_square
+                          - method
+                          - iconName
+                          - displayName
+                        created_by:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            display_name:
+                              type: string
+                            first_name:
+                              type: string
+                            last_name:
+                              type: string
+                          required:
+                          - id
+                          - display_name
+                          - first_name
+                          - last_name
+                        location_id:
+                          type: string
+                        location:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            address:
+                              type: string
+                          required:
+                          - name
+                          - address
+                        device_id:
+                          type: string
+                        device:
+                          type: object
+                          properties:
+                            label:
+                              type: string
+                          required:
+                          - label
+                        qr_value:
+                          type: string
+                        created_at:
+                          type: string
+                        updated_at:
+                          type: string
+                      required:
+                      - id
+                      - name
+                      - reference
+                      - payment_provider
+                      - amount
+                      - currency
+                      - payment_provider_method
+                      - payment_provider_method_logos
+                      - payment_provider_method_main_logo
+                      - created_by
+                      - location_id
+                      - location
+                      - qr_value
+                      - created_at
+                      - updated_at
+                  links:
+                    type: object
+                    properties:
+                      first: {}
+                      last: {}
+                      prev: {}
+                      next: {}
+                    required:
+                    - first
+                    - last
+                    - prev
+                    - next
+                  meta:
+                    type: object
+                    properties:
+                      path:
+                        type: string
+                      per_page:
+                        type: number
+                      next_cursor: {}
+                      prev_cursor: {}
+                    required:
+                    - path
+                    - per_page
+                    - next_cursor
+                    - prev_cursor
+                required:
+                - data
+                - links
+                - meta
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location 'https://api.sandbox.hit-pay.com/v1/static_qr' \\n--header 'X-BUSINESS-API-KEY: 9011d0e1e03c1e2d79cdcf1fd7147eaa6d339e4ba5e42df38d8b495e7ed8e9fc' \\\n --header 'X-Requested-With: XMLHttpRequest' \\\n --form "
+          name: Example request
+        samples-languages:
+        - curl
+      tags:
+      - Static Qr
+    post:
+      summary: Create a Static QR
+      description: This endpoint allows you to create static QR.
+      operationId: create-static-qr
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              - payment_provider_method
+              properties:
+                name:
+                  type: string
+                  maxLength: 255
+                  description: Static QR name
+                payment_provider_method:
+                  type: string
+                  enum:
+                  - paynow_online
+                  - upi_qr
+                  - qrph_netbank
+                  description: 'The payment provider method that the static QR will use. The available methods: `paynow_online`, `upi_qr`, `qrph_netbank`'
+                device_id:
+                  type: string
+                  format: uuid
+                  description: The device id that the static QR will use.
+                location_id:
+                  type: string
+                  format: uuid
+                  description: The active location id that the static QR will use.
+                amount:
+                  type: number
+                  minimum: 0
+                  description: The amount for static QR.
+                  example: 10.99
+                currency:
+                  type: string
+                  maxLength: 3
+                  description: The currency for static QR. It's required field if the amount is present.
+                  example: sgd
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  reference:
+                    type: string
+                  payment_provider:
+                    type: string
+                  payment_provider_method:
+                    type: string
+                  amount:
+                    type: number
+                  currency:
+                    type: string
+                  payment_provider_method_logos:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        sm:
+                          type: string
+                        md:
+                          type: string
+                        lg:
+                          type: string
+                        svg:
+                          type: string
+                        svg_square:
+                          type: string
+                        png_square:
+                          type: string
+                        method:
+                          type: string
+                        iconName:
+                          type: string
+                        displayName:
+                          type: string
+                      required:
+                      - sm
+                      - md
+                      - lg
+                      - svg
+                      - svg_square
+                      - png_square
+                      - method
+                      - iconName
+                      - displayName
+                  payment_provider_method_main_logo:
+                    type: object
+                    properties:
+                      sm:
+                        type: string
+                      md:
+                        type: string
+                      lg:
+                        type: string
+                      svg:
+                        type: string
+                      svg_square:
+                        type: string
+                      png_square:
+                        type: string
+                      method:
+                        type: string
+                      iconName:
+                        type: string
+                      displayName:
+                        type: string
+                    required:
+                    - sm
+                    - md
+                    - lg
+                    - svg
+                    - svg_square
+                    - png_square
+                    - method
+                    - iconName
+                    - displayName
+                  created_by:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      display_name:
+                        type: string
+                      first_name:
+                        type: string
+                      last_name:
+                        type: string
+                    required:
+                    - id
+                    - display_name
+                    - first_name
+                    - last_name
+                  location_id:
+                    type:
+                    - string
+                    - 'null'
+                  location:
+                    type:
+                    - object
+                    - 'null'
+                    properties:
+                      name:
+                        type: string
+                      address:
+                        type: string
+                    required:
+                    - name
+                    - address
+                  device_id: {}
+                  device: {}
+                  qr_value:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                required:
+                - id
+                - name
+                - reference
+                - payment_provider
+                - payment_provider_method
+                - amount
+                - currency
+                - payment_provider_method_logos
+                - payment_provider_method_main_logo
+                - created_by
+                - location_id
+                - location
+                - device_id
+                - device
+                - qr_value
+                - created_at
+                - updated_at
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location 'https://api.sandbox.hit-pay.com/v1/static_qr' \\n--header 'X-BUSINESS-API-KEY: 9011d0e1e03c1e2d79cdcf1fd7147eaa6d339e4ba5e42df38d8b495e7ed8e9fc' \\\n --header 'X-Requested-With: XMLHttpRequest' \\\n --form "
+          name: Example request
+        samples-languages:
+        - curl
+      tags:
+      - Static Qr
+  /v1/static_qr/{static_qr_id}:
+    get:
+      summary: Get Static QR Detail
+      description: This endpoint allows you to get a static QR details.
+      operationId: get-static-qr-details
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: static_qr_id
+        in: path
+        description: Static QR id
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  reference:
+                    type: string
+                  payment_provider:
+                    type: string
+                  payment_provider_method:
+                    type: string
+                  amount:
+                    type: number
+                  currency:
+                    type: string
+                  payment_provider_method_logos:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        sm:
+                          type: string
+                        md:
+                          type: string
+                        lg:
+                          type: string
+                        svg:
+                          type: string
+                        svg_square:
+                          type: string
+                        png_square:
+                          type: string
+                        method:
+                          type: string
+                        iconName:
+                          type: string
+                        displayName:
+                          type: string
+                      required:
+                      - sm
+                      - md
+                      - lg
+                      - svg
+                      - svg_square
+                      - png_square
+                      - method
+                      - iconName
+                      - displayName
+                  payment_provider_method_main_logo:
+                    type: object
+                    properties:
+                      sm:
+                        type: string
+                      md:
+                        type: string
+                      lg:
+                        type: string
+                      svg:
+                        type: string
+                      svg_square:
+                        type: string
+                      png_square:
+                        type: string
+                      method:
+                        type: string
+                      iconName:
+                        type: string
+                      displayName:
+                        type: string
+                    required:
+                    - sm
+                    - md
+                    - lg
+                    - svg
+                    - svg_square
+                    - png_square
+                    - method
+                    - iconName
+                    - displayName
+                  created_by:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      display_name:
+                        type: string
+                      first_name:
+                        type: string
+                      last_name:
+                        type: string
+                    required:
+                    - id
+                    - display_name
+                    - first_name
+                    - last_name
+                  location_id:
+                    type:
+                    - string
+                    - 'null'
+                  location:
+                    type:
+                    - object
+                    - 'null'
+                    properties:
+                      name:
+                        type: string
+                      address:
+                        type: string
+                    required:
+                    - name
+                    - address
+                  device_id: {}
+                  device: {}
+                  qr_value:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                required:
+                - id
+                - name
+                - reference
+                - payment_provider
+                - payment_provider_method
+                - amount
+                - currency
+                - payment_provider_method_logos
+                - payment_provider_method_main_logo
+                - created_by
+                - location_id
+                - location
+                - device_id
+                - device
+                - qr_value
+                - created_at
+                - updated_at
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: 'curl --location ''https://api.sandbox.hit-pay.com/v1/static_qr/9b29471a-17bf-4332-835b-a6af8e0cc430'' \
+
+            --header ''X-BUSINESS-API-KEY: apikey'' \
+
+            --header ''X-Requested-With: XMLHttpRequest'''
+          name: Example request
+        samples-languages:
+        - curl
+      tags:
+      - Static Qr
+    put:
+      summary: Update Static QR
+      description: This endpoint allows you to update a static QR.
+      operationId: update-static-qr
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: static_qr_id
+        in: path
+        description: The static QR id
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  maxLength: 255
+                  description: Static QR name
+                location_id:
+                  type: string
+                  format: uuid
+                  example: 9cc4aee8-c1b4-4401-af57-aea884c780cb
+                  description: The active location id that the static QR will use.
+                amount:
+                  type: number
+                  minimum: 0
+                  description: The amount for static QR.
+                  example: 10.99
+                currency:
+                  type: string
+                  maxLength: 3
+                  description: The currency for static QR. It's required field if the amount is present.
+                  example: sgd
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  reference:
+                    type: string
+                  payment_provider:
+                    type: string
+                  payment_provider_method:
+                    type: string
+                  amount:
+                    type: number
+                  currency:
+                    type: string
+                  payment_provider_method_logos:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        sm:
+                          type: string
+                        md:
+                          type: string
+                        lg:
+                          type: string
+                        svg:
+                          type: string
+                        svg_square:
+                          type: string
+                        png_square:
+                          type: string
+                        method:
+                          type: string
+                        iconName:
+                          type: string
+                        displayName:
+                          type: string
+                      required:
+                      - sm
+                      - md
+                      - lg
+                      - svg
+                      - svg_square
+                      - png_square
+                      - method
+                      - iconName
+                      - displayName
+                  payment_provider_method_main_logo:
+                    type: object
+                    properties:
+                      sm:
+                        type: string
+                      md:
+                        type: string
+                      lg:
+                        type: string
+                      svg:
+                        type: string
+                      svg_square:
+                        type: string
+                      png_square:
+                        type: string
+                      method:
+                        type: string
+                      iconName:
+                        type: string
+                      displayName:
+                        type: string
+                    required:
+                    - sm
+                    - md
+                    - lg
+                    - svg
+                    - svg_square
+                    - png_square
+                    - method
+                    - iconName
+                    - displayName
+                  created_by:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      display_name:
+                        type: string
+                      first_name:
+                        type: string
+                      last_name:
+                        type: string
+                    required:
+                    - id
+                    - display_name
+                    - first_name
+                    - last_name
+                  location_id:
+                    type:
+                    - string
+                    - 'null'
+                  location:
+                    type:
+                    - object
+                    - 'null'
+                    properties:
+                      name:
+                        type: string
+                      address:
+                        type: string
+                    required:
+                    - name
+                    - address
+                  device_id: {}
+                  device: {}
+                  qr_value:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                required:
+                - id
+                - name
+                - reference
+                - payment_provider
+                - payment_provider_method
+                - amount
+                - currency
+                - payment_provider_method_logos
+                - payment_provider_method_main_logo
+                - created_by
+                - location_id
+                - location
+                - device_id
+                - device
+                - qr_value
+                - created_at
+                - updated_at
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location 'https://api.sandbox.hit-pay.com/v1/static_qr/9b2ada28-be3c-47ab-883f-ba72e5d8305d' \\n--header 'X-BUSINESS-API-KEY: 9011d0e1e03c1e2d79cdcf1fd7147eaa6d339e4ba5e42df38d8b495e7ed8e9fc' \\\n --header 'X-Requested-With: XMLHttpRequest' \\\n --form "
+          name: Example request
+        samples-languages:
+        - curl
+      tags:
+      - Static Qr
+    delete:
+      summary: Delete the static QR
+      description: This endpoint allows you to delete the static QR
+      operationId: delete-static-qr
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: static_qr_id
+        in: path
+        description: The Static QR id
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    message: Static QR deleted successfully.
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                - message
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location --request DELETE 'https://api.sandbox.hit-pay.com/v1/static_qr/9b2ada28-be3c-47ab-883f-ba72e5d8305d' \\n--header 'X-BUSINESS-API-KEY: 9011d0e1e03c1e2d79cdcf1fd7147eaa6d339e4ba5e42df38d8b495e7ed8e9fc' \\\n --header 'X-Requested-With: XMLHttpRequest'"
+          name: Example request
+        samples-languages:
+        - curl
+      tags:
+      - Static Qr
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true
+x-readme-fauxas: true

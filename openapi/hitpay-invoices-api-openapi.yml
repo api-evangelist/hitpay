@@ -1,0 +1,509 @@
+openapi: 3.1.1
+info:
+  title: HitPay Account Status Invoices API
+  description: 'Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com'
+  version: '1.0'
+servers:
+- url: https://api.hit-pay.com
+  description: Production
+- url: https://api.sandbox.hit-pay.com
+  description: Sandbox
+tags:
+- name: Invoices
+paths:
+  /v1/invoices/{invoice_id}:
+    delete:
+      summary: Delete Invoice
+      description: Delete Invoice
+      operationId: delete-invoice
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: invoice_id
+        in: path
+        description: The invoice id belongs to business.
+        schema:
+          type: string
+        required: true
+      responses:
+        '204':
+          description: '204'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: 1
+              schema:
+                type: integer
+                example: 1
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    message: No query results for model [App\Business\Invoice] 9ef5f219-8c72-488b-997d-a0906d2f81181
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    examples:
+                    - No query results for model [App\Business\Invoice] 99daaa99-0ccb-4e46-82bd-7a4347957e0a
+      deprecated: false
+      tags:
+      - Invoices
+    put:
+      summary: Update the invoice
+      description: Update the invoice
+      operationId: update-the-invoice
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: invoice_id
+        in: path
+        description: The invoice id belongs to the business.
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - invoice_date
+              - currency
+              - amount
+              - payment_by
+              properties:
+                customer:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: Customer's name. It's required field when customer id is not present.
+                      maxLength: 255
+                    email:
+                      type: string
+                      description: Customer's email. It's required field when customer id is not present.
+                    address:
+                      type: object
+                      properties:
+                        name:
+                          street: string
+                          maxLength: 255
+                          example: '160 Paya Lebar Road 07-08 Orion Industrial '
+                        city:
+                          street: string
+                          maxLength: 255
+                          example: Singapore
+                        state:
+                          street: string
+                          maxLength: 255
+                          example: Singapore
+                        postal_code:
+                          street: string
+                          maxLength: 255
+                          example: '367903'
+                        country:
+                          street: string
+                          maxLength: 255
+                          example: sg
+                customer_id:
+                  type: string
+                  description: 'Customer id and it''s required field if the customer''s email and name are not present/ '
+                invoice_date:
+                  type: string
+                  description: The format(Y-m-d) is 2024-12-21
+                due_date:
+                  type: string
+                  description: 'Invoice Due Date, format Y-m-d. Example: 2024-12-21'
+                auto_invoice_number:
+                  type: string
+                  description: auto_invoice_number
+                invoice_number:
+                  type: string
+                  description: Invoice Number, required if auto_invoice_number set 0
+                currency:
+                  type: string
+                  description: Invoice currency
+                payment_methods:
+                  type: array
+                  items:
+                    type: string
+                    example: paynow_online
+                  description: The available payment methods support on your account and currency.
+                amount:
+                  type: number
+                  description: Invoice amount, only required for payment by amount
+                  format: double
+                subtotal:
+                  type: number
+                  description: The subtotal field is required when payment by is amount.
+                  format: double
+                payment_by:
+                  type: string
+                  description: Payment is by product or amount
+                tax_setting:
+                  type: string
+                  description: Tax id
+                send_email:
+                  type: integer
+                  description: HitPay to send email receipts to the customer. Default value is 0
+                  default: 0
+                  format: int32
+                webhook:
+                  type: string
+                  description: Optional URL value to which HitPay will send a POST request when there is a new charge or if there is an error charging the card
+                reference:
+                  type: string
+                  description: Invoice Description
+                footer:
+                  type: string
+                  description: Invoice Footer
+                allow_partial_payments:
+                  type: string
+                  description: allow partial payment of invoice (0 or 1)
+                  default: 0
+                partial_payments:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      amount:
+                        type: integer
+                        description: It's required field if allow_partial_payments = 1
+                        default: 0
+                        format: int32
+                      due_date:
+                        type: string
+                        description: It's required field if allow_partial_payments = 1
+                  required: []
+                products:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      product_id:
+                        type: string
+                        description: It's required field if payment_by = product
+                      quantity:
+                        type: string
+                        description: It's required field if payment_by = product
+                      variation_id:
+                        type: string
+                        description: It's required field if payment_by = product
+                      discount:
+                        type: string
+                        description: It's required field if payment_by = product
+                    required:
+                    - product_id
+                stackable_discounts:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: Discount name. Max 255 chars
+                      discount:
+                        type: string
+                        description: Discount value >= 0
+                      percentage_discount:
+                        type: string
+                        description: Discount percentage must be between 0 and 1.
+                      order:
+                        type: string
+                        description: The order of discount
+                    required:
+                    - name
+                    - discount
+                    - percentage_discount
+                    - order
+                recipients:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      email:
+                        type: string
+                        description: The email address. The user can user either email or customer for recipients
+                      customer_id:
+                        type: string
+                        description: The customer id
+      responses:
+        '200':
+          description: '200'
+          content: {}
+      deprecated: false
+      tags:
+      - Invoices
+  /v1/invoices:
+    get:
+      summary: Get all invoice
+      description: Get the invoice and filter
+      operationId: get-invoices
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: customer_email
+        in: query
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: Invoice status, options [draft, sent, pending, overdue, paid]
+        schema:
+          type: string
+      - name: reference
+        in: query
+        schema:
+          type: string
+      - name: per_page
+        in: query
+        description: The number of per page
+        schema:
+          type: string
+          default: '10'
+      - name: page
+        in: query
+        description: The page index
+        schema:
+          type: string
+          default: '1'
+      responses:
+        '204':
+          description: '204'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Invoices
+    post:
+      summary: Create the invoice
+      description: Create the invoice
+      operationId: create-invoice
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - invoice_date
+              - currency
+              - amount
+              - payment_by
+              properties:
+                customer:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: Customer's name. It's required field when customer id is not present.
+                      maxLength: 255
+                    email:
+                      type: string
+                      description: Customer's email. It's required field when customer id is not present.
+                    address:
+                      type: object
+                      properties:
+                        name:
+                          street: string
+                          maxLength: 255
+                          example: '160 Paya Lebar Road 07-08 Orion Industrial '
+                        city:
+                          street: string
+                          maxLength: 255
+                          example: Singapore
+                        state:
+                          street: string
+                          maxLength: 255
+                          example: Singapore
+                        postal_code:
+                          street: string
+                          maxLength: 255
+                          example: '367903'
+                        country:
+                          street: string
+                          maxLength: 255
+                          example: sg
+                customer_id:
+                  type: string
+                  description: 'Customer id and it''s required field if the customer''s email and name are not present/ '
+                invoice_date:
+                  type: string
+                  description: The format(Y-m-d) is 2024-12-21
+                due_date:
+                  type: string
+                  description: 'Invoice Due Date, format Y-m-d. Example: 2024-12-21'
+                auto_invoice_number:
+                  type: string
+                  description: auto_invoice_number
+                invoice_number:
+                  type: string
+                  description: Invoice Number, required if auto_invoice_number set 0
+                currency:
+                  type: string
+                  description: Invoice currency
+                payment_methods:
+                  type: array
+                  items:
+                    type: string
+                    example: paynow_online
+                  description: The available payment methods support on your account and currency.
+                amount:
+                  type: number
+                  description: Invoice amount, only required for payment by amount
+                  format: double
+                subtotal:
+                  type: number
+                  description: The subtotal field is required when payment by is amount.
+                  format: double
+                payment_by:
+                  type: string
+                  description: Payment is by product or amount
+                tax_setting:
+                  type: string
+                  description: Tax id
+                send_email:
+                  type: integer
+                  description: HitPay to send email receipts to the customer. Default value is 0
+                  default: 0
+                  format: int32
+                webhook:
+                  type: string
+                  description: Optional URL value to which HitPay will send a POST request when there is a new charge or if there is an error charging the card
+                reference:
+                  type: string
+                  description: Invoice Description
+                footer:
+                  type: string
+                  description: Invoice Footer
+                allow_partial_payments:
+                  type: string
+                  description: allow partial payment of invoice (0 or 1)
+                  default: 0
+                partial_payments:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      amount:
+                        type: integer
+                        description: It's required field if allow_partial_payments = 1
+                        default: 0
+                        format: int32
+                      due_date:
+                        type: string
+                        description: It's required field if allow_partial_payments = 1
+                  required: []
+                products:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      product_id:
+                        type: string
+                        description: It's required field if payment_by = product
+                      quantity:
+                        type: string
+                        description: It's required field if payment_by = product
+                      variation_id:
+                        type: string
+                        description: It's required field if payment_by = product
+                      discount:
+                        type: string
+                        description: It's required field if payment_by = product
+                    required:
+                    - product_id
+                stackable_discounts:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: Discount name. Max 255 chars
+                      discount:
+                        type: string
+                        description: Discount value >= 0
+                      percentage_discount:
+                        type: string
+                        description: Discount percentage must be between 0 and 1.
+                      order:
+                        type: string
+                        description: The order of discount
+                    required:
+                    - name
+                    - discount
+                    - percentage_discount
+                    - order
+                recipients:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      email:
+                        type: string
+                        description: The email address. The user can user either email or customer for recipients
+                      customer_id:
+                        type: string
+                        description: The customer id
+      responses:
+        '200':
+          description: '200'
+          content: {}
+      deprecated: false
+      tags:
+      - Invoices
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true
+x-readme-fauxas: true

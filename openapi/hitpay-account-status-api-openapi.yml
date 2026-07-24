@@ -1,0 +1,87 @@
+openapi: 3.1.1
+info:
+  title: HitPay Account Status API
+  description: 'Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com'
+  version: '1.0'
+servers:
+- url: https://api.hit-pay.com
+  description: Production
+- url: https://api.sandbox.hit-pay.com
+  description: Sandbox
+tags:
+- name: Account Status
+paths:
+  /v1/account-status:
+    get:
+      summary: Get Account Status
+      description: Get the account status
+      operationId: get-account-status
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    bank_account_status: completed
+                    verification:
+                      overall_status: completed
+                      owner_verification: not_required
+                      business_verification: completed
+                    payment_providers:
+                      airwallex_sg:
+                        setup_status: completed
+                      atome_sg:
+                        setup_status: completed
+                      dbs_sg:
+                        setup_status: pending
+                      fave_sg:
+                        setup_status: completed
+                      shopback_sg:
+                        setup_status: completed
+                      shopee_pay:
+                        setup_status: completed
+                      stripe_sg:
+                        setup_status: completed
+                        payment_enabled: true
+                        payout_enabled: true
+              schema:
+                type: object
+                properties:
+                  bank_account_status:
+                    type: string
+                  verification:
+                    type: object
+                    properties:
+                      overall_status:
+                        type: string
+                      owner_verification:
+                        type: string
+                      business_verification:
+                        type: string
+                    required:
+                    - overall_status
+                    - owner_verification
+                    - business_verification
+                  payment_providers:
+                    type: object
+                    properties: {}
+      deprecated: false
+      tags:
+      - Account Status
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true
+x-readme-fauxas: true

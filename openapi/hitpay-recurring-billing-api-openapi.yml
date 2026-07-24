@@ -1,0 +1,1037 @@
+openapi: 3.1.1
+info:
+  title: HitPay Account Status Recurring Billing API
+  description: 'Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com'
+  version: '1.0'
+servers:
+- url: https://api.hit-pay.com
+  description: Production
+- url: https://api.sandbox.hit-pay.com
+  description: Sandbox
+tags:
+- name: Recurring Billing
+paths:
+  /v1/recurring-billing:
+    post:
+      summary: Create Recurring Billing
+      description: 'Once your customer has decided to start the subscription this endpoint will create the recurring billing request.
+
+        Since this is a server-to-server communication, if you have a mobile or Web client that communicates with your REST API, you must have a new endpoint E.g. /create-subscription or reuse an existing endpoint. This endpoint will be responsible for making the recurring billing API call to HitPay.'
+      operationId: create-a-recurring-billing
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customer_email
+              properties:
+                plan_id:
+                  type: string
+                  format: uuid
+                  description: Subscription plan id created from Create a Subscription Plan API. If you would like to create a subscription without a plan, plan_id should be null
+                save_card:
+                  type: string
+                  default: 'false'
+                  enum:
+                  - 'true'
+                  - 'false'
+                  description: Only set the value “true” if you wish to save the card and charge the customer later on. More details in “Save Card” section
+                save_payment_method:
+                  type: string
+                  default: 'false'
+                  enum:
+                  - 'true'
+                  - 'false'
+                  description: It's new field that will replace save_card field in the future. Only set the value “true” if you wish to save the payment method and charge the customer later on. More details in “Save Payment Method” section
+                start_date_method:
+                  type: string
+                  default: null
+                  enum:
+                  - sign_up_date
+                  - no_initial_charge
+                  description: It's an optional field and only applicable when save_payment_method is true. By default, the start_date_method is null. Options are sign_up_date or no_initial_charge
+                name:
+                  type: string
+                  maxLength: 255
+                  description: It's is required when save card = true or plan_id = null.  By default, the name from the subscription plan will be used.
+                  example: Spotify Premium
+                amount:
+                  type: integer
+                  format: double
+                  maximum: 999999.99
+                  example: 9.9
+                  description: 'Required when save_card = true and plan_id = null for cards. By default, the amount from the subscription plan will be used. Optional when payment_methods contains only APMs (zalopay, shopee_pay, grabpay_direct, touch_n_go) and save_payment_method is true. Min: It depends on the currency, Max: 999999.99.'
+                cycle:
+                  type: string
+                  enum:
+                  - weekly
+                  - monthly
+                  - yearly
+                  - custom
+                  description: It's is required when plan_id = null. By default, the cycle from the subscription plan will be used. Billing frequency (weekly / monthly / yearly / custom)
+                cycle_repeat:
+                  type: integer
+                  description: It is required field when cycle is custom. New cycle will only be affective at the end of the current cycle
+                  minimum: 1
+                  maximum: 999
+                cycle_frequency:
+                  type: string
+                  enum:
+                  - day
+                  - week
+                  - month
+                  - year
+                  description: It is required field when the cycle is custom. For cycle = custom, set the frequency for cycle repeat field options [day, week, month, year]
+                customer_email:
+                  type: string
+                  format: email
+                  description: Customer's email.
+                  example: abc@gmail.com
+                customer_name:
+                  type: string
+                  description: Customer's name.
+                  maxLength: 255
+                  example: Paul
+                start_date:
+                  type: string
+                  description: Required when save_card is not true. Billing start date (YYYY-MM-DD) in SGT. Must be today or a future date.
+                  example: '2025-12-31'
+                redirect_url:
+                  type: string
+                  description: URL where HitPay redirects the user after the users enters the card details and the subscription is active. Query arguments reference (subscription id) and status are sent along
+                reference:
+                  type: string
+                  maxLength: 255
+                payment_methods:
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                    - card
+                    - giro
+                    - shopee_recurring
+                  example:
+                  - card
+                  description: 'The active Payment methods to be used for the subscription: card, giro, shopee_recurring.'
+                send_email:
+                  type: string
+                  default: 'false'
+                  enum:
+                  - 'true'
+                  - 'false'
+                  description: HitPay to send email receipts to the customer. Default value is false
+                times_to_be_charged:
+                  type: number
+                  description: It's time to be charged. Default value is 1
+                  default: 1
+                  minimum: 1
+                  maximum: 100
+                  example: 1
+      responses:
+        '200':
+          description: '200'
+          content: {}
+        '422':
+          description: '422'
+          content: {}
+      deprecated: false
+      security: []
+      x-readme:
+        code-samples:
+        - language: curl
+          code: 'curl --location --request POST ''https://api.sandbox.hit-pay.com/v1/recurring-billing'' \
+
+            --header ''X-BUSINESS-API-KEY: meowmeowmeow'' \
+
+            --header ''X-Requested-With: XMLHttpRequest'' \
+
+            --header ''Content-Type: application/x-www-form-urlencoded'' \
+
+            --data-urlencode ''plan_id=973ee344-6737-4897-9929-edbc9d7bf433'' \
+
+            --data-urlencode ''amount=9.90'' \
+
+            --data-urlencode ''customer_email=paul@hitpayapp.com'' \
+
+            --data-urlencode ''customer_name=Paul'' \
+
+            --data-urlencode ''start_date=2022-11-11'' \
+
+            --data-urlencode ''redirect_url=https://spotify.com/subscription-completed'' \
+
+            --data-urlencode ''reference=cust_id_123'' \
+
+            --data-urlencode ''payment_methods[]=giro'' \
+
+            --data-urlencode ''payment_methods[]=card'' \
+
+            --data-urlencode ''webhook=https://webhoo.site/test'' \
+
+            --data-urlencode ''save_card=false'' \
+
+            --data-urlencode ''send_email=false'' \
+
+            --data-urlencode ''times_to_be_charged=3'''
+        samples-languages:
+        - curl
+      tags:
+      - Recurring Billing
+    get:
+      summary: Get All Recurring Billing
+      description: Use this API to get the a list of all recurring billings
+      operationId: get-all-recurring-billing
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: customer_email
+        in: query
+        description: Customer Email
+        schema:
+          type: string
+      - name: reference
+        in: query
+        description: Reference number
+        schema:
+          type: string
+      - name: business_recurring_plans_id
+        in: query
+        description: Recurring Plan ID
+        schema:
+          type: string
+          format: uuid
+      - name: status
+        in: query
+        description: Recurring billing status, options [active, scheduled, retrying, inactive, canceled]
+        schema:
+          type: string
+          default: active
+          enum:
+          - active
+          - scheduled
+          - retrying
+          - inactive
+          - canceled
+      responses:
+        '200':
+          description: '200'
+          content: {}
+      deprecated: false
+      security: []
+      x-readme:
+        code-samples:
+        - language: curl
+          code: 'curl --location --request GET ''https://api.sandbox.hit-pay.com/v1/recurring-billing'' \
+
+            --header ''X-BUSINESS-API-KEY: meowmeowmeow'' \
+
+            --header ''X-Requested-With: XMLHttpRequest'' \
+
+            --header ''Content-Type: application/x-www-form-urlencoded'''
+        samples-languages:
+        - curl
+      tags:
+      - Recurring Billing
+  /v1/recurring-billing/{recurring_billing_id}:
+    get:
+      summary: Get saved card details
+      description: Use this API to get the detail of recurring billing with a saved card. If the card is saved the response will have the card details (The last 4 digits and card brand). You can use the card details to display it to the users so they are aware of which card is saved and give them the option to change the card by navigating to the “url”
+      operationId: get-saved-card-details
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: recurring_billing_id
+        in: path
+        schema:
+          type: string
+          'format:': uuid
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    id: 9ad461a8-47ec-4f95-aeb3-1a3d16fec521
+                    business_recurring_plans_id: null
+                    customer_name: API_Save_Card_1702369621
+                    customer_email: test@gmail.com
+                    customer_phone_number: null
+                    customer_phone_number_country_code: null
+                    name: API_Save_Card_New_1702369621
+                    description: description_1702369621
+                    reference: cust_id_123
+                    cycle: save_card
+                    cycle_repeat: null
+                    cycle_frequency: null
+                    currency: usd
+                    price: 94.27
+                    amount: 94.27
+                    times_to_be_charged: null
+                    times_charged: null
+                    status: canceled
+                    send_email: 1
+                    save_card: 1
+                    redirect_url: https://www.google.com/
+                    payment_methods:
+                    - giro
+                    - card
+                    payment_provider_charge_method: card
+                    created_at: '2023-12-12T16:27:01'
+                    updated_at: '2023-12-13T09:33:02'
+                    pause_from: null
+                    pause_until: null
+                    expires_at: null
+                    url: https://securecheckout.staging.hit-pay.com/98567029-f559-49f9-916b-042a4255b32a/recurring-plan/9ad461a8-47ec-4f95-aeb3-1a3d16fec521
+                    dbs_dda_reference: RP94OH2LYZY
+                    total_charge: 0
+                    payment_method:
+                      card:
+                        brand: visa
+                        last4: '4242'
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  business_recurring_plans_id: {}
+                  customer_name:
+                    type: string
+                  customer_email:
+                    type: string
+                  customer_phone_number: {}
+                  customer_phone_number_country_code: {}
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  reference:
+                    type: string
+                  cycle:
+                    type: string
+                  cycle_repeat: {}
+                  cycle_frequency: {}
+                  currency:
+                    type: string
+                  price:
+                    type: number
+                  amount:
+                    type: number
+                  times_to_be_charged: {}
+                  times_charged: {}
+                  status:
+                    type: string
+                  send_email:
+                    type: number
+                  save_card:
+                    type: number
+                  redirect_url:
+                    type: string
+                  payment_methods:
+                    type: array
+                    items:
+                      type: string
+                  payment_provider_charge_method:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                  pause_from: {}
+                  pause_until: {}
+                  expires_at: {}
+                  url:
+                    type: string
+                  total_charge:
+                    type: number
+                  payment_method:
+                    type: object
+                    properties:
+                      card:
+                        type: object
+                        properties:
+                          brand:
+                            type: string
+                          last4:
+                            type: string
+                        required:
+                        - brand
+                        - last4
+                    required:
+                    - card
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No query results for model [App\\\\Business\\\\SubscriptionPlan] 973ee456-d28f-4418-93c5-d37e4b311685\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    examples:
+                    - No query results for model [App\Business\SubscriptionPlan] 973ee456-d28f-4418-93c5-d37e4b311685
+      deprecated: false
+      security: []
+      x-readme:
+        code-samples:
+        - language: curl
+          code: 'curl --location --request GET ''https://api.sandbox.hit-pay.com/v1/recurring-billing/{recurring_billing_id}'' \
+
+            --header ''X-BUSINESS-API-KEY: meowmeowmeow'' \
+
+            --header ''X-Requested-With: XMLHttpRequest'' \
+
+            --header ''Content-Type: application/x-www-form-urlencoded'''
+        samples-languages:
+        - curl
+      tags:
+      - Recurring Billing
+    put:
+      summary: Update Recurring Billing
+      description: Use this API to update the recurring billing, any changes made to the cycle will only be effective at the end of the current cycle.
+      operationId: update-recurring-billing
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: recurring_billing_id
+        in: path
+        description: id value from the create recurring billing API
+        schema:
+          type: string
+          format: uuid
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                plan_id:
+                  type: string
+                  format: uuid
+                  description: The plan ID, if plan_id is not null it will update [cycle, cycle_repeat, cycle_frequency and amount] with the values from Subscription plan. if plan_id is null you can update each field individually. When save_card is true, you disallow to set plan_id
+                  example: 973ee344-6737-4897-9929-edbc9d7bf433
+                name:
+                  type: string
+                  maxLength: 255
+                  description: Plan name
+                  example: Spotify Premium
+                description:
+                  type: string
+                  description: The description of subscription plan
+                  example: Spotify Monthly Subscription
+                payment_methods:
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                    - card
+                    - giro
+                    - shopee_recurring
+                  example:
+                  - card
+                  description: 'The active Payment methods to be used for the subscription: card, giro, shopee_recurring.'
+                cycle:
+                  type: string
+                  enum:
+                  - weekly
+                  - monthly
+                  - yearly
+                  - custom
+                  description: Billing frequency (weekly / monthly / yearly / custom)
+                cycle_repeat:
+                  type: integer
+                  description: It is required field when cycle is custom. New cycle will only be affective at the end of the current cycle
+                  minimum: 1
+                  maximum: 999
+                cycle_frequency:
+                  type: string
+                  enum:
+                  - day
+                  - week
+                  - month
+                  - year
+                  description: It is required field when the cycle is custom. For cycle = custom, set the frequency for cycle repeat field options [day, week, month, year]
+                save_card:
+                  type: string
+                  enum:
+                  - 'true'
+                  - 'false'
+                  description: Only set the value “true” if you wish to save the card and charge the customer later on. More details in “Save Card” section
+                save_payment_method:
+                  type: string
+                  default: 'false'
+                  enum:
+                  - 'true'
+                  - 'false'
+                  description: It's new field that will replace save_card field in the future. Only set the value “true” if you wish to save the payment method and charge the customer later on. More details in “Save Payment Method” section
+                start_date_method:
+                  type: string
+                  default: null
+                  enum:
+                  - sign_up_date
+                  - no_initial_charge
+                  description: It's an optional field and only applicable when save_payment_method is true. By default, the start_date_method is null. Options are sign_up_date or no_initial_charge
+                customer_email:
+                  type: string
+                  format: email
+                  example: abc@gmail.com
+                  description: Customer's email.
+                customer_name:
+                  type: string
+                  maxLength: 255
+                  example: Paul
+                  description: Customer's name.
+                start_date:
+                  type: string
+                  description: The start date must be a date after or equal to today and Billing start date (YYYY-MM-DD) in SGT, only possible to change start date for recurring billing ID with status = scheduled or active
+                  example: '2025-12-31'
+                redirect_url:
+                  type: string
+                  format: url
+                  description: URL where HitPay redirects the user after the users enters the card details and the subscription is active. Query arguments reference (subscription id) and status are sent along
+                reference:
+                  type: string
+                  maxLength: 255
+                  description: Arbitrary reference number that you can map to your internal reference number. This value cannot be edited by the customer
+                amount:
+                  type: number
+                  description: 'New amount, customer will be charged the new amount on the next cycle. Min: It depends on the currency, Max 999999.99'
+                  format: double
+                  maximum: 999999.9
+                send_email:
+                  type: string
+                  enum:
+                  - 'true'
+                  - 'false'
+                  description: Send the email
+                  default: 'false'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"id\": \"9741164c-06a1-4dd7-a649-72cca8f9603a\",\n    \"business_recurring_plans_id\": \"973ee344-6737-4897-9929-edbc9d7bf433\",\n    \"customer_name\": \"Paul\",\n    \"customer_email\": \"paul@newemail.com\",\n    \"name\": \"Spotify Premium\",\n    \"description\": \"Spotify Monthly Subscription\",\n    \"reference\": \"cust_id_123\",\n    \"cycle\": \"monthly\",\n    \"cycle_repeat\": null,\n    \"cycle_frequency\": null,\n    \"currency\": \"sgd\",\n    \"amount\": 12.9,\n    \"times_to_be_charged\": 9,\n    \"times_charged\": 2,\n    \"status\": \"active\",\n    \"send_email\": 0,\n    \"save_card\": 0,\n    \"redirect_url\": \"https://newexamaple.com/completed\",\n    \"payment_methods\": [\n        \"giro\",\n        \"card\"\n    ],\n    \"created_at\": \"2022-09-13T21:32:00\",\n    \"updated_at\": \"2022-09-13T21:32:00\",\n    \"expires_at\": null,\n    \"url\": \"https://securecheckout.sandbox.hit-pay.com/973ee344-6737-4897-9929-edbc9d7bf433/recurring-plan/9741164c-06a1-4dd7-a649-72cca8f9603a\"\n}"
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    examples:
+                    - 9741164c-06a1-4dd7-a649-72cca8f9603a
+                  business_recurring_plans_id:
+                    type: string
+                    examples:
+                    - 973ee344-6737-4897-9929-edbc9d7bf433
+                  customer_name:
+                    type: string
+                    examples:
+                    - Paul
+                  customer_email:
+                    type: string
+                    examples:
+                    - paul@newemail.com
+                  name:
+                    type: string
+                    examples:
+                    - Spotify Premium
+                  description:
+                    type: string
+                    examples:
+                    - Spotify Monthly Subscription
+                  reference:
+                    type: string
+                    examples:
+                    - cust_id_123
+                  cycle:
+                    type: string
+                    examples:
+                    - monthly
+                  cycle_repeat: {}
+                  cycle_frequency: {}
+                  currency:
+                    type: string
+                    examples:
+                    - sgd
+                  amount:
+                    type: number
+                    examples:
+                    - 12.9
+                    default: 0
+                  times_to_be_charged:
+                    type: integer
+                    examples:
+                    - 9
+                    default: 0
+                  times_charged:
+                    type: integer
+                    examples:
+                    - 2
+                    default: 0
+                  status:
+                    type: string
+                    examples:
+                    - active
+                  send_email:
+                    type: integer
+                    examples:
+                    - 0
+                    default: 0
+                  save_card:
+                    type: integer
+                    examples:
+                    - 0
+                    default: 0
+                  redirect_url:
+                    type: string
+                    examples:
+                    - https://newexamaple.com/completed
+                  payment_methods:
+                    type: array
+                    items:
+                      type: string
+                      examples:
+                      - giro
+                  created_at:
+                    type: string
+                    examples:
+                    - '2022-09-13T21:32:00'
+                  updated_at:
+                    type: string
+                    examples:
+                    - '2022-09-13T21:32:00'
+                  expires_at: {}
+                  url:
+                    type: string
+                    examples:
+                    - https://securecheckout.sandbox.hit-pay.com/973ee344-6737-4897-9929-edbc9d7bf433/recurring-plan/9741164c-06a1-4dd7-a649-72cca8f9603a
+        '422':
+          description: '422'
+          content:
+            text/plain:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"The given data was invalid.\",\n    \"errors\": {\n        \"save_card\": [\n            \"When save_card true, you disallow to set plan_id.\"\n        ]\n    }\n}"
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                      examples:
+                      - The given data was invalid.
+                    errors:
+                      type: object
+                      properties:
+                        cycle_repeat:
+                          type: array
+                          items:
+                            type: string
+                            examples:
+                            - The cycle repeat field is required when cycle is custom.
+                        cycle_frequency:
+                          type: array
+                          items:
+                            type: string
+                            examples:
+                            - The cycle frequency field is required when cycle is custom.
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                      examples:
+                      - The given data was invalid.
+                    errors:
+                      type: object
+                      properties:
+                        save_card:
+                          type: array
+                          items:
+                            type: string
+                            examples:
+                            - When save_card true, you disallow to set plan_id.
+      deprecated: false
+      security: []
+      x-readme:
+        code-samples:
+        - language: curl
+          code: 'curl --location --request PUT ''https://api.sandbox.hit-pay.com/v1/recurring-billing/{recurring_billing_id}'' \
+
+            --header ''X-BUSINESS-API-KEY: meowmeowmeow'' \
+
+            --header ''X-Requested-With: XMLHttpRequest'' \
+
+            --header ''Content-Type: application/x-www-form-urlencoded'' \
+
+            --data-urlencode ''plan_id=9741164c-06a1-4dd7-a649-72cca8f9603a'' \
+
+            --data-urlencode ''name=Spotify Premium'' \
+
+            --data-urlencode ''description=Spotify Monthly Subscription'' \
+
+            --data-urlencode ''cycle=monthly'' \
+
+            --data-urlencode ''customer_email=paul@newemail.com'' \
+
+            --data-urlencode ''customer_name=Paul'' \
+
+            --data-urlencode ''redirect_url=https://newexamaple.com/completed'' \
+
+            --data-urlencode ''reference=cust_id_123'' \
+
+            --data-urlencode ''amount=12.90'' \
+
+            --data-urlencode ''webhook=http://newwebhoo.site/test    '' \
+
+            --data-urlencode ''send_email=false'''
+        samples-languages:
+        - curl
+      tags:
+      - Recurring Billing
+    delete:
+      summary: Delete Recurring Billing
+      description: Use this API to cancel the recurring billing subscription
+      operationId: delete-a-recurring-billing-detail
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: recurring_billing_id
+        in: path
+        schema:
+          type: string
+          format: uuid
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"id\": \"9741164c-06a1-4dd7-a649-72cca8f9603a\",\n    \"business_recurring_plans_id\": \"973ee344-6737-4897-9929-edbc9d7bf433\",\n    \"customer_name\": \"Paul\",\n    \"customer_email\": \"paul@hitpayapp.com\",\n    \"name\": \"Spotify Premium\",\n    \"description\": \"Spotify Monthly Subscription\",\n    \"reference\": \"cust_id_123\",\n    \"cycle\": \"monthly\",\n    \"cycle_repeat\": null,\n    \"cycle_frequency\": null,\n    \"currency\": \"sgd\",\n    \"amount\": 9.90,\n    \"times_to_be_charged\": 3,\n    \"times_charged\": 0,\n    \"status\": \"canceled\",\n    \"send_email\": false,\n    \"save_card\": 0,\n    \"redirect_url\": \"https://github.com/\",\n    \"payment_methods\": [\n        \"giro\",\n        \"card\"\n    ],\n    \"created_at\": \"2022-09-13T16:33:47\",\n    \"updated_at\": \"2022-09-13T16:33:47\",\n    \"expires_at\": \"2022-11-11T23:59:59\",\n    \"url\": \"https://securecheckout.sandbox.hit-pay.com/973ee344-6737-4897-9929-edbc9d7bf433/recurring-plan/9741164c-06a1-4dd7-a649-72cca8f9603a\"\n}"
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    examples:
+                    - 9741164c-06a1-4dd7-a649-72cca8f9603a
+                  business_recurring_plans_id:
+                    type: string
+                    examples:
+                    - 973ee344-6737-4897-9929-edbc9d7bf433
+                  customer_name:
+                    type: string
+                    examples:
+                    - Paul
+                  customer_email:
+                    type: string
+                    examples:
+                    - paul@hitpayapp.com
+                  name:
+                    type: string
+                    examples:
+                    - Spotify Premium
+                  description:
+                    type: string
+                    examples:
+                    - Spotify Monthly Subscription
+                  reference:
+                    type: string
+                    examples:
+                    - cust_id_123
+                  cycle:
+                    type: string
+                    examples:
+                    - monthly
+                  cycle_repeat: {}
+                  cycle_frequency: {}
+                  currency:
+                    type: string
+                    examples:
+                    - sgd
+                  amount:
+                    type: number
+                    examples:
+                    - 9.9
+                    default: 0
+                  times_to_be_charged:
+                    type: integer
+                    examples:
+                    - 3
+                    default: 0
+                  times_charged:
+                    type: integer
+                    examples:
+                    - 0
+                    default: 0
+                  status:
+                    type: string
+                    examples:
+                    - canceled
+                  send_email:
+                    type: boolean
+                    examples:
+                    - false
+                    default: true
+                  save_card:
+                    type: integer
+                    examples:
+                    - 0
+                    default: 0
+                  redirect_url:
+                    type: string
+                    examples:
+                    - https://github.com/
+                  payment_methods:
+                    type: array
+                    items:
+                      type: string
+                      examples:
+                      - giro
+                  created_at:
+                    type: string
+                    examples:
+                    - '2022-09-13T16:33:47'
+                  updated_at:
+                    type: string
+                    examples:
+                    - '2022-09-13T16:33:47'
+                  expires_at:
+                    type: string
+                    examples:
+                    - '2022-11-11T23:59:59'
+                  url:
+                    type: string
+                    examples:
+                    - https://securecheckout.sandbox.hit-pay.com/973ee344-6737-4897-9929-edbc9d7bf433/recurring-plan/9741164c-06a1-4dd7-a649-72cca8f9603a
+        '404':
+          description: '404'
+          content:
+            text/plain:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No query results for model [App\\\\Business\\\\RecurringBilling] 97414c99-01ca-464d-a57b-81851b307e09\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    examples:
+                    - No query results for model [App\Business\RecurringBilling] 97414c99-01ca-464d-a57b-81851b307e09
+      deprecated: false
+      security: []
+      x-readme:
+        code-samples:
+        - language: curl
+          code: 'curl --location --request DELETE ''https://api.sandbox.hit-pay.com/v1/recurring-billing/{recurring_billing_id}'' \
+
+            --header ''X-BUSINESS-API-KEY: meowmeowmeow'' \
+
+            --header ''X-Requested-With: XMLHttpRequest'' \
+
+            --header ''Content-Type: application/x-www-form-urlencoded'''
+        samples-languages:
+        - curl
+      tags:
+      - Recurring Billing
+  /recurring-billing:
+    post:
+      operationId: createRecurringBilling
+      tags:
+      - Recurring Billing
+      summary: Create a recurring billing subscription
+      description: Starts a subscription against a saved card. Provide a `plan_id`, or pass `plan_id=null` with `name`, `cycle`, `amount`, `customer_email` and `start_date` to define an ad-hoc plan inline.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RecurringBillingCreate'
+      responses:
+        '201':
+          description: Recurring billing created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecurringBilling'
+  /recurring-billing/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: getRecurringBilling
+      tags:
+      - Recurring Billing
+      summary: Get a recurring billing subscription
+      responses:
+        '200':
+          description: The recurring billing subscription.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecurringBilling'
+    delete:
+      operationId: cancelRecurringBilling
+      tags:
+      - Recurring Billing
+      summary: Cancel a recurring billing subscription
+      responses:
+        '200':
+          description: Recurring billing cancelled.
+  /charge/{recurring_billing_id}:
+    post:
+      operationId: chargeRecurringBilling
+      tags:
+      - Recurring Billing
+      summary: Charge a saved card
+      description: Charges the saved card associated with a recurring billing subscription for an ad-hoc amount.
+      parameters:
+      - name: recurring_billing_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ChargeCreate'
+      responses:
+        '201':
+          description: Charge created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Charge'
+components:
+  schemas:
+    RecurringBilling:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        customer_email:
+          type: string
+        plan_id:
+          type: string
+          nullable: true
+        amount:
+          type: string
+        currency:
+          type: string
+        url:
+          type: string
+          format: uri
+        created_at:
+          type: string
+          format: date-time
+    ChargeCreate:
+      type: object
+      required:
+      - amount
+      - currency
+      properties:
+        amount:
+          type: string
+        currency:
+          type: string
+    Charge:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        amount:
+          type: string
+        currency:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    RecurringBillingCreate:
+      type: object
+      required:
+      - customer_email
+      - start_date
+      properties:
+        plan_id:
+          type: string
+          nullable: true
+          description: Existing plan id, or null to define an inline plan.
+        customer_email:
+          type: string
+          format: email
+        start_date:
+          type: string
+          format: date
+        name:
+          type: string
+        cycle:
+          type: string
+          enum:
+          - weekly
+          - monthly
+          - yearly
+        amount:
+          type: string
+        currency:
+          type: string
+        save_card:
+          type: boolean
+        redirect_url:
+          type: string
+          format: uri
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true
+x-readme-fauxas: true

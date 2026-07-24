@@ -1,0 +1,362 @@
+openapi: 3.1.1
+info:
+  title: HitPay Account Status Balances API
+  description: 'Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com'
+  version: '1.0'
+servers:
+- url: https://api.hit-pay.com
+  description: Production
+- url: https://api.sandbox.hit-pay.com
+  description: Sandbox
+tags:
+- name: Balances
+paths:
+  /v1/balances:
+    get:
+      summary: Get Balances
+      description: Get Balances
+      operationId: get-balances
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                  - currency: sgd
+                    wallets:
+                      available: 2036.25
+                      deposit: 0
+                      pending: 94.1
+                      reserve: 5913.65
+                  - currency: usd
+                    wallets:
+                      available: 600
+                      reserve: 0
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    currency:
+                      type: string
+                    wallets:
+                      type: object
+                      properties:
+                        available:
+                          type: number
+                        deposit:
+                          type: number
+                        pending:
+                          type: number
+                        reserve:
+                          type: number
+                      required:
+                      - available
+                      - reserve
+                  required:
+                  - currency
+                  - wallets
+      deprecated: false
+      tags:
+      - Balances
+  /v1/balances/{balance_provider}/transactions:
+    get:
+      summary: Get Balance Transactions
+      description: Get Balance Transactions and it's only applicable for Singapore merchants with Cards (by Adyen) Balance.
+      operationId: get-balance-transactions
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: balance_provider
+        in: path
+        description: The balance provider
+        schema:
+          type: string
+          example: adyen
+        required: true
+      - name: created_at_from
+        description: The start day of Adyen transaction in range.
+        in: query
+        schema:
+          type: string
+          example: '2025-05-21'
+      - name: created_at_to
+        description: 'The end day of Adyen transaction in range. Note: `created_at_to >= created_at_from`'
+        in: query
+        schema:
+          type: string
+          example: '2025-05-21'
+      - name: cursor
+        in: query
+        description: It is used to fetch the next (or previous) set of results.
+        schema:
+          type: string
+      - name: per_page
+        in: query
+        schema:
+          type: number
+          default: 10
+          maximum: 100
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    data:
+                    - datetime: '2025-01-23T07:07:36+01:00'
+                      description: 'Received for charge #9e08f05a-5374-4ffa-996c-1c8981f11df9'
+                      charge_id: null
+                      order_id: null
+                      payout_id: null
+                      transfer_id: 38E95Y65QHBT2SOX
+                      debit: null
+                      credit: 95.85
+                      currency: SGD
+                    - datetime: '2025-01-24T10:32:39+01:00'
+                      description: 'Received for charge #9e0b3d23-7bf7-4e7c-945f-6b81641a851b'
+                      charge_id: null
+                      order_id: null
+                      payout_id: null
+                      transfer_id: 38E96Q65QXNHOSXL
+                      debit: null
+                      credit: 95.85
+                      currency: SGD
+                    - datetime: '2025-01-26T12:38:10+01:00'
+                      description: 'Received for charge #9e0f6ffa-639d-46b1-a307-a0b19c4aa09e'
+                      charge_id: null
+                      order_id: null
+                      payout_id: null
+                      transfer_id: 38EBH765RRH5BBIB
+                      debit: null
+                      credit: 53.78
+                      currency: SGD
+                    - datetime: '2025-01-27T05:42:04+01:00'
+                      description: 'Received for charge #9e10de13-abc8-4451-99d8-3ceb121a1b35'
+                      charge_id: null
+                      order_id: null
+                      payout_id: null
+                      transfer_id: 38EBHK65S1MY9ZG1
+                      debit: null
+                      credit: 6.78
+                      currency: SGD
+                    - datetime: '2025-01-27T05:43:01+01:00'
+                      description: 'Received for charge #9e10de6b-2615-497a-b98d-fc9001b175d4'
+                      charge_id: null
+                      order_id: null
+                      payout_id: null
+                      transfer_id: 38E95Y65S1N7RZD8
+                      debit: null
+                      credit: 85.96
+                      currency: SGD
+                    - datetime: '2025-01-27T07:06:02+01:00'
+                      description: 'Transfer #9e10fcd2-f657-489b-947e-1383790b53bf'
+                      charge_id: null
+                      order_id: null
+                      payout_id: 9e10fcd2-f657-489b-947e-1383790b53bf
+                      transfer_id: 1WNMS965S2GXLS2Z
+                      debit: -96.32
+                      credit: null
+                      currency: SGD
+                    - datetime: '2025-01-27T09:55:38+01:00'
+                      description: 'Received for charge #9e1138be-14b7-47e4-90d1-188f56e5fe0b'
+                      charge_id: null
+                      order_id: null
+                      payout_id: null
+                      transfer_id: 38E95Y65S45H71IL
+                      debit: null
+                      credit: 963
+                      currency: SGD
+                    - datetime: '2025-01-28T07:06:01+01:00'
+                      description: 'Transfer #9e12ffc6-e91e-41ed-98f1-2e7bb6149f98'
+                      charge_id: null
+                      order_id: null
+                      payout_id: 9e12ffc6-e91e-41ed-98f1-2e7bb6149f98
+                      transfer_id: 1X8ESU65SGRBVQLG
+                      debit: -149.63
+                      credit: null
+                      currency: SGD
+                    - datetime: '2025-01-29T07:07:19+01:00'
+                      description: 'Transfer #9e15031f-3c86-4aba-b69f-301e31bc5b40'
+                      charge_id: null
+                      order_id: null
+                      payout_id: 9e15031f-3c86-4aba-b69f-301e31bc5b40
+                      transfer_id: 1WNBU765SV27O2GP
+                      debit: -1055.74
+                      credit: null
+                      currency: SGD
+                    - datetime: '2025-02-03T10:12:36+01:00'
+                      description: 'Received for charge #9e1f5398-9f3e-4d48-8c7c-3920d06f0e0d'
+                      charge_id: null
+                      order_id: null
+                      payout_id: null
+                      transfer_id: 38E95Y65UWCCRRFU
+                      debit: null
+                      credit: 95.85
+                      currency: SGD
+                    meta:
+                      per_page: '10'
+                      next_cursor: S2B-MlIjKCkrPEMtMXcvdzV34Xl532WTxxaSZceT9ncVxTWVxBQk5scnE4SX1Mbl5HMmFYWD8kcEApMTJDRW5wfkxUbHdic0VyQlU1MWw32VGUgKGxsIX90S32M7
+                      prev_cursor: null
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        datetime:
+                          type: string
+                        description:
+                          type: string
+                        charge_id:
+                          type:
+                          - string
+                          - 'null'
+                        order_id:
+                          type:
+                          - string
+                          - 'null'
+                        payout_id:
+                          type:
+                          - string
+                          - 'null'
+                        transfer_id:
+                          type: string
+                        debit:
+                          type: number
+                        credit:
+                          type:
+                          - number
+                          - 'null'
+                        currency:
+                          type: string
+                      required:
+                      - datetime
+                      - description
+                      - charge_id
+                      - order_id
+                      - transfer_id
+                      - currency
+                  meta:
+                    type: object
+                    properties:
+                      per_page:
+                        type: string
+                      next_cursor:
+                        type: string
+                      prev_cursor: {}
+                    required:
+                    - per_page
+                    - next_cursor
+                    - prev_cursor
+                required:
+                - data
+                - meta
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    message: The created at from does not match the format Y-m-d. (and 1 more error)
+                    errors:
+                      created_at_from:
+                      - The created at from does not match the format Y-m-d.
+                      created_at_to:
+                      - The created at to must be a date after or equal to created at from.
+              schema: {}
+      deprecated: false
+      tags:
+      - Balances
+  /v1/balances/{balance_provider}/transactions/export:
+    post:
+      summary: Export Balance Breakdown
+      description: Export Balance Breakdown and the exported file will be included in attachment of sending email to the business's admin email. Currenly, we only support `Adyen` provider.
+      operationId: export-transactions
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: balance_provider
+        in: path
+        description: The balance provider. It only supports Adyen now.
+        schema:
+          type: string
+          example: adyen
+        required: true
+      - name: created_at_from
+        description: The start day of Adyen transaction in range.
+        in: query
+        schema:
+          type: string
+          example: '2025-05-21'
+      - name: created_at_to
+        description: 'The end day of Adyen transaction in range. Note: `created_at_to >= created_at_from`'
+        in: query
+        schema:
+          type: string
+          example: '2025-05-21'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    success: true
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    message: The created at from does not match the format Y-m-d. (and 1 more error)
+                    errors:
+                      created_at_from:
+                      - The created at from does not match the format Y-m-d.
+                      created_at_to:
+                      - The created at to must be a date after or equal to created at from.
+              schema: {}
+      deprecated: false
+      tags:
+      - Balances
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true
+x-readme-fauxas: true

@@ -1,0 +1,253 @@
+openapi: 3.1.1
+info:
+  title: HitPay Account Status Refund API
+  description: 'Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com'
+  version: '1.0'
+servers:
+- url: https://api.hit-pay.com
+  description: Production
+- url: https://api.sandbox.hit-pay.com
+  description: Sandbox
+tags:
+- name: Refund
+paths:
+  /v1/refund:
+    post:
+      summary: Refund
+      description: The API to refund the charge
+      operationId: refund
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - amount
+              - payment_id
+              properties:
+                amount:
+                  type: number
+                  description: The remaining amount to be refunded.
+                  example: 100.99
+                payment_id:
+                  type: string
+                  format: uuid
+                  example: 3c90c3cc-0d44-4b50-8888-8dd25736052a
+                  description: Payment ID for the successful payment request
+                webhook:
+                  type: string
+                  format: uri
+                  description: The webhook URL
+                  example: https://www.google.com
+                send_email:
+                  type: string
+                  enum:
+                  - 'true'
+                  - 'false'
+                email:
+                  type: string
+                  format: email
+                  example: test@gmail.com
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    id: 9ef6957e-6b1b-4e08-8cde-d5f5c908418d
+                    refunded_by: QA SG
+                    payment_id: 9a934d94-a41f-46c7-a934-c1ebf2436008
+                    amount_refunded: 1
+                    total_amount: 96.49
+                    currency: sgd
+                    status: succeeded
+                    payment_method: card
+                    provider_fee: null
+                    provider_fee_currency: null
+                    refunded_at: '2025-05-21T09:17:52.000000Z'
+                    created_at: '2025-05-21T17:17:52'
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    examples:
+                    - 9858acaf-edc8-427d-b0e5-c32e1b1543db
+                  refunded_by:
+                    type: string
+                    example: Test QA
+                  payment_id:
+                    type: string
+                    example: 984e6b86-f0e2-4283-991c-d8236f67567e
+                  amount_refunded:
+                    type: integer
+                    example: 13
+                    default: 0
+                  total_amount:
+                    type: number
+                    example: 99.99
+                    default: 0
+                  currency:
+                    type: string
+                    example: usd
+                  status:
+                    type: string
+                    default: succeeded
+                  payment_method:
+                    type: string
+                    example: card
+                  provider_fee:
+                    type: integer
+                    example: 1.1
+                  provider_fee_currency:
+                    type: string
+                    example: SGD
+                  refunded_at:
+                    type: string
+                    example: '2025-05-21T09:17:52.000000Z'
+                  created_at:
+                    type: string
+                    example: '2023-01-30T16:10:17'
+      deprecated: false
+      security: []
+      x-readme:
+        code-samples:
+        - language: curl
+          code: 'curl --location --request POST ''https://api.sandbox.hit-pay.com/v1/refund'' \
+
+            --header ''X-BUSINESS-API-KEY: meowmeowmeow'' \
+
+            --header ''X-Requested-With: XMLHttpRequest'' \
+
+            --header ''Content-Type: application/x-www-form-urlencoded'' \
+
+            --data-urlencode ''amount=13444'' \
+
+            --data-urlencode ''payment_id=984e6b86-f0e2-4283-991c-d8236f67567e'' \
+
+            --data-urlencode ''webhook=https://webhook.site/64da3fed-cd82-49cc-a368-a9ede02441aa'' \
+
+            --data-urlencode ''send_email=true '' \
+
+            --data-urlencode ''email=raymond@hit-pay.com''
+
+            '
+          name: cURL
+        samples-languages:
+        - curl
+      tags:
+      - Refund
+  /v1/refund/{refund_id}:
+    get:
+      summary: Get Refund Details
+      description: Get the refund detail.
+      operationId: get-refund
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: refund_id
+        in: path
+        description: The refund id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    id: a1feb98d-f31d-4378-9382-1a373853f7eb
+                    refunded_by: null
+                    payment_id: a1feb5cb-fff3-4cd7-a5a1-a4e91307353d
+                    amount_refunded: 10
+                    total_amount: 110
+                    currency: sgd
+                    status: succeeded
+                    payment_method: card
+                    provider_fee: null
+                    provider_fee_currency: null
+                    refunded_at: '2026-06-11T05:01:08.000000Z'
+                    created_at: '2026-06-11T05:01:08.000000Z'
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    example: a1feb98d-f31d-4378-9382-1a373853f7eb
+                  refunded_by:
+                    type: string
+                    nullable: true
+                    example: null
+                  payment_id:
+                    type: string
+                    format: uuid
+                    example: a1feb5cb-fff3-4cd7-a5a1-a4e91307353d
+                  amount_refunded:
+                    type: number
+                    example: 10
+                  total_amount:
+                    type: number
+                    example: 110
+                  currency:
+                    type: string
+                    example: sgd
+                  status:
+                    type: string
+                    example: succeeded
+                  payment_method:
+                    type: string
+                    example: card
+                  provider_fee:
+                    type: number
+                    nullable: true
+                    example: null
+                  provider_fee_currency:
+                    type: string
+                    nullable: true
+                    example: null
+                  refunded_at:
+                    type: string
+                    format: date-time
+                    example: '2026-06-11T05:01:08.000000Z'
+                  created_at:
+                    type: string
+                    format: date-time
+                    example: '2026-06-11T05:01:08.000000Z'
+      deprecated: false
+      security: []
+      x-readme:
+        code-samples:
+        - lang: shell
+          source: 'curl -X GET "https://api.sandbox.hit-pay.com/v1/refund/{refund_id}" -H "X-BUSINESS-API-KEY: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"'
+        samples-languages:
+        - curl
+      tags:
+      - Refund
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true
+x-readme-fauxas: true

@@ -1,0 +1,675 @@
+openapi: 3.1.1
+info:
+  title: HitPay Account Status Virtual Accounts API
+  description: 'Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com'
+  version: '1.0'
+servers:
+- url: https://api.hit-pay.com
+  description: Production
+- url: https://api.sandbox.hit-pay.com
+  description: Sandbox
+tags:
+- name: Virtual Accounts
+paths:
+  /v1/virtual-accounts:
+    get:
+      tags:
+      - Virtual Accounts
+      summary: Get virtual accounts
+      description: 'Retrieve the list of virtual accounts for a business. Results are paginated using cursor-based pagination
+
+        and ordered by creation date (newest first).
+
+        '
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: cursor
+        in: query
+        schema:
+          type:
+          - string
+          - 'null'
+        description: Cursor for pagination
+      - name: per_page
+        in: query
+        schema:
+          type: integer
+          enum:
+          - 5
+          - 10
+          - 20
+          - 25
+          - 50
+          - 100
+          default: 25
+        description: Number of results per page
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                        name:
+                          type: string
+                          description: Display name of the virtual account
+                        reference:
+                          type: string
+                          description: Virtual account reference number
+                        payment_provider:
+                          type: string
+                          description: Payment provider identifier (e.g., dbs_sg)
+                        payment_provider_method:
+                          type: string
+                          description: Payment provider method identifier (e.g., dbs_sg_virtual_account)
+                        payment_provider_method_logos:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              method:
+                                type: string
+                                description: Payment method identifier
+                              iconName:
+                                type: string
+                                description: Icon file name
+                              displayName:
+                                type: string
+                                description: Human-readable method name
+                              description:
+                                type: string
+                                description: Method description
+                              sm:
+                                type: string
+                                format: uri
+                                description: Small PNG logo URL
+                              md:
+                                type: string
+                                format: uri
+                                description: Medium PNG logo URL
+                              lg:
+                                type: string
+                                format: uri
+                                description: Large PNG logo URL
+                              svg:
+                                type: string
+                                format: uri
+                                description: SVG logo URL
+                              svg_square:
+                                type: string
+                                format: uri
+                                description: Square SVG logo URL
+                          description: Array of logo objects for the payment method
+                        payment_provider_method_main_logo:
+                          oneOf:
+                          - type: object
+                            properties:
+                              method:
+                                type: string
+                                description: Payment method identifier
+                              iconName:
+                                type: string
+                                description: Icon file name
+                              displayName:
+                                type: string
+                                description: Human-readable method name
+                              description:
+                                type: string
+                                description: Method description
+                              sm:
+                                type: string
+                                format: uri
+                                description: Small PNG logo URL
+                              md:
+                                type: string
+                                format: uri
+                                description: Medium PNG logo URL
+                              lg:
+                                type: string
+                                format: uri
+                                description: Large PNG logo URL
+                              svg:
+                                type: string
+                                format: uri
+                                description: SVG logo URL
+                              svg_square:
+                                type: string
+                                format: uri
+                                description: Square SVG logo URL
+                          - type: 'null'
+                          description: Main logo object for the payment method, or null
+                        supported_currencies:
+                          type:
+                          - array
+                          - 'null'
+                          items:
+                            type: string
+                          description: List of supported currency codes
+                        transfer_types:
+                          type: array
+                          items:
+                            type: string
+                          description: Supported transfer types for this virtual account
+                        address:
+                          type: string
+                          description: Business address
+                        status:
+                          type:
+                          - string
+                          - 'null'
+                          description: Current status of the virtual account
+                        created_by:
+                          oneOf:
+                          - type: object
+                            properties:
+                              id:
+                                type: string
+                                format: uuid
+                              display_name:
+                                type: string
+                              first_name:
+                                type: string
+                              last_name:
+                                type: string
+                          - type: 'null'
+                          description: User who created the virtual account, or null
+                        created_at:
+                          type: string
+                          format: date-time
+                          description: Creation timestamp (Atom format)
+                        updated_at:
+                          type: string
+                          format: date-time
+                          description: Last update timestamp (Atom format)
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type:
+                        - string
+                        - 'null'
+                      last:
+                        type:
+                        - string
+                        - 'null'
+                      prev:
+                        type:
+                        - string
+                        - 'null'
+                      next:
+                        type:
+                        - string
+                        - 'null'
+                  meta:
+                    type: object
+                    properties:
+                      path:
+                        type: string
+                      per_page:
+                        type: integer
+                      next_cursor:
+                        type:
+                        - string
+                        - 'null'
+                      prev_cursor:
+                        type:
+                        - string
+                        - 'null'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error message
+                  errors:
+                    type: array
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error message
+                  errors:
+                    type: array
+    post:
+      tags:
+      - Virtual Accounts
+      summary: Create a virtual account
+      description: 'Create a new virtual account for the business. The payment provider and method are automatically
+
+        determined based on the business configuration.
+
+
+        A business can only have one virtual account per payment provider method. If a virtual account
+
+        already exists for the same provider method, a 409 Conflict error is returned.
+
+
+        The business must have payments enabled to create a virtual account.
+
+        '
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      responses:
+        '201':
+          description: Virtual account created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      name:
+                        type: string
+                        description: Display name of the virtual account
+                      reference:
+                        type: string
+                        description: Virtual account reference number
+                      payment_provider:
+                        type: string
+                        description: Payment provider identifier (e.g., dbs_sg)
+                      payment_provider_method:
+                        type: string
+                        description: Payment provider method identifier (e.g., dbs_sg_virtual_account)
+                      payment_provider_method_logos:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            method:
+                              type: string
+                              description: Payment method identifier
+                            iconName:
+                              type: string
+                              description: Icon file name
+                            displayName:
+                              type: string
+                              description: Human-readable method name
+                            description:
+                              type: string
+                              description: Method description
+                            sm:
+                              type: string
+                              format: uri
+                              description: Small PNG logo URL
+                            md:
+                              type: string
+                              format: uri
+                              description: Medium PNG logo URL
+                            lg:
+                              type: string
+                              format: uri
+                              description: Large PNG logo URL
+                            svg:
+                              type: string
+                              format: uri
+                              description: SVG logo URL
+                            svg_square:
+                              type: string
+                              format: uri
+                              description: Square SVG logo URL
+                        description: Array of logo objects for the payment method
+                      payment_provider_method_main_logo:
+                        oneOf:
+                        - type: object
+                          properties:
+                            method:
+                              type: string
+                              description: Payment method identifier
+                            iconName:
+                              type: string
+                              description: Icon file name
+                            displayName:
+                              type: string
+                              description: Human-readable method name
+                            description:
+                              type: string
+                              description: Method description
+                            sm:
+                              type: string
+                              format: uri
+                              description: Small PNG logo URL
+                            md:
+                              type: string
+                              format: uri
+                              description: Medium PNG logo URL
+                            lg:
+                              type: string
+                              format: uri
+                              description: Large PNG logo URL
+                            svg:
+                              type: string
+                              format: uri
+                              description: SVG logo URL
+                            svg_square:
+                              type: string
+                              format: uri
+                              description: Square SVG logo URL
+                        - type: 'null'
+                        description: Main logo object for the payment method, or null
+                      supported_currencies:
+                        type:
+                        - array
+                        - 'null'
+                        items:
+                          type: string
+                        description: List of supported currency codes
+                      transfer_types:
+                        type: array
+                        items:
+                          type: string
+                        description: Supported transfer types for this virtual account
+                      address:
+                        type: string
+                        description: Business address
+                      status:
+                        type:
+                        - string
+                        - 'null'
+                        description: Current status of the virtual account
+                      created_by:
+                        oneOf:
+                        - type: object
+                          properties:
+                            id:
+                              type: string
+                              format: uuid
+                            display_name:
+                              type: string
+                            first_name:
+                              type: string
+                            last_name:
+                              type: string
+                        - type: 'null'
+                        description: User who created the virtual account, or null
+                      created_at:
+                        type: string
+                        format: date-time
+                        description: Creation timestamp (Atom format)
+                      updated_at:
+                        type: string
+                        format: date-time
+                        description: Last update timestamp (Atom format)
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error message
+                  errors:
+                    type: array
+        '403':
+          description: Forbidden — business does not have payments enabled
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error message
+                  errors:
+                    type: array
+        '409':
+          description: Conflict — a virtual account already exists for this provider method
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error message
+                  errors:
+                    type: array
+  /v1/virtual-accounts/{virtual_account_id}:
+    get:
+      tags:
+      - Virtual Accounts
+      summary: Get virtual account details
+      description: 'Retrieve detailed information about a specific virtual account.
+
+        '
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: virtual_account_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: The virtual account ID
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      name:
+                        type: string
+                        description: Display name of the virtual account
+                      reference:
+                        type: string
+                        description: Virtual account reference number
+                      payment_provider:
+                        type: string
+                        description: Payment provider identifier (e.g., dbs_sg)
+                      payment_provider_method:
+                        type: string
+                        description: Payment provider method identifier (e.g., dbs_sg_virtual_account)
+                      payment_provider_method_logos:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            method:
+                              type: string
+                              description: Payment method identifier
+                            iconName:
+                              type: string
+                              description: Icon file name
+                            displayName:
+                              type: string
+                              description: Human-readable method name
+                            description:
+                              type: string
+                              description: Method description
+                            sm:
+                              type: string
+                              format: uri
+                              description: Small PNG logo URL
+                            md:
+                              type: string
+                              format: uri
+                              description: Medium PNG logo URL
+                            lg:
+                              type: string
+                              format: uri
+                              description: Large PNG logo URL
+                            svg:
+                              type: string
+                              format: uri
+                              description: SVG logo URL
+                            svg_square:
+                              type: string
+                              format: uri
+                              description: Square SVG logo URL
+                        description: Array of logo objects for the payment method
+                      payment_provider_method_main_logo:
+                        oneOf:
+                        - type: object
+                          properties:
+                            method:
+                              type: string
+                              description: Payment method identifier
+                            iconName:
+                              type: string
+                              description: Icon file name
+                            displayName:
+                              type: string
+                              description: Human-readable method name
+                            description:
+                              type: string
+                              description: Method description
+                            sm:
+                              type: string
+                              format: uri
+                              description: Small PNG logo URL
+                            md:
+                              type: string
+                              format: uri
+                              description: Medium PNG logo URL
+                            lg:
+                              type: string
+                              format: uri
+                              description: Large PNG logo URL
+                            svg:
+                              type: string
+                              format: uri
+                              description: SVG logo URL
+                            svg_square:
+                              type: string
+                              format: uri
+                              description: Square SVG logo URL
+                        - type: 'null'
+                        description: Main logo object for the payment method, or null
+                      supported_currencies:
+                        type:
+                        - array
+                        - 'null'
+                        items:
+                          type: string
+                        description: List of supported currency codes
+                      transfer_types:
+                        type: array
+                        items:
+                          type: string
+                        description: Supported transfer types for this virtual account
+                      address:
+                        type: string
+                        description: Business address
+                      status:
+                        type:
+                        - string
+                        - 'null'
+                        description: Current status of the virtual account
+                      created_by:
+                        oneOf:
+                        - type: object
+                          properties:
+                            id:
+                              type: string
+                              format: uuid
+                            display_name:
+                              type: string
+                            first_name:
+                              type: string
+                            last_name:
+                              type: string
+                        - type: 'null'
+                        description: User who created the virtual account, or null
+                      created_at:
+                        type: string
+                        format: date-time
+                        description: Creation timestamp (Atom format)
+                      updated_at:
+                        type: string
+                        format: date-time
+                        description: Last update timestamp (Atom format)
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error message
+                  errors:
+                    type: array
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error message
+                  errors:
+                    type: array
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error message
+                  errors:
+                    type: array
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true
+x-readme-fauxas: true

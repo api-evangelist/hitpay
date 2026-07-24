@@ -1,0 +1,1040 @@
+openapi: 3.1.1
+info:
+  title: HitPay Account Status Payment Requests API
+  description: 'Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com'
+  version: '1.0'
+servers:
+- url: https://api.hit-pay.com
+  description: Production
+- url: https://api.sandbox.hit-pay.com
+  description: Sandbox
+tags:
+- name: Payment Requests
+paths:
+  /v1/payment-requests:
+    post:
+      summary: Create Payment Request
+      description: 'This endpoint creates a new payment request. This is the first step of the payment flow, once you have all the details from the user and are ready to collect payment use this API to create a payment request.
+
+        Since this is a server-to-server communication, if you have a mobile or Web client that communicates with your REST API, you must have a new endpoint E.g. /create-order, or reuse an existing endpoint. This endpoint will be responsible for making the payment request API call to HitPay.'
+      operationId: create-payment-request
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - amount
+              - currency
+              properties:
+                amount:
+                  type: number
+                  description: 'It''s required field. Amount related to the payment. Example: 2500'
+                  format: double
+                  example: 100
+                  minimum: 0.3
+                  maximum: 999999999.99
+                currency:
+                  type: string
+                  maxLength: 3
+                  example: SGD
+                  description: It's required field. Currency related to the payment.
+                payment_methods:
+                  type: array
+                  description: 'They''re available payment methods supported on your account.(Example: paynow_online , card, wechat, alipay, grabpay_direct, grabpay_paylater, shopee_pay ... etc.). If we don''t pass, use the available methods'
+                  items:
+                    type: string
+                  example:
+                  - card
+                email:
+                  type: string
+                  format: email
+                  description: Buyer’s email
+                name:
+                  type: string
+                  description: Buyer’s name
+                phone:
+                  type: string
+                  format: phone
+                  description: Buyer’s phone number
+                wifi_terminal_id:
+                  type: string
+                  description: It's terminal id and it's required if payment method is wifi_card_reader
+                staff_id:
+                  type: string
+                  format: uuid
+                  description: It's active staff id from the dashboard
+                  example: 98888a24-d6b2-430d-9063-d2be76d443cd
+                location_id:
+                  type: string
+                  format: uuid
+                  example: 9dd07721-d215-4947-9c79-2b8ec25f69db
+                  description: The active location belongs to business. Support both `location_id` and `business_location_id` for backward compatibility, but we recommend using `business_location_id` for future use.
+                business_location_id:
+                  type: string
+                  format: uuid
+                  example: 9dd07721-d215-4947-9c79-2b8ec25f69db
+                  description: The active location belongs to business.
+                purpose:
+                  type: string
+                  description: Purpose of the Payment request.
+                  maxLength: 255
+                reference_number:
+                  type: string
+                  description: Arbitrary reference number that you can map to your internal reference number. This value cannot be edited by the customer
+                  maxLength: 255
+                redirect_url:
+                  type: string
+                  format: uri
+                  maxLength: 1028
+                  example: https://www.google.com
+                  description: URL where we redirect the user after a payment. Query arguments reference (payment request id) and status are sent along
+                webhook:
+                  type: string
+                  format: uri
+                  example: https://www.google.com
+                  description: URL where our server do POST request after a payment If done
+                allow_repeated_payments:
+                  type: string
+                  description: If set to true, multiple payments can be paid on a payment request link. Default value is false
+                  default: 'false'
+                  enum:
+                  - 'true'
+                  - 'false'
+                expiry_date:
+                  type: string
+                  description: Time after which the payment link will be expired (time in SG with YYYY-MM-DD HH:mm:ss format). Applicable for repeated payments.
+                expires_after:
+                  type: string
+                  description: E.g "30 mins" Other supported keys are "mins", "hours", "days"
+                  example: 5 minutes
+                add_admin_fee:
+                  type: string
+                  description: If set to true, the admin fee will be included in total.
+                  default: 'false'
+                  enum:
+                  - 'true'
+                  - 'false'
+                send_email:
+                  type: string
+                  description: It's "true" or "false". If set to true, an email receipt will be sent to the customer after the payment is completed. Default is false
+                  default: 'false'
+                  enum:
+                  - 'true'
+                  - 'false'
+                send_sms:
+                  type: string
+                  description: It's "true" or "false". If set to "true", SMS will be sent to the customer after the payment is completed. Default is false
+                  default: 'true'
+                  enum:
+                  - 'true'
+                  - 'false'
+                address:
+                  type: object
+                  required:
+                  - line1
+                  - city
+                  - state
+                  - country
+                  - postal_code
+                  properties:
+                    line1:
+                      type: string
+                    line2:
+                      type: string
+                    city:
+                      type: string
+                    country:
+                      type: string
+                    state:
+                      type: string
+                    postal_code:
+                      type: string
+                generate_qr:
+                  type: boolean
+                  default: false
+                  description: Only valid for paynow_online, qrph_netbank, doku_qris and shopee_pay if generate_qr was true
+                metadata:
+                  type: object
+                  properties:
+                    key:
+                      type: string
+                  description: 'Support the key-value. The value must be string type, and the max length of the value is 500 characters, up to 50 key-value. Example: {"car_model": "toyota", "car_color": "red"}'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    id: 9ef68e2e-3569-4f69-9f68-04c7e4bb007c
+                    name: Harvey Friesen
+                    email: test@gmail.com
+                    phone: '+65489505050'
+                    amount: '10.00'
+                    currency: sgd
+                    is_currency_editable: false
+                    status: pending
+                    purpose: Purpose_1747817845
+                    reference_number: '1747817845'
+                    payment_methods:
+                    - card
+                    url: https://securecheckout.sandbox.hit-pay.com/payment-request/@qasg/9ef68e2e-3569-4f69-9f68-04c7e4bb007c/checkout
+                    redirect_url: https://google.com
+                    webhook: https://webhook.site/8cbdef58-cd15-441a-986d-9446235223ea
+                    send_sms: true
+                    send_email: true
+                    sms_status: pending
+                    email_status: pending
+                    allow_repeated_payments: false
+                    expiry_date: '2025-05-26T15:10:00'
+                    address:
+                      line1: 177 River Valley Road
+                      line2: 177 River Valley Road
+                      city: Singapore
+                      state: Central
+                      country: SG
+                      postal_code: '10015'
+                    line_items: null
+                    executor_id: 1363
+                    created_at: '2025-05-21T16:57:25'
+                    updated_at: '2025-05-21T16:57:25'
+                    staff_id: 98888a69-2d7a-4695-811d-6df8cee30264
+                    business_location_id: 9e42e6be-2ff8-4b37-ac14-07970d2e79ca
+                    metadata:
+                      key1: value1
+                      key2: value2
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 974ee233-bc3e-4aac-a212-15af0d155133
+                  name:
+                    type: string
+                    example: Buyer_Name_1663650582
+                  email:
+                    type: string
+                    example: buyer_1663650582@gmail.com
+                  phone:
+                    type: string
+                    examples:
+                    - '+6539393939'
+                  amount:
+                    type: string
+                    examples: '900'
+                  currency:
+                    type: string
+                    example: SGD
+                  status:
+                    type: string
+                    enum:
+                    - pending
+                    - completed
+                    - failed
+                    - expired
+                    - canceled
+                    - inactive
+                    example: pending
+                  purpose:
+                    type: string
+                    examples:
+                    - Testing
+                  reference_number:
+                    type: string
+                    example: '12345678'
+                  payment_methods:
+                    type: array
+                    items:
+                      type: string
+                    examples:
+                    - card
+                  url:
+                    type: string
+                    example: https://securecheckout.sandbox.hit-pay.com/payment-request/@ban/974ee233-bc3e-4aac-a212-15af0d155133/checkout
+                  redirect_url:
+                    type: string
+                    example: https://hit-pay.postman.co/
+                  webhook:
+                    type: string
+                    example: https://hit-pay.postman.co/
+                  send_sms:
+                    type: boolean
+                  send_email:
+                    type: boolean
+                    example: true
+                    default: true
+                  sms_status:
+                    type: string
+                    example: pending
+                  email_status:
+                    type: string
+                    example: pending
+                  allow_repeated_payments:
+                    type: boolean
+                    example: false
+                    default: false
+                  expiry_date:
+                    type: string
+                    example: '2022-10-10T01:01:01'
+                  created_at:
+                    type: string
+                    example: '2022-09-20T13:09:42'
+                  updated_at:
+                    type: string
+                    example: '2022-09-20T13:09:42'
+                  staff_id:
+                    type:
+                    - string
+                    - 'null'
+                    example: 98888a69-2d7a-4695-811d-6df8cee30264
+                  business_location_id:
+                    type:
+                    - string
+                    - 'null'
+                    example: 9dd07721-d215-4947-9c79-2b8ec25f69db
+                  metadata:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                    example:
+                      key1: value1
+                      key2: 'value2 '
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    message: The currency field is required.
+                    errors:
+                      currency:
+                      - The currency field is required.
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                      examples:
+                      - The given data was invalid.
+                    errors:
+                      type: object
+                      properties:
+                        amount:
+                          type: array
+                          items:
+                            type: string
+                            examples:
+                            - The amount field is required.
+                        currency:
+                          type: array
+                          items:
+                            type: string
+                            examples:
+                            - The currency field is required.
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                      examples:
+                      - The given data was invalid.
+                    errors:
+                      type: object
+                      properties:
+                        amount:
+                          type: array
+                          items:
+                            type: string
+                            examples:
+                            - The amount must be between 0.3 and 999999999.99.
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                      examples:
+                      - The given data was invalid.
+                    errors:
+                      type: object
+                      properties:
+                        payment_methods:
+                          type: array
+                          items:
+                            type: string
+                            examples:
+                            - The selected payment methods is invalid.
+      deprecated: false
+      security: []
+      tags:
+      - Payment Requests
+    get:
+      summary: Get Payment Requests
+      description: Get all payment requests.
+      operationId: get-payment-requests
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: per_page
+        in: query
+        description: Page size
+        schema:
+          type: integer
+          format: int32
+          default: 10
+          maximum: 100
+      - name: current_page
+        in: query
+        description: Page number (not `page`)
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: search
+        in: query
+        description: Partial match on email, id, or reference_number
+        schema:
+          type: string
+          maxLength: 255
+      - name: is_default
+        in: query
+        description: When set, returns only default payment links (channel = custom or link)
+        schema:
+          type: boolean
+      - name: metadata
+        in: query
+        description: Filter by metadata key/value (exact match); only the first key/value pair is used
+        schema:
+          oneOf:
+          - type: object
+            additionalProperties:
+              type: string
+          - type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: '200'
+          content: {}
+      deprecated: false
+      security: []
+      tags:
+      - Payment Requests
+  /v1/payment-requests/{request_id}:
+    put:
+      summary: Update Payment Request
+      description: This endpoint is to update the payment request.
+      operationId: update-payment-request
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: request_id
+        in: path
+        description: It's payment request id
+        schema:
+          type: string
+          'format:': uuid
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - amount
+              - currency
+              properties:
+                amount:
+                  type: number
+                  description: It's required field. Amount related to the payment.
+                  format: double
+                  example: 100
+                  minimum: 0.3
+                  maximum: 999999999.99
+                currency:
+                  type: string
+                  maxLength: 3
+                  example: SGD
+                  description: Currency related to the payment.
+                payment_methods:
+                  type: array
+                  description: Payment method type (paynow_online , card, wechat, alipay, grabpay_direct, grabpay_paylater, shopee_pay, zip, fpx). If we don't pass, use the available methods
+                  items:
+                    type: string
+                email:
+                  type: string
+                  format: email
+                  description: Buyer’s email
+                name:
+                  type: string
+                  description: Buyer’s name
+                phone:
+                  type: string
+                  format: phone
+                  description: Buyer’s phone number
+                wifi_terminal_id:
+                  type: string
+                  description: It's terminal id and it's required if payment method is wifi_card_reader
+                staff_id:
+                  type: string
+                  format: uuid
+                  example: 98888a24-d6b2-430d-9063-d2be76d443cd
+                  description: It's active staff id from the dashboard
+                purpose:
+                  type: string
+                  description: Purpose of the Payment request.
+                  maxLength: 255
+                reference_number:
+                  type: string
+                  description: Arbitrary reference number that you can map to your internal reference number. This value cannot be edited by the customer
+                  maxLength: 255
+                redirect_url:
+                  type: string
+                  format: uri
+                  maxLength: 1028
+                  example: https://www.google.com
+                  description: URL where we redirect the user after a payment. Query arguments reference (payment request id) and status are sent along
+                webhook:
+                  type: string
+                  format: uri
+                  example: https://www.google.com
+                  description: URL where our server do POST request after a payment If done
+                allow_repeated_payments:
+                  type: string
+                  description: If set to true, multiple payments can be paid on a payment request link. Default value is false
+                  default: 'false'
+                  enum:
+                  - 'true'
+                  - 'false'
+                expiry_date:
+                  type: string
+                  description: Time after which the payment link will be expired(time in SG with YYYY-MM-DD HH:mm:ss format). Applicable for repeated payments. Default is Null
+                expires_after:
+                  type: string
+                  description: E.g "30 mins" Other supported keys are "mins", "hours", "days"
+                  example: 5 minutes
+                add_admin_fee:
+                  type: string
+                  description: If set to true, the admin fee will be included in total.
+                  default: 'false'
+                  enum:
+                  - 'true'
+                  - 'false'
+                send_email:
+                  type: string
+                  description: It's "true" or "false". If set to true, an email receipt will be sent to the customer after the payment is completed. Default is false
+                  default: 'false'
+                  enum:
+                  - 'true'
+                  - 'false'
+                send_sms:
+                  type: string
+                  description: It's "true" or "false". If set to "true", SMS will be sent to the customer after the payment is completed. Default is false
+                  default: 'true'
+                  enum:
+                  - 'true'
+                  - 'false'
+                address:
+                  type: object
+                  required:
+                  - line1
+                  - city
+                  - state
+                  - country
+                  - postal_code
+                  properties:
+                    line1:
+                      type: string
+                    line2:
+                      type: string
+                    city:
+                      type: string
+                    country:
+                      type: string
+                    state:
+                      type: string
+                    postal_code:
+                      type: string
+                generate_qr:
+                  type: boolean
+                  default: false
+                  description: 'Only valid for payment methods:  paynow_online, qrph_netbank, doku_qris and shopee_pay if generate_qr was true'
+      responses:
+        '200':
+          description: '200'
+          content: {}
+      deprecated: false
+      security: []
+      tags:
+      - Payment Requests
+    delete:
+      summary: Delete Payment Request
+      description: 'This endpoint is to delete a specific payment request.
+
+
+        **Note: We don''t allow to delete the completed payment request.**'
+      operationId: delete-payment-request
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: request_id
+        in: path
+        description: It's payment request id
+        schema:
+          type: string
+          'format:': uuid
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"success\": true\n}"
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    examples:
+                    - true
+                    default: true
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No query results for model [App\\\\Business\\\\PaymentRequest] 974ee879-7feb-4bc6-b329-51f32928bd59\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    examples:
+                    - No query results for model [App\Business\PaymentRequest] 974ee879-7feb-4bc6-b329-51f32928bd59
+      deprecated: false
+      security: []
+      tags:
+      - Payment Requests
+    get:
+      summary: Get Payment Request Status
+      description: This endpoint is to  get the status of a specific payment request.
+      operationId: get-payment-status
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: request_id
+        in: path
+        description: It's required field
+        schema:
+          type: string
+          format: uuid
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    id: 9ef68e2e-3569-4f69-9f68-04c7e4bb007c
+                    name: Harvey Friesen
+                    email: test@gmail.com
+                    phone: '+65489505050'
+                    amount: '10.00'
+                    currency: sgd
+                    is_currency_editable: false
+                    status: pending
+                    purpose: Purpose_1747817845
+                    reference_number: '1747817845'
+                    payment_methods:
+                    - card
+                    url: https://securecheckout.sandbox.hit-pay.com/payment-request/@qasg/9ef68e2e-3569-4f69-9f68-04c7e4bb007c/checkout
+                    redirect_url: https://google.com
+                    webhook: https://webhook.site/8cbdef58-cd15-441a-986d-9446235223ea
+                    send_sms: true
+                    send_email: true
+                    sms_status: pending
+                    email_status: pending
+                    allow_repeated_payments: false
+                    expiry_date: '2025-05-26T15:10:00'
+                    address:
+                      city: Singapore
+                      line1: 177 River Valley Road
+                      line2: 177 River Valley Road
+                      state: Central
+                      country: SG
+                      postal_code: '10015'
+                    line_items: null
+                    executor_id: '1363'
+                    created_at: '2025-05-21T16:57:25'
+                    updated_at: '2025-05-21T16:57:25'
+                    staff_id: 98888a69-2d7a-4695-811d-6df8cee30264
+                    business_location_id: 9e42e6be-2ff8-4b37-ac14-07970d2e79ca
+                    location:
+                      id: 9e42e6be-2ff8-4b37-ac14-07970d2e79ca
+                      name: API_Location_1740101762910
+                      street: 58 Izpod Parkway
+                      postal_code: 079903
+                      city: Singapore
+                      state: Singapore
+                      country: sg
+                      created_at: '2025-02-21T01:36:02.000000Z'
+                      updated_at: '2025-02-21T01:36:02.000000Z'
+                      active: true
+                      business_id: 98567029-f559-49f9-916b-042a4255b32a
+                      pickups: []
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  email:
+                    type: string
+                  phone:
+                    type: string
+                  amount:
+                    type: string
+                  currency:
+                    type: string
+                  status:
+                    type: string
+                    enum:
+                    - pending
+                    - completed
+                    - failed
+                    - expired
+                    - canceled
+                    - inactive
+                    description: 'The status of the payment request. The value can be pending, completed, failed, expired, canceled or inactive.
+
+                      `pending`: Default when a payment request is created: open for payment.
+
+                      `failed`: Payment did not complete successfully.
+
+                      `completed`: Payment succeeded, the request is treated as paid.(unless allow_repeated_payments applies).
+
+                      `expired`: No longer payable because time ran out when either expiry_date or expires_after is set..
+
+                      `canceled`: Manually or systematically voided (e.g. terminal flow canceling a pending request).
+
+                      `inactive`: Payment link deactivated by the merchant.'
+                  purpose:
+                    type: string
+                  reference_number:
+                    type: string
+                  payment_methods:
+                    type: array
+                    items:
+                      type: string
+                  url:
+                    type: string
+                  redirect_url:
+                    type: string
+                  webhook:
+                    type: string
+                  send_sms:
+                    type: boolean
+                  send_email:
+                    type: boolean
+                  sms_status:
+                    type: string
+                  email_status:
+                    type: string
+                  allow_repeated_payments:
+                    type: boolean
+                  expiry_date:
+                    type: string
+                  address:
+                    type: object
+                    properties:
+                      city:
+                        type: string
+                      line1:
+                        type: string
+                      line2:
+                        type: string
+                      state:
+                        type: string
+                      country:
+                        type: string
+                      postal_code:
+                        type: string
+                    required:
+                    - city
+                    - line1
+                    - line2
+                    - state
+                    - country
+                    - postal_code
+                  line_items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        sku:
+                          type: string
+                        url:
+                          type: string
+                        name:
+                          type: string
+                        price:
+                          type: number
+                        category:
+                          type: string
+                        quantity:
+                          type: number
+                        description:
+                          type: string
+                      required:
+                      - id
+                      - sku
+                      - url
+                      - name
+                      - price
+                      - category
+                      - quantity
+                      - description
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                  payments:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        quantity:
+                          type: number
+                        status:
+                          type: string
+                          enum:
+                          - pending
+                          - requires_payment_method
+                          - requires_customer_action
+                          - succeeded_manually
+                          - failed
+                          - canceled
+                          - void
+                          - succeeded
+                          - refunded
+                          - partially_refunded
+                        buyer_name:
+                          type: string
+                        buyer_phone:
+                          type: string
+                        buyer_email:
+                          type: string
+                        currency:
+                          type: string
+                        amount:
+                          type: string
+                        refunded_amount:
+                          type: string
+                        payment_type:
+                          type: string
+                        fees:
+                          type: string
+                        created_at:
+                          type: string
+                        updated_at:
+                          type: string
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    message: No query results for model [App\Business\PaymentRequest] 9ef68e2e-3569-4f69-9f68-04c7e4bb007c1
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    examples:
+                    - No query results for model [App\Business\PaymentRequest] 974ee879-7feb-4bc6-b329-51f32928bd59
+      deprecated: false
+      security: []
+      tags:
+      - Payment Requests
+  /payment-requests:
+    post:
+      operationId: createPaymentRequest
+      tags:
+      - Payment Requests
+      summary: Create a payment request
+      description: Creates a hosted payment request (payment link / checkout page) for the given amount and currency. Returns a URL to redirect the payer to and a payment request id used to track status. Register webhook URLs in the dashboard (the inline `webhook` field is deprecated).
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PaymentRequestCreate'
+      responses:
+        '201':
+          description: Payment request created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentRequest'
+    get:
+      operationId: listPaymentRequests
+      tags:
+      - Payment Requests
+      summary: List payment requests
+      parameters:
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 50
+      responses:
+        '200':
+          description: A page of payment requests.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PaymentRequest'
+  /payment-requests/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: getPaymentRequest
+      tags:
+      - Payment Requests
+      summary: Get a payment request
+      responses:
+        '200':
+          description: The payment request and its current status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentRequest'
+    delete:
+      operationId: deletePaymentRequest
+      tags:
+      - Payment Requests
+      summary: Delete / cancel a payment request
+      description: Cancels an open card payment request. QR-based methods (PayNow, GrabPay) cannot be cancelled once generated.
+      responses:
+        '200':
+          description: Payment request deleted.
+components:
+  schemas:
+    PaymentRequest:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          enum:
+          - pending
+          - completed
+          - failed
+          - expired
+        amount:
+          type: string
+        currency:
+          type: string
+        url:
+          type: string
+          format: uri
+          description: Hosted checkout URL to redirect the payer to.
+        reference_number:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    PaymentRequestCreate:
+      type: object
+      required:
+      - amount
+      - currency
+      properties:
+        amount:
+          type: string
+          description: Amount to collect, e.g. "199.00".
+          example: '199.00'
+        currency:
+          type: string
+          description: ISO 4217 currency code (lowercase accepted), e.g. "sgd".
+          example: sgd
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+        purpose:
+          type: string
+        reference_number:
+          type: string
+        redirect_url:
+          type: string
+          format: uri
+        payment_methods:
+          type: array
+          description: Restrict to specific methods (paynow_online, card, grabpay, wechat, alipay, shopee, atome).
+          items:
+            type: string
+        send_email:
+          type: boolean
+        send_sms:
+          type: boolean
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true
+x-readme-fauxas: true

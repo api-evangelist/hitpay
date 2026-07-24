@@ -1,0 +1,1636 @@
+openapi: 3.1.1
+info:
+  title: HitPay Account Status Beneficiaries API
+  description: 'Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com'
+  version: '1.0'
+servers:
+- url: https://api.hit-pay.com
+  description: Production
+- url: https://api.sandbox.hit-pay.com
+  description: Sandbox
+tags:
+- name: Beneficiaries
+paths:
+  /v1/beneficiaries/schema:
+    post:
+      summary: Get the API schema
+      description: This API returns a dynamic schema that depends on the values of certain parameters. The schema contains the fields and validation rules for each payment scenario. A payment scenario is a combination of these parameters:country, transfer_method,transfer_type, currency, holder_type and bank_swift_code. To get the final schema, you need to submit the field values and re-render the form multiple times until all the fields are completed. For example, if you submit only the country parameter, the API will return a schema with the fields for country and transfer_method. If you submit the country and transfer_method parameters, the API will return a schema with the fields for country, transfer_method, currency, and so on.
+      operationId: get-schema
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                country:
+                  type: string
+                  pattern: ^([a-z]{2})$
+                  minLength: 2
+                  maxLength: 2
+                  description: 2-letter ISO 3166-1 country code
+                  example: sg
+                transfer_method:
+                  type: string
+                  description: The transfer method needs to be specified to ensure that accurate banking details are captured and validated for the specified transfer method. This is required for timely and accurate delivery of funds to the beneficiary account
+                  example: bank_transfer
+                transfer_type:
+                  type: string
+                  description: The transfer type needs to be specified to ensure that accurate banking details are captured and validated for the specified transfer method. This is required for timely and accurate delivery of funds to the beneficiary account
+                  example: local
+                currency:
+                  type: string
+                  description: It is beneficiary bank account currency
+                  example: sgd
+                holder_type:
+                  type: string
+                  enum:
+                  - individual
+                  - company
+                  description: The type of the account holder. Individual is for personal accounts, and company is for business accounts.
+                  example: company
+                bank_swift_code:
+                  type: string
+                  description: The bank swift code is a unique identifier for a specific bank.
+                  example: AEIBSGSXXXX
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                  - key: country
+                    placeholder: null
+                    title: Country
+                    required: true
+                    type: select
+                    force_display: true
+                    options:
+                    - value: au
+                      label: Australia
+                    - value: bd
+                      label: Bangladesh
+                    - value: my
+                      label: Malaysia
+                    - value: ph
+                      label: Philippines
+                    - value: sg
+                      label: Singapore
+                    - value: vn
+                      label: Vietnam
+                    value: sg
+                  - key: transfer_method
+                    placeholder: null
+                    title: Transfer Method
+                    required: true
+                    type: select
+                    force_display: true
+                    options:
+                    - value: bank_transfer
+                      label: Bank Transfer
+                    value: bank_transfer
+                  - key: transfer_type
+                    placeholder: null
+                    title: Transfer Type
+                    required: false
+                    type: select
+                    force_display: false
+                    options:
+                    - value: local
+                      label: FAST
+                    value: local
+                  - key: currency
+                    placeholder: Select one
+                    title: Currency
+                    required: true
+                    type: select
+                    force_display: true
+                    options:
+                    - value: sgd
+                      label: Singapore Dollar ($)
+                    - value: usd
+                      label: US Dollar ($)
+                    value: sgd
+                  - key: holder_type
+                    placeholder: null
+                    title: Entity Type
+                    required: true
+                    type: select
+                    force_display: true
+                    options:
+                    - value: company
+                      label: Company
+                    - value: individual
+                      label: Individual
+                    value: company
+                  - key: holder_name
+                    placeholder: John Doe
+                    title: Account Holder Name
+                    required: true
+                    type: input
+                  - key: bank_swift_code
+                    placeholder: null
+                    type: select
+                    title: Bank Name
+                    required: true
+                    force_display: true
+                    options:
+                    - value: ABNASG2AXXX
+                      label: ABN AMRO BANK NV
+                    - value: AEIBSGSXXXX
+                      label: AMERICAN EXPRESS BANK LTD
+                    - value: ANZBSGSXXXX
+                      label: ANZ SINGAPORE
+                    - value: BKKBSGSGXXX
+                      label: BANGKOK BANK PUBLIC COMPANY
+                    - value: BOFASG2XXXX
+                      label: BANK OF AMERICA
+                    - value: BKCHSGSGXXX
+                      label: BANK OF CHINA
+                    - value: BKIDSGSGXXX
+                      label: BANK OF INDIA
+                    - value: BKNZSGSGXXX
+                      label: BANK OF NEW ZEALAND
+                    - value: BOTKSGSXXXX
+                      label: BANK OF TOKYO-MITSUBISHI
+                    - value: BNPASGSGXXX
+                      label: BNP PARIBAS
+                    - value: CRLYSGSGXXX
+                      label: CALYON
+                    - value: CTCBSGSGXXX
+                      label: CHINATRUST COMMERCIAL BANK CO., LTD
+                    - value: CIBBSGSGXXX
+                      label: CIMB BANK BERHAD
+                    - value: CITISGSGXXX
+                      label: CITIBANK NA
+                    - value: CITISGSLXXX
+                      label: CITIBANK SINGAPORE
+                    - value: KWHKSGSGXXX
+                      label: CITIC Bank International Ltd
+                    - value: COBASGSXXXX
+                      label: COMMERZBANK SG
+                    - value: DBSSSGSGXXX
+                      label: DBS Bank/POSB
+                    - value: DEUTSGSGXXX
+                      label: DEUTSCHE BANK
+                    - value: DNBASGSGXXX
+                      label: DnB NOR Bank ASA
+                    - value: FAEASGSGXXX
+                      label: FAR EASTERN BANK
+                    - value: FCBKSGSGXXX
+                      label: FIRST COMMERCIAL BANK
+                    - value: HABBSGSGXXX
+                      label: HABIB BANK LIMITED
+                    - value: HLBBSGSGXXX
+                      label: HL BANK
+                    - value: HSBCSGS2
+                      label: HONGKONG & SHANGHAI BANKING CORPORATION (HSBC)
+                    - value: HSBCSGS2XXX
+                      label: HONGKONG & SHANGHAI BANKING CORPORATION (HSBC)
+                    - value: HSBCSGSGXXX
+                      label: HONGKONG & SHANGHAI BANKING CORPORATION (HSBC)
+                    - value: ICICSGSGXXX
+                      label: ICICI BANK
+                    - value: IDIBSGSGXXX
+                      label: INDIAN BANK
+                    - value: IOBASGSGXXX
+                      label: INDIAN OVERSEAS BANK
+                    - value: INGBSGSGXXX
+                      label: INTERNALTIONALE NEDERLANDEN BANK N.V.
+                    - value: BCITSGSGXXX
+                      label: INTESABCI S.P.A.
+                    - value: ICBKSGSGXXX
+                      label: Industrial & Commercial Bank of China
+                    - value: CHASSGSGXXX
+                      label: JP MORGAN CHASE BANK, N.A.
+                    - value: KOEXSGSGXXX
+                      label: KEB HANA BANK
+                    - value: MBBESGS2
+                      label: MALAYAN BANKING BERHAD
+                    - value: MBBESGS2XXX
+                      label: MAYBANK SINGAPORE LIMITED
+                    - value: MHCBSGSGXXX
+                      label: MIZUHO CORPORATE BANK, LTD
+                    - value: NATASGSGXXX
+                      label: NATIONAL AUSTRALIA BANK LTD
+                    - value: NBOKSGSGXXX
+                      label: NATIONAL BANK OF KUWAIT, SAK
+                    - value: NDEASGSGXXX
+                      label: NORDEA BANK FINLAND PLC
+                    - value: OCBCSGSGXXX
+                      label: OVERSEA-CHINESE BANKING CORPORATION LTD
+                    - value: BNINSGSGXXX
+                      label: PT. BANK NEGARA INDONESIA
+                    - value: RHBBSGSGXXX
+                      label: RHB BANK BERHAD
+                    - value: BSGPSGSGXXX
+                      label: SINGAPORE ISLAND BANK
+                    - value: ESSESGSGXXX
+                      label: SKANDINAVISKA ENSKILDA BANKEN
+                    - value: SOGESGSGXXX
+                      label: SOCIETE GENERALE
+                    - value: SCBLSG22XXX
+                      label: STANDARD CHARTERED BANK
+                    - value: SCBLSGSGXXX
+                      label: STANDARD CHARTERED BANK
+                    - value: SBINSGSGXXX
+                      label: STATE BANK OF INDIA
+                    - value: SMBCSGSGXXX
+                      label: SUMITOMO MITSUI BANKING CORPORATION
+                    - value: HANDSGSGXXX
+                      label: SVENSKA HANDELSBANKEN AB (PUBL)
+                    - value: UBSWSGSGXXX
+                      label: SWISS BANK CORP
+                    - value: BEASSGSGXXX
+                      label: THE BANK OF EAST ASIA
+                    - value: NOSCSGSGXXX
+                      label: THE BANK OF NOVA SCOTIA
+                    - value: UCBASGSGXXX
+                      label: UCO BANK
+                    - value: UBAFSGSXXXX
+                      label: UNION DE BANQUES ARABES ET FRANCAISES
+                    - value: UOVBSGSGXXX
+                      label: UNITED OVERSEAS BANK LTD
+                    - value: TRWISGSGXXX
+                      label: Wise Asia-Pacific Pte Ltd
+                    value: AEIBSGSXXXX
+                  - key: account_number
+                    placeholder: '140989'
+                    type: input
+                    title: Account Number
+                    required: true
+                    validation: /^\d{4,32}$/
+                  - key: nickname
+                    placeholder: John Doe
+                    title: Nickname
+                    required: false
+                    type: input
+                  - key: remark
+                    placeholder: 'Example: Test SGD transfer to US'
+                    title: Remark
+                    required: false
+                    type: input
+                  - key: email
+                    placeholder: null
+                    title: Email Address
+                    required: false
+                    type: input
+                    validation: email
+                  - key: is_favourite
+                    placeholder: null
+                    title: Mark this beneficiary as favourite
+                    required: false
+                    type: checkbox-boolean
+                    value: false
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    message: The given data was invalid. The selected Country is invalid.
+                    errors:
+                      country:
+                      - The selected Country is invalid.
+                      transfer_method:
+                      - The selected Transfer Method is invalid.
+                      transfer_type:
+                      - The selected Transfer Type is invalid.
+                      currency:
+                      - The selected Currency is invalid.
+      deprecated: false
+      tags:
+      - Beneficiaries
+  /v1/beneficiaries:
+    post:
+      summary: Create a new beneficiary
+      description: A beneficiary is a person or business receiving the funds. HitPay currently supports local beneficiaries, enabling payouts within the same country and region.
+      operationId: create-beneficiary
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - title: Singapore / SGD / FAST
+                $ref: '#/components/schemas/beneficiary-sqd-fast'
+              - title: Bangladesh / BDT / Local bank transfer
+                $ref: '#/components/schemas/beneficiary-bd-local'
+              - title: Bangladesh / BDT / Upay
+                $ref: '#/components/schemas/beneficiary-bd-upay'
+              - title: Bangladesh / BDT / bKash
+                $ref: '#/components/schemas/beneficiary-bd-bkash'
+              - title: Bangladesh / BDT / TAP
+                $ref: '#/components/schemas/beneficiary-bd-tap'
+              - title: Philippines / PHP / Local bank transfer
+                $ref: '#/components/schemas/beneficiary-php-local'
+            examples:
+              Singapore / SGD / FAST:
+                value:
+                  country: sg
+                  transfer_method: bank_transfer
+                  transfer_type: local
+                  currency: sgd
+                  holder_type: individual
+                  holder_name: John Tan
+                  bank_id: BOFASG2XXXX[7065]
+                  account_number: '1409827'
+              Bangladesh / BDT / Local bank transfer:
+                value:
+                  country: bd
+                  transfer_method: bank_transfer
+                  transfer_type: local
+                  currency: bdt
+                  holder_type: individual
+                  holder_name: SHAH ALAM HERA
+                  bank_id: brc-20
+                  bank_routing_number: '060261726'
+                  account_number: '1503201781283001'
+              Bangladesh / BDT / Upay:
+                value:
+                  country: bd
+                  transfer_method: upay
+                  currency: bdt
+                  holder_type: individual
+                  holder_name: Moulude Hossain
+                  district: BD-03
+                  account_number: '+8801914538413'
+              Bangladesh / BDT / bKash:
+                value:
+                  country: bd
+                  transfer_method: bkash
+                  currency: bdt
+                  holder_type: individual
+                  holder_name: Rashid
+                  district: BD-03
+                  account_number: '+8801721940130'
+              Bangladesh / BDT / TAP:
+                value:
+                  country: bd
+                  transfer_method: tap
+                  currency: bdt
+                  holder_type: individual
+                  holder_name: Moulude Hossain
+                  district: BD-04
+                  account_number: '+8801914538413'
+              Philippines / PHP / Local bank transfer:
+                value:
+                  country: ph
+                  transfer_method: bank_transfer
+                  transfer_type: local
+                  currency: php
+                  holder_type: individual
+                  holder_name: Ben Yu
+                  bank_id: '10419995'
+                  account_number: '14098377'
+                  address:
+                    street: Pedro Gil, cor Adriatico St
+                    postcode: '1000'
+                    city: Manila
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    id: 9ec01865-7af1-4937-813d-7801912d2cd1
+                    status: approved
+                    country: sg
+                    currency: sgd
+                    transfer_method: bank_transfer
+                    transfer_type: local
+                    nickname: null
+                    remark: null
+                    holder_name: John Test
+                    holder_type: individual
+                    account_number: '1409828'
+                    bank_name: BANK OF AMERICA
+                    bank_id: BOFASG2XXXX[7065]
+                    email: null
+                    bank_swift_code: BOFASG2XXXX
+                    is_favourite: false
+                    created_by:
+                      id: 98566f58-1c76-4b8b-8f75-d20bba2bc7f8
+                      display_name: TestingSG
+                      first_name: QA
+                      last_name: SG
+                    created_at: '2025-04-24T15:13:22+08:00'
+                    updated_at: '2025-04-24T15:13:22+08:00'
+                    deleted_at: null
+        '422':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    message: The Country field is required. (and 4 more errors)
+                    errors:
+                      country:
+                      - The Country field is required.
+                      transfer_method:
+                      - The Transfer Method field is required.
+                      currency:
+                      - The Currency field is required.
+                      holder_type:
+                      - The Entity Type field is required.
+                      holder_name:
+                      - The Account Holder Name field is required.
+      deprecated: false
+      tags:
+      - Beneficiaries
+    get:
+      summary: Get list of beneficiaries
+      description: Get list of beneficiaries
+      operationId: get-all-beneficiary
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: query
+        in: query
+        description: Search by holder name / nickname
+        schema:
+          type: string
+      - name: per_page
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 10
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    data:
+                    - id: 9eb3d3ff-3fb0-450e-bb61-7c0753974398
+                      status: approved
+                      country: sg
+                      currency: sgd
+                      transfer_method: bank_transfer
+                      transfer_type: local
+                      nickname: Test QA
+                      remark: Test QA
+                      holder_name: Test QA
+                      holder_type: individual
+                      bank_branch_code: '001'
+                      account_number: '173737377'
+                      bank_name: AMERICAN EXPRESS BANK LTD
+                      bank_id: AEIBSGSXXXX[7454]
+                      email: test@gmail.com
+                      bank_swift_code: AEIBSGSXXXX
+                      is_favourite: true
+                      created_by:
+                        id: 98566f58-1c76-4b8b-8f75-d20bba2bc7f8
+                        display_name: TestingSG
+                        first_name: QA
+                        last_name: SG
+                      created_at: '2025-04-18T12:52:10+08:00'
+                      updated_at: '2025-04-18T12:52:10+08:00'
+                      deleted_at: null
+                    links:
+                      first: https://api.sandbox.hit-pay.com/v1/beneficiaries?page=1
+                      last: https://api.sandbox.hit-pay.com/v1/beneficiaries?page=23
+                      prev: null
+                      next: https://api.sandbox.hit-pay.com/v1/beneficiaries?page=2
+                    meta:
+                      current_page: 1
+                      from: 1
+                      last_page: 23
+                      links:
+                      - url: null
+                        label: '&larr; Previous'
+                        active: false
+                      - url: https://api.sandbox.hit-pay.com/v1/beneficiaries?page=1
+                        label: '1'
+                        active: true
+                      - url: https://api.sandbox.hit-pay.com/v1/beneficiaries?page=2
+                        label: '2'
+                        active: false
+                      - url: https://api.sandbox.hit-pay.com/v1/beneficiaries?page=3
+                        label: '3'
+                        active: false
+                      - url: https://api.sandbox.hit-pay.com/v1/beneficiaries?page=4
+                        label: '4'
+                        active: false
+                      - url: https://api.sandbox.hit-pay.com/v1/beneficiaries?page=5
+                        label: '5'
+                        active: false
+                      - url: https://api.sandbox.hit-pay.com/v1/beneficiaries?page=6
+                        label: '6'
+                        active: false
+                      - url: https://api.sandbox.hit-pay.com/v1/beneficiaries?page=7
+                        label: '7'
+                        active: false
+                      - url: https://api.sandbox.hit-pay.com/v1/beneficiaries?page=8
+                        label: '8'
+                        active: false
+                      - url: https://api.sandbox.hit-pay.com/v1/beneficiaries?page=9
+                        label: '9'
+                        active: false
+                      - url: https://api.sandbox.hit-pay.com/v1/beneficiaries?page=10
+                        label: '10'
+                        active: false
+                      - url: null
+                        label: '...'
+                        active: false
+                      - url: https://api.sandbox.hit-pay.com/v1/beneficiaries?page=22
+                        label: '22'
+                        active: false
+                      - url: https://api.sandbox.hit-pay.com/v1/beneficiaries?page=23
+                        label: '23'
+                        active: false
+                      - url: https://api.sandbox.hit-pay.com/v1/beneficiaries?page=2
+                        label: Next &rarr;
+                        active: false
+                      path: https://api.sandbox.hit-pay.com/v1/beneficiaries
+                      per_page: 10
+                      to: 1
+                      total: 23
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        status:
+                          type: string
+                        country:
+                          type: string
+                        currency:
+                          type: string
+                        transfer_method:
+                          type: string
+                        transfer_type:
+                          type: string
+                        nickname:
+                          type: string
+                        remark:
+                          type:
+                          - string
+                          - 'null'
+                        holder_name:
+                          type: string
+                        holder_type:
+                          type: string
+                        bank_branch_code:
+                          type: string
+                        account_number:
+                          type: string
+                        bank_name:
+                          type: string
+                        bank_id:
+                          type: string
+                        email:
+                          type: string
+                        bank_swift_code:
+                          type: string
+                        is_favourite:
+                          type: boolean
+                        created_by:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            display_name:
+                              type: string
+                            first_name:
+                              type: string
+                            last_name:
+                              type: string
+                          required:
+                          - id
+                          - display_name
+                          - first_name
+                          - last_name
+                        created_at:
+                          type: string
+                        updated_at:
+                          type: string
+                        deleted_at:
+                          type:
+                          - string
+                          - 'null'
+                      required:
+                      - id
+                      - status
+                      - country
+                      - currency
+                      - transfer_method
+                      - transfer_type
+                      - nickname
+                      - remark
+                      - holder_name
+                      - holder_type
+                      - bank_branch_code
+                      - account_number
+                      - bank_name
+                      - bank_id
+                      - email
+                      - bank_swift_code
+                      - is_favourite
+                      - created_by
+                      - created_at
+                      - updated_at
+                      - deleted_at
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                      last:
+                        type: string
+                      prev: {}
+                      next:
+                        type: string
+                    required:
+                    - first
+                    - last
+                    - prev
+                    - next
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: number
+                      from:
+                        type: number
+                      last_page:
+                        type: number
+                      links:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                            label:
+                              type: string
+                            active:
+                              type: boolean
+                          required:
+                          - label
+                          - active
+                      path:
+                        type: string
+                      per_page:
+                        type: number
+                      to:
+                        type: number
+                      total:
+                        type: number
+                    required:
+                    - current_page
+                    - from
+                    - last_page
+                    - links
+                    - path
+                    - per_page
+                    - to
+                    - total
+                required:
+                - data
+                - links
+                - meta
+      deprecated: false
+      tags:
+      - Beneficiaries
+  /v1/beneficiaries/{beneficiary_id}:
+    patch:
+      summary: Update existing beneficiary
+      description: we only accept to update nickname, remark and is_favourite fields
+      operationId: update-beneficiary
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: beneficiary_id
+        in: path
+        description: The Beneficiary id
+        schema:
+          type: string
+          format: uuid
+          example: 9b294222-3a53-427f-9393-95dc6d63ee6c
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nickname:
+                  type: string
+                  maxLength: 255
+                remark:
+                  type: string
+                  maxLength: 255
+                is_favourite:
+                  type: boolean
+                  description: Set to true to mark this beneficiary as favourite
+                  enum:
+                  - true
+                  - false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    id: 9eb3d3ff-3fb0-450e-bb61-7c0753974398
+                    status: approved
+                    country: sg
+                    currency: sgd
+                    transfer_method: bank_transfer
+                    transfer_type: local
+                    nickname: Harry Satterfield
+                    remark: RemarkAnimi veniam recusandae nihil sapiente temporibus voluptas aliquam.
+                    holder_name: Test QA
+                    holder_type: individual
+                    bank_branch_code: '001'
+                    account_number: '173737377'
+                    bank_name: AMERICAN EXPRESS BANK LTD
+                    bank_id: AEIBSGSXXXX[7454]
+                    email: test@gmail.com
+                    bank_swift_code: AEIBSGSXXXX
+                    is_favourite: false
+                    created_by:
+                      id: 98566f58-1c76-4b8b-8f75-d20bba2bc7f8
+                      display_name: TestingSG
+                      first_name: QA
+                      last_name: SG
+                    created_at: '2025-04-18T12:52:10+08:00'
+                    updated_at: '2025-04-24T16:03:03+08:00'
+                    deleted_at: null
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  status:
+                    type: string
+                  country:
+                    type: string
+                  currency:
+                    type: string
+                  transfer_method:
+                    type: string
+                  transfer_type:
+                    type: string
+                  nickname:
+                    type: string
+                  remark:
+                    type: string
+                  holder_name:
+                    type: string
+                  holder_type:
+                    type: string
+                  bank_branch_code:
+                    type: string
+                  account_number:
+                    type: string
+                  bank_name:
+                    type: string
+                  bank_id:
+                    type: string
+                  email:
+                    type: string
+                  bank_swift_code:
+                    type: string
+                  is_favourite:
+                    type: boolean
+                  created_by:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      display_name:
+                        type: string
+                      first_name:
+                        type: string
+                      last_name:
+                        type: string
+                    required:
+                    - id
+                    - display_name
+                    - first_name
+                    - last_name
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                  deleted_at:
+                    type:
+                    - string
+                    - 'null'
+                required:
+                - id
+                - status
+                - country
+                - currency
+                - transfer_method
+                - transfer_type
+                - nickname
+                - remark
+                - holder_name
+                - holder_type
+                - bank_branch_code
+                - account_number
+                - bank_name
+                - bank_id
+                - email
+                - bank_swift_code
+                - is_favourite
+                - created_by
+                - created_at
+                - updated_at
+                - deleted_at
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    message: The given data was invalid. The remark may not be greater than 255 characters.
+                    errors:
+                      remark:
+                      - The remark may not be greater than 255 characters.
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location --request PATCH 'https://api.sandbox.hit-pay.com/v1/beneficiaries/9a3d60cb-2c8d-4050-abd0-bbd6725acb3e' \\\n--header 'X-BUSINESS-API-KEY: apikey' \\\n--header 'X-Requested-With: XMLHttpRequest' \\\n--header 'Content-Type: application/json' \\\n--data '{\n    \"is_external\": true,\n    \"country\": \"sg\",\n    \"currency\": \"sgd\",\n    \"nickname\": \"Paper Supplier 1695900354\",\n    \"remark\": \"Update remark 1695900354\",\n    \"holder_type\": \"company\",\n    \"holder_name\": \"Holder Name Update 1695900354\",\n    \"transfer_method\": \"local\",\n    \"bank_id\": \"ABNASG2AXXX[7010]\",\n    \"bank_branch_code\": \"050\",\n    \"account_number\": \"000123456\",\n    \"password\": \"xxx\"\n}'"
+          name: Example request
+        samples-languages:
+        - curl
+      tags:
+      - Beneficiaries
+    delete:
+      summary: Delete existing beneficiary
+      description: ''
+      operationId: delete-beneficiary
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: beneficiary_id
+        in: path
+        description: The Beneficiary id
+        schema:
+          type: string
+        required: true
+      responses:
+        '204':
+          description: '204'
+          content: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: 'curl --location --request DELETE ''https://api.sandbox.hit-pay.com/v1/beneficiaries/9a3d60cb-2c8d-4050-abd0-bbd6725acb3e'' \
+
+            --header ''X-BUSINESS-API-KEY: apikey'' \
+
+            --header ''X-Requested-With: XMLHttpRequest'''
+          name: Example request
+        samples-languages:
+        - curl
+      tags:
+      - Beneficiaries
+    get:
+      summary: Get a beneficiary by ID
+      description: Get a beneficiary by ID
+      operationId: get-beneficiary-detail
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: beneficiary_id
+        in: path
+        description: The Beneficiary id
+        schema:
+          type: string
+          example: 9b294222-3a53-427f-9393-95dc6d63ee6c
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    id: 9eb3d3ff-3fb0-450e-bb61-7c0753974398
+                    status: approved
+                    country: sg
+                    currency: sgd
+                    transfer_method: bank_transfer
+                    transfer_type: local
+                    nickname: Test QA
+                    remark: Test QA
+                    holder_name: Test QA
+                    holder_type: individual
+                    bank_branch_code: '001'
+                    account_number: '173737377'
+                    bank_name: AMERICAN EXPRESS BANK LTD
+                    bank_id: AEIBSGSXXXX[7454]
+                    email: test@gmail.com
+                    is_favourite: true
+                    created_by:
+                      id: 98566f58-1c76-4b8b-8f75-d20bba2bc7f8
+                      display_name: TestingSG
+                      first_name: QA
+                      last_name: SG
+                    created_at: '2025-04-18T12:52:10+08:00'
+                    updated_at: '2025-04-18T12:52:10+08:00'
+                    deleted_at: null
+              schema:
+                $schema: http://json-schema.org/draft-07/schema#
+                title: Generated schema for Root
+                type: object
+                properties:
+                  id:
+                    type: string
+                  status:
+                    type: string
+                  country:
+                    type: string
+                  currency:
+                    type: string
+                  transfer_method:
+                    type: string
+                  transfer_type:
+                    type: string
+                  nickname:
+                    type: string
+                  remark:
+                    type: string
+                  holder_name:
+                    type: string
+                  holder_type:
+                    type: string
+                  bank_branch_code:
+                    type: string
+                  account_number:
+                    type: string
+                  bank_name:
+                    type: string
+                  bank_id:
+                    type: string
+                  email:
+                    type: string
+                  bank_swift_code:
+                    type: string
+                  is_favourite:
+                    type: boolean
+                  created_by:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      display_name:
+                        type: string
+                      first_name:
+                        type: string
+                      last_name:
+                        type: string
+                    required:
+                    - id
+                    - display_name
+                    - first_name
+                    - last_name
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                  deleted_at:
+                    type:
+                    - string
+                    - 'null'
+                required:
+                - id
+                - status
+                - country
+                - currency
+                - transfer_method
+                - transfer_type
+                - nickname
+                - remark
+                - holder_name
+                - holder_type
+                - bank_branch_code
+                - account_number
+                - bank_name
+                - bank_id
+                - email
+                - bank_swift_code
+                - is_favourite
+                - created_by
+                - created_at
+                - updated_at
+                - deleted_at
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    message: No query results for model [App\Models\Business\BankAccount] 9eb3d3ff-3fb0-450e-bb61-7c0753974392
+      deprecated: false
+      tags:
+      - Beneficiaries
+components:
+  schemas:
+    beneficiary-bd-bkash:
+      type: object
+      required:
+      - country
+      - transfer_method
+      - currency
+      - holder_type
+      - holder_name
+      - district
+      - account_number
+      properties:
+        country:
+          type: string
+          required: true
+          description: Beneficiary bank country/region
+          enum:
+          - bd
+        transfer_method:
+          type: string
+          required: true
+          description: The transfer method needs to be specified to ensure that accurate banking details are captured and validated for the specified transfer method. This is required for timely and accurate delivery of funds to the beneficiary account
+          enum:
+          - bkash
+          example: bkash
+        currency:
+          type: string
+          required: true
+          emum:
+          - bdt
+          example: bdt
+          description: It is beneficiary bank account currency.
+        holder_type:
+          type: string
+          required: true
+          enum:
+          - individual
+          example: individual
+          description: The Holder Type
+        holder_name:
+          type: string
+          required: true
+          example: Rashid
+          description: The Holder Name
+          maxLength: 255
+        district:
+          type: string
+          required: true
+          example: BD-03
+          description: District
+          maxLength: 255
+        account_number:
+          type: string
+          required: true
+          example: '+8801721940130'
+          description: The account number
+          maxLength: 255
+        nickname:
+          type: string
+          example: John
+          description: Nickname
+          maxLength: 255
+        remark:
+          type: string
+          description: Remark
+          maxLength: 255
+          example: This is a remark
+        is_favourite:
+          type: boolean
+          description: Remark
+        email:
+          type: string
+          format: email
+          description: Email address
+          example: abc@gmail.com
+      example:
+        country: bd
+        transfer_method: bkash
+        currency: bdt
+        holder_type: individual
+        holder_name: Rashid
+        district: BD-03
+        account_number: '+8801721940130'
+    beneficiary-bd-upay:
+      type: object
+      required:
+      - country
+      - transfer_method
+      - currency
+      - holder_type
+      - holder_name
+      - district
+      - account_number
+      properties:
+        country:
+          type: string
+          required: true
+          description: Beneficiary bank country/region
+          enum:
+          - bd
+        transfer_method:
+          type: string
+          required: true
+          description: The transfer method needs to be specified to ensure that accurate banking details are captured and validated for the specified transfer method. This is required for timely and accurate delivery of funds to the beneficiary account
+          enum:
+          - upay
+          example: upay
+        currency:
+          type: string
+          required: true
+          enum:
+          - bdt
+          example: bdt
+          description: It is beneficiary bank account currency.
+        holder_type:
+          type: string
+          required: true
+          enum:
+          - individual
+          example: individual
+          description: The Holder Type
+        holder_name:
+          type: string
+          required: true
+          example: John Doe
+          description: The Holder Name
+          maxLength: 255
+        district:
+          type: string
+          required: true
+          description: District
+          maxLength: 255
+          example: BD-03
+        account_number:
+          type: string
+          required: true
+          description: The account number
+          maxLength: 255
+          example: '+8801914538413'
+        nickname:
+          type: string
+          example: John
+          description: Nickname
+          maxLength: 255
+        remark:
+          type: string
+          description: Remark
+          maxLength: 255
+          example: This is a remark
+        is_favourite:
+          type: boolean
+          description: Remark
+        email:
+          type: string
+          format: email
+          description: Email address
+          example: abc@gmail.com
+      example:
+        country: bd
+        transfer_method: upay
+        currency: bdt
+        holder_type: individual
+        holder_name: Moulude Hossain
+        district: BD-03
+        account_number: '+8801914538413'
+    beneficiary-sqd-fast:
+      type: object
+      required:
+      - country
+      - transfer_method
+      - currency
+      - transfer_type
+      - holder_type
+      - holder_name
+      - account_number
+      properties:
+        country:
+          type: string
+          description: Beneficiary bank country/region
+          example: sg
+          enum:
+          - sg
+        transfer_method:
+          type: string
+          description: The transfer method needs to be specified to ensure that accurate banking details are captured and validated for the specified transfer method. This is required for timely and accurate delivery of funds to the beneficiary account
+          enum:
+          - bank_transfer
+          example: bank_transfer
+        transfer_type:
+          type: string
+          enum:
+          - local
+          example: local
+        currency:
+          type: string
+          enum:
+          - sgd
+          example: sgd
+          description: It is beneficiary bank account currency.
+        holder_type:
+          type: string
+          description: The Holder Type
+          enum:
+          - individual
+          example: individual
+        holder_name:
+          type: string
+          required: true
+          description: The Holder Name
+          example: John Doe
+          maxLength: 255
+        bank_swift_code:
+          type: string
+          required: true
+          description: 'It''s bank swift code. To obtain a list of supported SWIFT codes, call `Get the API schema` API with the following parameters: `country: sg`, currency: `sgd`,transfer_method: `bank_transfer`, transfer_type: `local` and holder_type: `individual`.'
+          maxLength: 255
+          example: BOFASG2XXXX
+        account_number:
+          type: string
+          required: true
+          description: The account number
+          maxLength: 255
+          example: '1409827'
+        nickname:
+          type: string
+          description: Nickname
+          maxLength: 255
+        remark:
+          type: string
+          description: Remark
+          maxLength: 255
+          example: This is a remark
+        is_favourite:
+          type: boolean
+        email:
+          type: string
+          format: email
+          description: Email address
+          example: abc@gmail.com
+      example:
+        country: sg
+        transfer_method: bank_transfer
+        transfer_type: local
+        currency: sgd
+        holder_type: individual
+        holder_name: John Tan
+        bank_id: BOFASG2XXXX[7065]
+        account_number: '1409827'
+    beneficiary-bd-tap:
+      type: object
+      required:
+      - country
+      - transfer_method
+      - currency
+      - holder_type
+      - holder_name
+      - district
+      - account_number
+      properties:
+        country:
+          type: string
+          required: true
+          description: Beneficiary bank country/region
+          enum:
+          - bd
+        transfer_method:
+          type: string
+          required: true
+          description: The transfer method needs to be specified to ensure that accurate banking details are captured and validated for the specified transfer method. This is required for timely and accurate delivery of funds to the beneficiary account
+          enum:
+          - tap
+          example: tap
+        currency:
+          type: string
+          required: true
+          emum:
+          - bdt
+          example: bdt
+          description: It is beneficiary bank account currency.
+        holder_type:
+          type: string
+          required: true
+          enum:
+          - individual
+          example: individual
+          description: The Holder Type
+        holder_name:
+          type: string
+          required: true
+          example: Rashid
+          description: The Holder Name
+          maxLength: 255
+        district:
+          type: string
+          required: true
+          example: BD-03
+          description: District
+          maxLength: 255
+        account_number:
+          type: string
+          required: true
+          example: '+8801721940130'
+          description: The account number
+          maxLength: 255
+        nickname:
+          type: string
+          example: John
+          description: Nickname
+          maxLength: 255
+        remark:
+          type: string
+          description: Remark
+          maxLength: 255
+          example: This is a remark
+        is_favourite:
+          type: boolean
+          description: Remark
+        email:
+          type: string
+          format: email
+          description: Email address
+          example: abc@gmail.com
+      example:
+        country: bd
+        transfer_method: tap
+        currency: bdt
+        holder_type: individual
+        holder_name: Moulude Hossain
+        district: BD-04
+        account_number: '+8801914538413'
+    beneficiary-php-local:
+      type: object
+      required:
+      - country
+      - transfer_method
+      - currency
+      - holder_type
+      - holder_name
+      - bank_id
+      - account_number
+      - address
+      properties:
+        country:
+          type: string
+          required: true
+          description: Beneficiary bank country/region
+          enum:
+          - ph
+        transfer_method:
+          type: string
+          required: true
+          description: The transfer method needs to be specified to ensure that accurate banking details are captured and validated for the specified transfer method. This is required for timely and accurate delivery of funds to the beneficiary account
+          enum:
+          - bank_transfer
+          example: bank_transfer
+        transfer_type:
+          type: string
+          required: true
+          enum:
+          - local
+          example: local
+        currency:
+          type: string
+          required: true
+          enum:
+          - php
+          description: It is beneficiary bank account currency.
+        holder_type:
+          type: string
+          required: true
+          enum:
+          - individual
+          example: individual
+          description: The Holder Type
+        holder_name:
+          type: string
+          required: true
+          example: John Doe
+          description: The Holder Name
+          maxLength: 255
+        bank_id:
+          type: string
+          required: true
+          description: 'It''s bank id. To obtain a list of supported values for `bank_id`, call `Get the API schema` API with the following parameters: `country: ph`, currency: `php`,transfer_method: `bank_transfer`, transfer_type: `local` and holder_type: `individual` to get the the correct supported bank id.'
+          example: '10419995'
+          maxLength: 255
+        account_number:
+          type: string
+          required: true
+          example: '14098377'
+          description: The account number
+          maxLength: 255
+        address:
+          type: object
+          required:
+          - street
+          - postcode
+          - city
+          properties:
+            street:
+              type: string
+              example: Pedro Gil, cor Adriatico St
+            postcode:
+              type: string
+              example: '1000'
+            city:
+              type: string
+              example: Manila
+        nickname:
+          type: string
+          example: John
+          description: Nickname
+          maxLength: 255
+        remark:
+          type: string
+          description: Remark
+          maxLength: 255
+          example: This is a remark
+        is_favourite:
+          type: boolean
+        email:
+          type: string
+          format: email
+          description: Email address
+          example: abc@gmail.com
+      example:
+        country: ph
+        transfer_method: bank_transfer
+        transfer_type: local
+        currency: php
+        holder_type: individual
+        holder_name: Ben Yu
+        bank_id: '10419995'
+        account_number: '14098377'
+        address:
+          street: Pedro Gil, cor Adriatico St
+          postcode: '1000'
+          city: Manila
+    beneficiary-bd-local:
+      type: object
+      required:
+      - country
+      - transfer_method
+      - currency
+      - transfer_type
+      - holder_type
+      - holder_name
+      - bank_id
+      - bank_routing_number
+      - account_number
+      properties:
+        country:
+          type: string
+          required: true
+          description: Beneficiary bank country/region
+          enum:
+          - bd
+        transfer_method:
+          type: string
+          required: true
+          description: The transfer method needs to be specified to ensure that accurate banking details are captured and validated for the specified transfer method. This is required for timely and accurate delivery of funds to the beneficiary account
+          enum:
+          - bank_transfer
+          example: bank_transfer
+        transfer_type:
+          type: string
+          required: true
+          enum:
+          - local
+          value: local
+        currency:
+          type: string
+          required: true
+          enum:
+          - bdt
+          value: bdt
+          description: It is beneficiary bank account currency.
+        holder_type:
+          type: string
+          required: true
+          enum:
+          - individual
+          example: individual
+          description: The Holder Type
+        holder_name:
+          type: string
+          required: true
+          example: John Doe
+          description: The Holder Name
+          maxLength: 255
+        bank_id:
+          type: string
+          required: true
+          description: 'It''s bank id. To obtain a list of supported values for `bank_id`, call `Get the API schema` API with the following parameters: `country: bd`, currency: `bdt`,transfer_method: `bank_transfer`, transfer_type: `local` and holder_type: `individual` to get the the correct supported bank id.'
+          example: brc-20
+          maxLength: 255
+        bank_routing_number:
+          type: string
+          required: true
+          description: Bank Rounting Number
+          maxLength: 255
+          example: '060261726'
+        account_number:
+          type: string
+          required: true
+          description: The account number
+          maxLength: 255
+          example: '1503201781283001'
+        nickname:
+          type: string
+          description: Nickname
+          maxLength: 255
+        remark:
+          type: string
+          description: Remark
+          maxLength: 255
+          example: This is a remark
+        is_favourite:
+          type: boolean
+          description: Remark
+        email:
+          type: string
+          format: email
+          description: Email address
+          example: abc@gmail.com
+      example:
+        country: bd
+        transfer_method: bank_transfer
+        transfer_type: local
+        currency: bdt
+        holder_type: individual
+        holder_name: SHAH ALAM HERA
+        bank_id: brc-20
+        bank_routing_number: '060261726'
+        account_number: '1503201781283001'
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true
+x-readme-fauxas: true

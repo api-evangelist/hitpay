@@ -1,0 +1,652 @@
+openapi: 3.1.1
+info:
+  title: HitPay Account Status Customers API
+  description: 'Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com'
+  version: '1.0'
+servers:
+- url: https://api.hit-pay.com
+  description: Production
+- url: https://api.sandbox.hit-pay.com
+  description: Sandbox
+tags:
+- name: Customers
+paths:
+  /v1/customers:
+    get:
+      summary: Get All Customers
+      description: This endpoint allows you to retrieve all customers
+      operationId: get-all-customers
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: page
+        in: query
+        schema:
+          type: number
+          default: 1
+      - name: per_page
+        in: query
+        schema:
+          type: number
+          default: 10
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result: {}
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        birth_date:
+                          type: string
+                        gender:
+                          type: string
+                        email:
+                          type: string
+                        phone_number:
+                          type: string
+                        address:
+                          type: object
+                          properties:
+                            city:
+                              type: string
+                            state:
+                              type: string
+                            street:
+                              type: string
+                            postal_code:
+                              type: string
+                            country:
+                              type: string
+                          required:
+                          - city
+                          - state
+                          - street
+                          - postal_code
+                        remark:
+                          type: string
+                        phone_number_country_code:
+                          type: string
+                        created_at:
+                          type: string
+                        updated_at:
+                          type: string
+                      required:
+                      - id
+                      - name
+                      - birth_date
+                      - gender
+                      - email
+                      - phone_number
+                      - address
+                      - remark
+                      - phone_number_country_code
+                      - created_at
+                      - updated_at
+                  links:
+                    type: object
+                    properties:
+                      first: {}
+                      last: {}
+                      prev: {}
+                      next:
+                        type: string
+                    required:
+                    - first
+                    - last
+                    - prev
+                    - next
+                  meta:
+                    type: object
+                    properties:
+                      path:
+                        type: string
+                      per_page:
+                        type: number
+                      next_cursor:
+                        type: string
+                      prev_cursor: {}
+                    required:
+                    - path
+                    - per_page
+                    - next_cursor
+                    - prev_cursor
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: 'curl --location ''https://api.sandbox.hit-pay.com/v1/customers'' \
+
+            --header ''X-BUSINESS-API-KEY: apikey'' \
+
+            --header ''X-Requested-With: XMLHttpRequest'''
+          name: Example request
+        samples-languages:
+        - curl
+      tags:
+      - Customers
+    post:
+      summary: Create a customer
+      description: This endpoint allows you to create a customer. The customer will be created with the provided details and will be returned in the response.
+      operationId: create-customer
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - email
+              - phone_number
+              properties:
+                name:
+                  type: string
+                  examples:
+                  - John Doe
+                  description: The name of the customer
+                email:
+                  type: string
+                  description: The email of the customer
+                  format: email
+                phone_number:
+                  type: string
+                  description: The phone number of the customer
+                phone_number_country_code:
+                  type: string
+                  description: The country code of the phone number
+                remark:
+                  type: string
+                  description: The remark of the customer
+                  maxLength: 255
+                birth_date:
+                  type: string
+                  format: date
+                  description: The birth date of the customer
+                gender:
+                  type: string
+                  description: The gender of the customer
+                address:
+                  type: object
+                  properties:
+                    city:
+                      type: string
+                    state:
+                      type: string
+                    street:
+                      type: string
+                    postal_code:
+                      type: string
+                    country:
+                      type: string
+                  required:
+                  - city
+                  - state
+                  - street
+                  - postal_code
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    id: 9b2ada28-be3c-47ab-883f-ba72e5d8305d
+                    name: John Doe
+                    birth_date: <string>
+                    email: <string>
+                    phone_number: <string>
+                    address:
+                      city: <string>
+                      state: <string>
+                      street: <string>
+                      postal_code: <string>
+                      country: <string>
+                    gender: <string>
+                    remark: <string>
+                    phone_number_country_code: <string>
+                    created_at: '2024-01-24T16:05:10+08:00'
+                    updated_at: '2024-01-24T16:05:10+08:00'
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  birth_date:
+                    type: string
+                  email:
+                    type: string
+                  phone_number:
+                    type: string
+                  address:
+                    type: object
+                    properties:
+                      city:
+                        type: string
+                      state:
+                        type: string
+                      street:
+                        type: string
+                      postal_code:
+                        type: string
+                      country:
+                        type: string
+                    required:
+                    - city
+                    - state
+                    - street
+                    - postal_code
+                  gender:
+                    type: string
+                  remark:
+                    type: string
+                  phone_number_country_code:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                required:
+                - id
+                - name
+                - birth_date
+                - email
+                - phone_number
+                - address
+                - gender
+                - remark
+                - phone_number_country_code
+                - created_at
+                - updated_at
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location 'https://api.sandbox.hit-pay.com/v1/customer' \\n--header 'X-BUSINESS-API-KEY: 9011d0e1e03c1e2d79cdcf1fd7147eaa6d339e4ba5e42df38d8b495e7ed8e9fc' \\\n --header 'X-Requested-With: XMLHttpRequest' \\\n --form "
+          name: Example request
+        samples-languages:
+        - curl
+      tags:
+      - Customers
+  /v1/customers/{customer_id}:
+    get:
+      summary: Get Customer Detail
+      description: A customer is a person or a company that is registered with HitPay. This endpoint allows you to retrieve a customer's details.
+      operationId: get-customer-details
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: customer_id
+        in: path
+        description: The Customer id
+        schema:
+          type: string
+        required: true
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    id: 9b2ada28-be3c-47ab-883f-ba72e5d8305d
+                    name: John Doe
+                    birth_date: <string>
+                    email: <string>
+                    phone_number: <string>
+                    address:
+                      city: <string>
+                      state: <string>
+                      street: <string>
+                      postal_code: <string>
+                      country: <string>
+                    gender: <string>
+                    remark: <string>
+                    phone_number_country_code: <string>
+                    created_at: '2024-01-24T16:05:10+08:00'
+                    updated_at: '2024-01-24T16:05:10+08:00'
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  birth_date:
+                    type: string
+                  email:
+                    type: string
+                  phone_number:
+                    type: string
+                  address:
+                    type: object
+                    properties:
+                      city:
+                        type: string
+                      state:
+                        type: string
+                      street:
+                        type: string
+                      postal_code:
+                        type: string
+                      country:
+                        type: string
+                    required:
+                    - city
+                    - state
+                    - street
+                    - postal_code
+                  gender:
+                    type: string
+                  remark:
+                    type: string
+                  phone_number_country_code:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                required:
+                - id
+                - name
+                - birth_date
+                - email
+                - phone_number
+                - address
+                - gender
+                - remark
+                - phone_number_country_code
+                - created_at
+                - updated_at
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No query results for model [App\\\\Business\\\\Customer] 973ee456-d28f-4418-93c5-d37e4b311685\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    examples:
+                    - No query results for model [App\Business\Customer] 973ee456-d28f-4418-93c5-d37e4b311685
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: 'curl --location ''https://api.sandbox.hit-pay.com/v1/customers/9b29471a-17bf-4332-835b-a6af8e0cc430'' \
+
+            --header ''X-BUSINESS-API-KEY: apikey'' \
+
+            --header ''X-Requested-With: XMLHttpRequest'''
+          name: Example request
+        samples-languages:
+        - curl
+      tags:
+      - Customers
+    patch:
+      summary: Update Customer
+      description: This endpoint allows you to update a customer's details.
+      operationId: update-customer
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: customer_id
+        in: path
+        description: The Customer id
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  examples:
+                  - John Doe
+                  description: The name of the customer
+                email:
+                  type: string
+                  description: The email of the customer
+                phone_number:
+                  type: string
+                  description: The phone number of the customer
+                phone_number_country_code:
+                  type: string
+                  description: The country code of the phone number
+                remark:
+                  type: string
+                  description: The remark of the customer
+                birth_date:
+                  type: string
+                  format: date
+                  description: The birth date of the customer
+                gender:
+                  type: string
+                  description: The gender of the customer
+                address:
+                  type: object
+                  properties:
+                    city:
+                      type: string
+                    state:
+                      type: string
+                    street:
+                      type: string
+                    postal_code:
+                      type: string
+                    country:
+                      type: string
+                  required:
+                  - city
+                  - state
+                  - street
+                  - postal_code
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    id: 9b2ada28-be3c-47ab-883f-ba72e5d8305d
+                    name: John Doe
+                    birth_date: <string>
+                    email: <string>
+                    phone_number: <string>
+                    address:
+                      city: <string>
+                      state: <string>
+                      street: <string>
+                      postal_code: <string>
+                      country: <string>
+                    gender: <string>
+                    remark: <string>
+                    phone_number_country_code: <string>
+                    created_at: '2024-01-24T16:05:10+08:00'
+                    updated_at: '2024-01-24T16:05:10+08:00'
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  birth_date:
+                    type: string
+                  email:
+                    type: string
+                  phone_number:
+                    type: string
+                  address:
+                    type: object
+                    properties:
+                      city:
+                        type: string
+                      state:
+                        type: string
+                      street:
+                        type: string
+                      postal_code:
+                        type: string
+                      country:
+                        type: string
+                    required:
+                    - city
+                    - state
+                    - street
+                    - postal_code
+                  gender:
+                    type: string
+                  remark:
+                    type: string
+                  phone_number_country_code:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                required:
+                - id
+                - name
+                - birth_date
+                - email
+                - phone_number
+                - address
+                - gender
+                - remark
+                - phone_number_country_code
+                - created_at
+                - updated_at
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No query results for model [App\\\\Business\\\\Customer] 973ee456-d28f-4418-93c5-d37e4b311685\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    examples:
+                    - No query results for model [App\Business\Customer] 973ee456-d28f-4418-93c5-d37e4b311685
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location 'https://api.sandbox.hit-pay.com/v1/customer/9b2ada28-be3c-47ab-883f-ba72e5d8305d' \\n--header 'X-BUSINESS-API-KEY: 9011d0e1e03c1e2d79cdcf1fd7147eaa6d339e4ba5e42df38d8b495e7ed8e9fc' \\\n --header 'X-Requested-With: XMLHttpRequest' \\\n --form "
+          name: Example request
+        samples-languages:
+        - curl
+      tags:
+      - Customers
+    delete:
+      summary: Delete Customer
+      description: This endpoint allows you to delete a customer.
+      operationId: delete-customer
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: customer_id
+        in: path
+        description: The Customer id
+        schema:
+          type: string
+        required: true
+      responses:
+        '204':
+          description: '204'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '1'
+              schema:
+                type: integer
+                examples:
+                - 1
+                default: 0
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No query results for model [App\\\\Business\\\\Customer] 973ee456-d28f-4418-93c5-d37e4b311685\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    examples:
+                    - No query results for model [App\Business\Customer] 973ee456-d28f-4418-93c5-d37e4b311685
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl --location --request DELETE 'https://api.sandbox.hit-pay.com/v1/customer/9b2ada28-be3c-47ab-883f-ba72e5d8305d' \\n--header 'X-BUSINESS-API-KEY: 9011d0e1e03c1e2d79cdcf1fd7147eaa6d339e4ba5e42df38d8b495e7ed8e9fc' \\\n --header 'X-Requested-With: XMLHttpRequest'"
+          name: Example request
+        samples-languages:
+        - curl
+      tags:
+      - Customers
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true
+x-readme-fauxas: true

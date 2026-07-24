@@ -1,0 +1,1042 @@
+openapi: 3.1.1
+info:
+  title: HitPay Account Status Orders API
+  description: 'Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com'
+  version: '1.0'
+servers:
+- url: https://api.hit-pay.com
+  description: Production
+- url: https://api.sandbox.hit-pay.com
+  description: Sandbox
+tags:
+- name: Orders
+paths:
+  /v1/orders:
+    get:
+      summary: Get Orders
+      description: Get and filter the orders
+      operationId: get-all-orders
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: perPage
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 25
+          maximum: 100
+      - name: version
+        in: query
+        description: 'Order version: 1.0 or 2.0. Return all orders as default'
+        schema:
+          type: string
+          enum:
+          - '1.0'
+          - '2.0'
+      - name: keywords
+        in: query
+        description: 'Search for fields: amount ,created_at ,order id,  remark, customer_name'
+        schema:
+          type: string
+      - name: statuses[]
+        in: query
+        description: 'The available status: completed, sent, draft, expired, canceled'
+        schema:
+          type: string
+          enum:
+          - completed
+          - sent
+          - draft
+          - expired
+          - canceled
+      - name: dateFrom
+        in: query
+        description: 'Example: 2023-04-18'
+        schema:
+          type: string
+      - name: dateTo
+        in: query
+        description: 'Example: 2023-04-18'
+        schema:
+          type: string
+      - name: with
+        in: query
+        description: 'If we want to show the product or charge detail=> add the value: products or charges. For both: products,charges'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    id: 9b4bc2a2-4721-4636-a6dc-4effec3b00fc
+                    order_display_number: 5660
+                    business_id: 9130c422-bf97-4bd1-b370-07a3a6f40708
+                    channel: point_of_sale
+                    version: '1.0'
+                    customer_id: null
+                    business_customer_id: null
+                    customer: null
+                    customer_pickup: true
+                    currency: sgd
+                    order_discount_name: null
+                    status: draft
+                    remark: Razaq is a fool
+                    created_at: '2024-02-10T00:41:42+08:00'
+                    updated_at: '2024-02-10T00:41:42+08:00'
+                    closed_at: null
+                    location_id: null
+                    location: null
+                    business_user_id: '34'
+                    slot_date: null
+                    slot_time: null
+                    messages: null
+                    products: []
+                    charges: []
+                    line_items: []
+                    order_form:
+                      membership_id:
+                        type: input
+                        title: Membership ID
+                        deleted: false
+                        include: true
+                        required: true
+                    order_form_response: []
+                    coupon: null
+                    payment_status: null
+                    fulfilment_status: ''
+                    line_items_total: 0
+                    order_discount_amount: 0
+                    line_item_discount_amount: 0
+                    line_item_tax_amount: 0
+                    additional_discount_amount: 0
+                    total_discount_amount: 0
+                    line_item_price: 0
+                    shipping_amount: 0
+                    total_coupon_amount: 0
+                    amount: 0
+                    subtotal: 0
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  order_display_number:
+                    type: integer
+                  business_id:
+                    type: string
+                  channel:
+                    type: string
+                  version:
+                    type: string
+                  customer_id:
+                    type: 'null'
+                  business_customer_id:
+                    type: 'null'
+                  customer:
+                    type: 'null'
+                  customer_pickup:
+                    type: boolean
+                  currency:
+                    type: string
+                  order_discount_name:
+                    type: 'null'
+                  status:
+                    type: string
+                  remark:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                  closed_at:
+                    type: 'null'
+                  location_id:
+                    type: 'null'
+                  location:
+                    type: 'null'
+                  business_user_id:
+                    type: string
+                  slot_date:
+                    type: 'null'
+                  slot_time:
+                    type: 'null'
+                  messages:
+                    type: 'null'
+                  products:
+                    type: array
+                    items: {}
+                  charges:
+                    type: array
+                    items: {}
+                  line_items:
+                    type: array
+                    items: {}
+                  order_form:
+                    type: object
+                    properties:
+                      membership_id:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                          title:
+                            type: string
+                          deleted:
+                            type: boolean
+                          include:
+                            type: boolean
+                          required:
+                            type: boolean
+                        required:
+                        - type
+                        - title
+                        - deleted
+                        - include
+                        - required
+                    required:
+                    - membership_id
+                  order_form_response:
+                    type: array
+                    items: {}
+                  coupon:
+                    type: 'null'
+                  payment_status:
+                    type: 'null'
+                  fulfilment_status:
+                    type: string
+                  line_items_total:
+                    type: integer
+                  order_discount_amount:
+                    type: integer
+                  line_item_discount_amount:
+                    type: integer
+                  line_item_tax_amount:
+                    type: integer
+                  additional_discount_amount:
+                    type: integer
+                  total_discount_amount:
+                    type: integer
+                  line_item_price:
+                    type: integer
+                  shipping_amount:
+                    type: integer
+                  total_coupon_amount:
+                    type: integer
+                  amount:
+                    type: integer
+                  subtotal:
+                    type: integer
+      deprecated: false
+      tags:
+      - Orders
+    post:
+      summary: Create Order
+      description: Create Order with the given data. The order will be created with a `draft` status.
+      operationId: create-order
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: number
+                  description: The total amount of the order
+                  examples:
+                  - 100
+                  default: 0
+                currency:
+                  type: string
+                  description: The currency of the order
+                  examples:
+                  - sgd
+                  default: sgd
+                remark:
+                  type: string
+                  description: The remark of the order
+                  examples:
+                  - Order Remark HitPay
+                location_id:
+                  type: string
+                  description: The location id of the order
+                  examples:
+                  - 9ae46141-c930-4613-b5a0-241206b9c215
+                customer_id:
+                  type: string
+                  description: The customer id of the order
+                  examples:
+                  - 9ae46141-c930-4613-b5a0-241206b9c215
+                customer_pickup:
+                  type: boolean
+                  description: The customer pickup of the order
+                  examples:
+                  - true
+                  default: true
+                channel:
+                  type: string
+                  description: The channel of the order
+                  examples:
+                  - point_of_sale
+                  default: point_of_sale
+                business_user_id:
+                  type: string
+                  description: The business user id of the order
+                  examples:
+                  - '34'
+                discount_reason:
+                  type: string
+                  description: The discount reason of the order
+                  examples:
+                  - Discount Reason
+                discount_amount:
+                  type: number
+                  description: The discount amount of the order
+                  examples:
+                  - 10
+                  default: 0
+                version:
+                  type: string
+                  description: The version of the order
+                  examples:
+                  - '1.0'
+                  default: '1.0'
+              required:
+              - amount
+              - currency
+              - remark
+              - location_id
+              - customer_id
+              - customer_pickup
+              - channel
+              - business_user_id
+              - discount_reason
+              - discount_amount
+              - version
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    id: 9b4bc2a2-4721-4636-a6dc-4effec3b00fc
+                    order_display_number: 5660
+                    business_id: 9130c422-bf97-4bd1-b370-07a3a6f40708
+                    channel: point_of_sale
+                    version: '1.0'
+                    customer_id: null
+                    business_customer_id: null
+                    customer: null
+                    customer_pickup: true
+                    currency: sgd
+                    order_discount_name: null
+                    status: draft
+                    remark: Order Remark HitPay
+                    created_at: '2024-02-10T00:41:42+08:00'
+                    updated_at: '2024-02-10T00:41:42+08:00'
+                    closed_at: null
+                    location_id: null
+                    location: null
+                    business_user_id: '34'
+                    slot_date: null
+                    slot_time: null
+                    messages: null
+                    products: []
+                    charges: []
+                    line_items: []
+                    order_form:
+                      membership_id:
+                        type: input
+                        title: Membership ID
+                        deleted: false
+                        include: true
+                        required: true
+                    order_form_response: []
+                    coupon: null
+                    payment_status: null
+                    fulfilment_status: ''
+                    line_items_total: 0
+                    order_discount_amount: 0
+                    line_item_discount_amount: 0
+                    line_item_tax_amount: 0
+                    additional_discount_amount: 0
+                    total_discount_amount: 0
+                    line_item_price: 0
+                    shipping_amount: 0
+                    total_coupon_amount: 0
+                    amount: 0
+                    subtotal: 0
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  order_display_number:
+                    type: integer
+                  business_id:
+                    type: string
+                  channel:
+                    type: string
+                  version:
+                    type: string
+                  customer_id:
+                    type: 'null'
+                  business_customer_id:
+                    type: 'null'
+                  customer:
+                    type: 'null'
+                  customer_pickup:
+                    type: boolean
+                  currency:
+                    type: string
+                  order_discount_name:
+                    type: 'null'
+                  status:
+                    type: string
+                  remark:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                  closed_at:
+                    type: 'null'
+                  location_id:
+                    type: 'null'
+                  location:
+                    type: 'null'
+                  business_user_id:
+                    type: string
+                  slot_date:
+                    type: 'null'
+                  slot_time:
+                    type: 'null'
+                  messages:
+                    type: 'null'
+                  products:
+                    type: array
+                    items: {}
+                  charges:
+                    type: array
+                    items: {}
+                  line_items:
+                    type: array
+                    items: {}
+                  order_form:
+                    type: object
+                    properties:
+                      membership_id:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                          title:
+                            type: string
+                          deleted:
+                            type: boolean
+                          include:
+                            type: boolean
+                          required:
+                            type: boolean
+                        required:
+                        - type
+                        - title
+                        - deleted
+                        - include
+                        - required
+                    required:
+                    - membership_id
+                  order_form_response:
+                    type: array
+                    items: {}
+                  coupon:
+                    type: 'null'
+                  payment_status:
+                    type: 'null'
+                  fulfilment_status:
+                    type: string
+                  line_items_total:
+                    type: integer
+                  order_discount_amount:
+                    type: integer
+                  line_item_discount_amount:
+                    type: integer
+                  line_item_tax_amount:
+                    type: integer
+                  additional_discount_amount:
+                    type: integer
+                  total_discount_amount:
+                    type: integer
+                  line_item_price:
+                    type: integer
+                  shipping_amount:
+                    type: integer
+                  total_coupon_amount:
+                    type: integer
+                  amount:
+                    type: integer
+                  subtotal:
+                    type: integer
+      tags:
+      - Orders
+  /v1/orders/{order_id}:
+    get:
+      summary: Get Order Details
+      description: Get the order details
+      operationId: get-order
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: order_id
+        in: path
+        description: It's required field
+        schema:
+          type: string
+          format: uuid
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    id: 9b4bc2a2-4721-4636-a6dc-4effec3b00fc
+                    order_display_number: 5660
+                    business_id: 9130c422-bf97-4bd1-b370-07a3a6f40708
+                    channel: point_of_sale
+                    version: '1.0'
+                    customer_id: null
+                    business_customer_id: null
+                    customer: null
+                    customer_pickup: true
+                    currency: sgd
+                    order_discount_name: null
+                    status: draft
+                    remark: Razaq is a fool
+                    created_at: '2024-02-10T00:41:42+08:00'
+                    updated_at: '2024-02-10T00:41:42+08:00'
+                    closed_at: null
+                    location_id: null
+                    location: null
+                    business_user_id: '34'
+                    slot_date: null
+                    slot_time: null
+                    messages: null
+                    products: []
+                    charges: []
+                    line_items: []
+                    order_form:
+                      membership_id:
+                        type: input
+                        title: Membership ID
+                        deleted: false
+                        include: true
+                        required: true
+                    order_form_response: []
+                    coupon: null
+                    payment_status: null
+                    fulfilment_status: ''
+                    line_items_total: 0
+                    order_discount_amount: 0
+                    line_item_discount_amount: 0
+                    line_item_tax_amount: 0
+                    additional_discount_amount: 0
+                    total_discount_amount: 0
+                    line_item_price: 0
+                    shipping_amount: 0
+                    total_coupon_amount: 0
+                    amount: 0
+                    subtotal: 0
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  order_display_number:
+                    type: integer
+                  business_id:
+                    type: string
+                  channel:
+                    type: string
+                  version:
+                    type: string
+                  customer_id:
+                    type: 'null'
+                  business_customer_id:
+                    type: 'null'
+                  customer:
+                    type: 'null'
+                  customer_pickup:
+                    type: boolean
+                  currency:
+                    type: string
+                  order_discount_name:
+                    type: 'null'
+                  status:
+                    type: string
+                  remark:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                  closed_at:
+                    type: 'null'
+                  location_id:
+                    type: 'null'
+                  location:
+                    type: 'null'
+                  business_user_id:
+                    type: string
+                  slot_date:
+                    type: 'null'
+                  slot_time:
+                    type: 'null'
+                  messages:
+                    type: 'null'
+                  products:
+                    type: array
+                    items: {}
+                  charges:
+                    type: array
+                    items: {}
+                  line_items:
+                    type: array
+                    items: {}
+                  order_form:
+                    type: object
+                    properties:
+                      membership_id:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                          title:
+                            type: string
+                          deleted:
+                            type: boolean
+                          include:
+                            type: boolean
+                          required:
+                            type: boolean
+                        required:
+                        - type
+                        - title
+                        - deleted
+                        - include
+                        - required
+                    required:
+                    - membership_id
+                  order_form_response:
+                    type: array
+                    items: {}
+                  coupon:
+                    type: 'null'
+                  payment_status:
+                    type: 'null'
+                  fulfilment_status:
+                    type: string
+                  line_items_total:
+                    type: integer
+                  order_discount_amount:
+                    type: integer
+                  line_item_discount_amount:
+                    type: integer
+                  line_item_tax_amount:
+                    type: integer
+                  additional_discount_amount:
+                    type: integer
+                  total_discount_amount:
+                    type: integer
+                  line_item_price:
+                    type: integer
+                  shipping_amount:
+                    type: integer
+                  total_coupon_amount:
+                    type: integer
+                  amount:
+                    type: integer
+                  subtotal:
+                    type: integer
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No query results for model [App\\\\Business\\\\Order] 99daaa99-0ccb-4e46-82bd-7a4347957e0a\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    examples:
+                    - No query results for model [App\Business\Order] 99daaa99-0ccb-4e46-82bd-7a4347957e0a
+      deprecated: false
+      tags:
+      - Orders
+    patch:
+      summary: Update the order
+      description: Update the order
+      operationId: update-the-order
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: order_id
+        in: path
+        description: It's required field
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: number
+                  description: The total amount of the order
+                  examples:
+                  - 100
+                  default: 0
+                currency:
+                  type: string
+                  description: The currency of the order
+                  examples:
+                  - sgd
+                  default: sgd
+                remark:
+                  type: string
+                  description: The remark of the order
+                  examples:
+                  - Order Remark HitPay
+                location_id:
+                  type: string
+                  description: The location id of the order
+                  examples:
+                  - 9ae46141-c930-4613-b5a0-241206b9c215
+                customer_id:
+                  type: string
+                  description: The customer id of the order
+                  examples:
+                  - 9ae46141-c930-4613-b5a0-241206b9c215
+                customer_pickup:
+                  type: boolean
+                  description: The customer pickup of the order
+                  examples:
+                  - true
+                  default: true
+                channel:
+                  type: string
+                  description: The channel of the order
+                  examples:
+                  - point_of_sale
+                  default: point_of_sale
+                business_user_id:
+                  type: string
+                  description: The business user id of the order
+                  examples:
+                  - '34'
+                discount_reason:
+                  type: string
+                  description: The discount reason of the order
+                  examples:
+                  - Discount Reason
+                discount_amount:
+                  type: number
+                  description: The discount amount of the order
+                  examples:
+                  - 10
+                  default: 0
+                version:
+                  type: string
+                  description: The version of the order
+                  examples:
+                  - '1.0'
+                  default: '1.0'
+              required:
+              - amount
+              - currency
+              - remark
+              - location_id
+              - customer_id
+              - customer_pickup
+              - channel
+              - business_user_id
+              - discount_reason
+              - discount_amount
+              - version
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    id: 9b4bc2a2-4721-4636-a6dc-4effec3b00fc
+                    order_display_number: 5660
+                    business_id: 9130c422-bf97-4bd1-b370-07a3a6f40708
+                    channel: point_of_sale
+                    version: '1.0'
+                    customer_id: null
+                    business_customer_id: null
+                    customer: null
+                    customer_pickup: true
+                    currency: sgd
+                    order_discount_name: null
+                    status: draft
+                    remark: Razaq is a fool
+                    created_at: '2024-02-10T00:41:42+08:00'
+                    updated_at: '2024-02-10T00:41:42+08:00'
+                    closed_at: null
+                    location_id: null
+                    location: null
+                    business_user_id: '34'
+                    slot_date: null
+                    slot_time: null
+                    messages: null
+                    products: []
+                    charges: []
+                    line_items: []
+                    order_form:
+                      membership_id:
+                        type: input
+                        title: Membership ID
+                        deleted: false
+                        include: true
+                        required: true
+                    order_form_response: []
+                    coupon: null
+                    payment_status: null
+                    fulfilment_status: ''
+                    line_items_total: 0
+                    order_discount_amount: 0
+                    line_item_discount_amount: 0
+                    line_item_tax_amount: 0
+                    additional_discount_amount: 0
+                    total_discount_amount: 0
+                    line_item_price: 0
+                    shipping_amount: 0
+                    total_coupon_amount: 0
+                    amount: 0
+                    subtotal: 0
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  order_display_number:
+                    type: integer
+                  business_id:
+                    type: string
+                  channel:
+                    type: string
+                  version:
+                    type: string
+                  customer_id:
+                    type: 'null'
+                  business_customer_id:
+                    type: 'null'
+                  customer:
+                    type: 'null'
+                  customer_pickup:
+                    type: boolean
+                  currency:
+                    type: string
+                  order_discount_name:
+                    type: 'null'
+                  status:
+                    type: string
+                  remark:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                  closed_at:
+                    type: 'null'
+                  location_id:
+                    type: 'null'
+                  location:
+                    type: 'null'
+                  business_user_id:
+                    type: string
+                  slot_date:
+                    type: 'null'
+                  slot_time:
+                    type: 'null'
+                  messages:
+                    type: 'null'
+                  products:
+                    type: array
+                    items: {}
+                  charges:
+                    type: array
+                    items: {}
+                  line_items:
+                    type: array
+                    items: {}
+                  order_form:
+                    type: object
+                    properties:
+                      membership_id:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                          title:
+                            type: string
+                          deleted:
+                            type: boolean
+                          include:
+                            type: boolean
+                          required:
+                            type: boolean
+                        required:
+                        - type
+                        - title
+                        - deleted
+                        - include
+                        - required
+                    required:
+                    - membership_id
+                  order_form_response:
+                    type: array
+                    items: {}
+                  coupon:
+                    type: 'null'
+                  payment_status:
+                    type: 'null'
+                  fulfilment_status:
+                    type: string
+                  line_items_total:
+                    type: integer
+                  order_discount_amount:
+                    type: integer
+                  line_item_discount_amount:
+                    type: integer
+                  line_item_tax_amount:
+                    type: integer
+                  additional_discount_amount:
+                    type: integer
+                  total_discount_amount:
+                    type: integer
+                  line_item_price:
+                    type: integer
+                  shipping_amount:
+                    type: integer
+                  total_coupon_amount:
+                    type: integer
+                  amount:
+                    type: integer
+                  subtotal:
+                    type: integer
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No query results for model [App\\\\Business\\\\Order] 99daaa99-0ccb-4e46-82bd-7a4347957e0a\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    examples:
+                    - No query results for model [App\Business\Order] 99daaa99-0ccb-4e46-82bd-7a4347957e0a
+      deprecated: false
+      tags:
+      - Orders
+    delete:
+      summary: Delete Order
+      description: Delete Order
+      operationId: delete-order
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: order_id
+        in: path
+        description: It's required field
+        schema:
+          type: string
+        required: true
+      responses:
+        '204':
+          description: '204'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '1'
+              schema:
+                type: integer
+                examples:
+                - 1
+                default: 0
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"message\": \"No query results for model [App\\\\Business\\\\Order] 99daaa99-0ccb-4e46-82bd-7a4347957e0a\"\n}"
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    examples:
+                    - No query results for model [App\Business\Order] 99daaa99-0ccb-4e46-82bd-7a4347957e0a
+      deprecated: false
+      tags:
+      - Orders
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true
+x-readme-fauxas: true

@@ -1,0 +1,188 @@
+openapi: 3.1.1
+info:
+  title: HitPay Account Status Staffs API
+  description: 'Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com'
+  version: '1.0'
+servers:
+- url: https://api.hit-pay.com
+  description: Production
+- url: https://api.sandbox.hit-pay.com
+  description: Sandbox
+tags:
+- name: Staffs
+paths:
+  /v1/staffs:
+    get:
+      summary: Get All Staffs
+      description: Get All Staffs
+      operationId: get-all-staffs
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                  - id: 98566f58-1c76-4b8b-8f75-d20bba2bc7f8
+                    name: TestingSG
+                    role:
+                      id: 93a00e56-c832-490e-b5b8-7f08149548c7
+                      title: Owner
+                  - id: 98888a24-d6b2-430d-9063-d2be76d443cd
+                    name: SG11
+                    role:
+                      id: 93a00e56-d9d8-46f7-aa41-da868820f899
+                      title: Manager
+                  - id: 98888a69-2d7a-4695-811d-6df8cee30264
+                    name: SG
+                    role:
+                      id: 93a00e56-d9d8-46f7-aa41-da868820f899
+                      title: Manager
+                  - id: 98888a7a-8d02-48bd-ba00-9ea91ad30ecb
+                    name: Cashier 01
+                    role:
+                      id: 93a00e56-dbea-4387-8972-e04777d9afce
+                      title: Cashier
+                  - id: 98889105-0aa7-4480-989c-41f38172b4e6
+                    name: Cashier 02
+                    role:
+                      id: 93a00e56-dbea-4387-8972-e04777d9afce
+                      title: Cashier
+                  - id: 9888918e-246b-44c6-a602-d8bcfd726345
+                    name: Admin 01
+                    role:
+                      id: 93a00e56-d68c-4025-9cea-2b08cd50572e
+                      title: Admin
+                  - id: 9bf2c210-9516-4525-9a8f-52cb671e7b02
+                    name: Manager 01
+                    role:
+                      id: 93a00e56-d9d8-46f7-aa41-da868820f899
+                      title: Manager
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    role:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        title:
+                          type: string
+                      required:
+                      - id
+                      - title
+                  required:
+                  - id
+                  - name
+                  - role
+      deprecated: false
+      tags:
+      - Staffs
+  /v1/staffs/{staff_id}:
+    get:
+      summary: Get Staff Detail
+      description: Get Staff Detail
+      operationId: get-staff-detail
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: staff_id
+        in: path
+        schema:
+          type: string
+          format: uuid
+          example: 98888a69-2d7a-4695-811d-6df8cee30264
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    id: 98566f58-1c76-4b8b-8f75-d20bba2bc7f8
+                    name: Testing ABC
+                    role:
+                      id: 93a00e56-c832-490e-b5b8-7f08149548c7
+                      title: Owner
+                    email: abcd@gmail.com
+                    invited_at: '2023-01-29T05:29:24.000000Z'
+                    locations: []
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  role:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      title:
+                        type: string
+                    required:
+                    - id
+                    - title
+                  email:
+                    type: string
+                  invited_at:
+                    type: string
+                  locations:
+                    type: array
+                    items: {}
+                required:
+                - id
+                - name
+                - role
+                - email
+                - invited_at
+                - locations
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value:
+                    message: The staff cannot be found.
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                - message
+      deprecated: false
+      tags:
+      - Staffs
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true
+x-readme-fauxas: true
