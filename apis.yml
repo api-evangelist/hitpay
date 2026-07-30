@@ -8,7 +8,20 @@ description: HitPay is a Singapore-headquartered all-in-one payments platform fo
   Recurring Billing on saved cards, and issues Refunds, with first-class Southeast
   Asian local methods (PayNow, GrabPay, WeChat Pay, Alipay, ShopeePay, Atome)
   alongside cards. Requests authenticate with the X-BUSINESS-API-KEY header.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/hitpay.png
 tags:
 - Payments
 - Fintech
@@ -19,103 +32,585 @@ created: '2026-07-17'
 modified: '2026-07-17'
 specificationVersion: '0.19'
 apis:
+- aid: hitpay:hitpay-account-status-api
+  name: HitPay Account Status API
+  description: The Account Status API from HitPay — 1 operation(s) for account status.
+  humanURL: https://docs.hitpayapp.com/apis/guide/online-payments
+  baseURL: https://api.hit-pay.com/v1
+  tags:
+  - Account Status
+  properties:
+  - type: OpenAPI
+    url: openapi/hitpay-account-status-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/online-payments
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis
+  - type: PostmanCollection
+    url: collections/hitpay.postman_collection.json
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/recurring-billing
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis/recurring-billing/create-billing
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/platform-apis
+- aid: hitpay:hitpay-balances-api
+  name: HitPay Balances API
+  description: The Balances API from HitPay — 3 operation(s) for balances.
+  humanURL: https://docs.hitpayapp.com/apis/guide/online-payments
+  baseURL: https://api.hit-pay.com/v1
+  tags:
+  - Balances
+  properties:
+  - type: OpenAPI
+    url: openapi/hitpay-balances-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/online-payments
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis
+  - type: PostmanCollection
+    url: collections/hitpay.postman_collection.json
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/recurring-billing
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis/recurring-billing/create-billing
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/platform-apis
+- aid: hitpay:hitpay-beneficiaries-api
+  name: HitPay Beneficiaries API
+  description: The Beneficiaries API from HitPay — 3 operation(s) for beneficiaries.
+  humanURL: https://docs.hitpayapp.com/apis/guide/online-payments
+  baseURL: https://api.hit-pay.com/v1
+  tags:
+  - Beneficiaries
+  properties:
+  - type: OpenAPI
+    url: openapi/hitpay-beneficiaries-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/online-payments
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis
+  - type: PostmanCollection
+    url: collections/hitpay.postman_collection.json
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/recurring-billing
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis/recurring-billing/create-billing
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/platform-apis
+- aid: hitpay:hitpay-charge-api
+  name: HitPay Charge API
+  description: The Charge API from HitPay — 1 operation(s) for charge.
+  humanURL: https://docs.hitpayapp.com/apis/guide/online-payments
+  baseURL: https://api.hit-pay.com/v1
+  tags:
+  - Charge
+  properties:
+  - type: OpenAPI
+    url: openapi/hitpay-charge-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/online-payments
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis
+  - type: PostmanCollection
+    url: collections/hitpay.postman_collection.json
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/recurring-billing
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis/recurring-billing/create-billing
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/platform-apis
+- aid: hitpay:hitpay-charges-api
+  name: HitPay Charges API
+  description: The Charges API from HitPay — 4 operation(s) for charges.
+  humanURL: https://docs.hitpayapp.com/apis/guide/online-payments
+  baseURL: https://api.hit-pay.com/v1
+  tags:
+  - Charges
+  properties:
+  - type: OpenAPI
+    url: openapi/hitpay-charges-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/online-payments
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis
+  - type: PostmanCollection
+    url: collections/hitpay.postman_collection.json
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/recurring-billing
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis/recurring-billing/create-billing
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/platform-apis
+- aid: hitpay:hitpay-customers-api
+  name: HitPay Customers API
+  description: The Customers API from HitPay — 2 operation(s) for customers.
+  humanURL: https://docs.hitpayapp.com/apis/guide/online-payments
+  baseURL: https://api.hit-pay.com/v1
+  tags:
+  - Customers
+  properties:
+  - type: OpenAPI
+    url: openapi/hitpay-customers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/online-payments
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis
+  - type: PostmanCollection
+    url: collections/hitpay.postman_collection.json
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/recurring-billing
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis/recurring-billing/create-billing
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/platform-apis
+- aid: hitpay:hitpay-invoices-api
+  name: HitPay Invoices API
+  description: The Invoices API from HitPay — 2 operation(s) for invoices.
+  humanURL: https://docs.hitpayapp.com/apis/guide/online-payments
+  baseURL: https://api.hit-pay.com/v1
+  tags:
+  - Invoices
+  properties:
+  - type: OpenAPI
+    url: openapi/hitpay-invoices-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/online-payments
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis
+  - type: PostmanCollection
+    url: collections/hitpay.postman_collection.json
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/recurring-billing
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis/recurring-billing/create-billing
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/platform-apis
+- aid: hitpay:hitpay-notifications-api
+  name: HitPay Notifications API
+  description: The Notifications API from HitPay — 1 operation(s) for notifications.
+  humanURL: https://docs.hitpayapp.com/apis/guide/online-payments
+  baseURL: https://api.hit-pay.com/v1
+  tags:
+  - Notifications
+  properties:
+  - type: OpenAPI
+    url: openapi/hitpay-notifications-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/online-payments
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis
+  - type: PostmanCollection
+    url: collections/hitpay.postman_collection.json
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/recurring-billing
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis/recurring-billing/create-billing
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/platform-apis
+- aid: hitpay:hitpay-orders-api
+  name: HitPay Orders API
+  description: The Orders API from HitPay — 2 operation(s) for orders.
+  humanURL: https://docs.hitpayapp.com/apis/guide/online-payments
+  baseURL: https://api.hit-pay.com/v1
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/hitpay-orders-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/online-payments
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis
+  - type: PostmanCollection
+    url: collections/hitpay.postman_collection.json
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/recurring-billing
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis/recurring-billing/create-billing
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/platform-apis
 - aid: hitpay:hitpay-payment-requests-api
   name: HitPay Payment Requests API
-  tags:
-  - Payments
-  - Checkout
-  - Payment Links
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  description: The Payment Requests API from HitPay — 4 operation(s) for payment requests.
   humanURL: https://docs.hitpayapp.com/apis/guide/online-payments
   baseURL: https://api.hit-pay.com/v1
+  tags:
+  - Payment Requests
   properties:
-  - url: https://docs.hitpayapp.com/apis/guide/online-payments
-    type: Documentation
-  - url: https://docs.hitpayapp.com/apis
-    type: APIReference
-  - url: openapi/hitpay-openapi.yml
-    type: OpenAPI
-  - url: collections/hitpay.postman_collection.json
-    type: PostmanCollection
-  description: Creates hosted payment requests (payment links and checkout pages)
-    for a given amount and currency, returning a redirect URL and a payment id to
-    track status. Supports PayNow, GrabPay, WeChat Pay, Alipay, ShopeePay, Atome
-    and cards; payment status is delivered via dashboard-registered webhooks.
+  - type: OpenAPI
+    url: openapi/hitpay-payment-requests-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/online-payments
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis
+  - type: PostmanCollection
+    url: collections/hitpay.postman_collection.json
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/recurring-billing
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis/recurring-billing/create-billing
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/platform-apis
+- aid: hitpay:hitpay-product-category-api
+  name: HitPay Product Category API
+  description: The Product Category API from HitPay — 1 operation(s) for product category.
+  humanURL: https://docs.hitpayapp.com/apis/guide/online-payments
+  baseURL: https://api.hit-pay.com/v1
+  tags:
+  - Product Category
+  properties:
+  - type: OpenAPI
+    url: openapi/hitpay-product-category-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/online-payments
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis
+  - type: PostmanCollection
+    url: collections/hitpay.postman_collection.json
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/recurring-billing
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis/recurring-billing/create-billing
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/platform-apis
+- aid: hitpay:hitpay-products-api
+  name: HitPay Products API
+  description: The Products API from HitPay — 2 operation(s) for products.
+  humanURL: https://docs.hitpayapp.com/apis/guide/online-payments
+  baseURL: https://api.hit-pay.com/v1
+  tags:
+  - Products
+  properties:
+  - type: OpenAPI
+    url: openapi/hitpay-products-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/online-payments
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis
+  - type: PostmanCollection
+    url: collections/hitpay.postman_collection.json
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/recurring-billing
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis/recurring-billing/create-billing
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/platform-apis
+- aid: hitpay:hitpay-readers-api
+  name: HitPay Readers API
+  description: The Readers API from HitPay — 2 operation(s) for readers.
+  humanURL: https://docs.hitpayapp.com/apis/guide/online-payments
+  baseURL: https://api.hit-pay.com/v1
+  tags:
+  - Readers
+  properties:
+  - type: OpenAPI
+    url: openapi/hitpay-readers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/online-payments
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis
+  - type: PostmanCollection
+    url: collections/hitpay.postman_collection.json
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/recurring-billing
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis/recurring-billing/create-billing
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/platform-apis
 - aid: hitpay:hitpay-recurring-billing-api
   name: HitPay Recurring Billing API
-  tags:
-  - Recurring
-  - Subscriptions
-  - Saved Cards
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.hitpayapp.com/apis/guide/recurring-billing
-  baseURL: https://api.hit-pay.com/v1
-  properties:
-  - url: https://docs.hitpayapp.com/apis/guide/recurring-billing
-    type: Documentation
-  - url: https://docs.hitpayapp.com/apis/recurring-billing/create-billing
-    type: APIReference
-  - url: openapi/hitpay-openapi.yml
-    type: OpenAPI
-  - url: collections/hitpay.postman_collection.json
-    type: PostmanCollection
-  description: Starts and manages subscriptions billed against saved cards, either
-    from a reusable subscription plan or an inline ad-hoc plan (name/cycle/amount),
-    and charges saved cards for one-off amounts.
-- aid: hitpay:hitpay-subscription-plans-api
-  name: HitPay Subscription Plans API
-  tags:
-  - Plans
-  - Subscriptions
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
-  baseURL: https://api.hit-pay.com/v1
-  properties:
-  - url: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
-    type: Documentation
-  - url: openapi/hitpay-openapi.yml
-    type: OpenAPI
-  - url: collections/hitpay.postman_collection.json
-    type: PostmanCollection
-  description: Creates and lists reusable subscription plan templates (name, amount,
-    currency, billing cycle) referenced by recurring billing subscriptions.
-- aid: hitpay:hitpay-refunds-api
-  name: HitPay Refunds API
-  tags:
-  - Refunds
-  - Payments
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  description: The Recurring Billing API from HitPay — 5 operation(s) for recurring billing.
   humanURL: https://docs.hitpayapp.com/apis/guide/online-payments
   baseURL: https://api.hit-pay.com/v1
-  properties:
-  - url: https://docs.hitpayapp.com/apis/guide/online-payments
-    type: Documentation
-  - url: openapi/hitpay-openapi.yml
-    type: OpenAPI
-  - url: collections/hitpay.postman_collection.json
-    type: PostmanCollection
-  description: Issues full or partial refunds against completed payments. One refund
-    is allowed per transaction and only PayNow or card charges are refundable;
-    original transaction fees are non-refundable.
-- aid: hitpay:hitpay-platform-api
-  name: HitPay Platform API
   tags:
-  - Platform
-  - Aggregator
-  - Marketplace
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.hitpayapp.com/apis/guide/platform-apis
-  baseURL: https://api.hit-pay.com/v1
+  - Recurring Billing
   properties:
-  - url: https://docs.hitpayapp.com/apis/guide/platform-apis
-    type: Documentation
-  - url: openapi/hitpay-openapi.yml
-    type: OpenAPI
-  description: Extension of the Payment Request APIs for e-commerce platforms and
-    aggregators that host sub-merchants, allowing a platform to create payment
-    requests on behalf of onboarded merchants using an additional X-PLATFORM-KEY
-    header.
+  - type: OpenAPI
+    url: openapi/hitpay-recurring-billing-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/online-payments
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis
+  - type: PostmanCollection
+    url: collections/hitpay.postman_collection.json
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/recurring-billing
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis/recurring-billing/create-billing
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/platform-apis
+- aid: hitpay:hitpay-refund-api
+  name: HitPay Refund API
+  description: The Refund API from HitPay — 2 operation(s) for refund.
+  humanURL: https://docs.hitpayapp.com/apis/guide/online-payments
+  baseURL: https://api.hit-pay.com/v1
+  tags:
+  - Refund
+  properties:
+  - type: OpenAPI
+    url: openapi/hitpay-refund-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/online-payments
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis
+  - type: PostmanCollection
+    url: collections/hitpay.postman_collection.json
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/recurring-billing
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis/recurring-billing/create-billing
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/platform-apis
+- aid: hitpay:hitpay-refunds-api
+  name: HitPay Refunds API
+  description: Refund completed PayNow or card charges.
+  humanURL: https://docs.hitpayapp.com/apis/guide/online-payments
+  baseURL: https://api.hit-pay.com/v1
+  tags:
+  - Refunds
+  properties:
+  - type: OpenAPI
+    url: openapi/hitpay-refunds-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/online-payments
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis
+  - type: PostmanCollection
+    url: collections/hitpay.postman_collection.json
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/recurring-billing
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis/recurring-billing/create-billing
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/platform-apis
+- aid: hitpay:hitpay-remitters-api
+  name: HitPay Remitters API
+  description: The Remitters API from HitPay — 2 operation(s) for remitters.
+  humanURL: https://docs.hitpayapp.com/apis/guide/online-payments
+  baseURL: https://api.hit-pay.com/v1
+  tags:
+  - Remitters
+  properties:
+  - type: OpenAPI
+    url: openapi/hitpay-remitters-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/online-payments
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis
+  - type: PostmanCollection
+    url: collections/hitpay.postman_collection.json
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/recurring-billing
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis/recurring-billing/create-billing
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/platform-apis
+- aid: hitpay:hitpay-staffs-api
+  name: HitPay Staffs API
+  description: The Staffs API from HitPay — 2 operation(s) for staffs.
+  humanURL: https://docs.hitpayapp.com/apis/guide/online-payments
+  baseURL: https://api.hit-pay.com/v1
+  tags:
+  - Staffs
+  properties:
+  - type: OpenAPI
+    url: openapi/hitpay-staffs-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/online-payments
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis
+  - type: PostmanCollection
+    url: collections/hitpay.postman_collection.json
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/recurring-billing
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis/recurring-billing/create-billing
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/platform-apis
+- aid: hitpay:hitpay-static-qr-api
+  name: HitPay Static Qr API
+  description: The Static Qr API from HitPay — 2 operation(s) for static qr.
+  humanURL: https://docs.hitpayapp.com/apis/guide/online-payments
+  baseURL: https://api.hit-pay.com/v1
+  tags:
+  - Static Qr
+  properties:
+  - type: OpenAPI
+    url: openapi/hitpay-static-qr-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/online-payments
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis
+  - type: PostmanCollection
+    url: collections/hitpay.postman_collection.json
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/recurring-billing
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis/recurring-billing/create-billing
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/platform-apis
+- aid: hitpay:hitpay-subscription-plan-api
+  name: HitPay Subscription Plan API
+  description: The Subscription Plan API from HitPay — 2 operation(s) for subscription plan.
+  humanURL: https://docs.hitpayapp.com/apis/guide/online-payments
+  baseURL: https://api.hit-pay.com/v1
+  tags:
+  - Subscription Plan
+  properties:
+  - type: OpenAPI
+    url: openapi/hitpay-subscription-plan-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/online-payments
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis
+  - type: PostmanCollection
+    url: collections/hitpay.postman_collection.json
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/recurring-billing
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis/recurring-billing/create-billing
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/platform-apis
+- aid: hitpay:hitpay-subscription-plans-api
+  name: HitPay Subscription Plans API
+  description: Reusable recurring-billing plan templates.
+  humanURL: https://docs.hitpayapp.com/apis/guide/online-payments
+  baseURL: https://api.hit-pay.com/v1
+  tags:
+  - Subscription Plans
+  properties:
+  - type: OpenAPI
+    url: openapi/hitpay-subscription-plans-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/online-payments
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis
+  - type: PostmanCollection
+    url: collections/hitpay.postman_collection.json
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/recurring-billing
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis/recurring-billing/create-billing
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/platform-apis
+- aid: hitpay:hitpay-transfers-api
+  name: HitPay Transfers API
+  description: The Transfers API from HitPay — 3 operation(s) for transfers.
+  humanURL: https://docs.hitpayapp.com/apis/guide/online-payments
+  baseURL: https://api.hit-pay.com/v1
+  tags:
+  - Transfers
+  properties:
+  - type: OpenAPI
+    url: openapi/hitpay-transfers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/online-payments
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis
+  - type: PostmanCollection
+    url: collections/hitpay.postman_collection.json
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/recurring-billing
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis/recurring-billing/create-billing
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/platform-apis
+- aid: hitpay:hitpay-virtual-accounts-api
+  name: HitPay Virtual Accounts API
+  description: The Virtual Accounts API from HitPay — 2 operation(s) for virtual accounts.
+  humanURL: https://docs.hitpayapp.com/apis/guide/online-payments
+  baseURL: https://api.hit-pay.com/v1
+  tags:
+  - Virtual Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/hitpay-virtual-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/online-payments
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis
+  - type: PostmanCollection
+    url: collections/hitpay.postman_collection.json
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/recurring-billing
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis/recurring-billing/create-billing
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/platform-apis
+- aid: hitpay:hitpay-webhook-events-api
+  name: HitPay Webhook Events API
+  description: The Webhook Events API from HitPay — 2 operation(s) for webhook events.
+  humanURL: https://docs.hitpayapp.com/apis/guide/online-payments
+  baseURL: https://api.hit-pay.com/v1
+  tags:
+  - Webhook Events
+  properties:
+  - type: OpenAPI
+    url: openapi/hitpay-webhook-events-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/online-payments
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis
+  - type: PostmanCollection
+    url: collections/hitpay.postman_collection.json
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/recurring-billing
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis/recurring-billing/create-billing
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/platform-apis
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/hitpay/overview
 - type: AgenticAccess
   url: agentic-access/hitpay-agentic-access.yml
 - type: TrustCenter
