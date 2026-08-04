@@ -1,0 +1,271 @@
+{
+  "info": {
+    "_postman_id": "41a13933-f156-4b7d-bec3-0b9f1ed39cc0",
+    "name": "HitPay Account Status Staffs API",
+    "description": "Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:56:41.000Z",
+    "updatedAt": "2026-07-28T01:56:41.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-41a13933-f156-4b7d-bec3-0b9f1ed39cc0"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "staffs",
+          "item": [
+            {
+              "name": "{staff_id}",
+              "item": [
+                {
+                  "name": "Get Staff Detail",
+                  "id": "4db9ccce-9b56-46e0-80ff-9eb290b2e114",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/staffs/:staff_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "staffs",
+                        ":staff_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "775b127b-b901-4682-adc8-155de8df9645",
+                          "key": "staff_id",
+                          "value": "<uuid>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Get Staff Detail"
+                  },
+                  "response": [
+                    {
+                      "id": "d7bf8eff-5f68-4513-9285-f393d0d1c2b0",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/staffs/:staff_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "staffs",
+                            ":staff_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "staff_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"role\": {\n    \"id\": \"<string>\",\n    \"title\": \"<string>\"\n  },\n  \"email\": \"<string>\",\n  \"invited_at\": \"<string>\",\n  \"locations\": []\n}",
+                      "createdAt": "2026-07-28T01:56:41.000Z",
+                      "updatedAt": "2026-07-28T01:56:41.000Z",
+                      "uid": "35240-d7bf8eff-5f68-4513-9285-f393d0d1c2b0"
+                    },
+                    {
+                      "id": "5e7637ea-6b87-4585-b528-97d7a066ff20",
+                      "name": "404",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/staffs/:staff_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "staffs",
+                            ":staff_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "staff_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:41.000Z",
+                      "updatedAt": "2026-07-28T01:56:41.000Z",
+                      "uid": "35240-5e7637ea-6b87-4585-b528-97d7a066ff20"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:56:41.000Z",
+                  "updatedAt": "2026-07-28T01:56:41.000Z",
+                  "uid": "35240-4db9ccce-9b56-46e0-80ff-9eb290b2e114"
+                }
+              ],
+              "id": "a100aebf-9d58-4de0-b985-4f84c2c4bb5e",
+              "createdAt": "2026-07-28T01:56:41.000Z",
+              "updatedAt": "2026-07-28T01:56:41.000Z",
+              "uid": "35240-a100aebf-9d58-4de0-b985-4f84c2c4bb5e"
+            },
+            {
+              "name": "Get All Staffs",
+              "id": "ed57aa8b-1d3c-4d74-b196-09450acee642",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/staffs",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "staffs"
+                  ]
+                },
+                "description": "Get All Staffs"
+              },
+              "response": [
+                {
+                  "id": "f6cd382d-0990-48b1-aeff-c095d9bded58",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/staffs",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "staffs"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"role\": {\n      \"id\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  },\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"role\": {\n      \"id\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  }\n]",
+                  "createdAt": "2026-07-28T01:56:41.000Z",
+                  "updatedAt": "2026-07-28T01:56:41.000Z",
+                  "uid": "35240-f6cd382d-0990-48b1-aeff-c095d9bded58"
+                }
+              ],
+              "createdAt": "2026-07-28T01:56:41.000Z",
+              "updatedAt": "2026-07-28T01:56:41.000Z",
+              "uid": "35240-ed57aa8b-1d3c-4d74-b196-09450acee642"
+            }
+          ],
+          "id": "18453ba3-3512-4784-b208-cb4629818a81",
+          "createdAt": "2026-07-28T01:56:41.000Z",
+          "updatedAt": "2026-07-28T01:56:41.000Z",
+          "uid": "35240-18453ba3-3512-4784-b208-cb4629818a81"
+        }
+      ],
+      "id": "7083de99-4dff-474a-8547-c00e77c9c1bc",
+      "createdAt": "2026-07-28T01:56:41.000Z",
+      "updatedAt": "2026-07-28T01:56:41.000Z",
+      "uid": "35240-7083de99-4dff-474a-8547-c00e77c9c1bc"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.hit-pay.com"
+    }
+  ]
+}

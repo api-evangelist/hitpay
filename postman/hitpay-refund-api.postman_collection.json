@@ -1,0 +1,250 @@
+{
+  "info": {
+    "_postman_id": "65d14147-fd80-4316-bc8b-27c516daf77e",
+    "name": "HitPay Account Status Refund API",
+    "description": "Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:56:38.000Z",
+    "updatedAt": "2026-07-28T01:56:38.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-65d14147-fd80-4316-bc8b-27c516daf77e"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "refund",
+          "item": [
+            {
+              "name": "{refund_id}",
+              "item": [
+                {
+                  "name": "Get Refund Details",
+                  "id": "b6506881-bc79-48fd-b647-d07adc45ddab",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/refund/:refund_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "refund",
+                        ":refund_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e120ec80-3fcd-413f-9fd7-f23ff199b21b",
+                          "key": "refund_id",
+                          "value": "<uuid>",
+                          "description": "(Required) The refund id"
+                        }
+                      ]
+                    },
+                    "description": "Get the refund detail."
+                  },
+                  "response": [
+                    {
+                      "id": "1f037e1c-fe73-4288-b3fb-926a516e96c9",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/refund/:refund_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "refund",
+                            ":refund_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "refund_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<uuid>\",\n  \"refunded_by\": \"<string>\",\n  \"payment_id\": \"<uuid>\",\n  \"amount_refunded\": \"<number>\",\n  \"total_amount\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"status\": \"<string>\",\n  \"payment_method\": \"<string>\",\n  \"provider_fee\": \"<number>\",\n  \"provider_fee_currency\": \"<string>\",\n  \"refunded_at\": \"<dateTime>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:56:38.000Z",
+                      "updatedAt": "2026-07-28T01:56:38.000Z",
+                      "uid": "35240-1f037e1c-fe73-4288-b3fb-926a516e96c9"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:56:38.000Z",
+                  "updatedAt": "2026-07-28T01:56:38.000Z",
+                  "uid": "35240-b6506881-bc79-48fd-b647-d07adc45ddab"
+                }
+              ],
+              "id": "78400582-b398-4375-8774-3c76108b1b8b",
+              "createdAt": "2026-07-28T01:56:38.000Z",
+              "updatedAt": "2026-07-28T01:56:38.000Z",
+              "uid": "35240-78400582-b398-4375-8774-3c76108b1b8b"
+            },
+            {
+              "name": "Refund",
+              "id": "f4a92348-9d10-4f8d-88cf-f12c5e5d73c5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<number>\",\n  \"payment_id\": \"<uuid>\",\n  \"webhook\": \"<uri>\",\n  \"send_email\": \"false\",\n  \"email\": \"<email>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/refund",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "refund"
+                  ]
+                },
+                "description": "The API to refund the charge"
+              },
+              "response": [
+                {
+                  "id": "bad57007-f5c8-4e44-aa36-017cbdf13782",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<number>\",\n  \"payment_id\": \"<uuid>\",\n  \"webhook\": \"<uri>\",\n  \"send_email\": \"false\",\n  \"email\": \"<email>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/refund",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "refund"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"refunded_by\": \"<string>\",\n  \"payment_id\": \"<string>\",\n  \"amount_refunded\": 0,\n  \"total_amount\": 0,\n  \"currency\": \"<string>\",\n  \"status\": \"succeeded\",\n  \"payment_method\": \"<string>\",\n  \"provider_fee\": \"<integer>\",\n  \"provider_fee_currency\": \"<string>\",\n  \"refunded_at\": \"<string>\",\n  \"created_at\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:56:38.000Z",
+                  "updatedAt": "2026-07-28T01:56:38.000Z",
+                  "uid": "35240-bad57007-f5c8-4e44-aa36-017cbdf13782"
+                }
+              ],
+              "createdAt": "2026-07-28T01:56:38.000Z",
+              "updatedAt": "2026-07-28T01:56:38.000Z",
+              "uid": "35240-f4a92348-9d10-4f8d-88cf-f12c5e5d73c5"
+            }
+          ],
+          "id": "a3df2151-d9f9-41aa-a87e-352fd7f36faf",
+          "createdAt": "2026-07-28T01:56:38.000Z",
+          "updatedAt": "2026-07-28T01:56:38.000Z",
+          "uid": "35240-a3df2151-d9f9-41aa-a87e-352fd7f36faf"
+        }
+      ],
+      "id": "e3044f1a-2c15-47ed-8557-d060e2e8effd",
+      "createdAt": "2026-07-28T01:56:38.000Z",
+      "updatedAt": "2026-07-28T01:56:38.000Z",
+      "uid": "35240-e3044f1a-2c15-47ed-8557-d060e2e8effd"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.hit-pay.com"
+    }
+  ]
+}

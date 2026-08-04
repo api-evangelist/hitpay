@@ -1,0 +1,226 @@
+{
+  "info": {
+    "_postman_id": "0f259004-900e-448f-ba33-9df38cf66a49",
+    "name": "HitPay Account Status Notifications API",
+    "description": "Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:56:15.000Z",
+    "updatedAt": "2026-07-28T01:56:15.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0f259004-900e-448f-ba33-9df38cf66a49"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "notifications",
+          "item": [
+            {
+              "name": "Get Notifications Setting",
+              "id": "b0876df4-1863-49be-b3b8-c81a158fa0cb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/notifications",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "notifications"
+                  ]
+                },
+                "description": "Use this API to get the notification setting"
+              },
+              "response": [
+                {
+                  "id": "cae40816-d36c-4403-b0ca-74559d88363d",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/notifications",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "notifications"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"event\": \"<string>\",\n    \"channel\": \"<string>\"\n  },\n  {\n    \"event\": \"<string>\",\n    \"channel\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-07-28T01:56:15.000Z",
+                  "updatedAt": "2026-07-28T01:56:15.000Z",
+                  "uid": "35240-cae40816-d36c-4403-b0ca-74559d88363d"
+                }
+              ],
+              "createdAt": "2026-07-28T01:56:15.000Z",
+              "updatedAt": "2026-07-28T01:56:15.000Z",
+              "uid": "35240-b0876df4-1863-49be-b3b8-c81a158fa0cb"
+            },
+            {
+              "name": "Update Notifications Setting",
+              "id": "e231dd80-801b-4b25-8738-2487b45f3e6b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_receipt@email\": \"<boolean>\",\n  \"daily_collection@email\": \"<boolean>\",\n  \"daily_collection@push_notification\": \"<boolean>\",\n  \"daily_payout@email\": \"<boolean>\",\n  \"incoming_payment@email\": \"<boolean>\",\n  \"incoming_payment@push_notification\": \"<boolean>\",\n  \"new_order@email\": \"<boolean>\",\n  \"new_order@push_notification\": \"<boolean>\",\n  \"pending_order@email\": \"<boolean>\",\n  \"mall_gto_sync@email\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/notifications",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "notifications"
+                  ]
+                },
+                "description": "Use this API to update the notification setting"
+              },
+              "response": [
+                {
+                  "id": "98e4e1f6-52a8-4036-b3a1-fb414e65f9cb",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"customer_receipt@email\": \"<boolean>\",\n  \"daily_collection@email\": \"<boolean>\",\n  \"daily_collection@push_notification\": \"<boolean>\",\n  \"daily_payout@email\": \"<boolean>\",\n  \"incoming_payment@email\": \"<boolean>\",\n  \"incoming_payment@push_notification\": \"<boolean>\",\n  \"new_order@email\": \"<boolean>\",\n  \"new_order@push_notification\": \"<boolean>\",\n  \"pending_order@email\": \"<boolean>\",\n  \"mall_gto_sync@email\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/notifications",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "notifications"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"event\": \"<string>\",\n    \"channel\": \"<string>\"\n  },\n  {\n    \"event\": \"<string>\",\n    \"channel\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-07-28T01:56:15.000Z",
+                  "updatedAt": "2026-07-28T01:56:15.000Z",
+                  "uid": "35240-98e4e1f6-52a8-4036-b3a1-fb414e65f9cb"
+                }
+              ],
+              "createdAt": "2026-07-28T01:56:15.000Z",
+              "updatedAt": "2026-07-28T01:56:15.000Z",
+              "uid": "35240-e231dd80-801b-4b25-8738-2487b45f3e6b"
+            }
+          ],
+          "id": "9224a342-cbf1-4da5-a42d-150cb61fedf6",
+          "createdAt": "2026-07-28T01:56:15.000Z",
+          "updatedAt": "2026-07-28T01:56:15.000Z",
+          "uid": "35240-9224a342-cbf1-4da5-a42d-150cb61fedf6"
+        }
+      ],
+      "id": "979a2541-8986-445a-a5ee-d1ba83583a06",
+      "createdAt": "2026-07-28T01:56:15.000Z",
+      "updatedAt": "2026-07-28T01:56:15.000Z",
+      "uid": "35240-979a2541-8986-445a-a5ee-d1ba83583a06"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.hit-pay.com"
+    }
+  ]
+}

@@ -1,0 +1,741 @@
+{
+  "info": {
+    "_postman_id": "90a3b232-4360-4533-93d0-2ae06d2280d1",
+    "name": "HitPay Account Status Subscription Plan API",
+    "description": "Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:56:43.000Z",
+    "updatedAt": "2026-07-28T01:56:43.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-90a3b232-4360-4533-93d0-2ae06d2280d1"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "subscription-plan",
+          "item": [
+            {
+              "name": "{plan_id}",
+              "item": [
+                {
+                  "name": "Get Subscription Plan Details",
+                  "id": "d483ab48-173f-4a61-8e15-076e8591e1b0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/subscription-plan/:plan_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "subscription-plan",
+                        ":plan_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "37b863bf-0903-43ec-a885-dfe78793688a",
+                          "key": "plan_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Use this API to get the subscription plan details, if you need to make any changes use the Update a Subscription Plan API"
+                  },
+                  "response": [
+                    {
+                      "id": "76f0c238-d81b-4b26-9958-d4468b7b08c0",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/subscription-plan/:plan_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "subscription-plan",
+                            ":plan_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "plan_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"cycle\": \"<string>\",\n  \"cycle_repeat\": {},\n  \"cycle_frequency\": {},\n  \"currency\": \"<string>\",\n  \"amount\": 0,\n  \"reference\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:44.000Z",
+                      "updatedAt": "2026-07-28T01:56:44.000Z",
+                      "uid": "35240-76f0c238-d81b-4b26-9958-d4468b7b08c0"
+                    },
+                    {
+                      "id": "9f237e90-d1d9-4848-b003-bfab44454f16",
+                      "name": "422",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/subscription-plan/:plan_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "subscription-plan",
+                            ":plan_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "plan_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:44.000Z",
+                      "updatedAt": "2026-07-28T01:56:44.000Z",
+                      "uid": "35240-9f237e90-d1d9-4848-b003-bfab44454f16"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:56:44.000Z",
+                  "updatedAt": "2026-07-28T01:56:44.000Z",
+                  "uid": "35240-d483ab48-173f-4a61-8e15-076e8591e1b0"
+                },
+                {
+                  "name": "Update Subscription Plan",
+                  "id": "cea48c4e-4c9a-4a9e-9e92-6b6a95d09e0d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"cycle\": \"monthly\",\n  \"amount\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"cycle_frequency\": \"week\",\n  \"cycle_repeat\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"reference\": \"<string>\",\n  \"redirect_url\": \"<string>\",\n  \"start_date_method\": \"fixed_date\",\n  \"fixed_date\": \"<number>\",\n  \"times_to_be_charged\": \"<number>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/subscription-plan/:plan_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "subscription-plan",
+                        ":plan_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e994cf4b-9745-4ed1-996f-ee80ad271e5a",
+                          "key": "plan_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Use this API to update the subscription plan, changes made to the plan will not affect current subscription. If you would like to make changes to the current subscriptions use the Update Recurring Billing API."
+                  },
+                  "response": [
+                    {
+                      "id": "a053974c-bf7d-40e2-8d3a-48760bc03d1e",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"cycle\": \"monthly\",\n  \"amount\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"cycle_frequency\": \"week\",\n  \"cycle_repeat\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"reference\": \"<string>\",\n  \"redirect_url\": \"<string>\",\n  \"start_date_method\": \"fixed_date\",\n  \"fixed_date\": \"<number>\",\n  \"times_to_be_charged\": \"<number>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/subscription-plan/:plan_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "subscription-plan",
+                            ":plan_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "plan_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"cycle\": \"<string>\",\n  \"cycle_repeat\": {},\n  \"cycle_frequency\": {},\n  \"currency\": \"<string>\",\n  \"amount\": 0,\n  \"reference\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:44.000Z",
+                      "updatedAt": "2026-07-28T01:56:44.000Z",
+                      "uid": "35240-a053974c-bf7d-40e2-8d3a-48760bc03d1e"
+                    },
+                    {
+                      "id": "2ed8d9cf-43a7-46ec-9559-a189958bf7f9",
+                      "name": "422",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"cycle\": \"monthly\",\n  \"amount\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"cycle_frequency\": \"week\",\n  \"cycle_repeat\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"reference\": \"<string>\",\n  \"redirect_url\": \"<string>\",\n  \"start_date_method\": \"fixed_date\",\n  \"fixed_date\": \"<number>\",\n  \"times_to_be_charged\": \"<number>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/subscription-plan/:plan_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "subscription-plan",
+                            ":plan_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "plan_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errors\": {\n    \"name\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T01:56:44.000Z",
+                      "updatedAt": "2026-07-28T01:56:44.000Z",
+                      "uid": "35240-2ed8d9cf-43a7-46ec-9559-a189958bf7f9"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:56:44.000Z",
+                  "updatedAt": "2026-07-28T01:56:44.000Z",
+                  "uid": "35240-cea48c4e-4c9a-4a9e-9e92-6b6a95d09e0d"
+                },
+                {
+                  "name": "Delete Subscription Plan",
+                  "id": "c8926205-0ea7-41b5-9d45-826b52c34c85",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/subscription-plan/:plan_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "subscription-plan",
+                        ":plan_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "be0c1c8e-5e96-4bdf-9ba8-9721b5b53023",
+                          "key": "plan_id",
+                          "value": "<string>",
+                          "description": "(Required) The subscription id"
+                        }
+                      ]
+                    },
+                    "description": "Delete the Subscription plan"
+                  },
+                  "response": [
+                    {
+                      "id": "f14b487e-d0a5-487d-8e8b-663e09d58ca9",
+                      "name": "204",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/subscription-plan/:plan_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "subscription-plan",
+                            ":plan_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "plan_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<integer>",
+                      "createdAt": "2026-07-28T01:56:44.000Z",
+                      "updatedAt": "2026-07-28T01:56:44.000Z",
+                      "uid": "35240-f14b487e-d0a5-487d-8e8b-663e09d58ca9"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:56:44.000Z",
+                  "updatedAt": "2026-07-28T01:56:44.000Z",
+                  "uid": "35240-c8926205-0ea7-41b5-9d45-826b52c34c85"
+                }
+              ],
+              "id": "bbd7f1a2-0d0f-4990-bd69-ef6625b632b9",
+              "createdAt": "2026-07-28T01:56:44.000Z",
+              "updatedAt": "2026-07-28T01:56:44.000Z",
+              "uid": "35240-bbd7f1a2-0d0f-4990-bd69-ef6625b632b9"
+            },
+            {
+              "name": "Get All Subscription Plan",
+              "id": "bec2b3fe-8f9a-4d6b-a6c3-30b6c7a85fd8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/subscription-plan?per_page=20&page=1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "subscription-plan"
+                  ],
+                  "query": [
+                    {
+                      "description": "The number of per page",
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "description": "The page index",
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ]
+                },
+                "description": "Use this API to get all subscription plans details."
+              },
+              "response": [
+                {
+                  "id": "0f7b6ecf-59a5-4b6f-8343-076d8529b0f1",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/subscription-plan?per_page=20&page=1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "subscription-plan"
+                      ],
+                      "query": [
+                        {
+                          "description": "The number of per page",
+                          "key": "per_page",
+                          "value": "20"
+                        },
+                        {
+                          "description": "The page index",
+                          "key": "page",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"cycle\": \"<string>\",\n      \"cycle_repeat\": 0,\n      \"cycle_frequency\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"price\": 0,\n      \"amount\": 0,\n      \"reference\": {},\n      \"created_at\": \"<string>\",\n      \"updated_at\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"cycle\": \"<string>\",\n      \"cycle_repeat\": 0,\n      \"cycle_frequency\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"price\": 0,\n      \"amount\": 0,\n      \"reference\": {},\n      \"created_at\": \"<string>\",\n      \"updated_at\": \"<string>\"\n    }\n  ],\n  \"links\": {\n    \"first\": \"<string>\",\n    \"last\": \"<string>\",\n    \"prev\": {},\n    \"next\": {}\n  },\n  \"meta\": {\n    \"current_page\": 0,\n    \"from\": 0,\n    \"last_page\": 0,\n    \"links\": [\n      {\n        \"url\": {},\n        \"label\": \"<string>\",\n        \"active\": true\n      },\n      {\n        \"url\": {},\n        \"label\": \"<string>\",\n        \"active\": true\n      }\n    ],\n    \"path\": \"<string>\",\n    \"per_page\": 0,\n    \"to\": 0,\n    \"total\": 0\n  }\n}",
+                  "createdAt": "2026-07-28T01:56:44.000Z",
+                  "updatedAt": "2026-07-28T01:56:44.000Z",
+                  "uid": "35240-0f7b6ecf-59a5-4b6f-8343-076d8529b0f1"
+                }
+              ],
+              "createdAt": "2026-07-28T01:56:44.000Z",
+              "updatedAt": "2026-07-28T01:56:44.000Z",
+              "uid": "35240-bec2b3fe-8f9a-4d6b-a6c3-30b6c7a85fd8"
+            },
+            {
+              "name": "Create a Subscription Plan",
+              "id": "7450158d-4f20-413d-a8a8-c6ee01d65770",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"cycle\": \"monthly\",\n  \"amount\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"cycle_frequency\": \"month\",\n  \"cycle_repeat\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"reference\": \"<string>\",\n  \"redirect_url\": \"<string>\",\n  \"start_date_method\": \"sign_up_date\",\n  \"fixed_date\": \"<number>\",\n  \"times_to_be_charged\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/subscription-plan",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "subscription-plan"
+                  ]
+                },
+                "description": "A subscription plan consists of basic information like plan name, amount, and frequency. An example of a subscription plan could be \u201cSpotify Premium Membership\u201d which is SGD 9.90 monthly."
+              },
+              "response": [
+                {
+                  "id": "da670fe3-edcd-4d37-a9b0-cea13e66c4a4",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"cycle\": \"monthly\",\n  \"amount\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"cycle_frequency\": \"month\",\n  \"cycle_repeat\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"reference\": \"<string>\",\n  \"redirect_url\": \"<string>\",\n  \"start_date_method\": \"sign_up_date\",\n  \"fixed_date\": \"<number>\",\n  \"times_to_be_charged\": 1\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/subscription-plan",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "subscription-plan"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"cycle\": \"<string>\",\n  \"cycle_repeat\": {},\n  \"cycle_frequency\": {},\n  \"currency\": \"<string>\",\n  \"amount\": 0,\n  \"reference\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:56:44.000Z",
+                  "updatedAt": "2026-07-28T01:56:44.000Z",
+                  "uid": "35240-da670fe3-edcd-4d37-a9b0-cea13e66c4a4"
+                },
+                {
+                  "id": "a3c05c92-5c4d-4c16-b43a-5e99eb35ae8c",
+                  "name": "422",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"cycle\": \"monthly\",\n  \"amount\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"cycle_frequency\": \"month\",\n  \"cycle_repeat\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"reference\": \"<string>\",\n  \"redirect_url\": \"<string>\",\n  \"start_date_method\": \"sign_up_date\",\n  \"fixed_date\": \"<number>\",\n  \"times_to_be_charged\": 1\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/subscription-plan",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "subscription-plan"
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"errors\": {\n    \"name\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"amount\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"cycle\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T01:56:44.000Z",
+                  "updatedAt": "2026-07-28T01:56:44.000Z",
+                  "uid": "35240-a3c05c92-5c4d-4c16-b43a-5e99eb35ae8c"
+                }
+              ],
+              "createdAt": "2026-07-28T01:56:44.000Z",
+              "updatedAt": "2026-07-28T01:56:44.000Z",
+              "uid": "35240-7450158d-4f20-413d-a8a8-c6ee01d65770"
+            }
+          ],
+          "id": "4b25cbe3-70a3-4bbd-8c31-b9a88a2e3e02",
+          "createdAt": "2026-07-28T01:56:44.000Z",
+          "updatedAt": "2026-07-28T01:56:44.000Z",
+          "uid": "35240-4b25cbe3-70a3-4bbd-8c31-b9a88a2e3e02"
+        }
+      ],
+      "id": "bdf8186d-05b1-45cd-a9b3-1367a37ba1f2",
+      "createdAt": "2026-07-28T01:56:44.000Z",
+      "updatedAt": "2026-07-28T01:56:44.000Z",
+      "uid": "35240-bdf8186d-05b1-45cd-a9b3-1367a37ba1f2"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.hit-pay.com"
+    }
+  ]
+}

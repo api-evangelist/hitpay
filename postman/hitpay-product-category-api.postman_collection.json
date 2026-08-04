@@ -1,0 +1,168 @@
+{
+  "info": {
+    "_postman_id": "386a3831-c07d-4bbd-9c9b-d3ea62a16d7b",
+    "name": "HitPay Account Status Product Category API",
+    "description": "Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:56:33.000Z",
+    "updatedAt": "2026-07-28T01:56:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-386a3831-c07d-4bbd-9c9b-d3ea62a16d7b"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "product-category",
+          "item": [
+            {
+              "name": "Get All Product Category",
+              "id": "dc7e7b24-5421-4095-8129-318a8c2c453f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/product-category?perPage=20&page=1&active=<boolean>&parent_id=<string>&keywords=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "product-category"
+                  ],
+                  "query": [
+                    {
+                      "key": "perPage",
+                      "value": "20"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Filter by active status",
+                      "key": "active",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "The parent category id, to list all subcategories of a parent category",
+                      "key": "parent_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by keywords, name",
+                      "key": "keywords",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Use this API to get all product category"
+              },
+              "response": [
+                {
+                  "id": "2d5e50c0-68ce-4ed9-934f-d7ebfa6dd38b",
+                  "name": "Successful response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/product-category?perPage=20&page=1&active=<boolean>&parent_id=<string>&keywords=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "product-category"
+                      ],
+                      "query": [
+                        {
+                          "key": "perPage",
+                          "value": "20"
+                        },
+                        {
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Filter by active status",
+                          "key": "active",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "The parent category id, to list all subcategories of a parent category",
+                          "key": "parent_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by keywords, name",
+                          "key": "keywords",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"is_active\": \"<boolean>\",\n      \"order\": \"<integer>\",\n      \"is_parent\": \"<boolean>\",\n      \"image\": {\n        \"id\": \"<uuid>\",\n        \"caption\": \"<string>\",\n        \"alt_text\": \"<string>\",\n        \"group\": \"<string>\",\n        \"order\": \"<integer>\",\n        \"extension\": \"<string>\",\n        \"status\": \"<string>\",\n        \"disk\": \"<string>\",\n        \"url\": \"<string>\",\n        \"other_dimensions\": [\n          {\n            \"size\": \"<string>\",\n            \"path\": \"<string>\"\n          },\n          {\n            \"size\": \"<string>\",\n            \"path\": \"<string>\"\n          }\n        ],\n        \"urls\": {\n          \"icon\": \"<string>\",\n          \"large\": \"<string>\",\n          \"small\": \"<string>\",\n          \"medium\": \"<string>\",\n          \"thumbnail\": \"<string>\"\n        }\n      },\n      \"emoji\": \"<string>\",\n      \"pos_color\": \"<string>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"is_active\": \"<boolean>\",\n      \"order\": \"<integer>\",\n      \"is_parent\": \"<boolean>\",\n      \"image\": {\n        \"id\": \"<uuid>\",\n        \"caption\": \"<string>\",\n        \"alt_text\": \"<string>\",\n        \"group\": \"<string>\",\n        \"order\": \"<integer>\",\n        \"extension\": \"<string>\",\n        \"status\": \"<string>\",\n        \"disk\": \"<string>\",\n        \"url\": \"<string>\",\n        \"other_dimensions\": [\n          {\n            \"size\": \"<string>\",\n            \"path\": \"<string>\"\n          },\n          {\n            \"size\": \"<string>\",\n            \"path\": \"<string>\"\n          }\n        ],\n        \"urls\": {\n          \"icon\": \"<string>\",\n          \"large\": \"<string>\",\n          \"small\": \"<string>\",\n          \"medium\": \"<string>\",\n          \"thumbnail\": \"<string>\"\n        }\n      },\n      \"emoji\": \"<string>\",\n      \"pos_color\": \"<string>\"\n    }\n  ],\n  \"links\": {\n    \"first\": \"<string>\",\n    \"last\": \"<string>\",\n    \"prev\": \"<string>\",\n    \"next\": \"<string>\"\n  },\n  \"meta\": {\n    \"current_page\": \"<integer>\",\n    \"from\": \"<integer>\",\n    \"last_page\": \"<integer>\",\n    \"links\": [\n      {\n        \"url\": \"<string>\",\n        \"label\": \"<string>\",\n        \"active\": \"<boolean>\"\n      },\n      {\n        \"url\": \"<string>\",\n        \"label\": \"<string>\",\n        \"active\": \"<boolean>\"\n      }\n    ],\n    \"path\": \"<string>\",\n    \"per_page\": \"<integer>\",\n    \"to\": \"<integer>\",\n    \"total\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:56:34.000Z",
+                  "updatedAt": "2026-07-28T01:56:34.000Z",
+                  "uid": "35240-2d5e50c0-68ce-4ed9-934f-d7ebfa6dd38b"
+                }
+              ],
+              "createdAt": "2026-07-28T01:56:34.000Z",
+              "updatedAt": "2026-07-28T01:56:34.000Z",
+              "uid": "35240-dc7e7b24-5421-4095-8129-318a8c2c453f"
+            }
+          ],
+          "id": "ad7a06fd-2b44-4097-a642-652f91ca8bbe",
+          "createdAt": "2026-07-28T01:56:34.000Z",
+          "updatedAt": "2026-07-28T01:56:34.000Z",
+          "uid": "35240-ad7a06fd-2b44-4097-a642-652f91ca8bbe"
+        }
+      ],
+      "id": "12da6e25-8240-4dae-8db6-a0ba387bf917",
+      "createdAt": "2026-07-28T01:56:34.000Z",
+      "updatedAt": "2026-07-28T01:56:34.000Z",
+      "uid": "35240-12da6e25-8240-4dae-8db6-a0ba387bf917"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.hit-pay.com"
+    }
+  ]
+}

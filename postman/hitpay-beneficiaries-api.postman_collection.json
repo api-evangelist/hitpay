@@ -1,0 +1,902 @@
+{
+  "info": {
+    "_postman_id": "0123dc4a-8f05-4c4e-a925-dc026b7ac2d3",
+    "name": "HitPay Account Status Beneficiaries API",
+    "description": "Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:56:10.000Z",
+    "updatedAt": "2026-07-28T01:56:10.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0123dc4a-8f05-4c4e-a925-dc026b7ac2d3"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "beneficiaries",
+          "item": [
+            {
+              "name": "schema",
+              "item": [
+                {
+                  "name": "Get the API schema",
+                  "id": "5ac92ffb-9a03-4426-8677-643bbe1cbe21",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"country\": \"xq\",\n  \"transfer_method\": \"<string>\",\n  \"transfer_type\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"holder_type\": \"individual\",\n  \"bank_swift_code\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/beneficiaries/schema",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "beneficiaries",
+                        "schema"
+                      ]
+                    },
+                    "description": "This API returns a dynamic schema that depends on the values of certain parameters. The schema contains the fields and validation rules for each payment scenario. A payment scenario is a combination of these parameters:country, transfer_method,transfer_type, currency, holder_type and bank_swift_code. To get the final schema, you need to submit the field values and re-render the form multiple times until all the fields are completed. For example, if you submit only the country parameter, the API will return a schema with the fields for country and transfer_method. If you submit the country and transfer_method parameters, the API will return a schema with the fields for country, transfer_method, currency, and so on."
+                  },
+                  "response": [
+                    {
+                      "id": "918bf1bb-0279-41ad-a131-dd16d7aff651",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"country\": \"xq\",\n  \"transfer_method\": \"<string>\",\n  \"transfer_type\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"holder_type\": \"individual\",\n  \"bank_swift_code\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/beneficiaries/schema",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "beneficiaries",
+                            "schema"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "null",
+                      "createdAt": "2026-07-28T01:56:11.000Z",
+                      "updatedAt": "2026-07-28T01:56:11.000Z",
+                      "uid": "35240-918bf1bb-0279-41ad-a131-dd16d7aff651"
+                    },
+                    {
+                      "id": "31625598-b0c0-4f12-ab3e-f757e9cfa9c3",
+                      "name": "422",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"country\": \"xq\",\n  \"transfer_method\": \"<string>\",\n  \"transfer_type\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"holder_type\": \"individual\",\n  \"bank_swift_code\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/beneficiaries/schema",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "beneficiaries",
+                            "schema"
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"examples\": {\n    \"Result\": {\n      \"value\": {\n        \"message\": \"The given data was invalid. The selected Country is invalid.\",\n        \"errors\": {\n          \"country\": [\n            \"The selected Country is invalid.\"\n          ],\n          \"transfer_method\": [\n            \"The selected Transfer Method is invalid.\"\n          ],\n          \"transfer_type\": [\n            \"The selected Transfer Type is invalid.\"\n          ],\n          \"currency\": [\n            \"The selected Currency is invalid.\"\n          ]\n        }\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:56:11.000Z",
+                      "updatedAt": "2026-07-28T01:56:11.000Z",
+                      "uid": "35240-31625598-b0c0-4f12-ab3e-f757e9cfa9c3"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:56:11.000Z",
+                  "updatedAt": "2026-07-28T01:56:11.000Z",
+                  "uid": "35240-5ac92ffb-9a03-4426-8677-643bbe1cbe21"
+                }
+              ],
+              "id": "564a8358-daba-4fd6-975b-ede77a68d1ea",
+              "createdAt": "2026-07-28T01:56:11.000Z",
+              "updatedAt": "2026-07-28T01:56:11.000Z",
+              "uid": "35240-564a8358-daba-4fd6-975b-ede77a68d1ea"
+            },
+            {
+              "name": "{beneficiary_id}",
+              "item": [
+                {
+                  "name": "Update existing beneficiary",
+                  "id": "fe3f869a-664e-495c-8d8b-b5cf5e5f76dd",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"nickname\": \"<string>\",\n  \"remark\": \"<string>\",\n  \"is_favourite\": true\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/beneficiaries/:beneficiary_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "beneficiaries",
+                        ":beneficiary_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "2c6d5462-961c-49e9-b519-10de69a68f6d",
+                          "key": "beneficiary_id",
+                          "value": "<uuid>",
+                          "description": "(Required) The Beneficiary id"
+                        }
+                      ]
+                    },
+                    "description": "we only accept to update nickname, remark and is_favourite fields"
+                  },
+                  "response": [
+                    {
+                      "id": "0210e997-4b1b-4f9d-9487-f51fda33ea4f",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"nickname\": \"<string>\",\n  \"remark\": \"<string>\",\n  \"is_favourite\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/beneficiaries/:beneficiary_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "beneficiaries",
+                            ":beneficiary_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "beneficiary_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"status\": \"<string>\",\n  \"country\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"transfer_method\": \"<string>\",\n  \"transfer_type\": \"<string>\",\n  \"nickname\": \"<string>\",\n  \"remark\": \"<string>\",\n  \"holder_name\": \"<string>\",\n  \"holder_type\": \"<string>\",\n  \"bank_branch_code\": \"<string>\",\n  \"account_number\": \"<string>\",\n  \"bank_name\": \"<string>\",\n  \"bank_id\": \"<string>\",\n  \"email\": \"<string>\",\n  \"bank_swift_code\": \"<string>\",\n  \"is_favourite\": \"<boolean>\",\n  \"created_by\": {\n    \"id\": \"<string>\",\n    \"display_name\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\"\n  },\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\",\n  \"deleted_at\": \"<string,null>\"\n}",
+                      "createdAt": "2026-07-28T01:56:11.000Z",
+                      "updatedAt": "2026-07-28T01:56:11.000Z",
+                      "uid": "35240-0210e997-4b1b-4f9d-9487-f51fda33ea4f"
+                    },
+                    {
+                      "id": "aac82ec2-7f4c-45a0-ac9a-c19dbacb032b",
+                      "name": "422",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"nickname\": \"<string>\",\n  \"remark\": \"<string>\",\n  \"is_favourite\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/beneficiaries/:beneficiary_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "beneficiaries",
+                            ":beneficiary_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "beneficiary_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"examples\": {\n    \"Result\": {\n      \"value\": {\n        \"message\": \"The given data was invalid. The remark may not be greater than 255 characters.\",\n        \"errors\": {\n          \"remark\": [\n            \"The remark may not be greater than 255 characters.\"\n          ]\n        }\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:56:11.000Z",
+                      "updatedAt": "2026-07-28T01:56:11.000Z",
+                      "uid": "35240-aac82ec2-7f4c-45a0-ac9a-c19dbacb032b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:56:11.000Z",
+                  "updatedAt": "2026-07-28T01:56:11.000Z",
+                  "uid": "35240-fe3f869a-664e-495c-8d8b-b5cf5e5f76dd"
+                },
+                {
+                  "name": "Delete existing beneficiary",
+                  "id": "7250b864-ba85-44e2-93fd-57e265034004",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/beneficiaries/:beneficiary_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "beneficiaries",
+                        ":beneficiary_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "5562b078-0e89-4bd7-ab04-6a3a9ebbfb6d",
+                          "key": "beneficiary_id",
+                          "value": "<string>",
+                          "description": "(Required) The Beneficiary id"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "dd5dee8a-091e-4890-aa34-519a7f16fcf1",
+                      "name": "204",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/beneficiaries/:beneficiary_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "beneficiaries",
+                            ":beneficiary_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "beneficiary_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:56:11.000Z",
+                      "updatedAt": "2026-07-28T01:56:11.000Z",
+                      "uid": "35240-dd5dee8a-091e-4890-aa34-519a7f16fcf1"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:56:11.000Z",
+                  "updatedAt": "2026-07-28T01:56:11.000Z",
+                  "uid": "35240-7250b864-ba85-44e2-93fd-57e265034004"
+                },
+                {
+                  "name": "Get a beneficiary by ID",
+                  "id": "a2bde317-b8c7-449e-8bf4-c12dd49f31a4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/beneficiaries/:beneficiary_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "beneficiaries",
+                        ":beneficiary_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "65966f1b-950e-4543-973c-5f66775316c8",
+                          "key": "beneficiary_id",
+                          "value": "<string>",
+                          "description": "(Required) The Beneficiary id"
+                        }
+                      ]
+                    },
+                    "description": "Get a beneficiary by ID"
+                  },
+                  "response": [
+                    {
+                      "id": "e9f7bd4d-d125-4f70-9868-b739c762b41b",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/beneficiaries/:beneficiary_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "beneficiaries",
+                            ":beneficiary_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "beneficiary_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "null",
+                      "createdAt": "2026-07-28T01:56:11.000Z",
+                      "updatedAt": "2026-07-28T01:56:11.000Z",
+                      "uid": "35240-e9f7bd4d-d125-4f70-9868-b739c762b41b"
+                    },
+                    {
+                      "id": "b521d16e-a737-41a7-9d83-73d25a9348d2",
+                      "name": "404",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/beneficiaries/:beneficiary_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "beneficiaries",
+                            ":beneficiary_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "beneficiary_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"examples\": {\n    \"Result\": {\n      \"value\": {\n        \"message\": \"No query results for model [App\\\\Models\\\\Business\\\\BankAccount] 9eb3d3ff-3fb0-450e-bb61-7c0753974392\"\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:56:11.000Z",
+                      "updatedAt": "2026-07-28T01:56:11.000Z",
+                      "uid": "35240-b521d16e-a737-41a7-9d83-73d25a9348d2"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:56:11.000Z",
+                  "updatedAt": "2026-07-28T01:56:11.000Z",
+                  "uid": "35240-a2bde317-b8c7-449e-8bf4-c12dd49f31a4"
+                }
+              ],
+              "id": "b90b7b95-8b6b-45eb-bd38-09b6fa1426a6",
+              "createdAt": "2026-07-28T01:56:11.000Z",
+              "updatedAt": "2026-07-28T01:56:11.000Z",
+              "uid": "35240-b90b7b95-8b6b-45eb-bd38-09b6fa1426a6"
+            },
+            {
+              "name": "Create a new beneficiary",
+              "id": "8e81dd3b-494f-40ae-b6b5-d83eafff2440",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"country\": \"sg\",\n  \"transfer_method\": \"bank_transfer\",\n  \"currency\": \"sgd\",\n  \"transfer_type\": \"local\",\n  \"holder_type\": \"individual\",\n  \"holder_name\": \"<string>\",\n  \"account_number\": \"<string>\",\n  \"bank_swift_code\": \"<string>\",\n  \"nickname\": \"<string>\",\n  \"remark\": \"<string>\",\n  \"is_favourite\": \"<boolean>\",\n  \"email\": \"<email>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/beneficiaries",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "beneficiaries"
+                  ]
+                },
+                "description": "A beneficiary is a person or business receiving the funds. HitPay currently supports local beneficiaries, enabling payouts within the same country and region."
+              },
+              "response": [
+                {
+                  "id": "f52cddae-c9b2-497b-9bf6-b27f44b56c5a",
+                  "name": "201",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"country\": \"sg\",\n  \"transfer_method\": \"bank_transfer\",\n  \"currency\": \"sgd\",\n  \"transfer_type\": \"local\",\n  \"holder_type\": \"individual\",\n  \"holder_name\": \"<string>\",\n  \"account_number\": \"<string>\",\n  \"bank_swift_code\": \"<string>\",\n  \"nickname\": \"<string>\",\n  \"remark\": \"<string>\",\n  \"is_favourite\": \"<boolean>\",\n  \"email\": \"<email>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/beneficiaries",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "beneficiaries"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"examples\": {\n    \"Result\": {\n      \"value\": {\n        \"status\": \"approved\",\n        \"country\": \"sg\",\n        \"currency\": \"sgd\",\n        \"transfer_method\": \"bank_transfer\",\n        \"transfer_type\": \"local\",\n        \"holder_name\": \"John Test\",\n        \"holder_type\": \"individual\",\n        \"account_number\": \"1409828\",\n        \"bank_name\": \"BANK OF AMERICA\",\n        \"bank_id\": \"BOFASG2XXXX[7065]\",\n        \"bank_swift_code\": \"BOFASG2XXXX\",\n        \"is_favourite\": false,\n        \"created_by\": {\n          \"display_name\": \"TestingSG\",\n          \"first_name\": \"QA\",\n          \"last_name\": \"SG\"\n        },\n        \"created_at\": \"2025-04-24T15:13:22+08:00\",\n        \"updated_at\": \"2025-04-24T15:13:22+08:00\"\n      }\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:56:11.000Z",
+                  "updatedAt": "2026-07-28T01:56:11.000Z",
+                  "uid": "35240-f52cddae-c9b2-497b-9bf6-b27f44b56c5a"
+                },
+                {
+                  "id": "6824e250-14f9-48fa-afff-a7487502f99e",
+                  "name": "201",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"country\": \"sg\",\n  \"transfer_method\": \"bank_transfer\",\n  \"currency\": \"sgd\",\n  \"transfer_type\": \"local\",\n  \"holder_type\": \"individual\",\n  \"holder_name\": \"<string>\",\n  \"account_number\": \"<string>\",\n  \"bank_swift_code\": \"<string>\",\n  \"nickname\": \"<string>\",\n  \"remark\": \"<string>\",\n  \"is_favourite\": \"<boolean>\",\n  \"email\": \"<email>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/beneficiaries",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "beneficiaries"
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"examples\": {\n    \"Result\": {\n      \"value\": {\n        \"message\": \"The Country field is required. (and 4 more errors)\",\n        \"errors\": {\n          \"country\": [\n            \"The Country field is required.\"\n          ],\n          \"transfer_method\": [\n            \"The Transfer Method field is required.\"\n          ],\n          \"currency\": [\n            \"The Currency field is required.\"\n          ],\n          \"holder_type\": [\n            \"The Entity Type field is required.\"\n          ],\n          \"holder_name\": [\n            \"The Account Holder Name field is required.\"\n          ]\n        }\n      }\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:56:11.000Z",
+                  "updatedAt": "2026-07-28T01:56:11.000Z",
+                  "uid": "35240-6824e250-14f9-48fa-afff-a7487502f99e"
+                }
+              ],
+              "createdAt": "2026-07-28T01:56:11.000Z",
+              "updatedAt": "2026-07-28T01:56:11.000Z",
+              "uid": "35240-8e81dd3b-494f-40ae-b6b5-d83eafff2440"
+            },
+            {
+              "name": "Get list of beneficiaries",
+              "id": "7a6fdcda-9be1-40b6-a2c3-795f2a120914",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/beneficiaries?query=<string>&per_page=10",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "beneficiaries"
+                  ],
+                  "query": [
+                    {
+                      "description": "Search by holder name / nickname",
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    }
+                  ]
+                },
+                "description": "Get list of beneficiaries"
+              },
+              "response": [
+                {
+                  "id": "89467930-dc2c-452a-80a8-231bf23d111c",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/beneficiaries?query=<string>&per_page=10",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "beneficiaries"
+                      ],
+                      "query": [
+                        {
+                          "description": "Search by holder name / nickname",
+                          "key": "query",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "per_page",
+                          "value": "10"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"status\": \"<string>\",\n      \"country\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"transfer_method\": \"<string>\",\n      \"transfer_type\": \"<string>\",\n      \"nickname\": \"<string>\",\n      \"remark\": \"<string,null>\",\n      \"holder_name\": \"<string>\",\n      \"holder_type\": \"<string>\",\n      \"bank_branch_code\": \"<string>\",\n      \"account_number\": \"<string>\",\n      \"bank_name\": \"<string>\",\n      \"bank_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"bank_swift_code\": \"<string>\",\n      \"is_favourite\": \"<boolean>\",\n      \"created_by\": {\n        \"id\": \"<string>\",\n        \"display_name\": \"<string>\",\n        \"first_name\": \"<string>\",\n        \"last_name\": \"<string>\"\n      },\n      \"created_at\": \"<string>\",\n      \"updated_at\": \"<string>\",\n      \"deleted_at\": \"<string,null>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"status\": \"<string>\",\n      \"country\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"transfer_method\": \"<string>\",\n      \"transfer_type\": \"<string>\",\n      \"nickname\": \"<string>\",\n      \"remark\": \"<string,null>\",\n      \"holder_name\": \"<string>\",\n      \"holder_type\": \"<string>\",\n      \"bank_branch_code\": \"<string>\",\n      \"account_number\": \"<string>\",\n      \"bank_name\": \"<string>\",\n      \"bank_id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"bank_swift_code\": \"<string>\",\n      \"is_favourite\": \"<boolean>\",\n      \"created_by\": {\n        \"id\": \"<string>\",\n        \"display_name\": \"<string>\",\n        \"first_name\": \"<string>\",\n        \"last_name\": \"<string>\"\n      },\n      \"created_at\": \"<string>\",\n      \"updated_at\": \"<string>\",\n      \"deleted_at\": \"<string,null>\"\n    }\n  ],\n  \"links\": {\n    \"first\": \"<string>\",\n    \"last\": \"<string>\",\n    \"prev\": {},\n    \"next\": \"<string>\"\n  },\n  \"meta\": {\n    \"current_page\": \"<number>\",\n    \"from\": \"<number>\",\n    \"last_page\": \"<number>\",\n    \"links\": [\n      {\n        \"label\": \"<string>\",\n        \"active\": \"<boolean>\",\n        \"url\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"active\": \"<boolean>\",\n        \"url\": \"<string>\"\n      }\n    ],\n    \"path\": \"<string>\",\n    \"per_page\": \"<number>\",\n    \"to\": \"<number>\",\n    \"total\": \"<number>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:56:11.000Z",
+                  "updatedAt": "2026-07-28T01:56:11.000Z",
+                  "uid": "35240-89467930-dc2c-452a-80a8-231bf23d111c"
+                }
+              ],
+              "createdAt": "2026-07-28T01:56:11.000Z",
+              "updatedAt": "2026-07-28T01:56:11.000Z",
+              "uid": "35240-7a6fdcda-9be1-40b6-a2c3-795f2a120914"
+            }
+          ],
+          "id": "af14b34a-c461-47ea-858c-38d762a490dd",
+          "createdAt": "2026-07-28T01:56:11.000Z",
+          "updatedAt": "2026-07-28T01:56:11.000Z",
+          "uid": "35240-af14b34a-c461-47ea-858c-38d762a490dd"
+        }
+      ],
+      "id": "33ae560d-fdfe-4f10-be9e-a8d1ae85a947",
+      "createdAt": "2026-07-28T01:56:11.000Z",
+      "updatedAt": "2026-07-28T01:56:11.000Z",
+      "uid": "35240-33ae560d-fdfe-4f10-be9e-a8d1ae85a947"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.hit-pay.com"
+    }
+  ]
+}

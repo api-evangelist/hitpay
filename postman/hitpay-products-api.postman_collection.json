@@ -1,0 +1,1427 @@
+{
+  "info": {
+    "_postman_id": "50d453d9-8f83-4d68-8229-7c0ad04733db",
+    "name": "HitPay Account Status Products API",
+    "description": "Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:56:34.000Z",
+    "updatedAt": "2026-07-28T01:56:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-50d453d9-8f83-4d68-8229-7c0ad04733db"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "products",
+          "item": [
+            {
+              "name": "{product_id}",
+              "item": [
+                {
+                  "name": "Get Product Detail",
+                  "id": "ff8eb1d0-6db0-41b8-86a3-aeb1278425c8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/products/:product_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "products",
+                        ":product_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "d6d65ad7-0bb1-4494-909c-bd4957f27537",
+                          "key": "product_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "This endpoint allows you to get a product detail."
+                  },
+                  "response": [
+                    {
+                      "id": "2cacd3b3-0fa7-483d-8cb1-23055312b7be",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/products/:product_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "products",
+                            ":product_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "product_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"business_id\": \"<string>\",\n  \"category_id\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"price\": \"<number>\",\n  \"price_display\": \"<string>\",\n  \"price_stored\": \"<integer>\",\n  \"is_manageable\": \"<integer>\",\n  \"is_pinned\": \"<boolean>\",\n  \"status\": \"<string>\",\n  \"has_variations\": \"<boolean>\",\n  \"is_shopify\": \"<boolean>\",\n  \"product_url\": \"<string>\",\n  \"variations_count\": \"<integer>\",\n  \"variations\": [\n    {\n      \"id\": \"<string>\",\n      \"stock_keeping_unit\": \"<string>\",\n      \"description\": \"<string>\",\n      \"weight\": \"<string>\",\n      \"length\": \"<string>\",\n      \"width\": \"<string>\",\n      \"depth\": \"<string>\",\n      \"price\": \"<number>\",\n      \"price_display\": \"<string>\",\n      \"price_stored\": \"<integer>\",\n      \"quantity\": \"<integer>\",\n      \"quantity_alert_level\": \"<integer>\",\n      \"variation_value_1\": \"<string>\",\n      \"variation_value_2\": \"<string>\",\n      \"variation_value_3\": \"<string>\",\n      \"product_variation_weight\": \"<integer>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"stock_keeping_unit\": \"<string>\",\n      \"description\": \"<string>\",\n      \"weight\": \"<string>\",\n      \"length\": \"<string>\",\n      \"width\": \"<string>\",\n      \"depth\": \"<string>\",\n      \"price\": \"<number>\",\n      \"price_display\": \"<string>\",\n      \"price_stored\": \"<integer>\",\n      \"quantity\": \"<integer>\",\n      \"quantity_alert_level\": \"<integer>\",\n      \"variation_value_1\": \"<string>\",\n      \"variation_value_2\": \"<string>\",\n      \"variation_value_3\": \"<string>\",\n      \"product_variation_weight\": \"<integer>\"\n    }\n  ],\n  \"is_published\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"headline\": \"<string>\",\n  \"tax_id\": \"<string>\",\n  \"product_weight\": \"<integer>\",\n  \"delivery_method_required\": \"<boolean>\",\n  \"variation_key_1\": \"<string>\",\n  \"variation_key_2\": \"<string>\",\n  \"variation_key_3\": \"<string>\",\n  \"images\": [\n    {\n      \"id\": \"<string>\",\n      \"caption\": \"<string>\",\n      \"url\": \"<string>\",\n      \"other_dimensions\": [\n        {\n          \"size\": \"<string>\",\n          \"path\": \"<string>\"\n        },\n        {\n          \"size\": \"<string>\",\n          \"path\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"caption\": \"<string>\",\n      \"url\": \"<string>\",\n      \"other_dimensions\": [\n        {\n          \"size\": \"<string>\",\n          \"path\": \"<string>\"\n        },\n        {\n          \"size\": \"<string>\",\n          \"path\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"starts_at\": \"<dateTime>\",\n  \"ends_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:56:35.000Z",
+                      "updatedAt": "2026-07-28T01:56:35.000Z",
+                      "uid": "35240-2cacd3b3-0fa7-483d-8cb1-23055312b7be"
+                    },
+                    {
+                      "id": "5f38e09e-bbed-4956-8e80-27555c0b2566",
+                      "name": "404",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/products/:product_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "products",
+                            ":product_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "product_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:35.000Z",
+                      "updatedAt": "2026-07-28T01:56:35.000Z",
+                      "uid": "35240-5f38e09e-bbed-4956-8e80-27555c0b2566"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:56:35.000Z",
+                  "updatedAt": "2026-07-28T01:56:35.000Z",
+                  "uid": "35240-ff8eb1d0-6db0-41b8-86a3-aeb1278425c8"
+                },
+                {
+                  "name": "Update the product",
+                  "id": "762b5ae0-11e7-4a77-bec8-a26410f7d7d4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "(Required) The name of the product",
+                          "key": "name",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "(Required) The price of the product",
+                          "key": "price",
+                          "value": "<number>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "The description of the product",
+                          "key": "description",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "The headline of the product",
+                          "key": "headline",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "The quantity of the product",
+                          "key": "quantity",
+                          "value": "<number>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "The quantity alert level of the product. It is required when quantity alert level is present.",
+                          "key": "quantity_alert_level",
+                          "value": "<number>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "The currency of the product",
+                          "key": "currency",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "The list of business product category ids of the product",
+                          "key": "category_ids",
+                          "value": "<uuid>,<uuid>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "The is manageable of the product (This can only be one of 1,0)",
+                          "key": "is_manageable",
+                          "value": "1",
+                          "type": "text"
+                        },
+                        {
+                          "description": "The is pinned of the product (This can only be one of 1,0)",
+                          "key": "is_pinned",
+                          "value": "0",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Weight in gram",
+                          "key": "product_weight",
+                          "value": "<integer>",
+                          "type": "text"
+                        },
+                        {
+                          "key": "delivery_method_required",
+                          "value": "<boolean>",
+                          "type": "text"
+                        },
+                        {
+                          "key": "existing_variation",
+                          "value": "[object Object],[object Object]",
+                          "type": "text"
+                        },
+                        {
+                          "key": "images",
+                          "value": "[object Object],[object Object]",
+                          "type": "text"
+                        },
+                        {
+                          "description": " (This can only be one of 1,0)",
+                          "key": "publish",
+                          "value": "1",
+                          "type": "text"
+                        },
+                        {
+                          "key": "_method",
+                          "value": "PATCH",
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/products/:product_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "products",
+                        ":product_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "bb53ff4a-0048-46a3-b9f9-6b0eec96a391",
+                          "key": "product_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "This endpoint allows you to update the product."
+                  },
+                  "response": [
+                    {
+                      "id": "ba4b5666-4893-4b57-b3df-c3b8e454b993",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "(Required) The name of the product",
+                              "key": "name",
+                              "value": "<string>",
+                              "type": "text"
+                            },
+                            {
+                              "description": "(Required) The price of the product",
+                              "key": "price",
+                              "value": "<number>",
+                              "type": "text"
+                            },
+                            {
+                              "description": "The description of the product",
+                              "key": "description",
+                              "value": "<string>",
+                              "type": "text"
+                            },
+                            {
+                              "description": "The headline of the product",
+                              "key": "headline",
+                              "value": "<string>",
+                              "type": "text"
+                            },
+                            {
+                              "description": "The quantity of the product",
+                              "key": "quantity",
+                              "value": "<number>",
+                              "type": "text"
+                            },
+                            {
+                              "description": "The quantity alert level of the product. It is required when quantity alert level is present.",
+                              "key": "quantity_alert_level",
+                              "value": "<number>",
+                              "type": "text"
+                            },
+                            {
+                              "description": "The currency of the product",
+                              "key": "currency",
+                              "value": "<string>",
+                              "type": "text"
+                            },
+                            {
+                              "description": "The list of business product category ids of the product",
+                              "key": "category_ids",
+                              "value": "<uuid>,<uuid>",
+                              "type": "text"
+                            },
+                            {
+                              "description": "The is manageable of the product (This can only be one of 1,0)",
+                              "key": "is_manageable",
+                              "value": "1",
+                              "type": "text"
+                            },
+                            {
+                              "description": "The is pinned of the product (This can only be one of 1,0)",
+                              "key": "is_pinned",
+                              "value": "0",
+                              "type": "text"
+                            },
+                            {
+                              "description": "Weight in gram",
+                              "key": "product_weight",
+                              "value": "<integer>",
+                              "type": "text"
+                            },
+                            {
+                              "key": "delivery_method_required",
+                              "value": "<boolean>",
+                              "type": "text"
+                            },
+                            {
+                              "key": "existing_variation",
+                              "value": "[object Object],[object Object]",
+                              "type": "text"
+                            },
+                            {
+                              "key": "images",
+                              "value": "[object Object],[object Object]",
+                              "type": "text"
+                            },
+                            {
+                              "description": " (This can only be one of 1,0)",
+                              "key": "publish",
+                              "value": "1",
+                              "type": "text"
+                            },
+                            {
+                              "key": "_method",
+                              "value": "PATCH",
+                              "type": "text"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/products/:product_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "products",
+                            ":product_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "product_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"business_id\": \"<string>\",\n  \"category_id\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"price\": \"<number>\",\n  \"price_display\": \"<string>\",\n  \"price_stored\": \"<integer>\",\n  \"is_manageable\": \"<integer>\",\n  \"is_pinned\": \"<boolean>\",\n  \"status\": \"<string>\",\n  \"has_variations\": \"<boolean>\",\n  \"is_shopify\": \"<boolean>\",\n  \"product_url\": \"<string>\",\n  \"variations_count\": \"<integer>\",\n  \"variations\": [\n    {\n      \"id\": \"<string>\",\n      \"stock_keeping_unit\": \"<string>\",\n      \"description\": \"<string>\",\n      \"weight\": \"<string>\",\n      \"length\": \"<string>\",\n      \"width\": \"<string>\",\n      \"depth\": \"<string>\",\n      \"price\": \"<number>\",\n      \"price_display\": \"<string>\",\n      \"price_stored\": \"<integer>\",\n      \"quantity\": \"<integer>\",\n      \"quantity_alert_level\": \"<integer>\",\n      \"variation_value_1\": \"<string>\",\n      \"variation_value_2\": \"<string>\",\n      \"variation_value_3\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"stock_keeping_unit\": \"<string>\",\n      \"description\": \"<string>\",\n      \"weight\": \"<string>\",\n      \"length\": \"<string>\",\n      \"width\": \"<string>\",\n      \"depth\": \"<string>\",\n      \"price\": \"<number>\",\n      \"price_display\": \"<string>\",\n      \"price_stored\": \"<integer>\",\n      \"quantity\": \"<integer>\",\n      \"quantity_alert_level\": \"<integer>\",\n      \"variation_value_1\": \"<string>\",\n      \"variation_value_2\": \"<string>\",\n      \"variation_value_3\": \"<string>\"\n    }\n  ],\n  \"is_published\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"headline\": \"<string>\",\n  \"tax_id\": \"<string>\",\n  \"variation_key_1\": \"<string>\",\n  \"variation_key_2\": \"<string>\",\n  \"variation_key_3\": \"<string>\",\n  \"images\": [\n    {\n      \"id\": \"<string>\",\n      \"caption\": \"<string>\",\n      \"url\": \"<string>\",\n      \"other_dimensions\": [\n        {\n          \"size\": \"<string>\",\n          \"path\": \"<string>\"\n        },\n        {\n          \"size\": \"<string>\",\n          \"path\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"caption\": \"<string>\",\n      \"url\": \"<string>\",\n      \"other_dimensions\": [\n        {\n          \"size\": \"<string>\",\n          \"path\": \"<string>\"\n        },\n        {\n          \"size\": \"<string>\",\n          \"path\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"starts_at\": \"<dateTime>\",\n  \"ends_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:56:35.000Z",
+                      "updatedAt": "2026-07-28T01:56:35.000Z",
+                      "uid": "35240-ba4b5666-4893-4b57-b3df-c3b8e454b993"
+                    },
+                    {
+                      "id": "d3a253f0-88f8-4e83-8b88-88002c177a25",
+                      "name": "422",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "(Required) The name of the product",
+                              "key": "name",
+                              "value": "<string>",
+                              "type": "text"
+                            },
+                            {
+                              "description": "(Required) The price of the product",
+                              "key": "price",
+                              "value": "<number>",
+                              "type": "text"
+                            },
+                            {
+                              "description": "The description of the product",
+                              "key": "description",
+                              "value": "<string>",
+                              "type": "text"
+                            },
+                            {
+                              "description": "The headline of the product",
+                              "key": "headline",
+                              "value": "<string>",
+                              "type": "text"
+                            },
+                            {
+                              "description": "The quantity of the product",
+                              "key": "quantity",
+                              "value": "<number>",
+                              "type": "text"
+                            },
+                            {
+                              "description": "The quantity alert level of the product. It is required when quantity alert level is present.",
+                              "key": "quantity_alert_level",
+                              "value": "<number>",
+                              "type": "text"
+                            },
+                            {
+                              "description": "The currency of the product",
+                              "key": "currency",
+                              "value": "<string>",
+                              "type": "text"
+                            },
+                            {
+                              "description": "The list of business product category ids of the product",
+                              "key": "category_ids",
+                              "value": "<uuid>,<uuid>",
+                              "type": "text"
+                            },
+                            {
+                              "description": "The is manageable of the product (This can only be one of 1,0)",
+                              "key": "is_manageable",
+                              "value": "1",
+                              "type": "text"
+                            },
+                            {
+                              "description": "The is pinned of the product (This can only be one of 1,0)",
+                              "key": "is_pinned",
+                              "value": "0",
+                              "type": "text"
+                            },
+                            {
+                              "description": "Weight in gram",
+                              "key": "product_weight",
+                              "value": "<integer>",
+                              "type": "text"
+                            },
+                            {
+                              "key": "delivery_method_required",
+                              "value": "<boolean>",
+                              "type": "text"
+                            },
+                            {
+                              "key": "existing_variation",
+                              "value": "[object Object],[object Object]",
+                              "type": "text"
+                            },
+                            {
+                              "key": "images",
+                              "value": "[object Object],[object Object]",
+                              "type": "text"
+                            },
+                            {
+                              "description": " (This can only be one of 1,0)",
+                              "key": "publish",
+                              "value": "1",
+                              "type": "text"
+                            },
+                            {
+                              "key": "_method",
+                              "value": "PATCH",
+                              "type": "text"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/products/:product_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "products",
+                            ":product_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "product_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errors\": {\n    \"name\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T01:56:35.000Z",
+                      "updatedAt": "2026-07-28T01:56:35.000Z",
+                      "uid": "35240-d3a253f0-88f8-4e83-8b88-88002c177a25"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:56:35.000Z",
+                  "updatedAt": "2026-07-28T01:56:35.000Z",
+                  "uid": "35240-762b5ae0-11e7-4a77-bec8-a26410f7d7d4"
+                },
+                {
+                  "name": "Delete a Product",
+                  "id": "f0b9f88e-bb61-4eb0-8371-6903c158618e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/products/:product_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "products",
+                        ":product_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "cc7e6e5a-f1e8-49f5-9b39-8e4ef89a2ba0",
+                          "key": "product_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "This endpoint allows you to delete a product."
+                  },
+                  "response": [
+                    {
+                      "id": "50142f16-63ac-4786-9a8e-3c7b098510d3",
+                      "name": "204",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/products/:product_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "products",
+                            ":product_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "product_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<integer>",
+                      "createdAt": "2026-07-28T01:56:35.000Z",
+                      "updatedAt": "2026-07-28T01:56:35.000Z",
+                      "uid": "35240-50142f16-63ac-4786-9a8e-3c7b098510d3"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:56:35.000Z",
+                  "updatedAt": "2026-07-28T01:56:35.000Z",
+                  "uid": "35240-f0b9f88e-bb61-4eb0-8371-6903c158618e"
+                }
+              ],
+              "id": "130ae0c0-824c-4901-a970-491ca1b32a5b",
+              "createdAt": "2026-07-28T01:56:35.000Z",
+              "updatedAt": "2026-07-28T01:56:35.000Z",
+              "uid": "35240-130ae0c0-824c-4901-a970-491ca1b32a5b"
+            },
+            {
+              "name": "Get All Products",
+              "id": "434e1962-eb82-4bf9-a08f-4e5b88e3a959",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/products?statuses=draft&statuses=published&categories=<uuid>&categories=<uuid>&source=wooCommerce&source=shopify&inventory=in_stock&inventory=out_of_stock&location_ids=<uuid>&location_ids=<uuid>&channels=pos&channels=pos&keywords=<string>&keywords=<string>&page=1&per_page=10",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "products"
+                  ],
+                  "query": [
+                    {
+                      "key": "statuses",
+                      "value": "draft"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "published"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "source",
+                      "value": "wooCommerce"
+                    },
+                    {
+                      "key": "source",
+                      "value": "shopify"
+                    },
+                    {
+                      "key": "inventory",
+                      "value": "in_stock"
+                    },
+                    {
+                      "key": "inventory",
+                      "value": "out_of_stock"
+                    },
+                    {
+                      "key": "location_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "location_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "channels",
+                      "value": "pos"
+                    },
+                    {
+                      "key": "channels",
+                      "value": "pos"
+                    },
+                    {
+                      "key": "keywords",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "keywords",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    }
+                  ]
+                },
+                "description": "This endpoint allows you to retrieve all products. You can also filter the products by name, category, and status."
+              },
+              "response": [
+                {
+                  "id": "2254bf83-57ee-47b4-ab33-75a760c060c8",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/products?statuses=published&categories=<uuid>&source=shopify&inventory=out_of_stock&location_ids=<uuid>&channels=pos&keywords=<string>&page=1&per_page=10",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "products"
+                      ],
+                      "query": [
+                        {
+                          "key": "statuses",
+                          "value": "published"
+                        },
+                        {
+                          "key": "categories",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "key": "source",
+                          "value": "shopify"
+                        },
+                        {
+                          "key": "inventory",
+                          "value": "out_of_stock"
+                        },
+                        {
+                          "key": "location_ids",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "key": "channels",
+                          "value": "pos"
+                        },
+                        {
+                          "key": "keywords",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "key": "per_page",
+                          "value": "10"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"business_id\": \"<string>\",\n      \"category_id\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"price\": \"<number>\",\n      \"price_display\": \"<string>\",\n      \"price_stored\": \"<integer>\",\n      \"is_manageable\": \"<integer>\",\n      \"is_pinned\": \"<boolean>\",\n      \"status\": \"<string>\",\n      \"has_variations\": \"<boolean>\",\n      \"is_shopify\": \"<boolean>\",\n      \"product_url\": \"<string>\",\n      \"variations_count\": \"<integer>\",\n      \"variations\": [\n        {\n          \"id\": \"<string>\",\n          \"stock_keeping_unit\": \"<string>\",\n          \"description\": \"<string>\",\n          \"weight\": \"<string>\",\n          \"length\": \"<string>\",\n          \"width\": \"<string>\",\n          \"depth\": \"<string>\",\n          \"price\": \"<number>\",\n          \"price_display\": \"<string>\",\n          \"price_stored\": \"<integer>\",\n          \"quantity\": \"<integer>\",\n          \"quantity_alert_level\": \"<integer>\",\n          \"variation_value_1\": \"<string>\",\n          \"variation_value_2\": \"<string>\",\n          \"variation_value_3\": \"<string>\",\n          \"product_variation_weight\": \"<integer>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"stock_keeping_unit\": \"<string>\",\n          \"description\": \"<string>\",\n          \"weight\": \"<string>\",\n          \"length\": \"<string>\",\n          \"width\": \"<string>\",\n          \"depth\": \"<string>\",\n          \"price\": \"<number>\",\n          \"price_display\": \"<string>\",\n          \"price_stored\": \"<integer>\",\n          \"quantity\": \"<integer>\",\n          \"quantity_alert_level\": \"<integer>\",\n          \"variation_value_1\": \"<string>\",\n          \"variation_value_2\": \"<string>\",\n          \"variation_value_3\": \"<string>\",\n          \"product_variation_weight\": \"<integer>\"\n        }\n      ],\n      \"is_published\": \"<boolean>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"headline\": \"<string>\",\n      \"tax_id\": \"<string>\",\n      \"product_weight\": \"<integer>\",\n      \"delivery_method_required\": \"<boolean>\",\n      \"variation_key_1\": \"<string>\",\n      \"variation_key_2\": \"<string>\",\n      \"variation_key_3\": \"<string>\",\n      \"images\": [\n        {\n          \"id\": \"<string>\",\n          \"caption\": \"<string>\",\n          \"url\": \"<string>\",\n          \"other_dimensions\": [\n            {\n              \"size\": \"<string>\",\n              \"path\": \"<string>\"\n            },\n            {\n              \"size\": \"<string>\",\n              \"path\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"id\": \"<string>\",\n          \"caption\": \"<string>\",\n          \"url\": \"<string>\",\n          \"other_dimensions\": [\n            {\n              \"size\": \"<string>\",\n              \"path\": \"<string>\"\n            },\n            {\n              \"size\": \"<string>\",\n              \"path\": \"<string>\"\n            }\n          ]\n        }\n      ],\n      \"starts_at\": \"<dateTime>\",\n      \"ends_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"business_id\": \"<string>\",\n      \"category_id\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"price\": \"<number>\",\n      \"price_display\": \"<string>\",\n      \"price_stored\": \"<integer>\",\n      \"is_manageable\": \"<integer>\",\n      \"is_pinned\": \"<boolean>\",\n      \"status\": \"<string>\",\n      \"has_variations\": \"<boolean>\",\n      \"is_shopify\": \"<boolean>\",\n      \"product_url\": \"<string>\",\n      \"variations_count\": \"<integer>\",\n      \"variations\": [\n        {\n          \"id\": \"<string>\",\n          \"stock_keeping_unit\": \"<string>\",\n          \"description\": \"<string>\",\n          \"weight\": \"<string>\",\n          \"length\": \"<string>\",\n          \"width\": \"<string>\",\n          \"depth\": \"<string>\",\n          \"price\": \"<number>\",\n          \"price_display\": \"<string>\",\n          \"price_stored\": \"<integer>\",\n          \"quantity\": \"<integer>\",\n          \"quantity_alert_level\": \"<integer>\",\n          \"variation_value_1\": \"<string>\",\n          \"variation_value_2\": \"<string>\",\n          \"variation_value_3\": \"<string>\",\n          \"product_variation_weight\": \"<integer>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"stock_keeping_unit\": \"<string>\",\n          \"description\": \"<string>\",\n          \"weight\": \"<string>\",\n          \"length\": \"<string>\",\n          \"width\": \"<string>\",\n          \"depth\": \"<string>\",\n          \"price\": \"<number>\",\n          \"price_display\": \"<string>\",\n          \"price_stored\": \"<integer>\",\n          \"quantity\": \"<integer>\",\n          \"quantity_alert_level\": \"<integer>\",\n          \"variation_value_1\": \"<string>\",\n          \"variation_value_2\": \"<string>\",\n          \"variation_value_3\": \"<string>\",\n          \"product_variation_weight\": \"<integer>\"\n        }\n      ],\n      \"is_published\": \"<boolean>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"headline\": \"<string>\",\n      \"tax_id\": \"<string>\",\n      \"product_weight\": \"<integer>\",\n      \"delivery_method_required\": \"<boolean>\",\n      \"variation_key_1\": \"<string>\",\n      \"variation_key_2\": \"<string>\",\n      \"variation_key_3\": \"<string>\",\n      \"images\": [\n        {\n          \"id\": \"<string>\",\n          \"caption\": \"<string>\",\n          \"url\": \"<string>\",\n          \"other_dimensions\": [\n            {\n              \"size\": \"<string>\",\n              \"path\": \"<string>\"\n            },\n            {\n              \"size\": \"<string>\",\n              \"path\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"id\": \"<string>\",\n          \"caption\": \"<string>\",\n          \"url\": \"<string>\",\n          \"other_dimensions\": [\n            {\n              \"size\": \"<string>\",\n              \"path\": \"<string>\"\n            },\n            {\n              \"size\": \"<string>\",\n              \"path\": \"<string>\"\n            }\n          ]\n        }\n      ],\n      \"starts_at\": \"<dateTime>\",\n      \"ends_at\": \"<dateTime>\"\n    }\n  ],\n  \"links\": {\n    \"first\": \"<string>\",\n    \"last\": \"<string>\",\n    \"prev\": \"<string>\",\n    \"next\": \"<string>\"\n  },\n  \"meta\": {\n    \"current_page\": \"<integer>\",\n    \"from\": \"<integer>\",\n    \"last_page\": \"<integer>\",\n    \"links\": [\n      {\n        \"url\": \"<string>\",\n        \"label\": \"<string>\",\n        \"active\": \"<boolean>\"\n      },\n      {\n        \"url\": \"<string>\",\n        \"label\": \"<string>\",\n        \"active\": \"<boolean>\"\n      }\n    ],\n    \"path\": \"<string>\",\n    \"per_page\": \"<integer>\",\n    \"to\": \"<integer>\",\n    \"total\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:56:35.000Z",
+                  "updatedAt": "2026-07-28T01:56:35.000Z",
+                  "uid": "35240-2254bf83-57ee-47b4-ab33-75a760c060c8"
+                }
+              ],
+              "createdAt": "2026-07-28T01:56:35.000Z",
+              "updatedAt": "2026-07-28T01:56:35.000Z",
+              "uid": "35240-434e1962-eb82-4bf9-a08f-4e5b88e3a959"
+            },
+            {
+              "name": "Create a Product",
+              "id": "0cfd6217-ed47-4b4d-94a4-2b0e39bfbdb7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": "(Required) The name of the product",
+                      "key": "name",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": "(Required) The price of the product",
+                      "key": "price",
+                      "value": "<number>",
+                      "type": "text"
+                    },
+                    {
+                      "description": "The description of the product",
+                      "key": "description",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": "The barcode of the product",
+                      "key": "barcode",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": "The headline of the product",
+                      "key": "headline",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": "The stock keeping unit of the product",
+                      "key": "stock_keeping_unit",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": "The quantity of the product",
+                      "key": "quantity",
+                      "value": "<number>",
+                      "type": "text"
+                    },
+                    {
+                      "description": "The quantity alert level of the product. It is required when quantity alert level is present.",
+                      "key": "quantity_alert_level",
+                      "value": "<number>",
+                      "type": "text"
+                    },
+                    {
+                      "description": "The currency of the product",
+                      "key": "currency",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": "The list of business product category ids of the product",
+                      "key": "category_ids",
+                      "value": "<uuid>,<uuid>",
+                      "type": "text"
+                    },
+                    {
+                      "key": "channels",
+                      "value": "invoice,online_store",
+                      "type": "text"
+                    },
+                    {
+                      "key": "location_ids",
+                      "value": "<uuid>,<uuid>",
+                      "type": "text"
+                    },
+                    {
+                      "key": "locations",
+                      "value": "[object Object],[object Object]",
+                      "type": "text"
+                    },
+                    {
+                      "description": "The open amount of the product (This can only be one of 1,0)",
+                      "key": "open_amount",
+                      "value": "0",
+                      "type": "text"
+                    },
+                    {
+                      "description": "The is manageable of the product (This can only be one of 1,0)",
+                      "key": "is_manageable",
+                      "value": "1",
+                      "type": "text"
+                    },
+                    {
+                      "description": "The is pinned of the product (This can only be one of 1,0)",
+                      "key": "is_pinned",
+                      "value": "0",
+                      "type": "text"
+                    },
+                    {
+                      "description": "Weight in gram",
+                      "key": "product_weight",
+                      "value": "<integer>",
+                      "type": "text"
+                    },
+                    {
+                      "key": "delivery_method_required",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "key": "variations",
+                      "value": "[object Object],[object Object]",
+                      "type": "text"
+                    },
+                    {
+                      "key": "image",
+                      "value": "[object Object],[object Object]",
+                      "type": "text"
+                    },
+                    {
+                      "description": " (This can only be one of 1,0)",
+                      "key": "publish",
+                      "value": "1",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/products",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "products"
+                  ]
+                },
+                "description": "This endpoint allows you to create a product."
+              },
+              "response": [
+                {
+                  "id": "e1ae4180-c289-4daa-a9d1-d08f5c13c425",
+                  "name": "201",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "(Required) The name of the product",
+                          "key": "name",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "(Required) The price of the product",
+                          "key": "price",
+                          "value": "<number>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "The description of the product",
+                          "key": "description",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "The barcode of the product",
+                          "key": "barcode",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "The headline of the product",
+                          "key": "headline",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "The stock keeping unit of the product",
+                          "key": "stock_keeping_unit",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "The quantity of the product",
+                          "key": "quantity",
+                          "value": "<number>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "The quantity alert level of the product. It is required when quantity alert level is present.",
+                          "key": "quantity_alert_level",
+                          "value": "<number>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "The currency of the product",
+                          "key": "currency",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "The list of business product category ids of the product",
+                          "key": "category_ids",
+                          "value": "<uuid>,<uuid>",
+                          "type": "text"
+                        },
+                        {
+                          "key": "channels",
+                          "value": "invoice,online_store",
+                          "type": "text"
+                        },
+                        {
+                          "key": "location_ids",
+                          "value": "<uuid>,<uuid>",
+                          "type": "text"
+                        },
+                        {
+                          "key": "locations",
+                          "value": "[object Object],[object Object]",
+                          "type": "text"
+                        },
+                        {
+                          "description": "The open amount of the product (This can only be one of 1,0)",
+                          "key": "open_amount",
+                          "value": "0",
+                          "type": "text"
+                        },
+                        {
+                          "description": "The is manageable of the product (This can only be one of 1,0)",
+                          "key": "is_manageable",
+                          "value": "1",
+                          "type": "text"
+                        },
+                        {
+                          "description": "The is pinned of the product (This can only be one of 1,0)",
+                          "key": "is_pinned",
+                          "value": "0",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Weight in gram",
+                          "key": "product_weight",
+                          "value": "<integer>",
+                          "type": "text"
+                        },
+                        {
+                          "key": "delivery_method_required",
+                          "value": "true",
+                          "type": "text"
+                        },
+                        {
+                          "key": "variations",
+                          "value": "[object Object],[object Object]",
+                          "type": "text"
+                        },
+                        {
+                          "key": "image",
+                          "value": "[object Object],[object Object]",
+                          "type": "text"
+                        },
+                        {
+                          "description": " (This can only be one of 1,0)",
+                          "key": "publish",
+                          "value": "1",
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/products",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "products"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"business_id\": \"<string>\",\n  \"category_id\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"price\": \"<number>\",\n  \"price_display\": \"<string>\",\n  \"price_stored\": \"<integer>\",\n  \"is_manageable\": \"<integer>\",\n  \"is_pinned\": \"<boolean>\",\n  \"status\": \"<string>\",\n  \"has_variations\": \"<boolean>\",\n  \"is_shopify\": \"<boolean>\",\n  \"product_url\": \"<string>\",\n  \"variations_count\": \"<integer>\",\n  \"variations\": [\n    {\n      \"id\": \"<string>\",\n      \"stock_keeping_unit\": \"<string>\",\n      \"description\": \"<string>\",\n      \"weight\": \"<string>\",\n      \"length\": \"<string>\",\n      \"width\": \"<string>\",\n      \"depth\": \"<string>\",\n      \"price\": \"<number>\",\n      \"price_display\": \"<string>\",\n      \"price_stored\": \"<integer>\",\n      \"quantity\": \"<integer>\",\n      \"quantity_alert_level\": \"<integer>\",\n      \"variation_value_1\": \"<string>\",\n      \"variation_value_2\": \"<string>\",\n      \"variation_value_3\": \"<string>\",\n      \"product_variation_weight\": \"<integer>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"stock_keeping_unit\": \"<string>\",\n      \"description\": \"<string>\",\n      \"weight\": \"<string>\",\n      \"length\": \"<string>\",\n      \"width\": \"<string>\",\n      \"depth\": \"<string>\",\n      \"price\": \"<number>\",\n      \"price_display\": \"<string>\",\n      \"price_stored\": \"<integer>\",\n      \"quantity\": \"<integer>\",\n      \"quantity_alert_level\": \"<integer>\",\n      \"variation_value_1\": \"<string>\",\n      \"variation_value_2\": \"<string>\",\n      \"variation_value_3\": \"<string>\",\n      \"product_variation_weight\": \"<integer>\"\n    }\n  ],\n  \"is_published\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"headline\": \"<string>\",\n  \"tax_id\": \"<string>\",\n  \"product_weight\": \"<integer>\",\n  \"delivery_method_required\": \"<boolean>\",\n  \"variation_key_1\": \"<string>\",\n  \"variation_key_2\": \"<string>\",\n  \"variation_key_3\": \"<string>\",\n  \"images\": [\n    {\n      \"id\": \"<string>\",\n      \"caption\": \"<string>\",\n      \"url\": \"<string>\",\n      \"other_dimensions\": [\n        {\n          \"size\": \"<string>\",\n          \"path\": \"<string>\"\n        },\n        {\n          \"size\": \"<string>\",\n          \"path\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"caption\": \"<string>\",\n      \"url\": \"<string>\",\n      \"other_dimensions\": [\n        {\n          \"size\": \"<string>\",\n          \"path\": \"<string>\"\n        },\n        {\n          \"size\": \"<string>\",\n          \"path\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"starts_at\": \"<dateTime>\",\n  \"ends_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:56:35.000Z",
+                  "updatedAt": "2026-07-28T01:56:35.000Z",
+                  "uid": "35240-e1ae4180-c289-4daa-a9d1-d08f5c13c425"
+                },
+                {
+                  "id": "0fabf571-6ac2-4d1c-9e77-4c20df88d631",
+                  "name": "422",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "(Required) The name of the product",
+                          "key": "name",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "(Required) The price of the product",
+                          "key": "price",
+                          "value": "<number>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "The description of the product",
+                          "key": "description",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "The barcode of the product",
+                          "key": "barcode",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "The headline of the product",
+                          "key": "headline",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "The stock keeping unit of the product",
+                          "key": "stock_keeping_unit",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "The quantity of the product",
+                          "key": "quantity",
+                          "value": "<number>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "The quantity alert level of the product. It is required when quantity alert level is present.",
+                          "key": "quantity_alert_level",
+                          "value": "<number>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "The currency of the product",
+                          "key": "currency",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "The list of business product category ids of the product",
+                          "key": "category_ids",
+                          "value": "<uuid>,<uuid>",
+                          "type": "text"
+                        },
+                        {
+                          "key": "channels",
+                          "value": "invoice,online_store",
+                          "type": "text"
+                        },
+                        {
+                          "key": "location_ids",
+                          "value": "<uuid>,<uuid>",
+                          "type": "text"
+                        },
+                        {
+                          "key": "locations",
+                          "value": "[object Object],[object Object]",
+                          "type": "text"
+                        },
+                        {
+                          "description": "The open amount of the product (This can only be one of 1,0)",
+                          "key": "open_amount",
+                          "value": "0",
+                          "type": "text"
+                        },
+                        {
+                          "description": "The is manageable of the product (This can only be one of 1,0)",
+                          "key": "is_manageable",
+                          "value": "1",
+                          "type": "text"
+                        },
+                        {
+                          "description": "The is pinned of the product (This can only be one of 1,0)",
+                          "key": "is_pinned",
+                          "value": "0",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Weight in gram",
+                          "key": "product_weight",
+                          "value": "<integer>",
+                          "type": "text"
+                        },
+                        {
+                          "key": "delivery_method_required",
+                          "value": "true",
+                          "type": "text"
+                        },
+                        {
+                          "key": "variations",
+                          "value": "[object Object],[object Object]",
+                          "type": "text"
+                        },
+                        {
+                          "key": "image",
+                          "value": "[object Object],[object Object]",
+                          "type": "text"
+                        },
+                        {
+                          "description": " (This can only be one of 1,0)",
+                          "key": "publish",
+                          "value": "1",
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/products",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "products"
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"errors\": {\n    \"name\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T01:56:35.000Z",
+                  "updatedAt": "2026-07-28T01:56:35.000Z",
+                  "uid": "35240-0fabf571-6ac2-4d1c-9e77-4c20df88d631"
+                }
+              ],
+              "createdAt": "2026-07-28T01:56:35.000Z",
+              "updatedAt": "2026-07-28T01:56:35.000Z",
+              "uid": "35240-0cfd6217-ed47-4b4d-94a4-2b0e39bfbdb7"
+            }
+          ],
+          "id": "a17cae28-b0f9-4482-934b-a64308d64f75",
+          "createdAt": "2026-07-28T01:56:35.000Z",
+          "updatedAt": "2026-07-28T01:56:35.000Z",
+          "uid": "35240-a17cae28-b0f9-4482-934b-a64308d64f75"
+        }
+      ],
+      "id": "88f855cb-dd82-483c-b3c5-b29114aa2610",
+      "createdAt": "2026-07-28T01:56:35.000Z",
+      "updatedAt": "2026-07-28T01:56:35.000Z",
+      "uid": "35240-88f855cb-dd82-483c-b3c5-b29114aa2610"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.hit-pay.com"
+    }
+  ]
+}

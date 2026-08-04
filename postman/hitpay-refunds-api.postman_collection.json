@@ -1,0 +1,135 @@
+{
+  "info": {
+    "_postman_id": "9286f5a4-1f23-4bc3-9e0b-eb08bec8e386",
+    "name": "HitPay Account Status Refunds API",
+    "description": "Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:56:39.000Z",
+    "updatedAt": "2026-07-28T01:56:39.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9286f5a4-1f23-4bc3-9e0b-eb08bec8e386"
+  },
+  "item": [
+    {
+      "name": "refund",
+      "item": [
+        {
+          "name": "Refund a charge",
+          "id": "2925cd7c-90c4-4b68-9aa9-29f217d35596",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "description": "(Required) Amount to refund (full or partial).",
+                  "key": "amount",
+                  "value": "<string>"
+                },
+                {
+                  "description": "(Required) The id of the completed payment to refund.",
+                  "key": "payment_id",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/refund",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "refund"
+              ]
+            },
+            "description": "Issues a full or partial refund against a completed payment. Only one refund is allowed per transaction, and only PayNow or card charges are refundable. Original transaction fees are non-refundable."
+          },
+          "response": [
+            {
+              "id": "8e1ef813-95cc-4cb8-a373-ed7173f7f3af",
+              "name": "Refund created.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) Amount to refund (full or partial).",
+                      "key": "amount",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The id of the completed payment to refund.",
+                      "key": "payment_id",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/refund",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "refund"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"payment_id\": \"<string>\",\n  \"amount_refunded\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"status\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:56:39.000Z",
+              "updatedAt": "2026-07-28T01:56:39.000Z",
+              "uid": "35240-8e1ef813-95cc-4cb8-a373-ed7173f7f3af"
+            }
+          ],
+          "createdAt": "2026-07-28T01:56:39.000Z",
+          "updatedAt": "2026-07-28T01:56:39.000Z",
+          "uid": "35240-2925cd7c-90c4-4b68-9aa9-29f217d35596"
+        }
+      ],
+      "id": "e635e0f3-d0a2-40f9-87d4-1097d2489819",
+      "createdAt": "2026-07-28T01:56:39.000Z",
+      "updatedAt": "2026-07-28T01:56:39.000Z",
+      "uid": "35240-e635e0f3-d0a2-40f9-87d4-1097d2489819"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.hit-pay.com"
+    }
+  ]
+}

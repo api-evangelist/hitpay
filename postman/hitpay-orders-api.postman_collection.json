@@ -1,0 +1,781 @@
+{
+  "info": {
+    "_postman_id": "417f1e5d-e941-4527-a5b9-3067d3bd19d7",
+    "name": "HitPay Account Status Orders API",
+    "description": "Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:56:31.000Z",
+    "updatedAt": "2026-07-28T01:56:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-417f1e5d-e941-4527-a5b9-3067d3bd19d7"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "orders",
+          "item": [
+            {
+              "name": "{order_id}",
+              "item": [
+                {
+                  "name": "Get Order Details",
+                  "id": "311c8bb2-2865-4d28-bf64-97ba8516ced3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/orders/:order_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "orders",
+                        ":order_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "fdae1be3-6163-40bc-9d05-ec7127a3663f",
+                          "key": "order_id",
+                          "value": "<uuid>",
+                          "description": "(Required) It's required field"
+                        }
+                      ]
+                    },
+                    "description": "Get the order details"
+                  },
+                  "response": [
+                    {
+                      "id": "83d7ded5-7aca-4e75-9de5-9bc810b9e2a4",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/orders/:order_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "orders",
+                            ":order_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "order_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"order_display_number\": \"<integer>\",\n  \"business_id\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"version\": \"<string>\",\n  \"customer_id\": \"<null>\",\n  \"business_customer_id\": \"<null>\",\n  \"customer\": \"<null>\",\n  \"customer_pickup\": \"<boolean>\",\n  \"currency\": \"<string>\",\n  \"order_discount_name\": \"<null>\",\n  \"status\": \"<string>\",\n  \"remark\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\",\n  \"closed_at\": \"<null>\",\n  \"location_id\": \"<null>\",\n  \"location\": \"<null>\",\n  \"business_user_id\": \"<string>\",\n  \"slot_date\": \"<null>\",\n  \"slot_time\": \"<null>\",\n  \"messages\": \"<null>\",\n  \"order_form\": {\n    \"membership_id\": {\n      \"type\": \"<string>\",\n      \"title\": \"<string>\",\n      \"deleted\": \"<boolean>\",\n      \"include\": \"<boolean>\",\n      \"required\": \"<boolean>\"\n    }\n  },\n  \"coupon\": \"<null>\",\n  \"payment_status\": \"<null>\",\n  \"fulfilment_status\": \"<string>\",\n  \"line_items_total\": \"<integer>\",\n  \"order_discount_amount\": \"<integer>\",\n  \"line_item_discount_amount\": \"<integer>\",\n  \"line_item_tax_amount\": \"<integer>\",\n  \"additional_discount_amount\": \"<integer>\",\n  \"total_discount_amount\": \"<integer>\",\n  \"line_item_price\": \"<integer>\",\n  \"shipping_amount\": \"<integer>\",\n  \"total_coupon_amount\": \"<integer>\",\n  \"amount\": \"<integer>\",\n  \"subtotal\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:56:32.000Z",
+                      "updatedAt": "2026-07-28T01:56:32.000Z",
+                      "uid": "35240-83d7ded5-7aca-4e75-9de5-9bc810b9e2a4"
+                    },
+                    {
+                      "id": "2011af48-7d04-48ae-908a-1d666286f667",
+                      "name": "404",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/orders/:order_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "orders",
+                            ":order_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "order_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:32.000Z",
+                      "updatedAt": "2026-07-28T01:56:32.000Z",
+                      "uid": "35240-2011af48-7d04-48ae-908a-1d666286f667"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:56:32.000Z",
+                  "updatedAt": "2026-07-28T01:56:32.000Z",
+                  "uid": "35240-311c8bb2-2865-4d28-bf64-97ba8516ced3"
+                },
+                {
+                  "name": "Update the order",
+                  "id": "dc081a32-a585-49a9-80aa-038c9ac1abb7",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": 0,\n  \"currency\": \"sgd\",\n  \"remark\": \"<string>\",\n  \"location_id\": \"<string>\",\n  \"customer_id\": \"<string>\",\n  \"customer_pickup\": true,\n  \"channel\": \"point_of_sale\",\n  \"business_user_id\": \"<string>\",\n  \"discount_reason\": \"<string>\",\n  \"discount_amount\": 0,\n  \"version\": \"1.0\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/orders/:order_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "orders",
+                        ":order_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "bac33083-26f3-421e-a81b-103970b425d7",
+                          "key": "order_id",
+                          "value": "<string>",
+                          "description": "(Required) It's required field"
+                        }
+                      ]
+                    },
+                    "description": "Update the order"
+                  },
+                  "response": [
+                    {
+                      "id": "79a433eb-0d2a-4253-b904-857ef8cc61d5",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"amount\": 0,\n  \"currency\": \"sgd\",\n  \"remark\": \"<string>\",\n  \"location_id\": \"<string>\",\n  \"customer_id\": \"<string>\",\n  \"customer_pickup\": true,\n  \"channel\": \"point_of_sale\",\n  \"business_user_id\": \"<string>\",\n  \"discount_reason\": \"<string>\",\n  \"discount_amount\": 0,\n  \"version\": \"1.0\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/orders/:order_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "orders",
+                            ":order_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "order_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"order_display_number\": \"<integer>\",\n  \"business_id\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"version\": \"<string>\",\n  \"customer_id\": \"<null>\",\n  \"business_customer_id\": \"<null>\",\n  \"customer\": \"<null>\",\n  \"customer_pickup\": \"<boolean>\",\n  \"currency\": \"<string>\",\n  \"order_discount_name\": \"<null>\",\n  \"status\": \"<string>\",\n  \"remark\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\",\n  \"closed_at\": \"<null>\",\n  \"location_id\": \"<null>\",\n  \"location\": \"<null>\",\n  \"business_user_id\": \"<string>\",\n  \"slot_date\": \"<null>\",\n  \"slot_time\": \"<null>\",\n  \"messages\": \"<null>\",\n  \"order_form\": {\n    \"membership_id\": {\n      \"type\": \"<string>\",\n      \"title\": \"<string>\",\n      \"deleted\": \"<boolean>\",\n      \"include\": \"<boolean>\",\n      \"required\": \"<boolean>\"\n    }\n  },\n  \"coupon\": \"<null>\",\n  \"payment_status\": \"<null>\",\n  \"fulfilment_status\": \"<string>\",\n  \"line_items_total\": \"<integer>\",\n  \"order_discount_amount\": \"<integer>\",\n  \"line_item_discount_amount\": \"<integer>\",\n  \"line_item_tax_amount\": \"<integer>\",\n  \"additional_discount_amount\": \"<integer>\",\n  \"total_discount_amount\": \"<integer>\",\n  \"line_item_price\": \"<integer>\",\n  \"shipping_amount\": \"<integer>\",\n  \"total_coupon_amount\": \"<integer>\",\n  \"amount\": \"<integer>\",\n  \"subtotal\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:56:32.000Z",
+                      "updatedAt": "2026-07-28T01:56:32.000Z",
+                      "uid": "35240-79a433eb-0d2a-4253-b904-857ef8cc61d5"
+                    },
+                    {
+                      "id": "f1ece644-1933-4f37-9230-1d88ba01f865",
+                      "name": "404",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"amount\": 0,\n  \"currency\": \"sgd\",\n  \"remark\": \"<string>\",\n  \"location_id\": \"<string>\",\n  \"customer_id\": \"<string>\",\n  \"customer_pickup\": true,\n  \"channel\": \"point_of_sale\",\n  \"business_user_id\": \"<string>\",\n  \"discount_reason\": \"<string>\",\n  \"discount_amount\": 0,\n  \"version\": \"1.0\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/orders/:order_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "orders",
+                            ":order_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "order_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:32.000Z",
+                      "updatedAt": "2026-07-28T01:56:32.000Z",
+                      "uid": "35240-f1ece644-1933-4f37-9230-1d88ba01f865"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:56:32.000Z",
+                  "updatedAt": "2026-07-28T01:56:32.000Z",
+                  "uid": "35240-dc081a32-a585-49a9-80aa-038c9ac1abb7"
+                },
+                {
+                  "name": "Delete Order",
+                  "id": "536839dc-9cd1-4a55-a21a-9a54394a24a8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/orders/:order_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "orders",
+                        ":order_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "0a229b43-4e8a-4e04-a4dd-e747b3160e2a",
+                          "key": "order_id",
+                          "value": "<string>",
+                          "description": "(Required) It's required field"
+                        }
+                      ]
+                    },
+                    "description": "Delete Order"
+                  },
+                  "response": [
+                    {
+                      "id": "0bda8586-b550-403e-946f-7002fb8d296a",
+                      "name": "204",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/orders/:order_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "orders",
+                            ":order_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "order_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "0",
+                      "createdAt": "2026-07-28T01:56:32.000Z",
+                      "updatedAt": "2026-07-28T01:56:32.000Z",
+                      "uid": "35240-0bda8586-b550-403e-946f-7002fb8d296a"
+                    },
+                    {
+                      "id": "033c25bb-6c33-42e7-8be3-c633baf78e7f",
+                      "name": "404",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/orders/:order_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "orders",
+                            ":order_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "order_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:32.000Z",
+                      "updatedAt": "2026-07-28T01:56:32.000Z",
+                      "uid": "35240-033c25bb-6c33-42e7-8be3-c633baf78e7f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:56:32.000Z",
+                  "updatedAt": "2026-07-28T01:56:32.000Z",
+                  "uid": "35240-536839dc-9cd1-4a55-a21a-9a54394a24a8"
+                }
+              ],
+              "id": "b5444cd4-ec42-451b-ad7b-8daf8d9b72b4",
+              "createdAt": "2026-07-28T01:56:32.000Z",
+              "updatedAt": "2026-07-28T01:56:32.000Z",
+              "uid": "35240-b5444cd4-ec42-451b-ad7b-8daf8d9b72b4"
+            },
+            {
+              "name": "Get Orders",
+              "id": "fae1a5eb-d8ba-49f9-8ba8-d9b61e49431f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/orders?perPage=25&version=1.0&keywords=<string>&statuses[]=draft&dateFrom=<string>&dateTo=<string>&with=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "orders"
+                  ],
+                  "query": [
+                    {
+                      "key": "perPage",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Order version: 1.0 or 2.0. Return all orders as default",
+                      "key": "version",
+                      "value": "1.0"
+                    },
+                    {
+                      "description": "Search for fields: amount ,created_at ,order id,  remark, customer_name",
+                      "key": "keywords",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The available status: completed, sent, draft, expired, canceled",
+                      "key": "statuses[]",
+                      "value": "draft"
+                    },
+                    {
+                      "description": "Example: 2023-04-18",
+                      "key": "dateFrom",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Example: 2023-04-18",
+                      "key": "dateTo",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "If we want to show the product or charge detail=> add the value: products or charges. For both: products,charges",
+                      "key": "with",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Get and filter the orders"
+              },
+              "response": [
+                {
+                  "id": "afa66e53-a9ce-4da5-8726-71adb6c43dcf",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/orders?perPage=25&version=1.0&keywords=<string>&statuses[]=draft&dateFrom=<string>&dateTo=<string>&with=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "orders"
+                      ],
+                      "query": [
+                        {
+                          "key": "perPage",
+                          "value": "25"
+                        },
+                        {
+                          "description": "Order version: 1.0 or 2.0. Return all orders as default",
+                          "key": "version",
+                          "value": "1.0"
+                        },
+                        {
+                          "description": "Search for fields: amount ,created_at ,order id,  remark, customer_name",
+                          "key": "keywords",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The available status: completed, sent, draft, expired, canceled",
+                          "key": "statuses[]",
+                          "value": "draft"
+                        },
+                        {
+                          "description": "Example: 2023-04-18",
+                          "key": "dateFrom",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Example: 2023-04-18",
+                          "key": "dateTo",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "If we want to show the product or charge detail=> add the value: products or charges. For both: products,charges",
+                          "key": "with",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"order_display_number\": \"<integer>\",\n  \"business_id\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"version\": \"<string>\",\n  \"customer_id\": \"<null>\",\n  \"business_customer_id\": \"<null>\",\n  \"customer\": \"<null>\",\n  \"customer_pickup\": \"<boolean>\",\n  \"currency\": \"<string>\",\n  \"order_discount_name\": \"<null>\",\n  \"status\": \"<string>\",\n  \"remark\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\",\n  \"closed_at\": \"<null>\",\n  \"location_id\": \"<null>\",\n  \"location\": \"<null>\",\n  \"business_user_id\": \"<string>\",\n  \"slot_date\": \"<null>\",\n  \"slot_time\": \"<null>\",\n  \"messages\": \"<null>\",\n  \"order_form\": {\n    \"membership_id\": {\n      \"type\": \"<string>\",\n      \"title\": \"<string>\",\n      \"deleted\": \"<boolean>\",\n      \"include\": \"<boolean>\",\n      \"required\": \"<boolean>\"\n    }\n  },\n  \"coupon\": \"<null>\",\n  \"payment_status\": \"<null>\",\n  \"fulfilment_status\": \"<string>\",\n  \"line_items_total\": \"<integer>\",\n  \"order_discount_amount\": \"<integer>\",\n  \"line_item_discount_amount\": \"<integer>\",\n  \"line_item_tax_amount\": \"<integer>\",\n  \"additional_discount_amount\": \"<integer>\",\n  \"total_discount_amount\": \"<integer>\",\n  \"line_item_price\": \"<integer>\",\n  \"shipping_amount\": \"<integer>\",\n  \"total_coupon_amount\": \"<integer>\",\n  \"amount\": \"<integer>\",\n  \"subtotal\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T01:56:32.000Z",
+                  "updatedAt": "2026-07-28T01:56:32.000Z",
+                  "uid": "35240-afa66e53-a9ce-4da5-8726-71adb6c43dcf"
+                }
+              ],
+              "createdAt": "2026-07-28T01:56:32.000Z",
+              "updatedAt": "2026-07-28T01:56:32.000Z",
+              "uid": "35240-fae1a5eb-d8ba-49f9-8ba8-d9b61e49431f"
+            },
+            {
+              "name": "Create Order",
+              "id": "2c88c5dd-4f83-47aa-93b0-86a8e0a46bac",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 0,\n  \"currency\": \"sgd\",\n  \"remark\": \"<string>\",\n  \"location_id\": \"<string>\",\n  \"customer_id\": \"<string>\",\n  \"customer_pickup\": true,\n  \"channel\": \"point_of_sale\",\n  \"business_user_id\": \"<string>\",\n  \"discount_reason\": \"<string>\",\n  \"discount_amount\": 0,\n  \"version\": \"1.0\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/orders",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "orders"
+                  ]
+                },
+                "description": "Create Order with the given data. The order will be created with a `draft` status."
+              },
+              "response": [
+                {
+                  "id": "fac9e83d-afa5-4176-b591-0e4cd21fd870",
+                  "name": "201",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": 0,\n  \"currency\": \"sgd\",\n  \"remark\": \"<string>\",\n  \"location_id\": \"<string>\",\n  \"customer_id\": \"<string>\",\n  \"customer_pickup\": true,\n  \"channel\": \"point_of_sale\",\n  \"business_user_id\": \"<string>\",\n  \"discount_reason\": \"<string>\",\n  \"discount_amount\": 0,\n  \"version\": \"1.0\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/orders",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "orders"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"order_display_number\": \"<integer>\",\n  \"business_id\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"version\": \"<string>\",\n  \"customer_id\": \"<null>\",\n  \"business_customer_id\": \"<null>\",\n  \"customer\": \"<null>\",\n  \"customer_pickup\": \"<boolean>\",\n  \"currency\": \"<string>\",\n  \"order_discount_name\": \"<null>\",\n  \"status\": \"<string>\",\n  \"remark\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\",\n  \"closed_at\": \"<null>\",\n  \"location_id\": \"<null>\",\n  \"location\": \"<null>\",\n  \"business_user_id\": \"<string>\",\n  \"slot_date\": \"<null>\",\n  \"slot_time\": \"<null>\",\n  \"messages\": \"<null>\",\n  \"order_form\": {\n    \"membership_id\": {\n      \"type\": \"<string>\",\n      \"title\": \"<string>\",\n      \"deleted\": \"<boolean>\",\n      \"include\": \"<boolean>\",\n      \"required\": \"<boolean>\"\n    }\n  },\n  \"coupon\": \"<null>\",\n  \"payment_status\": \"<null>\",\n  \"fulfilment_status\": \"<string>\",\n  \"line_items_total\": \"<integer>\",\n  \"order_discount_amount\": \"<integer>\",\n  \"line_item_discount_amount\": \"<integer>\",\n  \"line_item_tax_amount\": \"<integer>\",\n  \"additional_discount_amount\": \"<integer>\",\n  \"total_discount_amount\": \"<integer>\",\n  \"line_item_price\": \"<integer>\",\n  \"shipping_amount\": \"<integer>\",\n  \"total_coupon_amount\": \"<integer>\",\n  \"amount\": \"<integer>\",\n  \"subtotal\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T01:56:32.000Z",
+                  "updatedAt": "2026-07-28T01:56:32.000Z",
+                  "uid": "35240-fac9e83d-afa5-4176-b591-0e4cd21fd870"
+                }
+              ],
+              "createdAt": "2026-07-28T01:56:32.000Z",
+              "updatedAt": "2026-07-28T01:56:32.000Z",
+              "uid": "35240-2c88c5dd-4f83-47aa-93b0-86a8e0a46bac"
+            }
+          ],
+          "id": "103fd0a2-5095-41f7-9e87-65a9ecf6acc3",
+          "createdAt": "2026-07-28T01:56:32.000Z",
+          "updatedAt": "2026-07-28T01:56:32.000Z",
+          "uid": "35240-103fd0a2-5095-41f7-9e87-65a9ecf6acc3"
+        }
+      ],
+      "id": "d36d2d59-b5d1-424e-a5b3-fcbd022b68f5",
+      "createdAt": "2026-07-28T01:56:32.000Z",
+      "updatedAt": "2026-07-28T01:56:32.000Z",
+      "uid": "35240-d36d2d59-b5d1-424e-a5b3-fcbd022b68f5"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.hit-pay.com"
+    }
+  ]
+}

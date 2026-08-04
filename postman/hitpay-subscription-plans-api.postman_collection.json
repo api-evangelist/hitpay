@@ -1,0 +1,387 @@
+{
+  "info": {
+    "_postman_id": "909e8c4a-d194-4c4e-8598-e40b76b8181f",
+    "name": "HitPay Account Status Subscription Plans API",
+    "description": "Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:56:44.000Z",
+    "updatedAt": "2026-07-28T01:56:44.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-909e8c4a-d194-4c4e-8598-e40b76b8181f"
+  },
+  "item": [
+    {
+      "name": "subscription-plan",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Get a subscription plan",
+              "id": "992da8fa-580e-4f34-a304-196a996d5562",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/subscription-plan/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "subscription-plan",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "4e3a581f-8564-4e9e-8a04-1bbdb431187b",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "7d68f93d-0970-452c-bfe3-ba2e5280aa16",
+                  "name": "The subscription plan.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/subscription-plan/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subscription-plan",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"cycle\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:56:44.000Z",
+                  "updatedAt": "2026-07-28T01:56:44.000Z",
+                  "uid": "35240-7d68f93d-0970-452c-bfe3-ba2e5280aa16"
+                }
+              ],
+              "createdAt": "2026-07-28T01:56:44.000Z",
+              "updatedAt": "2026-07-28T01:56:44.000Z",
+              "uid": "35240-992da8fa-580e-4f34-a304-196a996d5562"
+            },
+            {
+              "name": "Delete a subscription plan",
+              "id": "a8cfa546-e746-4d29-87cb-e8f94130867c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/subscription-plan/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "subscription-plan",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "a1e8cd15-2961-44d6-8fd5-e0f056aede25",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "e0fe06fb-f25b-4d77-801f-ba6e7e4ae038",
+                  "name": "Subscription plan deleted.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/subscription-plan/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subscription-plan",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:56:44.000Z",
+                  "updatedAt": "2026-07-28T01:56:44.000Z",
+                  "uid": "35240-e0fe06fb-f25b-4d77-801f-ba6e7e4ae038"
+                }
+              ],
+              "createdAt": "2026-07-28T01:56:44.000Z",
+              "updatedAt": "2026-07-28T01:56:44.000Z",
+              "uid": "35240-a8cfa546-e746-4d29-87cb-e8f94130867c"
+            }
+          ],
+          "id": "a439fc4d-0553-44a6-98d0-0f4c8ded392a",
+          "createdAt": "2026-07-28T01:56:44.000Z",
+          "updatedAt": "2026-07-28T01:56:44.000Z",
+          "uid": "35240-a439fc4d-0553-44a6-98d0-0f4c8ded392a"
+        },
+        {
+          "name": "List subscription plans",
+          "id": "ae5c4104-c7f8-41aa-b6d1-a05647940560",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/subscription-plan",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "subscription-plan"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fb961e49-7c3f-407e-9160-d5f0aa104517",
+              "name": "A list of subscription plans.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/subscription-plan",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "subscription-plan"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"amount\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"cycle\": \"<string>\",\n    \"created_at\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"amount\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"cycle\": \"<string>\",\n    \"created_at\": \"<dateTime>\"\n  }\n]",
+              "createdAt": "2026-07-28T01:56:44.000Z",
+              "updatedAt": "2026-07-28T01:56:44.000Z",
+              "uid": "35240-fb961e49-7c3f-407e-9160-d5f0aa104517"
+            }
+          ],
+          "createdAt": "2026-07-28T01:56:44.000Z",
+          "updatedAt": "2026-07-28T01:56:44.000Z",
+          "uid": "35240-ae5c4104-c7f8-41aa-b6d1-a05647940560"
+        },
+        {
+          "name": "Create a subscription plan",
+          "id": "d82a206b-a5fc-4eac-a305-c93de220ffa8",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "description": "(Required) ",
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "description": "(Required) ",
+                  "key": "amount",
+                  "value": "<string>"
+                },
+                {
+                  "description": "(Required) ",
+                  "key": "currency",
+                  "value": "<string>"
+                },
+                {
+                  "description": "(Required) ",
+                  "key": "cycle",
+                  "value": "monthly"
+                },
+                {
+                  "key": "reference",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/subscription-plan",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "subscription-plan"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "435d0d3a-915f-4390-8f8e-446327d3a85e",
+              "name": "Subscription plan created.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) ",
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "amount",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "currency",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "cycle",
+                      "value": "monthly"
+                    },
+                    {
+                      "key": "reference",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/subscription-plan",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "subscription-plan"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"cycle\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T01:56:44.000Z",
+              "updatedAt": "2026-07-28T01:56:44.000Z",
+              "uid": "35240-435d0d3a-915f-4390-8f8e-446327d3a85e"
+            }
+          ],
+          "createdAt": "2026-07-28T01:56:44.000Z",
+          "updatedAt": "2026-07-28T01:56:44.000Z",
+          "uid": "35240-d82a206b-a5fc-4eac-a305-c93de220ffa8"
+        }
+      ],
+      "id": "f2e87db9-7eac-4087-847b-4a09fd105c6f",
+      "createdAt": "2026-07-28T01:56:44.000Z",
+      "updatedAt": "2026-07-28T01:56:44.000Z",
+      "uid": "35240-f2e87db9-7eac-4087-847b-4a09fd105c6f"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.hit-pay.com"
+    }
+  ]
+}

@@ -1,0 +1,729 @@
+{
+  "info": {
+    "_postman_id": "244d1cf3-71c9-4b83-995d-fd6264b03c90",
+    "name": "HitPay Account Status Customers API",
+    "description": "Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:56:13.000Z",
+    "updatedAt": "2026-07-28T01:56:13.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-244d1cf3-71c9-4b83-995d-fd6264b03c90"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "customers",
+          "item": [
+            {
+              "name": "{customer_id}",
+              "item": [
+                {
+                  "name": "Get Customer Detail",
+                  "id": "d6706ec6-9aed-4e49-b4ee-c4e94e52d1c7",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/customers/:customer_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "customers",
+                        ":customer_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "65ea2294-0048-427a-a9c8-a9ac641704a7",
+                          "key": "customer_id",
+                          "value": "<string>",
+                          "description": "(Required) The Customer id"
+                        }
+                      ]
+                    },
+                    "description": "A customer is a person or a company that is registered with HitPay. This endpoint allows you to retrieve a customer's details."
+                  },
+                  "response": [
+                    {
+                      "id": "bde6a046-edd3-47c7-b2da-9b7c66fa8d28",
+                      "name": "201",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/customers/:customer_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "customers",
+                            ":customer_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "customer_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"birth_date\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"address\": {\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"street\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"gender\": \"<string>\",\n  \"remark\": \"<string>\",\n  \"phone_number_country_code\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:13.000Z",
+                      "updatedAt": "2026-07-28T01:56:13.000Z",
+                      "uid": "35240-bde6a046-edd3-47c7-b2da-9b7c66fa8d28"
+                    },
+                    {
+                      "id": "ac5dc93b-9945-412f-b7f6-1fa1bc3156db",
+                      "name": "404",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/customers/:customer_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "customers",
+                            ":customer_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "customer_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:13.000Z",
+                      "updatedAt": "2026-07-28T01:56:13.000Z",
+                      "uid": "35240-ac5dc93b-9945-412f-b7f6-1fa1bc3156db"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:56:13.000Z",
+                  "updatedAt": "2026-07-28T01:56:13.000Z",
+                  "uid": "35240-d6706ec6-9aed-4e49-b4ee-c4e94e52d1c7"
+                },
+                {
+                  "name": "Update Customer",
+                  "id": "d9f1ba2e-e3f9-4225-9b0f-c170709a92ff",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"phone_number_country_code\": \"<string>\",\n  \"remark\": \"<string>\",\n  \"birth_date\": \"<date>\",\n  \"gender\": \"<string>\",\n  \"address\": {\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"street\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/customers/:customer_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "customers",
+                        ":customer_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "543c67fd-2786-416e-8fd8-cd33e7d3afff",
+                          "key": "customer_id",
+                          "value": "<string>",
+                          "description": "(Required) The Customer id"
+                        }
+                      ]
+                    },
+                    "description": "This endpoint allows you to update a customer's details."
+                  },
+                  "response": [
+                    {
+                      "id": "5ae96060-c6e6-4b85-b1d0-048643b36f0a",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"phone_number_country_code\": \"<string>\",\n  \"remark\": \"<string>\",\n  \"birth_date\": \"<date>\",\n  \"gender\": \"<string>\",\n  \"address\": {\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"street\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/customers/:customer_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "customers",
+                            ":customer_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "customer_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"birth_date\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"address\": {\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"street\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"gender\": \"<string>\",\n  \"remark\": \"<string>\",\n  \"phone_number_country_code\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:13.000Z",
+                      "updatedAt": "2026-07-28T01:56:13.000Z",
+                      "uid": "35240-5ae96060-c6e6-4b85-b1d0-048643b36f0a"
+                    },
+                    {
+                      "id": "055c2698-858b-40c5-8d50-da77715843b4",
+                      "name": "404",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"phone_number_country_code\": \"<string>\",\n  \"remark\": \"<string>\",\n  \"birth_date\": \"<date>\",\n  \"gender\": \"<string>\",\n  \"address\": {\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"street\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/customers/:customer_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "customers",
+                            ":customer_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "customer_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:13.000Z",
+                      "updatedAt": "2026-07-28T01:56:13.000Z",
+                      "uid": "35240-055c2698-858b-40c5-8d50-da77715843b4"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:56:13.000Z",
+                  "updatedAt": "2026-07-28T01:56:13.000Z",
+                  "uid": "35240-d9f1ba2e-e3f9-4225-9b0f-c170709a92ff"
+                },
+                {
+                  "name": "Delete Customer",
+                  "id": "1748f346-2520-4f81-8398-d1183faa5121",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/customers/:customer_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "customers",
+                        ":customer_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "cd135e2e-9edf-4c4d-bf3f-f46eae0d50a7",
+                          "key": "customer_id",
+                          "value": "<string>",
+                          "description": "(Required) The Customer id"
+                        }
+                      ]
+                    },
+                    "description": "This endpoint allows you to delete a customer."
+                  },
+                  "response": [
+                    {
+                      "id": "55bec2fb-1588-46eb-8a68-5dd0513bce3b",
+                      "name": "204",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/customers/:customer_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "customers",
+                            ":customer_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "customer_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "0",
+                      "createdAt": "2026-07-28T01:56:13.000Z",
+                      "updatedAt": "2026-07-28T01:56:13.000Z",
+                      "uid": "35240-55bec2fb-1588-46eb-8a68-5dd0513bce3b"
+                    },
+                    {
+                      "id": "c53a3de1-1402-4e58-a21d-13f8ab1f7628",
+                      "name": "404",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/customers/:customer_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "customers",
+                            ":customer_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "customer_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:13.000Z",
+                      "updatedAt": "2026-07-28T01:56:13.000Z",
+                      "uid": "35240-c53a3de1-1402-4e58-a21d-13f8ab1f7628"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:56:13.000Z",
+                  "updatedAt": "2026-07-28T01:56:13.000Z",
+                  "uid": "35240-1748f346-2520-4f81-8398-d1183faa5121"
+                }
+              ],
+              "id": "e733f592-e150-42ee-93d0-2c9363d59c5a",
+              "createdAt": "2026-07-28T01:56:13.000Z",
+              "updatedAt": "2026-07-28T01:56:13.000Z",
+              "uid": "35240-e733f592-e150-42ee-93d0-2c9363d59c5a"
+            },
+            {
+              "name": "Get All Customers",
+              "id": "8f088bed-381d-486e-8dc4-7f3747acc807",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/customers?page=1&per_page=10",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "customers"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    }
+                  ]
+                },
+                "description": "This endpoint allows you to retrieve all customers"
+              },
+              "response": [
+                {
+                  "id": "dabff4f1-5011-4000-937d-eba5b6fec99f",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/customers?page=1&per_page=10",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "customers"
+                      ],
+                      "query": [
+                        {
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "key": "per_page",
+                          "value": "10"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"birth_date\": \"<string>\",\n      \"gender\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phone_number\": \"<string>\",\n      \"address\": {\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"street\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"remark\": \"<string>\",\n      \"phone_number_country_code\": \"<string>\",\n      \"created_at\": \"<string>\",\n      \"updated_at\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"birth_date\": \"<string>\",\n      \"gender\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phone_number\": \"<string>\",\n      \"address\": {\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"street\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"remark\": \"<string>\",\n      \"phone_number_country_code\": \"<string>\",\n      \"created_at\": \"<string>\",\n      \"updated_at\": \"<string>\"\n    }\n  ],\n  \"links\": {\n    \"first\": {},\n    \"last\": {},\n    \"prev\": {},\n    \"next\": \"<string>\"\n  },\n  \"meta\": {\n    \"path\": \"<string>\",\n    \"per_page\": \"<number>\",\n    \"next_cursor\": \"<string>\",\n    \"prev_cursor\": {}\n  }\n}",
+                  "createdAt": "2026-07-28T01:56:13.000Z",
+                  "updatedAt": "2026-07-28T01:56:13.000Z",
+                  "uid": "35240-dabff4f1-5011-4000-937d-eba5b6fec99f"
+                }
+              ],
+              "createdAt": "2026-07-28T01:56:13.000Z",
+              "updatedAt": "2026-07-28T01:56:13.000Z",
+              "uid": "35240-8f088bed-381d-486e-8dc4-7f3747acc807"
+            },
+            {
+              "name": "Create a customer",
+              "id": "d22a3633-cff4-4a21-a0a7-f788db81706e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<email>\",\n  \"phone_number\": \"<string>\",\n  \"name\": \"<string>\",\n  \"phone_number_country_code\": \"<string>\",\n  \"remark\": \"<string>\",\n  \"birth_date\": \"<date>\",\n  \"gender\": \"<string>\",\n  \"address\": {\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"street\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/customers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "customers"
+                  ]
+                },
+                "description": "This endpoint allows you to create a customer. The customer will be created with the provided details and will be returned in the response."
+              },
+              "response": [
+                {
+                  "id": "fce84972-883a-4757-aaec-76ab434630b1",
+                  "name": "201",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"<email>\",\n  \"phone_number\": \"<string>\",\n  \"name\": \"<string>\",\n  \"phone_number_country_code\": \"<string>\",\n  \"remark\": \"<string>\",\n  \"birth_date\": \"<date>\",\n  \"gender\": \"<string>\",\n  \"address\": {\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"street\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/customers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "customers"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"birth_date\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone_number\": \"<string>\",\n  \"address\": {\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"street\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"gender\": \"<string>\",\n  \"remark\": \"<string>\",\n  \"phone_number_country_code\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:56:13.000Z",
+                  "updatedAt": "2026-07-28T01:56:13.000Z",
+                  "uid": "35240-fce84972-883a-4757-aaec-76ab434630b1"
+                }
+              ],
+              "createdAt": "2026-07-28T01:56:13.000Z",
+              "updatedAt": "2026-07-28T01:56:13.000Z",
+              "uid": "35240-d22a3633-cff4-4a21-a0a7-f788db81706e"
+            }
+          ],
+          "id": "0991156d-e6c6-41b6-874e-582cbdf31ac0",
+          "createdAt": "2026-07-28T01:56:13.000Z",
+          "updatedAt": "2026-07-28T01:56:13.000Z",
+          "uid": "35240-0991156d-e6c6-41b6-874e-582cbdf31ac0"
+        }
+      ],
+      "id": "bff9a52f-bfef-4a18-9dc7-9fdefbb1ed49",
+      "createdAt": "2026-07-28T01:56:13.000Z",
+      "updatedAt": "2026-07-28T01:56:13.000Z",
+      "uid": "35240-bff9a52f-bfef-4a18-9dc7-9fdefbb1ed49"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.hit-pay.com"
+    }
+  ]
+}

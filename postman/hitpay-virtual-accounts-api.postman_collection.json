@@ -1,0 +1,712 @@
+{
+  "info": {
+    "_postman_id": "eaad9cb1-a1d8-4941-bd55-7c7fd66f80d0",
+    "name": "HitPay Account Status Virtual Accounts API",
+    "description": "Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:57:08.000Z",
+    "updatedAt": "2026-07-28T01:57:08.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-eaad9cb1-a1d8-4941-bd55-7c7fd66f80d0"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "virtual-accounts",
+          "item": [
+            {
+              "name": "{virtual_account_id}",
+              "item": [
+                {
+                  "name": "Get virtual account details",
+                  "id": "93cea171-514a-4f9c-9559-bacba4f0bfd9",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/virtual-accounts/:virtual_account_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "virtual-accounts",
+                        ":virtual_account_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a54d16af-0574-4e45-bb55-b3d62b04dd44",
+                          "key": "virtual_account_id",
+                          "value": "<uuid>",
+                          "description": "(Required) The virtual account ID"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve detailed information about a specific virtual account.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "a7c2ad46-4779-4af0-a77f-c4a734daa98e",
+                      "name": "Successful operation",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/virtual-accounts/:virtual_account_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "virtual-accounts",
+                            ":virtual_account_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "virtual_account_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"payment_provider\": \"<string>\",\n    \"payment_provider_method\": \"<string>\",\n    \"payment_provider_method_logos\": [\n      {\n        \"method\": \"<string>\",\n        \"iconName\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"description\": \"<string>\",\n        \"sm\": \"<uri>\",\n        \"md\": \"<uri>\",\n        \"lg\": \"<uri>\",\n        \"svg\": \"<uri>\",\n        \"svg_square\": \"<uri>\"\n      },\n      {\n        \"method\": \"<string>\",\n        \"iconName\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"description\": \"<string>\",\n        \"sm\": \"<uri>\",\n        \"md\": \"<uri>\",\n        \"lg\": \"<uri>\",\n        \"svg\": \"<uri>\",\n        \"svg_square\": \"<uri>\"\n      }\n    ],\n    \"payment_provider_method_main_logo\": {\n      \"method\": \"<string>\",\n      \"iconName\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"description\": \"<string>\",\n      \"sm\": \"<uri>\",\n      \"md\": \"<uri>\",\n      \"lg\": \"<uri>\",\n      \"svg\": \"<uri>\",\n      \"svg_square\": \"<uri>\"\n    },\n    \"supported_currencies\": null,\n    \"transfer_types\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"address\": \"<string>\",\n    \"status\": \"<string,null>\",\n    \"created_by\": {\n      \"id\": \"<uuid>\",\n      \"display_name\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\"\n    },\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:57:08.000Z",
+                      "updatedAt": "2026-07-28T01:57:08.000Z",
+                      "uid": "35240-a7c2ad46-4779-4af0-a77f-c4a734daa98e"
+                    },
+                    {
+                      "id": "e257a95b-931a-42d8-bc51-82c52d24f75c",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/virtual-accounts/:virtual_account_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "virtual-accounts",
+                            ":virtual_account_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "virtual_account_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errors\": \"<array>\"\n}",
+                      "createdAt": "2026-07-28T01:57:08.000Z",
+                      "updatedAt": "2026-07-28T01:57:08.000Z",
+                      "uid": "35240-e257a95b-931a-42d8-bc51-82c52d24f75c"
+                    },
+                    {
+                      "id": "adb8bf77-0aaf-44c1-9f58-379a7eb7ffd5",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/virtual-accounts/:virtual_account_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "virtual-accounts",
+                            ":virtual_account_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "virtual_account_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errors\": \"<array>\"\n}",
+                      "createdAt": "2026-07-28T01:57:08.000Z",
+                      "updatedAt": "2026-07-28T01:57:08.000Z",
+                      "uid": "35240-adb8bf77-0aaf-44c1-9f58-379a7eb7ffd5"
+                    },
+                    {
+                      "id": "f0d87029-c21b-40d8-8ce8-4d00f49b66e6",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/virtual-accounts/:virtual_account_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "virtual-accounts",
+                            ":virtual_account_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "virtual_account_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errors\": \"<array>\"\n}",
+                      "createdAt": "2026-07-28T01:57:08.000Z",
+                      "updatedAt": "2026-07-28T01:57:08.000Z",
+                      "uid": "35240-f0d87029-c21b-40d8-8ce8-4d00f49b66e6"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:57:08.000Z",
+                  "updatedAt": "2026-07-28T01:57:08.000Z",
+                  "uid": "35240-93cea171-514a-4f9c-9559-bacba4f0bfd9"
+                }
+              ],
+              "id": "2c53f20e-9d64-4726-859c-77ff26e3701c",
+              "createdAt": "2026-07-28T01:57:08.000Z",
+              "updatedAt": "2026-07-28T01:57:08.000Z",
+              "uid": "35240-2c53f20e-9d64-4726-859c-77ff26e3701c"
+            },
+            {
+              "name": "Get virtual accounts",
+              "id": "7865ae7e-a3d5-4471-bff4-1a5cbc07a684",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/virtual-accounts?cursor=<string,null>&per_page=25",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "virtual-accounts"
+                  ],
+                  "query": [
+                    {
+                      "description": "Cursor for pagination",
+                      "key": "cursor",
+                      "value": "<string,null>"
+                    },
+                    {
+                      "description": "Number of results per page",
+                      "key": "per_page",
+                      "value": "25"
+                    }
+                  ]
+                },
+                "description": "Retrieve the list of virtual accounts for a business. Results are paginated using cursor-based pagination\nand ordered by creation date (newest first).\n"
+              },
+              "response": [
+                {
+                  "id": "bc8e7fe4-f5f1-42c4-9878-104cd18dca1e",
+                  "name": "Successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/virtual-accounts?cursor=<string,null>&per_page=25",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "virtual-accounts"
+                      ],
+                      "query": [
+                        {
+                          "description": "Cursor for pagination",
+                          "key": "cursor",
+                          "value": "<string,null>"
+                        },
+                        {
+                          "description": "Number of results per page",
+                          "key": "per_page",
+                          "value": "25"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"payment_provider\": \"<string>\",\n      \"payment_provider_method\": \"<string>\",\n      \"payment_provider_method_logos\": [\n        {\n          \"method\": \"<string>\",\n          \"iconName\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"description\": \"<string>\",\n          \"sm\": \"<uri>\",\n          \"md\": \"<uri>\",\n          \"lg\": \"<uri>\",\n          \"svg\": \"<uri>\",\n          \"svg_square\": \"<uri>\"\n        },\n        {\n          \"method\": \"<string>\",\n          \"iconName\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"description\": \"<string>\",\n          \"sm\": \"<uri>\",\n          \"md\": \"<uri>\",\n          \"lg\": \"<uri>\",\n          \"svg\": \"<uri>\",\n          \"svg_square\": \"<uri>\"\n        }\n      ],\n      \"payment_provider_method_main_logo\": {\n        \"method\": \"<string>\",\n        \"iconName\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"description\": \"<string>\",\n        \"sm\": \"<uri>\",\n        \"md\": \"<uri>\",\n        \"lg\": \"<uri>\",\n        \"svg\": \"<uri>\",\n        \"svg_square\": \"<uri>\"\n      },\n      \"supported_currencies\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"transfer_types\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"address\": \"<string>\",\n      \"status\": \"<string,null>\",\n      \"created_by\": {\n        \"id\": \"<uuid>\",\n        \"display_name\": \"<string>\",\n        \"first_name\": \"<string>\",\n        \"last_name\": \"<string>\"\n      },\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"payment_provider\": \"<string>\",\n      \"payment_provider_method\": \"<string>\",\n      \"payment_provider_method_logos\": [\n        {\n          \"method\": \"<string>\",\n          \"iconName\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"description\": \"<string>\",\n          \"sm\": \"<uri>\",\n          \"md\": \"<uri>\",\n          \"lg\": \"<uri>\",\n          \"svg\": \"<uri>\",\n          \"svg_square\": \"<uri>\"\n        },\n        {\n          \"method\": \"<string>\",\n          \"iconName\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"description\": \"<string>\",\n          \"sm\": \"<uri>\",\n          \"md\": \"<uri>\",\n          \"lg\": \"<uri>\",\n          \"svg\": \"<uri>\",\n          \"svg_square\": \"<uri>\"\n        }\n      ],\n      \"payment_provider_method_main_logo\": {\n        \"method\": \"<string>\",\n        \"iconName\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"description\": \"<string>\",\n        \"sm\": \"<uri>\",\n        \"md\": \"<uri>\",\n        \"lg\": \"<uri>\",\n        \"svg\": \"<uri>\",\n        \"svg_square\": \"<uri>\"\n      },\n      \"supported_currencies\": null,\n      \"transfer_types\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"address\": \"<string>\",\n      \"status\": \"<string,null>\",\n      \"created_by\": {\n        \"id\": \"<uuid>\",\n        \"display_name\": \"<string>\",\n        \"first_name\": \"<string>\",\n        \"last_name\": \"<string>\"\n      },\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ],\n  \"links\": {\n    \"first\": \"<string,null>\",\n    \"last\": \"<string,null>\",\n    \"prev\": \"<string,null>\",\n    \"next\": \"<string,null>\"\n  },\n  \"meta\": {\n    \"path\": \"<string>\",\n    \"per_page\": \"<integer>\",\n    \"next_cursor\": \"<string,null>\",\n    \"prev_cursor\": \"<string,null>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:57:08.000Z",
+                  "updatedAt": "2026-07-28T01:57:08.000Z",
+                  "uid": "35240-bc8e7fe4-f5f1-42c4-9878-104cd18dca1e"
+                },
+                {
+                  "id": "efd53208-2d9a-4d31-8962-307600d786b1",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/virtual-accounts?cursor=<string,null>&per_page=25",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "virtual-accounts"
+                      ],
+                      "query": [
+                        {
+                          "description": "Cursor for pagination",
+                          "key": "cursor",
+                          "value": "<string,null>"
+                        },
+                        {
+                          "description": "Number of results per page",
+                          "key": "per_page",
+                          "value": "25"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"errors\": \"<array>\"\n}",
+                  "createdAt": "2026-07-28T01:57:08.000Z",
+                  "updatedAt": "2026-07-28T01:57:08.000Z",
+                  "uid": "35240-efd53208-2d9a-4d31-8962-307600d786b1"
+                },
+                {
+                  "id": "4a87ce6e-1713-4461-bc3a-0ffbe36710e5",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/virtual-accounts?cursor=<string,null>&per_page=25",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "virtual-accounts"
+                      ],
+                      "query": [
+                        {
+                          "description": "Cursor for pagination",
+                          "key": "cursor",
+                          "value": "<string,null>"
+                        },
+                        {
+                          "description": "Number of results per page",
+                          "key": "per_page",
+                          "value": "25"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"errors\": \"<array>\"\n}",
+                  "createdAt": "2026-07-28T01:57:08.000Z",
+                  "updatedAt": "2026-07-28T01:57:08.000Z",
+                  "uid": "35240-4a87ce6e-1713-4461-bc3a-0ffbe36710e5"
+                }
+              ],
+              "createdAt": "2026-07-28T01:57:08.000Z",
+              "updatedAt": "2026-07-28T01:57:08.000Z",
+              "uid": "35240-7865ae7e-a3d5-4471-bff4-1a5cbc07a684"
+            },
+            {
+              "name": "Create a virtual account",
+              "id": "67e9649b-d9e7-44ef-a42b-a3e247231698",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/virtual-accounts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "virtual-accounts"
+                  ]
+                },
+                "description": "Create a new virtual account for the business. The payment provider and method are automatically\ndetermined based on the business configuration.\n\nA business can only have one virtual account per payment provider method. If a virtual account\nalready exists for the same provider method, a 409 Conflict error is returned.\n\nThe business must have payments enabled to create a virtual account.\n"
+              },
+              "response": [
+                {
+                  "id": "49d196ae-abd0-4e54-8d77-1835ce46e7db",
+                  "name": "Virtual account created successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/virtual-accounts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "virtual-accounts"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"payment_provider\": \"<string>\",\n    \"payment_provider_method\": \"<string>\",\n    \"payment_provider_method_logos\": [\n      {\n        \"method\": \"<string>\",\n        \"iconName\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"description\": \"<string>\",\n        \"sm\": \"<uri>\",\n        \"md\": \"<uri>\",\n        \"lg\": \"<uri>\",\n        \"svg\": \"<uri>\",\n        \"svg_square\": \"<uri>\"\n      },\n      {\n        \"method\": \"<string>\",\n        \"iconName\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"description\": \"<string>\",\n        \"sm\": \"<uri>\",\n        \"md\": \"<uri>\",\n        \"lg\": \"<uri>\",\n        \"svg\": \"<uri>\",\n        \"svg_square\": \"<uri>\"\n      }\n    ],\n    \"payment_provider_method_main_logo\": {\n      \"method\": \"<string>\",\n      \"iconName\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"description\": \"<string>\",\n      \"sm\": \"<uri>\",\n      \"md\": \"<uri>\",\n      \"lg\": \"<uri>\",\n      \"svg\": \"<uri>\",\n      \"svg_square\": \"<uri>\"\n    },\n    \"supported_currencies\": null,\n    \"transfer_types\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"address\": \"<string>\",\n    \"status\": \"<string,null>\",\n    \"created_by\": {\n      \"id\": \"<uuid>\",\n      \"display_name\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\"\n    },\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:57:08.000Z",
+                  "updatedAt": "2026-07-28T01:57:08.000Z",
+                  "uid": "35240-49d196ae-abd0-4e54-8d77-1835ce46e7db"
+                },
+                {
+                  "id": "b1ca76f5-2ad7-416b-b114-a713779bc05b",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/virtual-accounts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "virtual-accounts"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"errors\": \"<array>\"\n}",
+                  "createdAt": "2026-07-28T01:57:08.000Z",
+                  "updatedAt": "2026-07-28T01:57:08.000Z",
+                  "uid": "35240-b1ca76f5-2ad7-416b-b114-a713779bc05b"
+                },
+                {
+                  "id": "f53147d2-0f8b-4a0f-ad67-903c2d9e1f48",
+                  "name": "Forbidden \u2014 business does not have payments enabled",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/virtual-accounts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "virtual-accounts"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"errors\": \"<array>\"\n}",
+                  "createdAt": "2026-07-28T01:57:08.000Z",
+                  "updatedAt": "2026-07-28T01:57:08.000Z",
+                  "uid": "35240-f53147d2-0f8b-4a0f-ad67-903c2d9e1f48"
+                },
+                {
+                  "id": "3042c6bc-e961-4bd2-92e5-edfbbf865b41",
+                  "name": "Conflict \u2014 a virtual account already exists for this provider method",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/virtual-accounts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "virtual-accounts"
+                      ]
+                    }
+                  },
+                  "status": "Conflict",
+                  "code": 409,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"errors\": \"<array>\"\n}",
+                  "createdAt": "2026-07-28T01:57:08.000Z",
+                  "updatedAt": "2026-07-28T01:57:08.000Z",
+                  "uid": "35240-3042c6bc-e961-4bd2-92e5-edfbbf865b41"
+                }
+              ],
+              "createdAt": "2026-07-28T01:57:08.000Z",
+              "updatedAt": "2026-07-28T01:57:08.000Z",
+              "uid": "35240-67e9649b-d9e7-44ef-a42b-a3e247231698"
+            }
+          ],
+          "id": "11a3a17a-0533-47ef-935c-c9f92c83dd31",
+          "createdAt": "2026-07-28T01:57:08.000Z",
+          "updatedAt": "2026-07-28T01:57:08.000Z",
+          "uid": "35240-11a3a17a-0533-47ef-935c-c9f92c83dd31"
+        }
+      ],
+      "id": "8540f3af-9272-4f45-98fe-e93f12ff73ee",
+      "createdAt": "2026-07-28T01:57:08.000Z",
+      "updatedAt": "2026-07-28T01:57:08.000Z",
+      "uid": "35240-8540f3af-9272-4f45-98fe-e93f12ff73ee"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.hit-pay.com"
+    }
+  ]
+}

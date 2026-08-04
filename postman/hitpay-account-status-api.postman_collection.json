@@ -1,0 +1,118 @@
+{
+  "info": {
+    "_postman_id": "f0cd0cba-ca97-4b9c-b70d-d4d18e53f093",
+    "name": "HitPay Account Status API",
+    "description": "Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:56:08.000Z",
+    "updatedAt": "2026-07-28T01:56:09.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f0cd0cba-ca97-4b9c-b70d-d4d18e53f093"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "account-status",
+          "item": [
+            {
+              "name": "Get Account Status",
+              "id": "a0d633ba-e1cd-41b9-a398-77ec7a7c8cdf",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/account-status",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "account-status"
+                  ]
+                },
+                "description": "Get the account status"
+              },
+              "response": [
+                {
+                  "id": "ce299c3a-8524-4366-bc6a-db1ba21f2e72",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/account-status",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "account-status"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"bank_account_status\": \"<string>\",\n  \"verification\": {\n    \"overall_status\": \"<string>\",\n    \"owner_verification\": \"<string>\",\n    \"business_verification\": \"<string>\"\n  },\n  \"payment_providers\": {}\n}",
+                  "createdAt": "2026-07-28T01:56:09.000Z",
+                  "updatedAt": "2026-07-28T01:56:09.000Z",
+                  "uid": "35240-ce299c3a-8524-4366-bc6a-db1ba21f2e72"
+                }
+              ],
+              "createdAt": "2026-07-28T01:56:09.000Z",
+              "updatedAt": "2026-07-28T01:56:09.000Z",
+              "uid": "35240-a0d633ba-e1cd-41b9-a398-77ec7a7c8cdf"
+            }
+          ],
+          "id": "83d7d6e3-c886-453b-a55e-ca2f32dc2d52",
+          "createdAt": "2026-07-28T01:56:09.000Z",
+          "updatedAt": "2026-07-28T01:56:09.000Z",
+          "uid": "35240-83d7d6e3-c886-453b-a55e-ca2f32dc2d52"
+        }
+      ],
+      "id": "df7d30d9-55a0-4437-a946-606bd86555b5",
+      "createdAt": "2026-07-28T01:56:09.000Z",
+      "updatedAt": "2026-07-28T01:56:09.000Z",
+      "uid": "35240-df7d30d9-55a0-4437-a946-606bd86555b5"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.hit-pay.com"
+    }
+  ]
+}

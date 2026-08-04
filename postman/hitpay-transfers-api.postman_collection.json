@@ -1,0 +1,605 @@
+{
+  "info": {
+    "_postman_id": "80f4a387-5e7e-405b-a79c-55fbb8082ecf",
+    "name": "HitPay Account Status Transfers API",
+    "description": "Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:57:07.000Z",
+    "updatedAt": "2026-07-28T01:57:07.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-80f4a387-5e7e-405b-a79c-55fbb8082ecf"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "transfers",
+          "item": [
+            {
+              "name": "{transfer_id}",
+              "item": [
+                {
+                  "name": "Get transfer by ID",
+                  "id": "284982d2-9739-43a2-9ca5-271509f658d0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/transfers/:transfer_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "transfers",
+                        ":transfer_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "00041961-e7c8-4367-94ce-750c09de7bcb",
+                          "key": "transfer_id",
+                          "value": "<string>",
+                          "description": "(Required) The Beneficiary id"
+                        }
+                      ]
+                    },
+                    "description": "Get transfer by ID"
+                  },
+                  "response": [
+                    {
+                      "id": "5b11f1a5-fbd1-406a-9433-3a9e0d688b8b",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/transfers/:transfer_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "transfers",
+                            ":transfer_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "transfer_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "null",
+                      "createdAt": "2026-07-28T01:57:07.000Z",
+                      "updatedAt": "2026-07-28T01:57:07.000Z",
+                      "uid": "35240-5b11f1a5-fbd1-406a-9433-3a9e0d688b8b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:57:07.000Z",
+                  "updatedAt": "2026-07-28T01:57:07.000Z",
+                  "uid": "35240-284982d2-9739-43a2-9ca5-271509f658d0"
+                }
+              ],
+              "id": "dd1d371e-5a3f-4b16-9253-f1e600c24f73",
+              "createdAt": "2026-07-28T01:57:07.000Z",
+              "updatedAt": "2026-07-28T01:57:07.000Z",
+              "uid": "35240-dd1d371e-5a3f-4b16-9253-f1e600c24f73"
+            },
+            {
+              "name": "estimate",
+              "item": [
+                {
+                  "name": "Estimate transfer fees",
+                  "id": "21fa2e3b-4d16-46ff-a849-1b321dbc1d3f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"beneficiary_id\": \"<string>\",\n  \"source_currency\": \"<string>\",\n  \"source_amount\": \"<double>\",\n  \"payment_amount\": \"<double>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/transfers/estimate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "transfers",
+                        "estimate"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "266b460a-09a7-4319-8938-3adfae680c4a",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"beneficiary_id\": \"<string>\",\n  \"source_currency\": \"<string>\",\n  \"source_amount\": \"<double>\",\n  \"payment_amount\": \"<double>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/transfers/estimate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "transfers",
+                            "estimate"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"source_amount\": \"<number>\",\n  \"source_amount_fees\": \"<number>\",\n  \"source_currency\": \"<string>\",\n  \"exchange_rate\": \"<string>\",\n  \"payment_amount\": \"<number>\",\n  \"payment_amount_fees\": \"<number>\",\n  \"fx_pair\": \"<string>\",\n  \"fee_payer\": \"beneficiary\",\n  \"fee_currency\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:07.000Z",
+                      "updatedAt": "2026-07-28T01:57:07.000Z",
+                      "uid": "35240-266b460a-09a7-4319-8938-3adfae680c4a"
+                    },
+                    {
+                      "id": "bcae8f81-264f-4d26-ac8a-616b72d9ff55",
+                      "name": "422",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"beneficiary_id\": \"<string>\",\n  \"source_currency\": \"<string>\",\n  \"source_amount\": \"<double>\",\n  \"payment_amount\": \"<double>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/transfers/estimate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "transfers",
+                            "estimate"
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"examples\": {\n    \"Result\": {\n      \"value\": {\n        \"message\": \"The beneficiary id field is required. (and 3 more errors)\",\n        \"errors\": {\n          \"beneficiary_id\": [\n            \"The beneficiary id field is required.\"\n          ],\n          \"source_currency\": [\n            \"The source currency field is required.\"\n          ],\n          \"source_amount\": [\n            \"The source amount field is required when payment amount is not present.\"\n          ],\n          \"payment_amount\": [\n            \"The payment amount field is required when source amount is not present.\"\n          ]\n        }\n      }\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T01:57:07.000Z",
+                      "updatedAt": "2026-07-28T01:57:07.000Z",
+                      "uid": "35240-bcae8f81-264f-4d26-ac8a-616b72d9ff55"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:57:07.000Z",
+                  "updatedAt": "2026-07-28T01:57:07.000Z",
+                  "uid": "35240-21fa2e3b-4d16-46ff-a849-1b321dbc1d3f"
+                }
+              ],
+              "id": "60e846cf-add8-4503-b56c-39d2126de577",
+              "createdAt": "2026-07-28T01:57:07.000Z",
+              "updatedAt": "2026-07-28T01:57:07.000Z",
+              "uid": "35240-60e846cf-add8-4503-b56c-39d2126de577"
+            },
+            {
+              "name": "Get list of transfers",
+              "id": "8baa1fc8-01b5-498f-b910-9ad029ef05ce",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/transfers?beneficiary_id=<uuid>&keywords=<uuid>&status=processing&per_page=10",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "transfers"
+                  ],
+                  "query": [
+                    {
+                      "description": "The Beneficiary id",
+                      "key": "beneficiary_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "description": "The keywords to search by ID, beneficiary name and remark",
+                      "key": "keywords",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "description": "The status of the transfer",
+                      "key": "status",
+                      "value": "processing"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    }
+                  ]
+                },
+                "description": "Get list of transfers"
+              },
+              "response": [
+                {
+                  "id": "1c97efce-fb3a-411c-b414-5290156b5053",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/transfers?beneficiary_id=<uuid>&keywords=<uuid>&status=processing&per_page=10",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "transfers"
+                      ],
+                      "query": [
+                        {
+                          "description": "The Beneficiary id",
+                          "key": "beneficiary_id",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "description": "The keywords to search by ID, beneficiary name and remark",
+                          "key": "keywords",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "description": "The status of the transfer",
+                          "key": "status",
+                          "value": "processing"
+                        },
+                        {
+                          "key": "per_page",
+                          "value": "10"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"beneficiary\": {\n        \"id\": \"<string>\",\n        \"country\": \"<string>\",\n        \"currency\": \"<string>\",\n        \"transfer_method\": \"<string>\",\n        \"nickname\": \"<string>\",\n        \"remark\": \"<string>\",\n        \"holder_name\": \"<string>\",\n        \"holder_type\": \"<string>\",\n        \"email\": \"<string>\",\n        \"bank_routing_number\": \"<string>\",\n        \"account_number\": \"<string>\",\n        \"is_favourite\": \"<boolean>\",\n        \"created_at\": \"<string>\",\n        \"updated_at\": \"<string>\",\n        \"deleted_at\": {},\n        \"status\": \"<string>\",\n        \"transfer_type\": \"<string>\",\n        \"bank_branch_code\": \"<string>\",\n        \"bank_name\": \"<string>\",\n        \"bank_id\": \"<string>\"\n      },\n      \"payment_currency\": \"<string>\",\n      \"payment_amount\": \"<number>\",\n      \"source_currency\": \"<string>\",\n      \"source_amount\": \"<number>\",\n      \"exchange_rate\": \"<string>\",\n      \"fixed_fee\": \"<number>\",\n      \"discount_fee\": \"<number>\",\n      \"discount_fee_rate\": \"<number>\",\n      \"fee\": {\n        \"paid_by\": \"beneficiary\",\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"status\": \"scheduled\",\n      \"remark\": \"<string>\",\n      \"attachment\": \"<string>\",\n      \"created_at\": \"<string>\",\n      \"source_type\": \"Excepteur dolor magna\",\n      \"nulla_3b5\": false\n    },\n    {\n      \"id\": \"<string>\",\n      \"beneficiary\": {\n        \"id\": \"<string>\",\n        \"country\": \"<string>\",\n        \"currency\": \"<string>\",\n        \"transfer_method\": \"<string>\",\n        \"nickname\": \"<string>\",\n        \"remark\": \"<string>\",\n        \"holder_name\": \"<string>\",\n        \"holder_type\": \"<string>\",\n        \"email\": \"<string>\",\n        \"bank_routing_number\": \"<string>\",\n        \"account_number\": \"<string>\",\n        \"is_favourite\": \"<boolean>\",\n        \"created_at\": \"<string>\",\n        \"updated_at\": \"<string>\",\n        \"deleted_at\": {},\n        \"status\": \"<string>\",\n        \"transfer_type\": \"<string>\",\n        \"bank_branch_code\": \"<string>\",\n        \"bank_name\": \"<string>\",\n        \"bank_id\": \"<string>\"\n      },\n      \"payment_currency\": \"<string>\",\n      \"payment_amount\": \"<number>\",\n      \"source_currency\": \"<string>\",\n      \"source_amount\": \"<number>\",\n      \"exchange_rate\": \"<string>\",\n      \"fixed_fee\": \"<number>\",\n      \"discount_fee\": \"<number>\",\n      \"discount_fee_rate\": \"<number>\",\n      \"fee\": {\n        \"paid_by\": \"beneficiary\",\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"status\": \"processing\",\n      \"remark\": \"<string>\",\n      \"attachment\": \"<string>\",\n      \"created_at\": \"<string>\",\n      \"source_type\": 88401628.54650676,\n      \"non_72\": 70062091.11518618\n    }\n  ],\n  \"links\": {\n    \"first\": {},\n    \"last\": {},\n    \"prev\": {},\n    \"next\": \"<string>\"\n  },\n  \"meta\": {\n    \"path\": \"<string>\",\n    \"per_page\": \"<number>\",\n    \"next_cursor\": \"<string>\",\n    \"prev_cursor\": {}\n  }\n}",
+                  "createdAt": "2026-07-28T01:57:07.000Z",
+                  "updatedAt": "2026-07-28T01:57:07.000Z",
+                  "uid": "35240-1c97efce-fb3a-411c-b414-5290156b5053"
+                }
+              ],
+              "createdAt": "2026-07-28T01:57:07.000Z",
+              "updatedAt": "2026-07-28T01:57:07.000Z",
+              "uid": "35240-8baa1fc8-01b5-498f-b910-9ad029ef05ce"
+            },
+            {
+              "name": "Create a new transfer",
+              "id": "1d7ed65e-f601-4900-a424-204afb7dfeae",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"beneficiary\": {\n    \"country\": \"au\",\n    \"currency\": \"bdt\",\n    \"transfer_method\": \"<string>\",\n    \"transfer_type\": \"local\",\n    \"holder_type\": \"individual\",\n    \"holder_name\": \"<string>\"\n  },\n  \"beneficiary_id\": \"<uuid>\",\n  \"source_currency\": \"<string>\",\n  \"source_amount\": \"<double>\",\n  \"payment_amount\": \"<double>\",\n  \"remitter_id\": \"<string>\",\n  \"remitter\": {\n    \"entity_type\": \"individual\",\n    \"full_name\": \"<string>\",\n    \"id_number\": \"<string>\",\n    \"id_type\": \"national_id\",\n    \"date_of_birth\": \"<date>\",\n    \"place_of_birth\": \"<string>\",\n    \"nationality\": \"<string>\",\n    \"contact_number\": \"<string>\",\n    \"email\": \"<string>\",\n    \"address\": {\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"street_address\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"company_name\": \"<string>\"\n  },\n  \"remark\": \"<string>\",\n  \"reference\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/transfers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "transfers"
+                  ]
+                },
+                "description": "Create a new transfer"
+              },
+              "response": [
+                {
+                  "id": "e944831c-19b7-4cb7-999d-94b21f11948a",
+                  "name": "201",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"beneficiary\": {\n    \"country\": \"au\",\n    \"currency\": \"bdt\",\n    \"transfer_method\": \"<string>\",\n    \"transfer_type\": \"local\",\n    \"holder_type\": \"individual\",\n    \"holder_name\": \"<string>\"\n  },\n  \"beneficiary_id\": \"<uuid>\",\n  \"source_currency\": \"<string>\",\n  \"source_amount\": \"<double>\",\n  \"payment_amount\": \"<double>\",\n  \"remitter_id\": \"<string>\",\n  \"remitter\": {\n    \"entity_type\": \"individual\",\n    \"full_name\": \"<string>\",\n    \"id_number\": \"<string>\",\n    \"id_type\": \"national_id\",\n    \"date_of_birth\": \"<date>\",\n    \"place_of_birth\": \"<string>\",\n    \"nationality\": \"<string>\",\n    \"contact_number\": \"<string>\",\n    \"email\": \"<string>\",\n    \"address\": {\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"street_address\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"company_name\": \"<string>\"\n  },\n  \"remark\": \"<string>\",\n  \"reference\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/transfers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "transfers"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"beneficiary\": {\n    \"id\": \"<string>\",\n    \"status\": \"<string>\",\n    \"country\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"transfer_method\": \"<string>\",\n    \"holder_name\": \"<string>\",\n    \"holder_type\": \"<string>\",\n    \"account_number\": \"<string>\",\n    \"bank_name\": \"<string>\",\n    \"bank_id\": \"<string>\",\n    \"email\": \"<string,null>\",\n    \"bank_routing_number\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\"\n  },\n  \"payment_currency\": \"<string>\",\n  \"payment_amount\": \"<number>\",\n  \"source_currency\": \"<string>\",\n  \"source_amount\": \"<number>\",\n  \"exchange_rate\": \"<string>\",\n  \"fee\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"<string>\",\n    \"paid_by\": \"payer\"\n  },\n  \"status\": \"paid\",\n  \"created_at\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:57:07.000Z",
+                  "updatedAt": "2026-07-28T01:57:07.000Z",
+                  "uid": "35240-e944831c-19b7-4cb7-999d-94b21f11948a"
+                },
+                {
+                  "id": "0b782d1d-6160-4941-99c1-3fd594dc4bbc",
+                  "name": "422",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"beneficiary\": {\n    \"country\": \"au\",\n    \"currency\": \"bdt\",\n    \"transfer_method\": \"<string>\",\n    \"transfer_type\": \"local\",\n    \"holder_type\": \"individual\",\n    \"holder_name\": \"<string>\"\n  },\n  \"beneficiary_id\": \"<uuid>\",\n  \"source_currency\": \"<string>\",\n  \"source_amount\": \"<double>\",\n  \"payment_amount\": \"<double>\",\n  \"remitter_id\": \"<string>\",\n  \"remitter\": {\n    \"entity_type\": \"individual\",\n    \"full_name\": \"<string>\",\n    \"id_number\": \"<string>\",\n    \"id_type\": \"national_id\",\n    \"date_of_birth\": \"<date>\",\n    \"place_of_birth\": \"<string>\",\n    \"nationality\": \"<string>\",\n    \"contact_number\": \"<string>\",\n    \"email\": \"<string>\",\n    \"address\": {\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"street_address\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"company_name\": \"<string>\"\n  },\n  \"remark\": \"<string>\",\n  \"reference\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/transfers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "transfers"
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"examples\": {\n    \"Result\": {\n      \"value\": {\n        \"message\": \"The beneficiary id field is required when beneficiary is not present. (and 4 more errors)\",\n        \"errors\": {\n          \"beneficiary_id\": [\n            \"The beneficiary id field is required when beneficiary is not present.\"\n          ],\n          \"beneficiary\": [\n            \"The beneficiary field is required when beneficiary id is not present.\"\n          ],\n          \"source_currency\": [\n            \"The source currency field is required.\"\n          ],\n          \"source_amount\": [\n            \"The source amount field is required when payment amount is not present.\"\n          ],\n          \"payment_amount\": [\n            \"The payment amount field is required when source amount is not present.\"\n          ]\n        }\n      }\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T01:57:07.000Z",
+                  "updatedAt": "2026-07-28T01:57:07.000Z",
+                  "uid": "35240-0b782d1d-6160-4941-99c1-3fd594dc4bbc"
+                }
+              ],
+              "createdAt": "2026-07-28T01:57:07.000Z",
+              "updatedAt": "2026-07-28T01:57:07.000Z",
+              "uid": "35240-1d7ed65e-f601-4900-a424-204afb7dfeae"
+            }
+          ],
+          "id": "adbba19f-3f1b-4c96-916a-23df1cad017d",
+          "createdAt": "2026-07-28T01:57:07.000Z",
+          "updatedAt": "2026-07-28T01:57:07.000Z",
+          "uid": "35240-adbba19f-3f1b-4c96-916a-23df1cad017d"
+        }
+      ],
+      "id": "af54673a-aa81-49ed-9404-004a27e1e1a0",
+      "createdAt": "2026-07-28T01:57:07.000Z",
+      "updatedAt": "2026-07-28T01:57:07.000Z",
+      "uid": "35240-af54673a-aa81-49ed-9404-004a27e1e1a0"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.hit-pay.com"
+    }
+  ]
+}

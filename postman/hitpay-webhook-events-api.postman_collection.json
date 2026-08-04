@@ -1,0 +1,709 @@
+{
+  "info": {
+    "_postman_id": "77c0b947-ae9a-499c-92ea-e922980ba26a",
+    "name": "HitPay Account Status Webhook Events API",
+    "description": "Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:57:09.000Z",
+    "updatedAt": "2026-07-28T01:57:09.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-77c0b947-ae9a-499c-92ea-e922980ba26a"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "webhook-events",
+          "item": [
+            {
+              "name": "{webhook_event_id}",
+              "item": [
+                {
+                  "name": "Get Webhook Event Detail",
+                  "id": "a76f098d-15bb-4db6-99d2-5d8951482c62",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/webhook-events/:webhook_event_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "webhook-events",
+                        ":webhook_event_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f30adea4-9be9-462c-92c3-7ab7c0fa2110",
+                          "key": "webhook_event_id",
+                          "value": "<string>",
+                          "description": "(Required) The Webhook Event id"
+                        }
+                      ]
+                    },
+                    "description": "This endpoint allows you to get a webhook event's details. You can use the `webhook_event_id` to get the webhook event's details."
+                  },
+                  "response": [
+                    {
+                      "id": "dfdd56cb-bba2-4ef2-aae6-e810e86e3c61",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/webhook-events/:webhook_event_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "webhook-events",
+                            ":webhook_event_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_event_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"business_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"url\": \"<string>\",\n  \"event_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:09.000Z",
+                      "updatedAt": "2026-07-28T01:57:09.000Z",
+                      "uid": "35240-dfdd56cb-bba2-4ef2-aae6-e810e86e3c61"
+                    },
+                    {
+                      "id": "92e7db23-0c3e-44a7-9562-570b96b2e1d9",
+                      "name": "404",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/webhook-events/:webhook_event_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "webhook-events",
+                            ":webhook_event_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_event_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:09.000Z",
+                      "updatedAt": "2026-07-28T01:57:09.000Z",
+                      "uid": "35240-92e7db23-0c3e-44a7-9562-570b96b2e1d9"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:57:09.000Z",
+                  "updatedAt": "2026-07-28T01:57:09.000Z",
+                  "uid": "35240-a76f098d-15bb-4db6-99d2-5d8951482c62"
+                },
+                {
+                  "name": "Update Webhook Event",
+                  "id": "0fccafc9-f52d-456a-85b7-b48771b25744",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"url\": \"<string>\",\n  \"event_types\": [\n    \"order.created\",\n    \"order.updated\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/webhook-events/:webhook_event_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "webhook-events",
+                        ":webhook_event_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "7658bdde-7bd4-4688-81a5-c1ef095c0a87",
+                          "key": "webhook_event_id",
+                          "value": "<string>",
+                          "description": "(Required) The Webhook Event id"
+                        }
+                      ]
+                    },
+                    "description": "This endpoint allows you to update a webhook event. You can use the `webhook_event_id` to update the webhook event's details."
+                  },
+                  "response": [
+                    {
+                      "id": "f9b24dc5-a622-4f56-9071-b567219b4e0d",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"url\": \"<string>\",\n  \"event_types\": [\n    \"order.created\",\n    \"order.updated\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/webhook-events/:webhook_event_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "webhook-events",
+                            ":webhook_event_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_event_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"business_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"url\": \"<string>\",\n  \"event_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:09.000Z",
+                      "updatedAt": "2026-07-28T01:57:09.000Z",
+                      "uid": "35240-f9b24dc5-a622-4f56-9071-b567219b4e0d"
+                    },
+                    {
+                      "id": "70542e9e-bbf3-4467-936f-64396b9d6c38",
+                      "name": "404",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"url\": \"<string>\",\n  \"event_types\": [\n    \"order.created\",\n    \"order.updated\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/webhook-events/:webhook_event_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "webhook-events",
+                            ":webhook_event_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_event_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:09.000Z",
+                      "updatedAt": "2026-07-28T01:57:09.000Z",
+                      "uid": "35240-70542e9e-bbf3-4467-936f-64396b9d6c38"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:57:09.000Z",
+                  "updatedAt": "2026-07-28T01:57:09.000Z",
+                  "uid": "35240-0fccafc9-f52d-456a-85b7-b48771b25744"
+                },
+                {
+                  "name": "Delete Webhook Event",
+                  "id": "f9163a03-86eb-4237-b6d2-9e0a82ff07a4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/webhook-events/:webhook_event_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "webhook-events",
+                        ":webhook_event_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "b9afac82-4f79-4da5-9a83-61214b3c820a",
+                          "key": "webhook_event_id",
+                          "value": "<string>",
+                          "description": "(Required) The Webhook Event id"
+                        }
+                      ]
+                    },
+                    "description": "This endpoint allows you to delete a webhook event. You can use the `webhook_event_id` to delete the webhook event."
+                  },
+                  "response": [
+                    {
+                      "id": "961c6bd6-e0d2-4331-8e42-b829632bc142",
+                      "name": "204",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/webhook-events/:webhook_event_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "webhook-events",
+                            ":webhook_event_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_event_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "0",
+                      "createdAt": "2026-07-28T01:57:09.000Z",
+                      "updatedAt": "2026-07-28T01:57:09.000Z",
+                      "uid": "35240-961c6bd6-e0d2-4331-8e42-b829632bc142"
+                    },
+                    {
+                      "id": "9a823337-33d6-469c-8578-b6b17d73f200",
+                      "name": "404",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/webhook-events/:webhook_event_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "webhook-events",
+                            ":webhook_event_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "webhook_event_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:09.000Z",
+                      "updatedAt": "2026-07-28T01:57:09.000Z",
+                      "uid": "35240-9a823337-33d6-469c-8578-b6b17d73f200"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:57:09.000Z",
+                  "updatedAt": "2026-07-28T01:57:09.000Z",
+                  "uid": "35240-f9163a03-86eb-4237-b6d2-9e0a82ff07a4"
+                }
+              ],
+              "id": "85c8a670-8d59-43a5-b282-9969bfe18a22",
+              "createdAt": "2026-07-28T01:57:09.000Z",
+              "updatedAt": "2026-07-28T01:57:09.000Z",
+              "uid": "35240-85c8a670-8d59-43a5-b282-9969bfe18a22"
+            },
+            {
+              "name": "Get All Webhook Events",
+              "id": "775f0216-b4f6-48ab-927d-126d0448b35b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/webhook-events",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "webhook-events"
+                  ]
+                },
+                "description": "This endpoint allows you to get all webhook events. The webhook event will listen to the event types that you specify and send a POST request to the URL that you specify."
+              },
+              "response": [
+                {
+                  "id": "cf4722bd-6aae-499a-9dce-669a9c829428",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/webhook-events",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "webhook-events"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<string>\",\n    \"business_id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"url\": \"<string>\",\n    \"event_types\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"business_id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"url\": \"<string>\",\n    \"event_types\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-07-28T01:57:09.000Z",
+                  "updatedAt": "2026-07-28T01:57:09.000Z",
+                  "uid": "35240-cf4722bd-6aae-499a-9dce-669a9c829428"
+                }
+              ],
+              "createdAt": "2026-07-28T01:57:09.000Z",
+              "updatedAt": "2026-07-28T01:57:09.000Z",
+              "uid": "35240-775f0216-b4f6-48ab-927d-126d0448b35b"
+            },
+            {
+              "name": "Create a Webhook Event",
+              "id": "f46f013c-1fa8-46be-902f-886442c3e8c5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"event_types\": [\n    \"transfer.created\",\n    \"order.created\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/webhook-events",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "webhook-events"
+                  ]
+                },
+                "description": "This endpoint allows you to create a webhook event. The webhook event will listen to the event types that you specify and send a POST request to the URL that you specify."
+              },
+              "response": [
+                {
+                  "id": "b6b327bc-3201-49db-8ae4-bdfb8dd09c44",
+                  "name": "201",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"event_types\": [\n    \"transfer.created\",\n    \"order.created\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/webhook-events",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "webhook-events"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"business_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"url\": \"<string>\",\n  \"event_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:57:09.000Z",
+                  "updatedAt": "2026-07-28T01:57:09.000Z",
+                  "uid": "35240-b6b327bc-3201-49db-8ae4-bdfb8dd09c44"
+                }
+              ],
+              "createdAt": "2026-07-28T01:57:09.000Z",
+              "updatedAt": "2026-07-28T01:57:09.000Z",
+              "uid": "35240-f46f013c-1fa8-46be-902f-886442c3e8c5"
+            }
+          ],
+          "id": "f8ab1f64-7b9c-4def-98c9-b0f88ed154b1",
+          "createdAt": "2026-07-28T01:57:09.000Z",
+          "updatedAt": "2026-07-28T01:57:09.000Z",
+          "uid": "35240-f8ab1f64-7b9c-4def-98c9-b0f88ed154b1"
+        }
+      ],
+      "id": "de987935-e99a-4874-92b8-e908f3ccb983",
+      "createdAt": "2026-07-28T01:57:09.000Z",
+      "updatedAt": "2026-07-28T01:57:09.000Z",
+      "uid": "35240-de987935-e99a-4874-92b8-e908f3ccb983"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.hit-pay.com"
+    }
+  ]
+}

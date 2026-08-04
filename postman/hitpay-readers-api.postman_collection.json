@@ -1,0 +1,317 @@
+{
+  "info": {
+    "_postman_id": "484e5fb9-d182-4018-bcf3-a4ce1e195f55",
+    "name": "HitPay Account Status Readers API",
+    "description": "Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:56:36.000Z",
+    "updatedAt": "2026-07-28T01:56:36.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-484e5fb9-d182-4018-bcf3-a4ce1e195f55"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "readers",
+          "item": [
+            {
+              "name": "cancel",
+              "item": [
+                {
+                  "name": "Cancel the terminal reader",
+                  "id": "86885e8e-1f14-4afe-adcb-33bbd55c801e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"reader_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/readers/cancel",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "readers",
+                        "cancel"
+                      ]
+                    },
+                    "description": "Cancel the terminal reader."
+                  },
+                  "response": [
+                    {
+                      "id": "9f4b2a9d-7347-4308-af12-45bdc776133c",
+                      "name": "204",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"reader_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/readers/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "readers",
+                            "cancel"
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<integer>",
+                      "createdAt": "2026-07-28T01:56:36.000Z",
+                      "updatedAt": "2026-07-28T01:56:36.000Z",
+                      "uid": "35240-9f4b2a9d-7347-4308-af12-45bdc776133c"
+                    },
+                    {
+                      "id": "c1b4c70c-ada1-4f4d-bcc4-5331a0771993",
+                      "name": "400",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "X-BUSINESS-API-KEY",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"reader_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/readers/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "readers",
+                            "cancel"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:36.000Z",
+                      "updatedAt": "2026-07-28T01:56:36.000Z",
+                      "uid": "35240-c1b4c70c-ada1-4f4d-bcc4-5331a0771993"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:56:36.000Z",
+                  "updatedAt": "2026-07-28T01:56:36.000Z",
+                  "uid": "35240-86885e8e-1f14-4afe-adcb-33bbd55c801e"
+                }
+              ],
+              "id": "3f7e1daf-12fb-40cf-9592-303d4696eb76",
+              "createdAt": "2026-07-28T01:56:36.000Z",
+              "updatedAt": "2026-07-28T01:56:36.000Z",
+              "uid": "35240-3f7e1daf-12fb-40cf-9592-303d4696eb76"
+            },
+            {
+              "name": "Get all card readers",
+              "id": "3f1c22aa-bc9a-4ae5-8373-2bad88e54bb5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/readers?limit=10&page=1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "readers"
+                  ],
+                  "query": [
+                    {
+                      "description": " The number of items in page.",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ]
+                },
+                "description": "Get all card readers"
+              },
+              "response": [
+                {
+                  "id": "4c992a88-5b48-460f-937d-e8d573fcfde1",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) ",
+                        "key": "X-BUSINESS-API-KEY",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/readers?limit=10&page=1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "readers"
+                      ],
+                      "query": [
+                        {
+                          "description": " The number of items in page.",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "key": "page",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"device_type\": \"<string>\",\n      \"details\": {\n        \"title\": \"<string>\",\n        \"image\": \"<string>\"\n      },\n      \"data\": {\n        \"id\": \"<string>\",\n        \"serial_number\": \"<string>\"\n      },\n      \"created_at\": \"<string>\",\n      \"updated_at\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"device_type\": \"<string>\",\n      \"details\": {\n        \"title\": \"<string>\",\n        \"image\": \"<string>\"\n      },\n      \"data\": {\n        \"id\": \"<string>\",\n        \"serial_number\": \"<string>\"\n      },\n      \"created_at\": \"<string>\",\n      \"updated_at\": \"<string>\"\n    }\n  ],\n  \"links\": {\n    \"first\": \"<string>\",\n    \"last\": \"<string>\",\n    \"prev\": {},\n    \"next\": {}\n  },\n  \"meta\": {\n    \"current_page\": \"<number>\",\n    \"from\": \"<number>\",\n    \"last_page\": \"<number>\",\n    \"links\": [\n      {\n        \"label\": \"<string>\",\n        \"active\": \"<boolean>\",\n        \"url\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"active\": \"<boolean>\",\n        \"url\": \"<string>\"\n      }\n    ],\n    \"path\": \"<string>\",\n    \"per_page\": \"<number>\",\n    \"to\": \"<number>\",\n    \"total\": \"<number>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:56:36.000Z",
+                  "updatedAt": "2026-07-28T01:56:36.000Z",
+                  "uid": "35240-4c992a88-5b48-460f-937d-e8d573fcfde1"
+                }
+              ],
+              "createdAt": "2026-07-28T01:56:36.000Z",
+              "updatedAt": "2026-07-28T01:56:36.000Z",
+              "uid": "35240-3f1c22aa-bc9a-4ae5-8373-2bad88e54bb5"
+            }
+          ],
+          "id": "273a5f00-b155-4414-8f46-1aace6870ae6",
+          "createdAt": "2026-07-28T01:56:36.000Z",
+          "updatedAt": "2026-07-28T01:56:36.000Z",
+          "uid": "35240-273a5f00-b155-4414-8f46-1aace6870ae6"
+        }
+      ],
+      "id": "72c5459d-3f04-4a6b-9ef1-503bd6eea84c",
+      "createdAt": "2026-07-28T01:56:36.000Z",
+      "updatedAt": "2026-07-28T01:56:36.000Z",
+      "uid": "35240-72c5459d-3f04-4a6b-9ef1-503bd6eea84c"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.hit-pay.com"
+    }
+  ]
+}
