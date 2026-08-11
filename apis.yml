@@ -638,7 +638,7 @@ common:
 - url: https://www.hitpayapp.com/blog
   type: Blog
 - type: OpenAPI
-  url: openapi/hitpay-openapi-original.json
+  url: openapi/_original/hitpay-openapi-original.json
   name: HitPay API (first-party spec, 79 operations)
 - type: MCPServer
   url: mcp/hitpay-mcp.yml
