@@ -1,0 +1,116 @@
+{
+  "item": [
+    {
+      "id": "32535a52-ba33-440b-a95d-8a1adf26b1a2",
+      "name": "Account Status",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8829aeb7-2122-4f9d-8e9d-46002a5257aa",
+          "name": "Get Account Status",
+          "request": {
+            "name": "Get Account Status",
+            "description": {
+              "content": "Get the account status",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "account-status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "df692788-7634-4ff9-8ce1-e724f87cf670",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account-status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"bank_account_status\": \"completed\",\n  \"verification\": {\n    \"overall_status\": \"completed\",\n    \"owner_verification\": \"not_required\",\n    \"business_verification\": \"completed\"\n  },\n  \"payment_providers\": {\n    \"airwallex_sg\": {\n      \"setup_status\": \"completed\"\n    },\n    \"atome_sg\": {\n      \"setup_status\": \"completed\"\n    },\n    \"dbs_sg\": {\n      \"setup_status\": \"pending\"\n    },\n    \"fave_sg\": {\n      \"setup_status\": \"completed\"\n    },\n    \"shopback_sg\": {\n      \"setup_status\": \"completed\"\n    },\n    \"shopee_pay\": {\n      \"setup_status\": \"completed\"\n    },\n    \"stripe_sg\": {\n      \"setup_status\": \"completed\",\n      \"payment_enabled\": true,\n      \"payout_enabled\": true\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.hit-pay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "13a53cfa-9a65-4227-9c84-03c82ff53379",
+    "name": "HitPay Account Status API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com",
+      "type": "text/plain"
+    }
+  }
+}

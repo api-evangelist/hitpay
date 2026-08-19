@@ -1,0 +1,120 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "HitPay Account Status Balances API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Balances",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Balances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hit-pay.com/v1/balances",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Get Balances"
+        },
+        {
+          "info": {
+            "name": "Get Balance Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hit-pay.com/v1/balances/:balance_provider/transactions",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "balance_provider",
+                "value": "",
+                "type": "path",
+                "description": "The balance provider"
+              },
+              {
+                "name": "created_at_from",
+                "value": "",
+                "type": "query",
+                "description": "The start day of Adyen transaction in range."
+              },
+              {
+                "name": "created_at_to",
+                "value": "",
+                "type": "query",
+                "description": "The end day of Adyen transaction in range. Note: `created_at_to >= created_at_from`"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "It is used to fetch the next (or previous) set of results."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Balance Transactions and it's only applicable for Singapore merchants with Cards (by Adyen) Balance."
+        },
+        {
+          "info": {
+            "name": "Export Balance Breakdown",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hit-pay.com/v1/balances/:balance_provider/transactions/export",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "balance_provider",
+                "value": "",
+                "type": "path",
+                "description": "The balance provider. It only supports Adyen now."
+              },
+              {
+                "name": "created_at_from",
+                "value": "",
+                "type": "query",
+                "description": "The start day of Adyen transaction in range."
+              },
+              {
+                "name": "created_at_to",
+                "value": "",
+                "type": "query",
+                "description": "The end day of Adyen transaction in range. Note: `created_at_to >= created_at_from`"
+              }
+            ]
+          },
+          "docs": "Export Balance Breakdown and the exported file will be included in attachment of sending email to the business's admin email. Currenly, we only support `Adyen` provider."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

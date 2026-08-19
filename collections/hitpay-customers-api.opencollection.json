@@ -1,0 +1,147 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "HitPay Account Status Customers API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Customers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hit-pay.com/v1/customers",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint allows you to retrieve all customers"
+        },
+        {
+          "info": {
+            "name": "Create a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hit-pay.com/v1/customers",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint allows you to create a customer. The customer will be created with the provided details and will be returned in the response."
+        },
+        {
+          "info": {
+            "name": "Get Customer Detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hit-pay.com/v1/customers/:customer_id",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The Customer id"
+              }
+            ]
+          },
+          "docs": "A customer is a person or a company that is registered with HitPay. This endpoint allows you to retrieve a customer's details."
+        },
+        {
+          "info": {
+            "name": "Update Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.hit-pay.com/v1/customers/:customer_id",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The Customer id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint allows you to update a customer's details."
+        },
+        {
+          "info": {
+            "name": "Delete Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.hit-pay.com/v1/customers/:customer_id",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The Customer id"
+              }
+            ]
+          },
+          "docs": "This endpoint allows you to delete a customer."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

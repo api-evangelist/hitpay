@@ -1,0 +1,879 @@
+{
+  "item": [
+    {
+      "id": "8b7f5afa-c287-4c1d-8de6-272d0fe04331",
+      "name": "Beneficiaries",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c0644d42-581a-459b-b21c-6ec876cdc5c2",
+          "name": "Get the API schema",
+          "request": {
+            "name": "Get the API schema",
+            "description": {
+              "content": "This API returns a dynamic schema that depends on the values of certain parameters. The schema contains the fields and validation rules for each payment scenario. A payment scenario is a combination of these parameters:country, transfer_method,transfer_type, currency, holder_type and bank_swift_code. To get the final schema, you need to submit the field values and re-render the form multiple times until all the fields are completed. For example, if you submit only the country parameter, the API will return a schema with the fields for country and transfer_method. If you submit the country and transfer_method parameters, the API will return a schema with the fields for country, transfer_method, currency, and so on.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "beneficiaries",
+                "schema"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"country\": \"<string>\",\n  \"transfer_method\": \"<string>\",\n  \"transfer_type\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"holder_type\": \"<string>\",\n  \"bank_swift_code\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "391968f4-6a68-4558-b2cf-91bd10e40b31",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "beneficiaries",
+                    "schema"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"country\": \"sg\",\n  \"transfer_method\": \"bank_transfer\",\n  \"transfer_type\": \"local\",\n  \"currency\": \"sgd\",\n  \"holder_type\": \"company\",\n  \"bank_swift_code\": \"AEIBSGSXXXX\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key\": \"country\",\n    \"placeholder\": null,\n    \"title\": \"Country\",\n    \"required\": true,\n    \"type\": \"select\",\n    \"force_display\": true,\n    \"options\": [\n      {\n        \"value\": \"au\",\n        \"label\": \"Australia\"\n      },\n      {\n        \"value\": \"bd\",\n        \"label\": \"Bangladesh\"\n      },\n      {\n        \"value\": \"my\",\n        \"label\": \"Malaysia\"\n      },\n      {\n        \"value\": \"ph\",\n        \"label\": \"Philippines\"\n      },\n      {\n        \"value\": \"sg\",\n        \"label\": \"Singapore\"\n      },\n      {\n        \"value\": \"vn\",\n        \"label\": \"Vietnam\"\n      }\n    ],\n    \"value\": \"sg\"\n  },\n  {\n    \"key\": \"transfer_method\",\n    \"placeholder\": null,\n    \"title\": \"Transfer Method\",\n    \"required\": true,\n    \"type\": \"select\",\n    \"force_display\": true,\n    \"options\": [\n      {\n        \"value\": \"bank_transfer\",\n        \"label\": \"Bank Transfer\"\n      }\n    ],\n    \"value\": \"bank_transfer\"\n  },\n  {\n    \"key\": \"transfer_type\",\n    \"placeholder\": null,\n    \"title\": \"Transfer Type\",\n    \"required\": false,\n    \"type\": \"select\",\n    \"force_display\": false,\n    \"options\": [\n      {\n        \"value\": \"local\",\n        \"label\": \"FAST\"\n      }\n    ],\n    \"value\": \"local\"\n  },\n  {\n    \"key\": \"currency\",\n    \"placeholder\": \"Select one\",\n    \"title\": \"Currency\",\n    \"required\": true,\n    \"type\": \"select\",\n    \"force_display\": true,\n    \"options\": [\n      {\n        \"value\": \"sgd\",\n        \"label\": \"Singapore Dollar ($)\"\n      },\n      {\n        \"value\": \"usd\",\n        \"label\": \"US Dollar ($)\"\n      }\n    ],\n    \"value\": \"sgd\"\n  },\n  {\n    \"key\": \"holder_type\",\n    \"placeholder\": null,\n    \"title\": \"Entity Type\",\n    \"required\": true,\n    \"type\": \"select\",\n    \"force_display\": true,\n    \"options\": [\n      {\n        \"value\": \"company\",\n        \"label\": \"Company\"\n      },\n      {\n        \"value\": \"individual\",\n        \"label\": \"Individual\"\n      }\n    ],\n    \"value\": \"company\"\n  },\n  {\n    \"key\": \"holder_name\",\n    \"placeholder\": \"John Doe\",\n    \"title\": \"Account Holder Name\",\n    \"required\": true,\n    \"type\": \"input\"\n  },\n  {\n    \"key\": \"bank_swift_code\",\n    \"placeholder\": null,\n    \"type\": \"select\",\n    \"title\": \"Bank Name\",\n    \"required\": true,\n    \"force_display\": true,\n    \"options\": [\n      {\n        \"value\": \"ABNASG2AXXX\",\n        \"label\": \"ABN AMRO BANK NV\"\n      },\n      {\n        \"value\": \"AEIBSGSXXXX\",\n        \"label\": \"AMERICAN EXPRESS BANK LTD\"\n      },\n      {\n        \"value\": \"ANZBSGSXXXX\",\n        \"label\": \"ANZ SINGAPORE\"\n      },\n      {\n        \"value\": \"BKKBSGSGXXX\",\n        \"label\": \"BANGKOK BANK PUBLIC COMPANY\"\n      },\n      {\n        \"value\": \"BOFASG2XXXX\",\n        \"label\": \"BANK OF AMERICA\"\n      },\n      {\n        \"value\": \"BKCHSGSGXXX\",\n        \"label\": \"BANK OF CHINA\"\n      },\n      {\n        \"value\": \"BKIDSGSGXXX\",\n        \"label\": \"BANK OF INDIA\"\n      },\n      {\n        \"value\": \"BKNZSGSGXXX\",\n        \"label\": \"BANK OF NEW ZEALAND\"\n      },\n      {\n        \"value\": \"BOTKSGSXXXX\",\n        \"label\": \"BANK OF TOKYO-MITSUBISHI\"\n      },\n      {\n        \"value\": \"BNPASGSGXXX\",\n        \"label\": \"BNP PARIBAS\"\n      },\n      {\n        \"value\": \"CRLYSGSGXXX\",\n        \"label\": \"CALYON\"\n      },\n      {\n        \"value\": \"CTCBSGSGXXX\",\n        \"label\": \"CHINATRUST COMMERCIAL BANK CO., LTD\"\n      },\n      {\n        \"value\": \"CIBBSGSGXXX\",\n        \"label\": \"CIMB BANK BERHAD\"\n      },\n      {\n        \"value\": \"CITISGSGXXX\",\n        \"label\": \"CITIBANK NA\"\n      },\n      {\n        \"value\": \"CITISGSLXXX\",\n        \"label\": \"CITIBANK SINGAPORE\"\n      },\n      {\n        \"value\": \"KWHKSGSGXXX\",\n        \"label\": \"CITIC Bank International Ltd\"\n      },\n      {\n        \"value\": \"COBASGSXXXX\",\n        \"label\": \"COMMERZBANK SG\"\n      },\n      {\n        \"value\": \"DBSSSGSGXXX\",\n        \"label\": \"DBS Bank/POSB\"\n      },\n      {\n        \"value\": \"DEUTSGSGXXX\",\n        \"label\": \"DEUTSCHE BANK\"\n      },\n      {\n        \"value\": \"DNBASGSGXXX\",\n        \"label\": \"DnB NOR Bank ASA\"\n      },\n      {\n        \"value\": \"FAEASGSGXXX\",\n        \"label\": \"FAR EASTERN BANK\"\n      },\n      {\n        \"value\": \"FCBKSGSGXXX\",\n        \"label\": \"FIRST COMMERCIAL BANK\"\n      },\n      {\n        \"value\": \"HABBSGSGXXX\",\n        \"label\": \"HABIB BANK LIMITED\"\n      },\n      {\n        \"value\": \"HLBBSGSGXXX\",\n        \"label\": \"HL BANK\"\n      },\n      {\n        \"value\": \"HSBCSGS2\",\n        \"label\": \"HONGKONG & SHANGHAI BANKING CORPORATION (HSBC)\"\n      },\n      {\n        \"value\": \"HSBCSGS2XXX\",\n        \"label\": \"HONGKONG & SHANGHAI BANKING CORPORATION (HSBC)\"\n      },\n      {\n        \"value\": \"HSBCSGSGXXX\",\n        \"label\": \"HONGKONG & SHANGHAI BANKING CORPORATION (HSBC)\"\n      },\n      {\n        \"value\": \"ICICSGSGXXX\",\n        \"label\": \"ICICI BANK\"\n      },\n      {\n        \"value\": \"IDIBSGSGXXX\",\n        \"label\": \"INDIAN BANK\"\n      },\n      {\n        \"value\": \"IOBASGSGXXX\",\n        \"label\": \"INDIAN OVERSEAS BANK\"\n      },\n      {\n        \"value\": \"INGBSGSGXXX\",\n        \"label\": \"INTERNALTIONALE NEDERLANDEN BANK N.V.\"\n      },\n      {\n        \"value\": \"BCITSGSGXXX\",\n        \"label\": \"INTESABCI S.P.A.\"\n      },\n      {\n        \"value\": \"ICBKSGSGXXX\",\n        \"label\": \"Industrial & Commercial Bank of China\"\n      },\n      {\n        \"value\": \"CHASSGSGXXX\",\n        \"label\": \"JP MORGAN CHASE BANK, N.A.\"\n      },\n      {\n        \"value\": \"KOEXSGSGXXX\",\n        \"label\": \"KEB HANA BANK\"\n      },\n      {\n        \"value\": \"MBBESGS2\",\n        \"label\": \"MALAYAN BANKING BERHAD\"\n      },\n      {\n        \"value\": \"MBBESGS2XXX\",\n        \"label\": \"MAYBANK SINGAPORE LIMITED\"\n      },\n      {\n        \"value\": \"MHCBSGSGXXX\",\n        \"label\": \"MIZUHO CORPORATE BANK, LTD\"\n      },\n      {\n        \"value\": \"NATASGSGXXX\",\n        \"label\": \"NATIONAL AUSTRALIA BANK LTD\"\n      },\n      {\n        \"value\": \"NBOKSGSGXXX\",\n        \"label\": \"NATIONAL BANK OF KUWAIT, SAK\"\n      },\n      {\n        \"value\": \"NDEASGSGXXX\",\n        \"label\": \"NORDEA BANK FINLAND PLC\"\n      },\n      {\n        \"value\": \"OCBCSGSGXXX\",\n        \"label\": \"OVERSEA-CHINESE BANKING CORPORATION LTD\"\n      },\n      {\n        \"value\": \"BNINSGSGXXX\",\n        \"label\": \"PT. BANK NEGARA INDONESIA\"\n      },\n      {\n        \"value\": \"RHBBSGSGXXX\",\n        \"label\": \"RHB BANK BERHAD\"\n      },\n      {\n        \"value\": \"BSGPSGSGXXX\",\n        \"label\": \"SINGAPORE ISLAND BANK\"\n      },\n      {\n        \"value\": \"ESSESGSGXXX\",\n        \"label\": \"SKANDINAVISKA ENSKILDA BANKEN\"\n      },\n      {\n        \"value\": \"SOGESGSGXXX\",\n        \"label\": \"SOCIETE GENERALE\"\n      },\n      {\n        \"value\": \"SCBLSG22XXX\",\n        \"label\": \"STANDARD CHARTERED BANK\"\n      },\n      {\n        \"value\": \"SCBLSGSGXXX\",\n        \"label\": \"STANDARD CHARTERED BANK\"\n      },\n      {\n        \"value\": \"SBINSGSGXXX\",\n        \"label\": \"STATE BANK OF INDIA\"\n      },\n      {\n        \"value\": \"SMBCSGSGXXX\",\n        \"label\": \"SUMITOMO MITSUI BANKING CORPORATION\"\n      },\n      {\n        \"value\": \"HANDSGSGXXX\",\n        \"label\": \"SVENSKA HANDELSBANKEN AB (PUBL)\"\n      },\n      {\n        \"value\": \"UBSWSGSGXXX\",\n        \"label\": \"SWISS BANK CORP\"\n      },\n      {\n        \"value\": \"BEASSGSGXXX\",\n        \"label\": \"THE BANK OF EAST ASIA\"\n      },\n      {\n        \"value\": \"NOSCSGSGXXX\",\n        \"label\": \"THE BANK OF NOVA SCOTIA\"\n      },\n      {\n        \"value\": \"UCBASGSGXXX\",\n        \"label\": \"UCO BANK\"\n      },\n      {\n        \"value\": \"UBAFSGSXXXX\",\n        \"label\": \"UNION DE BANQUES ARABES ET FRANCAISES\"\n      },\n      {\n        \"value\": \"UOVBSGSGXXX\",\n        \"label\": \"UNITED OVERSEAS BANK LTD\"\n      },\n      {\n        \"value\": \"TRWISGSGXXX\",\n        \"label\": \"Wise Asia-Pacific Pte Ltd\"\n      }\n    ],\n    \"value\": \"AEIBSGSXXXX\"\n  },\n  {\n    \"key\": \"account_number\",\n    \"placeholder\": \"140989\",\n    \"type\": \"input\",\n    \"title\": \"Account Number\",\n    \"required\": true,\n    \"validation\": \"/^\\\\d{4,32}$/\"\n  },\n  {\n    \"key\": \"nickname\",\n    \"placeholder\": \"John Doe\",\n    \"title\": \"Nickname\",\n    \"required\": false,\n    \"type\": \"input\"\n  },\n  {\n    \"key\": \"remark\",\n    \"placeholder\": \"Example: Test SGD transfer to US\",\n    \"title\": \"Remark\",\n    \"required\": false,\n    \"type\": \"input\"\n  },\n  {\n    \"key\": \"email\",\n    \"placeholder\": null,\n    \"title\": \"Email Address\",\n    \"required\": false,\n    \"type\": \"input\",\n    \"validation\": \"email\"\n  },\n  {\n    \"key\": \"is_favourite\",\n    \"placeholder\": null,\n    \"title\": \"Mark this beneficiary as favourite\",\n    \"required\": false,\n    \"type\": \"checkbox-boolean\",\n    \"value\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b175647c-ba6c-4577-a8e5-975ee09bb886",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "beneficiaries",
+                    "schema"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"country\": \"sg\",\n  \"transfer_method\": \"bank_transfer\",\n  \"transfer_type\": \"local\",\n  \"currency\": \"sgd\",\n  \"holder_type\": \"company\",\n  \"bank_swift_code\": \"AEIBSGSXXXX\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"The given data was invalid. The selected Country is invalid.\",\n  \"errors\": {\n    \"country\": [\n      \"The selected Country is invalid.\"\n    ],\n    \"transfer_method\": [\n      \"The selected Transfer Method is invalid.\"\n    ],\n    \"transfer_type\": [\n      \"The selected Transfer Type is invalid.\"\n    ],\n    \"currency\": [\n      \"The selected Currency is invalid.\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7b7ad96d-8079-4cd5-84a9-58b9269b5403",
+          "name": "Create a new beneficiary",
+          "request": {
+            "name": "Create a new beneficiary",
+            "description": {
+              "content": "A beneficiary is a person or business receiving the funds. HitPay currently supports local beneficiaries, enabling payouts within the same country and region.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "beneficiaries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"country\": \"<string>\",\n  \"transfer_method\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"transfer_type\": \"<string>\",\n  \"holder_type\": \"<string>\",\n  \"holder_name\": \"<string>\",\n  \"account_number\": \"<string>\",\n  \"bank_swift_code\": \"<string>\",\n  \"nickname\": \"<string>\",\n  \"remark\": \"<string>\",\n  \"is_favourite\": \"<boolean>\",\n  \"email\": \"<email>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0184c30a-7cb0-4821-9d56-3c054285f8a2",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "beneficiaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"country\": \"sg\",\n  \"transfer_method\": \"bank_transfer\",\n  \"transfer_type\": \"local\",\n  \"currency\": \"sgd\",\n  \"holder_type\": \"individual\",\n  \"holder_name\": \"John Tan\",\n  \"bank_id\": \"BOFASG2XXXX[7065]\",\n  \"account_number\": \"1409827\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"9ec01865-7af1-4937-813d-7801912d2cd1\",\n  \"status\": \"approved\",\n  \"country\": \"sg\",\n  \"currency\": \"sgd\",\n  \"transfer_method\": \"bank_transfer\",\n  \"transfer_type\": \"local\",\n  \"nickname\": null,\n  \"remark\": null,\n  \"holder_name\": \"John Test\",\n  \"holder_type\": \"individual\",\n  \"account_number\": \"1409828\",\n  \"bank_name\": \"BANK OF AMERICA\",\n  \"bank_id\": \"BOFASG2XXXX[7065]\",\n  \"email\": null,\n  \"bank_swift_code\": \"BOFASG2XXXX\",\n  \"is_favourite\": false,\n  \"created_by\": {\n    \"id\": \"98566f58-1c76-4b8b-8f75-d20bba2bc7f8\",\n    \"display_name\": \"TestingSG\",\n    \"first_name\": \"QA\",\n    \"last_name\": \"SG\"\n  },\n  \"created_at\": \"2025-04-24T15:13:22+08:00\",\n  \"updated_at\": \"2025-04-24T15:13:22+08:00\",\n  \"deleted_at\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "35366220-bc53-4c66-bd92-b3dc32150958",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "beneficiaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"country\": \"sg\",\n  \"transfer_method\": \"bank_transfer\",\n  \"transfer_type\": \"local\",\n  \"currency\": \"sgd\",\n  \"holder_type\": \"individual\",\n  \"holder_name\": \"John Tan\",\n  \"bank_id\": \"BOFASG2XXXX[7065]\",\n  \"account_number\": \"1409827\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"The Country field is required. (and 4 more errors)\",\n  \"errors\": {\n    \"country\": [\n      \"The Country field is required.\"\n    ],\n    \"transfer_method\": [\n      \"The Transfer Method field is required.\"\n    ],\n    \"currency\": [\n      \"The Currency field is required.\"\n    ],\n    \"holder_type\": [\n      \"The Entity Type field is required.\"\n    ],\n    \"holder_name\": [\n      \"The Account Holder Name field is required.\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "351c2fff-5497-4bb6-9c77-03bd45f97fce",
+          "name": "Get list of beneficiaries",
+          "request": {
+            "name": "Get list of beneficiaries",
+            "description": {
+              "content": "Get list of beneficiaries",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "beneficiaries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "Search by holder name / nickname"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "10"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bb3eaf73-a08a-4c1b-a7bc-2650223420d7",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "beneficiaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"9eb3d3ff-3fb0-450e-bb61-7c0753974398\",\n      \"status\": \"approved\",\n      \"country\": \"sg\",\n      \"currency\": \"sgd\",\n      \"transfer_method\": \"bank_transfer\",\n      \"transfer_type\": \"local\",\n      \"nickname\": \"Test QA\",\n      \"remark\": \"Test QA\",\n      \"holder_name\": \"Test QA\",\n      \"holder_type\": \"individual\",\n      \"bank_branch_code\": \"001\",\n      \"account_number\": \"173737377\",\n      \"bank_name\": \"AMERICAN EXPRESS BANK LTD\",\n      \"bank_id\": \"AEIBSGSXXXX[7454]\",\n      \"email\": \"test@gmail.com\",\n      \"bank_swift_code\": \"AEIBSGSXXXX\",\n      \"is_favourite\": true,\n      \"created_by\": {\n        \"id\": \"98566f58-1c76-4b8b-8f75-d20bba2bc7f8\",\n        \"display_name\": \"TestingSG\",\n        \"first_name\": \"QA\",\n        \"last_name\": \"SG\"\n      },\n      \"created_at\": \"2025-04-18T12:52:10+08:00\",\n      \"updated_at\": \"2025-04-18T12:52:10+08:00\",\n      \"deleted_at\": null\n    }\n  ],\n  \"links\": {\n    \"first\": \"https://api.sandbox.hit-pay.com/v1/beneficiaries?page=1\",\n    \"last\": \"https://api.sandbox.hit-pay.com/v1/beneficiaries?page=23\",\n    \"prev\": null,\n    \"next\": \"https://api.sandbox.hit-pay.com/v1/beneficiaries?page=2\"\n  },\n  \"meta\": {\n    \"current_page\": 1,\n    \"from\": 1,\n    \"last_page\": 23,\n    \"links\": [\n      {\n        \"url\": null,\n        \"label\": \"&larr; Previous\",\n        \"active\": false\n      },\n      {\n        \"url\": \"https://api.sandbox.hit-pay.com/v1/beneficiaries?page=1\",\n        \"label\": \"1\",\n        \"active\": true\n      },\n      {\n        \"url\": \"https://api.sandbox.hit-pay.com/v1/beneficiaries?page=2\",\n        \"label\": \"2\",\n        \"active\": false\n      },\n      {\n        \"url\": \"https://api.sandbox.hit-pay.com/v1/beneficiaries?page=3\",\n        \"label\": \"3\",\n        \"active\": false\n      },\n      {\n        \"url\": \"https://api.sandbox.hit-pay.com/v1/beneficiaries?page=4\",\n        \"label\": \"4\",\n        \"active\": false\n      },\n      {\n        \"url\": \"https://api.sandbox.hit-pay.com/v1/beneficiaries?page=5\",\n        \"label\": \"5\",\n        \"active\": false\n      },\n      {\n        \"url\": \"https://api.sandbox.hit-pay.com/v1/beneficiaries?page=6\",\n        \"label\": \"6\",\n        \"active\": false\n      },\n      {\n        \"url\": \"https://api.sandbox.hit-pay.com/v1/beneficiaries?page=7\",\n        \"label\": \"7\",\n        \"active\": false\n      },\n      {\n        \"url\": \"https://api.sandbox.hit-pay.com/v1/beneficiaries?page=8\",\n        \"label\": \"8\",\n        \"active\": false\n      },\n      {\n        \"url\": \"https://api.sandbox.hit-pay.com/v1/beneficiaries?page=9\",\n        \"label\": \"9\",\n        \"active\": false\n      },\n      {\n        \"url\": \"https://api.sandbox.hit-pay.com/v1/beneficiaries?page=10\",\n        \"label\": \"10\",\n        \"active\": false\n      },\n      {\n        \"url\": null,\n        \"label\": \"...\",\n        \"active\": false\n      },\n      {\n        \"url\": \"https://api.sandbox.hit-pay.com/v1/beneficiaries?page=22\",\n        \"label\": \"22\",\n        \"active\": false\n      },\n      {\n        \"url\": \"https://api.sandbox.hit-pay.com/v1/beneficiaries?page=23\",\n        \"label\": \"23\",\n        \"active\": false\n      },\n      {\n        \"url\": \"https://api.sandbox.hit-pay.com/v1/beneficiaries?page=2\",\n        \"label\": \"Next &rarr;\",\n        \"active\": false\n      }\n    ],\n    \"path\": \"https://api.sandbox.hit-pay.com/v1/beneficiaries\",\n    \"per_page\": 10,\n    \"to\": 1,\n    \"total\": 23\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7785972b-f66c-48b8-8c7f-e2930866f420",
+          "name": "Update existing beneficiary",
+          "request": {
+            "name": "Update existing beneficiary",
+            "description": {
+              "content": "we only accept to update nickname, remark and is_favourite fields",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "beneficiaries",
+                ":beneficiary_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "beneficiary_id",
+                  "description": "(Required) The Beneficiary id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nickname\": \"<string>\",\n  \"remark\": \"<string>\",\n  \"is_favourite\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "93a39a00-4a47-4e6d-8283-d1ad47f76428",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "beneficiaries",
+                    ":beneficiary_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "beneficiary_id",
+                      "description": "(Required) The Beneficiary id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nickname\": \"<string>\",\n  \"remark\": \"<string>\",\n  \"is_favourite\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"9eb3d3ff-3fb0-450e-bb61-7c0753974398\",\n  \"status\": \"approved\",\n  \"country\": \"sg\",\n  \"currency\": \"sgd\",\n  \"transfer_method\": \"bank_transfer\",\n  \"transfer_type\": \"local\",\n  \"nickname\": \"Harry Satterfield\",\n  \"remark\": \"RemarkAnimi veniam recusandae nihil sapiente temporibus voluptas aliquam.\",\n  \"holder_name\": \"Test QA\",\n  \"holder_type\": \"individual\",\n  \"bank_branch_code\": \"001\",\n  \"account_number\": \"173737377\",\n  \"bank_name\": \"AMERICAN EXPRESS BANK LTD\",\n  \"bank_id\": \"AEIBSGSXXXX[7454]\",\n  \"email\": \"test@gmail.com\",\n  \"bank_swift_code\": \"AEIBSGSXXXX\",\n  \"is_favourite\": false,\n  \"created_by\": {\n    \"id\": \"98566f58-1c76-4b8b-8f75-d20bba2bc7f8\",\n    \"display_name\": \"TestingSG\",\n    \"first_name\": \"QA\",\n    \"last_name\": \"SG\"\n  },\n  \"created_at\": \"2025-04-18T12:52:10+08:00\",\n  \"updated_at\": \"2025-04-24T16:03:03+08:00\",\n  \"deleted_at\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "101d3cca-07ad-4c6e-8c56-5d602dba9161",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "beneficiaries",
+                    ":beneficiary_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "beneficiary_id",
+                      "description": "(Required) The Beneficiary id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nickname\": \"<string>\",\n  \"remark\": \"<string>\",\n  \"is_favourite\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"The given data was invalid. The remark may not be greater than 255 characters.\",\n  \"errors\": {\n    \"remark\": [\n      \"The remark may not be greater than 255 characters.\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef70e546-f233-4ab4-aa18-beb57e69d29f",
+          "name": "Delete existing beneficiary",
+          "request": {
+            "name": "Delete existing beneficiary",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "beneficiaries",
+                ":beneficiary_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "beneficiary_id",
+                  "description": "(Required) The Beneficiary id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "950146e4-64b9-4775-af7d-c12830133db6",
+              "name": "204",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "beneficiaries",
+                    ":beneficiary_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "beneficiary_id",
+                      "description": "(Required) The Beneficiary id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "68c7edfb-7ab8-4dbe-bd83-b1cccf615626",
+          "name": "Get a beneficiary by ID",
+          "request": {
+            "name": "Get a beneficiary by ID",
+            "description": {
+              "content": "Get a beneficiary by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "beneficiaries",
+                ":beneficiary_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "beneficiary_id",
+                  "description": "(Required) The Beneficiary id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "72599780-6af4-47ca-b085-5700718f07cd",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "beneficiaries",
+                    ":beneficiary_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "beneficiary_id",
+                      "description": "(Required) The Beneficiary id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"9eb3d3ff-3fb0-450e-bb61-7c0753974398\",\n  \"status\": \"approved\",\n  \"country\": \"sg\",\n  \"currency\": \"sgd\",\n  \"transfer_method\": \"bank_transfer\",\n  \"transfer_type\": \"local\",\n  \"nickname\": \"Test QA\",\n  \"remark\": \"Test QA\",\n  \"holder_name\": \"Test QA\",\n  \"holder_type\": \"individual\",\n  \"bank_branch_code\": \"001\",\n  \"account_number\": \"173737377\",\n  \"bank_name\": \"AMERICAN EXPRESS BANK LTD\",\n  \"bank_id\": \"AEIBSGSXXXX[7454]\",\n  \"email\": \"test@gmail.com\",\n  \"is_favourite\": true,\n  \"created_by\": {\n    \"id\": \"98566f58-1c76-4b8b-8f75-d20bba2bc7f8\",\n    \"display_name\": \"TestingSG\",\n    \"first_name\": \"QA\",\n    \"last_name\": \"SG\"\n  },\n  \"created_at\": \"2025-04-18T12:52:10+08:00\",\n  \"updated_at\": \"2025-04-18T12:52:10+08:00\",\n  \"deleted_at\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da481813-951e-44ab-8f3b-2a85229fb1d6",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "beneficiaries",
+                    ":beneficiary_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "beneficiary_id",
+                      "description": "(Required) The Beneficiary id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"No query results for model [App\\\\Models\\\\Business\\\\BankAccount] 9eb3d3ff-3fb0-450e-bb61-7c0753974392\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.hit-pay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "350e31d2-af52-4d74-8075-4b57ba269f3e",
+    "name": "HitPay Account Status Beneficiaries API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com",
+      "type": "text/plain"
+    }
+  }
+}

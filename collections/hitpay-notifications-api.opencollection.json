@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "HitPay Account Status Notifications API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Notifications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Notifications Setting",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hit-pay.com/v1/notifications",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Use this API to get the notification setting"
+        },
+        {
+          "info": {
+            "name": "Update Notifications Setting",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.hit-pay.com/v1/notifications",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this API to update the notification setting"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

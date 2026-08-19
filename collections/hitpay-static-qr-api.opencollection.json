@@ -1,0 +1,135 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "HitPay Account Status Static Qr API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Static Qr",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Static QRs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hit-pay.com/v1/static_qr",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "This endpoint allows you to get all static QR codes. The static QR codes are the QR codes that you can use to receive payments."
+        },
+        {
+          "info": {
+            "name": "Create a Static QR",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hit-pay.com/v1/static_qr",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint allows you to create static QR."
+        },
+        {
+          "info": {
+            "name": "Get Static QR Detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hit-pay.com/v1/static_qr/:static_qr_id",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "static_qr_id",
+                "value": "",
+                "type": "path",
+                "description": "Static QR id"
+              }
+            ]
+          },
+          "docs": "This endpoint allows you to get a static QR details."
+        },
+        {
+          "info": {
+            "name": "Update Static QR",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.hit-pay.com/v1/static_qr/:static_qr_id",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "static_qr_id",
+                "value": "",
+                "type": "path",
+                "description": "The static QR id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint allows you to update a static QR."
+        },
+        {
+          "info": {
+            "name": "Delete the static QR",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.hit-pay.com/v1/static_qr/:static_qr_id",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "static_qr_id",
+                "value": "",
+                "type": "path",
+                "description": "The Static QR id"
+              }
+            ]
+          },
+          "docs": "This endpoint allows you to delete the static QR"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

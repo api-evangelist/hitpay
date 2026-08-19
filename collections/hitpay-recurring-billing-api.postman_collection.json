@@ -1,0 +1,1258 @@
+{
+  "item": [
+    {
+      "id": "25c6273f-bd24-4a7c-a4ed-3fcbe9e52dd0",
+      "name": "Recurring Billing",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "db817e60-a8ca-4cb4-8320-1a4245bde801",
+          "name": "Create Recurring Billing",
+          "request": {
+            "name": "Create Recurring Billing",
+            "description": {
+              "content": "Once your customer has decided to start the subscription this endpoint will create the recurring billing request.\nSince this is a server-to-server communication, if you have a mobile or Web client that communicates with your REST API, you must have a new endpoint E.g. /create-subscription or reuse an existing endpoint. This endpoint will be responsible for making the recurring billing API call to HitPay.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "recurring-billing"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customer_email\": \"<email>\",\n  \"plan_id\": \"<uuid>\",\n  \"save_card\": \"false\",\n  \"save_payment_method\": \"false\",\n  \"start_date_method\": null,\n  \"name\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"cycle\": \"<string>\",\n  \"cycle_repeat\": \"<integer>\",\n  \"cycle_frequency\": \"<string>\",\n  \"customer_name\": \"<string>\",\n  \"start_date\": \"<string>\",\n  \"redirect_url\": \"<string>\",\n  \"reference\": \"<string>\",\n  \"payment_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"send_email\": \"false\",\n  \"times_to_be_charged\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0879fe04-a2a1-4962-a0f4-65fb0f96b9c4",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "recurring-billing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_email\": \"abc@gmail.com\",\n  \"plan_id\": \"<uuid>\",\n  \"save_card\": \"false\",\n  \"save_payment_method\": \"false\",\n  \"start_date_method\": null,\n  \"name\": \"Spotify Premium\",\n  \"amount\": \"<double>\",\n  \"cycle\": \"<string>\",\n  \"cycle_repeat\": \"<integer>\",\n  \"cycle_frequency\": \"<string>\",\n  \"customer_name\": \"Paul\",\n  \"start_date\": \"2025-12-31\",\n  \"redirect_url\": \"<string>\",\n  \"reference\": \"<string>\",\n  \"payment_methods\": [\n    \"card\"\n  ],\n  \"send_email\": \"false\",\n  \"times_to_be_charged\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "11d09cae-9183-4b9e-bc07-1834c40f2931",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "recurring-billing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_email\": \"abc@gmail.com\",\n  \"plan_id\": \"<uuid>\",\n  \"save_card\": \"false\",\n  \"save_payment_method\": \"false\",\n  \"start_date_method\": null,\n  \"name\": \"Spotify Premium\",\n  \"amount\": \"<double>\",\n  \"cycle\": \"<string>\",\n  \"cycle_repeat\": \"<integer>\",\n  \"cycle_frequency\": \"<string>\",\n  \"customer_name\": \"Paul\",\n  \"start_date\": \"2025-12-31\",\n  \"redirect_url\": \"<string>\",\n  \"reference\": \"<string>\",\n  \"payment_methods\": [\n    \"card\"\n  ],\n  \"send_email\": \"false\",\n  \"times_to_be_charged\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a225d2e1-4f41-44df-8fb7-206b8a7ca82a",
+          "name": "Get All Recurring Billing",
+          "request": {
+            "name": "Get All Recurring Billing",
+            "description": {
+              "content": "Use this API to get the a list of all recurring billings",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "recurring-billing"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "customer_email",
+                  "value": "<string>",
+                  "description": "Customer Email"
+                },
+                {
+                  "disabled": false,
+                  "key": "reference",
+                  "value": "<string>",
+                  "description": "Reference number"
+                },
+                {
+                  "disabled": false,
+                  "key": "business_recurring_plans_id",
+                  "value": "<uuid>",
+                  "description": "Recurring Plan ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "active",
+                  "description": "Recurring billing status, options [active, scheduled, retrying, inactive, canceled]"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "70229e14-1ab2-43bc-9da6-01c64f0992f7",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "recurring-billing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "customer_email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "reference",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "business_recurring_plans_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "active"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "21e267cf-42cb-40b4-8910-759af38261d2",
+          "name": "Get saved card details",
+          "request": {
+            "name": "Get saved card details",
+            "description": {
+              "content": "Use this API to get the detail of recurring billing with a saved card. If the card is saved the response will have the card details (The last 4 digits and card brand). You can use the card details to display it to the users so they are aware of which card is saved and give them the option to change the card by navigating to the “url”",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "recurring-billing",
+                ":recurring_billing_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "recurring_billing_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4843858a-3dfb-485d-b16c-97d12de02353",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "recurring-billing",
+                    ":recurring_billing_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recurring_billing_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"9ad461a8-47ec-4f95-aeb3-1a3d16fec521\",\n  \"business_recurring_plans_id\": null,\n  \"customer_name\": \"API_Save_Card_1702369621\",\n  \"customer_email\": \"test@gmail.com\",\n  \"customer_phone_number\": null,\n  \"customer_phone_number_country_code\": null,\n  \"name\": \"API_Save_Card_New_1702369621\",\n  \"description\": \"description_1702369621\",\n  \"reference\": \"cust_id_123\",\n  \"cycle\": \"save_card\",\n  \"cycle_repeat\": null,\n  \"cycle_frequency\": null,\n  \"currency\": \"usd\",\n  \"price\": 94.27,\n  \"amount\": 94.27,\n  \"times_to_be_charged\": null,\n  \"times_charged\": null,\n  \"status\": \"canceled\",\n  \"send_email\": 1,\n  \"save_card\": 1,\n  \"redirect_url\": \"https://www.google.com/\",\n  \"payment_methods\": [\n    \"giro\",\n    \"card\"\n  ],\n  \"payment_provider_charge_method\": \"card\",\n  \"created_at\": \"2023-12-12T16:27:01\",\n  \"updated_at\": \"2023-12-13T09:33:02\",\n  \"pause_from\": null,\n  \"pause_until\": null,\n  \"expires_at\": null,\n  \"url\": \"https://securecheckout.staging.hit-pay.com/98567029-f559-49f9-916b-042a4255b32a/recurring-plan/9ad461a8-47ec-4f95-aeb3-1a3d16fec521\",\n  \"dbs_dda_reference\": \"RP94OH2LYZY\",\n  \"total_charge\": 0,\n  \"payment_method\": {\n    \"card\": {\n      \"brand\": \"visa\",\n      \"last4\": \"4242\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "49023579-7f80-4124-9a65-86b2b19ac30d",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "recurring-billing",
+                    ":recurring_billing_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recurring_billing_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"message\\\": \\\"No query results for model [App\\\\\\\\Business\\\\\\\\SubscriptionPlan] 973ee456-d28f-4418-93c5-d37e4b311685\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3dac049d-29a3-4946-bb11-49c082b1b4a8",
+          "name": "Update Recurring Billing",
+          "request": {
+            "name": "Update Recurring Billing",
+            "description": {
+              "content": "Use this API to update the recurring billing, any changes made to the cycle will only be effective at the end of the current cycle.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "recurring-billing",
+                ":recurring_billing_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "recurring_billing_id",
+                  "description": "(Required) id value from the create recurring billing API"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"plan_id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"payment_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"cycle\": \"<string>\",\n  \"cycle_repeat\": \"<integer>\",\n  \"cycle_frequency\": \"<string>\",\n  \"save_card\": \"<string>\",\n  \"save_payment_method\": \"false\",\n  \"start_date_method\": null,\n  \"customer_email\": \"<email>\",\n  \"customer_name\": \"<string>\",\n  \"start_date\": \"<string>\",\n  \"redirect_url\": \"<url>\",\n  \"reference\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"send_email\": \"false\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a7b0b97b-2938-4bb9-841e-6ad8db990eba",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "recurring-billing",
+                    ":recurring_billing_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "recurring_billing_id",
+                      "description": "(Required) id value from the create recurring billing API"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"plan_id\": \"973ee344-6737-4897-9929-edbc9d7bf433\",\n  \"name\": \"Spotify Premium\",\n  \"description\": \"Spotify Monthly Subscription\",\n  \"payment_methods\": [\n    \"card\"\n  ],\n  \"cycle\": \"<string>\",\n  \"cycle_repeat\": \"<integer>\",\n  \"cycle_frequency\": \"<string>\",\n  \"save_card\": \"<string>\",\n  \"save_payment_method\": \"false\",\n  \"start_date_method\": null,\n  \"customer_email\": \"abc@gmail.com\",\n  \"customer_name\": \"Paul\",\n  \"start_date\": \"2025-12-31\",\n  \"redirect_url\": \"<url>\",\n  \"reference\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"send_email\": \"false\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"id\\\": \\\"9741164c-06a1-4dd7-a649-72cca8f9603a\\\",\\n    \\\"business_recurring_plans_id\\\": \\\"973ee344-6737-4897-9929-edbc9d7bf433\\\",\\n    \\\"customer_name\\\": \\\"Paul\\\",\\n    \\\"customer_email\\\": \\\"paul@newemail.com\\\",\\n    \\\"name\\\": \\\"Spotify Premium\\\",\\n    \\\"description\\\": \\\"Spotify Monthly Subscription\\\",\\n    \\\"reference\\\": \\\"cust_id_123\\\",\\n    \\\"cycle\\\": \\\"monthly\\\",\\n    \\\"cycle_repeat\\\": null,\\n    \\\"cycle_frequency\\\": null,\\n    \\\"currency\\\": \\\"sgd\\\",\\n    \\\"amount\\\": 12.9,\\n    \\\"times_to_be_charged\\\": 9,\\n    \\\"times_charged\\\": 2,\\n    \\\"status\\\": \\\"active\\\",\\n    \\\"send_email\\\": 0,\\n    \\\"save_card\\\": 0,\\n    \\\"redirect_url\\\": \\\"https://newexamaple.com/completed\\\",\\n    \\\"payment_methods\\\": [\\n        \\\"giro\\\",\\n        \\\"card\\\"\\n    ],\\n    \\\"created_at\\\": \\\"2022-09-13T21:32:00\\\",\\n    \\\"updated_at\\\": \\\"2022-09-13T21:32:00\\\",\\n    \\\"expires_at\\\": null,\\n    \\\"url\\\": \\\"https://securecheckout.sandbox.hit-pay.com/973ee344-6737-4897-9929-edbc9d7bf433/recurring-plan/9741164c-06a1-4dd7-a649-72cca8f9603a\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b0807a2-12c2-49f6-882a-89468ed85435",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "recurring-billing",
+                    ":recurring_billing_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "recurring_billing_id",
+                      "description": "(Required) id value from the create recurring billing API"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"plan_id\": \"973ee344-6737-4897-9929-edbc9d7bf433\",\n  \"name\": \"Spotify Premium\",\n  \"description\": \"Spotify Monthly Subscription\",\n  \"payment_methods\": [\n    \"card\"\n  ],\n  \"cycle\": \"<string>\",\n  \"cycle_repeat\": \"<integer>\",\n  \"cycle_frequency\": \"<string>\",\n  \"save_card\": \"<string>\",\n  \"save_payment_method\": \"false\",\n  \"start_date_method\": null,\n  \"customer_email\": \"abc@gmail.com\",\n  \"customer_name\": \"Paul\",\n  \"start_date\": \"2025-12-31\",\n  \"redirect_url\": \"<url>\",\n  \"reference\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"send_email\": \"false\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "{\n    \"message\": \"The given data was invalid.\",\n    \"errors\": {\n        \"save_card\": [\n            \"When save_card true, you disallow to set plan_id.\"\n        ]\n    }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8790955f-2f23-4ac6-a313-040c9bf077fc",
+          "name": "Delete Recurring Billing",
+          "request": {
+            "name": "Delete Recurring Billing",
+            "description": {
+              "content": "Use this API to cancel the recurring billing subscription",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "recurring-billing",
+                ":recurring_billing_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "recurring_billing_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5b58c05c-3338-4784-90a4-6b48bcf5b061",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "recurring-billing",
+                    ":recurring_billing_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "recurring_billing_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"id\\\": \\\"9741164c-06a1-4dd7-a649-72cca8f9603a\\\",\\n    \\\"business_recurring_plans_id\\\": \\\"973ee344-6737-4897-9929-edbc9d7bf433\\\",\\n    \\\"customer_name\\\": \\\"Paul\\\",\\n    \\\"customer_email\\\": \\\"paul@hitpayapp.com\\\",\\n    \\\"name\\\": \\\"Spotify Premium\\\",\\n    \\\"description\\\": \\\"Spotify Monthly Subscription\\\",\\n    \\\"reference\\\": \\\"cust_id_123\\\",\\n    \\\"cycle\\\": \\\"monthly\\\",\\n    \\\"cycle_repeat\\\": null,\\n    \\\"cycle_frequency\\\": null,\\n    \\\"currency\\\": \\\"sgd\\\",\\n    \\\"amount\\\": 9.90,\\n    \\\"times_to_be_charged\\\": 3,\\n    \\\"times_charged\\\": 0,\\n    \\\"status\\\": \\\"canceled\\\",\\n    \\\"send_email\\\": false,\\n    \\\"save_card\\\": 0,\\n    \\\"redirect_url\\\": \\\"https://github.com/\\\",\\n    \\\"payment_methods\\\": [\\n        \\\"giro\\\",\\n        \\\"card\\\"\\n    ],\\n    \\\"created_at\\\": \\\"2022-09-13T16:33:47\\\",\\n    \\\"updated_at\\\": \\\"2022-09-13T16:33:47\\\",\\n    \\\"expires_at\\\": \\\"2022-11-11T23:59:59\\\",\\n    \\\"url\\\": \\\"https://securecheckout.sandbox.hit-pay.com/973ee344-6737-4897-9929-edbc9d7bf433/recurring-plan/9741164c-06a1-4dd7-a649-72cca8f9603a\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "88c42cb8-55c3-41a4-855c-12328fdb4eb2",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "recurring-billing",
+                    ":recurring_billing_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "recurring_billing_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "{\n    \"message\": \"No query results for model [App\\\\Business\\\\RecurringBilling] 97414c99-01ca-464d-a57b-81851b307e09\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "af9e5569-0400-44a0-be39-7282531869f4",
+          "name": "Create a recurring billing subscription",
+          "request": {
+            "name": "Create a recurring billing subscription",
+            "description": {
+              "content": "Starts a subscription against a saved card. Provide a `plan_id`, or pass `plan_id=null` with `name`, `cycle`, `amount`, `customer_email` and `start_date` to define an ad-hoc plan inline.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recurring-billing"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "customer_email",
+                  "value": "<email>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<date>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "plan_id",
+                  "value": "<string>",
+                  "description": "Existing plan id, or null to define an inline plan."
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "cycle",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "save_card",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "redirect_url",
+                  "value": "<uri>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b418dae0-ee79-4d18-9443-f0c41a00af1d",
+              "name": "Recurring billing created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recurring-billing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "customer_email",
+                      "value": "<email>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Existing plan id, or null to define an inline plan.",
+                        "type": "text/plain"
+                      },
+                      "key": "plan_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "cycle",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "amount",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "currency",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "save_card",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "redirect_url",
+                      "value": "<uri>"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"customer_email\": \"string\",\n  \"plan_id\": \"string\",\n  \"amount\": \"string\",\n  \"currency\": \"string\",\n  \"url\": \"http://CXKLdzOKIfaCQ.hfsIh,IKYk6z9QRM.8YtRM5w,cYGXXU2OJ0fJVpFIRDxpc6S1EEjS5uSZ1xUE+w3cHnO\",\n  \"created_at\": \"2003-08-24T14:35:44.055Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "728051cb-9dc9-453a-9488-82d7f53748b4",
+          "name": "Get a recurring billing subscription",
+          "request": {
+            "name": "Get a recurring billing subscription",
+            "description": {},
+            "url": {
+              "path": [
+                "recurring-billing",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "24d87ce5-b031-48b9-ba7e-afc4fcefa361",
+              "name": "The recurring billing subscription.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recurring-billing",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"customer_email\": \"string\",\n  \"plan_id\": \"string\",\n  \"amount\": \"string\",\n  \"currency\": \"string\",\n  \"url\": \"http://CXKLdzOKIfaCQ.hfsIh,IKYk6z9QRM.8YtRM5w,cYGXXU2OJ0fJVpFIRDxpc6S1EEjS5uSZ1xUE+w3cHnO\",\n  \"created_at\": \"2003-08-24T14:35:44.055Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2cec13ca-bf73-4397-ae1b-4de9c51c085f",
+          "name": "Cancel a recurring billing subscription",
+          "request": {
+            "name": "Cancel a recurring billing subscription",
+            "description": {},
+            "url": {
+              "path": [
+                "recurring-billing",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9960ee6e-d2ca-4ac4-b721-678eb99bbcfe",
+              "name": "Recurring billing cancelled.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recurring-billing",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d3def4de-e696-4010-9c0a-d3e46267d559",
+          "name": "Charge a saved card",
+          "request": {
+            "name": "Charge a saved card",
+            "description": {
+              "content": "Charges the saved card associated with a recurring billing subscription for an ad-hoc amount.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "charge",
+                ":recurring_billing_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "recurring_billing_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "251e6b3d-de25-4d8d-a860-c518e068deea",
+              "name": "Charge created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "charge",
+                    ":recurring_billing_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recurring_billing_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "currency",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"amount\": \"string\",\n  \"currency\": \"string\",\n  \"created_at\": \"2014-03-16T11:32:57.349Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.hit-pay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "22e3e454-7b6c-4a63-8abb-d26789fd8163",
+    "name": "HitPay Account Status Recurring Billing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com",
+      "type": "text/plain"
+    }
+  }
+}

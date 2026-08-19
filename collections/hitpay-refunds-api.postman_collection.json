@@ -1,0 +1,145 @@
+{
+  "item": [
+    {
+      "id": "5bb797c6-4fad-4c96-8f57-e2aaf36f4b8f",
+      "name": "Refunds",
+      "description": {
+        "content": "Refund completed PayNow or card charges.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "91e0253a-7e98-4569-bb5f-49c45fe57a5b",
+          "name": "Refund a charge",
+          "request": {
+            "name": "Refund a charge",
+            "description": {
+              "content": "Issues a full or partial refund against a completed payment. Only one refund is allowed per transaction, and only PayNow or card charges are refundable. Original transaction fees are non-refundable.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "refund"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<string>",
+                  "description": "(Required) Amount to refund (full or partial)."
+                },
+                {
+                  "disabled": false,
+                  "key": "payment_id",
+                  "value": "<string>",
+                  "description": "(Required) The id of the completed payment to refund."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8aef688c-4445-411a-9e77-33d21af3f9e4",
+              "name": "Refund created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Amount to refund (full or partial).",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The id of the completed payment to refund.",
+                        "type": "text/plain"
+                      },
+                      "key": "payment_id",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"payment_id\": \"string\",\n  \"amount_refunded\": \"string\",\n  \"currency\": \"string\",\n  \"status\": \"string\",\n  \"created_at\": \"1966-08-01T07:45:25.718Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.hit-pay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8f79f5ac-c474-49f3-b1b9-41080bbedddc",
+    "name": "HitPay Account Status Refunds API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com",
+      "type": "text/plain"
+    }
+  }
+}

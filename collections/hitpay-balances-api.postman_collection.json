@@ -1,0 +1,520 @@
+{
+  "item": [
+    {
+      "id": "d8008717-0846-4c9b-b975-113c13a2dd83",
+      "name": "Balances",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "78e30539-b8d2-451d-882d-d9db28b7a000",
+          "name": "Get Balances",
+          "request": {
+            "name": "Get Balances",
+            "description": {
+              "content": "Get Balances",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "balances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5204daf9-e6e2-46b9-8dce-a461123e38a7",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "balances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"currency\": \"sgd\",\n    \"wallets\": {\n      \"available\": 2036.25,\n      \"deposit\": 0,\n      \"pending\": 94.1,\n      \"reserve\": 5913.65\n    }\n  },\n  {\n    \"currency\": \"usd\",\n    \"wallets\": {\n      \"available\": 600,\n      \"reserve\": 0\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "82d03127-f7cc-4ef4-8349-5d798a4b91da",
+          "name": "Get Balance Transactions",
+          "request": {
+            "name": "Get Balance Transactions",
+            "description": {
+              "content": "Get Balance Transactions and it's only applicable for Singapore merchants with Cards (by Adyen) Balance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "balances",
+                ":balance_provider",
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "created_at_from",
+                  "value": "<string>",
+                  "description": "The start day of Adyen transaction in range."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at_to",
+                  "value": "<string>",
+                  "description": "The end day of Adyen transaction in range. Note: `created_at_to >= created_at_from`"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "It is used to fetch the next (or previous) set of results."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "10"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "balance_provider",
+                  "description": "(Required) The balance provider"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ff284947-4721-45e5-a834-77bb75f58d5d",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "balances",
+                    ":balance_provider",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "created_at_from",
+                      "value": "2025-05-21"
+                    },
+                    {
+                      "key": "created_at_to",
+                      "value": "2025-05-21"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "balance_provider",
+                      "description": "(Required) The balance provider"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"datetime\": \"2025-01-23T07:07:36+01:00\",\n      \"description\": \"Received for charge #9e08f05a-5374-4ffa-996c-1c8981f11df9\",\n      \"charge_id\": null,\n      \"order_id\": null,\n      \"payout_id\": null,\n      \"transfer_id\": \"38E95Y65QHBT2SOX\",\n      \"debit\": null,\n      \"credit\": 95.85,\n      \"currency\": \"SGD\"\n    },\n    {\n      \"datetime\": \"2025-01-24T10:32:39+01:00\",\n      \"description\": \"Received for charge #9e0b3d23-7bf7-4e7c-945f-6b81641a851b\",\n      \"charge_id\": null,\n      \"order_id\": null,\n      \"payout_id\": null,\n      \"transfer_id\": \"38E96Q65QXNHOSXL\",\n      \"debit\": null,\n      \"credit\": 95.85,\n      \"currency\": \"SGD\"\n    },\n    {\n      \"datetime\": \"2025-01-26T12:38:10+01:00\",\n      \"description\": \"Received for charge #9e0f6ffa-639d-46b1-a307-a0b19c4aa09e\",\n      \"charge_id\": null,\n      \"order_id\": null,\n      \"payout_id\": null,\n      \"transfer_id\": \"38EBH765RRH5BBIB\",\n      \"debit\": null,\n      \"credit\": 53.78,\n      \"currency\": \"SGD\"\n    },\n    {\n      \"datetime\": \"2025-01-27T05:42:04+01:00\",\n      \"description\": \"Received for charge #9e10de13-abc8-4451-99d8-3ceb121a1b35\",\n      \"charge_id\": null,\n      \"order_id\": null,\n      \"payout_id\": null,\n      \"transfer_id\": \"38EBHK65S1MY9ZG1\",\n      \"debit\": null,\n      \"credit\": 6.78,\n      \"currency\": \"SGD\"\n    },\n    {\n      \"datetime\": \"2025-01-27T05:43:01+01:00\",\n      \"description\": \"Received for charge #9e10de6b-2615-497a-b98d-fc9001b175d4\",\n      \"charge_id\": null,\n      \"order_id\": null,\n      \"payout_id\": null,\n      \"transfer_id\": \"38E95Y65S1N7RZD8\",\n      \"debit\": null,\n      \"credit\": 85.96,\n      \"currency\": \"SGD\"\n    },\n    {\n      \"datetime\": \"2025-01-27T07:06:02+01:00\",\n      \"description\": \"Transfer #9e10fcd2-f657-489b-947e-1383790b53bf\",\n      \"charge_id\": null,\n      \"order_id\": null,\n      \"payout_id\": \"9e10fcd2-f657-489b-947e-1383790b53bf\",\n      \"transfer_id\": \"1WNMS965S2GXLS2Z\",\n      \"debit\": -96.32,\n      \"credit\": null,\n      \"currency\": \"SGD\"\n    },\n    {\n      \"datetime\": \"2025-01-27T09:55:38+01:00\",\n      \"description\": \"Received for charge #9e1138be-14b7-47e4-90d1-188f56e5fe0b\",\n      \"charge_id\": null,\n      \"order_id\": null,\n      \"payout_id\": null,\n      \"transfer_id\": \"38E95Y65S45H71IL\",\n      \"debit\": null,\n      \"credit\": 963,\n      \"currency\": \"SGD\"\n    },\n    {\n      \"datetime\": \"2025-01-28T07:06:01+01:00\",\n      \"description\": \"Transfer #9e12ffc6-e91e-41ed-98f1-2e7bb6149f98\",\n      \"charge_id\": null,\n      \"order_id\": null,\n      \"payout_id\": \"9e12ffc6-e91e-41ed-98f1-2e7bb6149f98\",\n      \"transfer_id\": \"1X8ESU65SGRBVQLG\",\n      \"debit\": -149.63,\n      \"credit\": null,\n      \"currency\": \"SGD\"\n    },\n    {\n      \"datetime\": \"2025-01-29T07:07:19+01:00\",\n      \"description\": \"Transfer #9e15031f-3c86-4aba-b69f-301e31bc5b40\",\n      \"charge_id\": null,\n      \"order_id\": null,\n      \"payout_id\": \"9e15031f-3c86-4aba-b69f-301e31bc5b40\",\n      \"transfer_id\": \"1WNBU765SV27O2GP\",\n      \"debit\": -1055.74,\n      \"credit\": null,\n      \"currency\": \"SGD\"\n    },\n    {\n      \"datetime\": \"2025-02-03T10:12:36+01:00\",\n      \"description\": \"Received for charge #9e1f5398-9f3e-4d48-8c7c-3920d06f0e0d\",\n      \"charge_id\": null,\n      \"order_id\": null,\n      \"payout_id\": null,\n      \"transfer_id\": \"38E95Y65UWCCRRFU\",\n      \"debit\": null,\n      \"credit\": 95.85,\n      \"currency\": \"SGD\"\n    }\n  ],\n  \"meta\": {\n    \"per_page\": \"10\",\n    \"next_cursor\": \"S2B-MlIjKCkrPEMtMXcvdzV34Xl532WTxxaSZceT9ncVxTWVxBQk5scnE4SX1Mbl5HMmFYWD8kcEApMTJDRW5wfkxUbHdic0VyQlU1MWw32VGUgKGxsIX90S32M7\",\n    \"prev_cursor\": null\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0d0d0bf2-0a51-4e76-a017-50902680e3ab",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "balances",
+                    ":balance_provider",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "created_at_from",
+                      "value": "2025-05-21"
+                    },
+                    {
+                      "key": "created_at_to",
+                      "value": "2025-05-21"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "balance_provider",
+                      "description": "(Required) The balance provider"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"The created at from does not match the format Y-m-d. (and 1 more error)\",\n  \"errors\": {\n    \"created_at_from\": [\n      \"The created at from does not match the format Y-m-d.\"\n    ],\n    \"created_at_to\": [\n      \"The created at to must be a date after or equal to created at from.\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f1a6e681-5146-4986-a8a2-ec24a2fbf6ca",
+          "name": "Export Balance Breakdown",
+          "request": {
+            "name": "Export Balance Breakdown",
+            "description": {
+              "content": "Export Balance Breakdown and the exported file will be included in attachment of sending email to the business's admin email. Currenly, we only support `Adyen` provider.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "balances",
+                ":balance_provider",
+                "transactions",
+                "export"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "created_at_from",
+                  "value": "<string>",
+                  "description": "The start day of Adyen transaction in range."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at_to",
+                  "value": "<string>",
+                  "description": "The end day of Adyen transaction in range. Note: `created_at_to >= created_at_from`"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "balance_provider",
+                  "description": "(Required) The balance provider. It only supports Adyen now."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3d501fb8-9558-4b0f-bd43-1969f2c1e57c",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "balances",
+                    ":balance_provider",
+                    "transactions",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "created_at_from",
+                      "value": "2025-05-21"
+                    },
+                    {
+                      "key": "created_at_to",
+                      "value": "2025-05-21"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "balance_provider",
+                      "description": "(Required) The balance provider. It only supports Adyen now."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4cc2e053-c31a-49a4-a48f-17c24af8e7c6",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "balances",
+                    ":balance_provider",
+                    "transactions",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "created_at_from",
+                      "value": "2025-05-21"
+                    },
+                    {
+                      "key": "created_at_to",
+                      "value": "2025-05-21"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "balance_provider",
+                      "description": "(Required) The balance provider. It only supports Adyen now."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"The created at from does not match the format Y-m-d. (and 1 more error)\",\n  \"errors\": {\n    \"created_at_from\": [\n      \"The created at from does not match the format Y-m-d.\"\n    ],\n    \"created_at_to\": [\n      \"The created at to must be a date after or equal to created at from.\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.hit-pay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d0fe4685-4b4e-485a-a854-efc9c8277f4c",
+    "name": "HitPay Account Status Balances API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com",
+      "type": "text/plain"
+    }
+  }
+}

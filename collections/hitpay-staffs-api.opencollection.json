@@ -1,0 +1,59 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "HitPay Account Status Staffs API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Staffs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Staffs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hit-pay.com/v1/staffs",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Get All Staffs"
+        },
+        {
+          "info": {
+            "name": "Get Staff Detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hit-pay.com/v1/staffs/:staff_id",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "staff_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Staff Detail"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

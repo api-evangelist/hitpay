@@ -1,0 +1,113 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "HitPay Account Status Remitters API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Remitters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get list of remitters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hit-pay.com/v1/remitters",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get list of remitters"
+        },
+        {
+          "info": {
+            "name": "Create new remitter",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hit-pay.com/v1/remitters",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new remitter."
+        },
+        {
+          "info": {
+            "name": "Get remitter detail.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hit-pay.com/v1/remitters/:remitter_id",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "remitter_id",
+                "value": "9b294222-3a53-427f-9393-95dc6d63ee6c",
+                "type": "path",
+                "description": "Remitter id"
+              }
+            ]
+          },
+          "docs": "Get remitter detail"
+        },
+        {
+          "info": {
+            "name": "Delete remitter",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.hit-pay.com/v1/remitters/:remitter_id",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "remitter_id",
+                "value": "9b294222-3a53-427f-9393-95dc6d63ee6c",
+                "type": "path",
+                "description": "Remitter id"
+              }
+            ]
+          },
+          "docs": "Delete remitter."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

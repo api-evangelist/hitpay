@@ -1,0 +1,1718 @@
+{
+  "item": [
+    {
+      "id": "49ff27db-5822-431f-8d65-940719150859",
+      "name": "Products",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "14f34fa7-0c18-4ad7-a08b-f75fa10725cb",
+          "name": "Get All Products",
+          "request": {
+            "name": "Get All Products",
+            "description": {
+              "content": "This endpoint allows you to retrieve all products. You can also filter the products by name, category, and status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "statuses",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "statuses",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "categories",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "categories",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "source",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "source",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "inventory",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "inventory",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "location_ids",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "location_ids",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "channels",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "channels",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "keywords",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "keywords",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "10"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "037eedb8-7814-49ff-9fbf-05c765512056",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "statuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "source",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "inventory",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "inventory",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "location_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "channels",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "channels",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "keywords",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "keywords",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"9a12fab4-d112-48af-9d6b-050d650b0a25\",\n      \"business_id\": \"9130c422-bf97-4bd1-b370-07a3a6f40708\",\n      \"category_id\": [\n        \"9a12fab0-d282-4437-9460-c3d26662d11a\"\n      ],\n      \"name\": \"Beanie\",\n      \"headline\": null,\n      \"description\": \"<p>Stylish hat suitable for the winter.</p>\",\n      \"currency\": \"SGD\",\n      \"price\": 15,\n      \"price_display\": \"SGD 15.00\",\n      \"price_stored\": 1500,\n      \"tax_id\": null,\n      \"is_manageable\": 1,\n      \"is_pinned\": false,\n      \"status\": \"published\",\n      \"product_weight\": 250,\n      \"delivery_method_required\": true,\n      \"has_variations\": true,\n      \"is_shopify\": false,\n      \"product_url\": \"<string>\",\n      \"variations_count\": 2,\n      \"variations\": [\n        {\n          \"id\": \"9a12fab4-d998-44ea-ad11-8753be88a1c9\",\n          \"stock_keeping_unit\": null,\n          \"description\": \"Medium\",\n          \"weight\": null,\n          \"length\": null,\n          \"width\": null,\n          \"depth\": null,\n          \"price\": 18,\n          \"price_display\": \"SGD 18.00\",\n          \"price_stored\": 1800,\n          \"quantity\": 150,\n          \"quantity_alert_level\": 10,\n          \"product_variation_weight\": 250,\n          \"variation_value_1\": \"Medium\",\n          \"variation_value_2\": null,\n          \"variation_value_3\": null\n        },\n        {\n          \"id\": \"9a12fab4-dd20-4f8f-9e74-de28629f863a\",\n          \"stock_keeping_unit\": null,\n          \"description\": \"Large\",\n          \"weight\": null,\n          \"length\": null,\n          \"width\": null,\n          \"depth\": null,\n          \"price\": 20,\n          \"price_display\": \"SGD 20.00\",\n          \"price_stored\": 2000,\n          \"quantity\": 148,\n          \"quantity_alert_level\": 10,\n          \"product_variation_weight\": 255,\n          \"variation_value_1\": \"Large\",\n          \"variation_value_2\": null,\n          \"variation_value_3\": null\n        }\n      ],\n      \"variation_key_1\": \"Size\",\n      \"variation_key_2\": null,\n      \"variation_key_3\": null,\n      \"images\": [\n        {\n          \"id\": \"9a12fab6-1e76-448e-8c45-e84e2e38f294\",\n          \"caption\": \"Beanie\",\n          \"url\": \"<string>\",\n          \"other_dimensions\": [\n            {\n              \"size\": \"icon\",\n              \"path\": \"<string>\"\n            },\n            {\n              \"size\": \"large\",\n              \"path\": \"<string>\"\n            },\n            {\n              \"size\": \"small\",\n              \"path\": \"<string>\"\n            },\n            {\n              \"size\": \"medium\",\n              \"path\": \"<string>\"\n            },\n            {\n              \"size\": \"thumbnail\",\n              \"path\": \"<string>\"\n            }\n          ]\n        }\n      ],\n      \"is_published\": true,\n      \"created_at\": \"2023-09-07T13:04:22+08:00\",\n      \"updated_at\": \"2023-09-18T14:36:54+08:00\",\n      \"starts_at\": null,\n      \"ends_at\": null\n    }\n  ],\n  \"links\": {\n    \"first\": \"<string>\",\n    \"last\": \"<string>\",\n    \"prev\": null,\n    \"next\": \"h<string>\"\n  },\n  \"meta\": {\n    \"current_page\": 1,\n    \"from\": 1,\n    \"last_page\": 49,\n    \"links\": [],\n    \"path\": \"<string>\",\n    \"per_page\": 25,\n    \"to\": 25,\n    \"total\": 1214\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "24a0ed29-ecd8-47e1-8c8b-29b287f9acb3",
+          "name": "Create a Product",
+          "request": {
+            "name": "Create a Product",
+            "description": {
+              "content": "This endpoint allows you to create a product.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) The name of the product"
+                },
+                {
+                  "key": "price",
+                  "value": "<number>",
+                  "type": "text",
+                  "description": "(Required) The price of the product"
+                },
+                {
+                  "key": "description",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The description of the product"
+                },
+                {
+                  "key": "barcode",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The barcode of the product"
+                },
+                {
+                  "key": "headline",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The headline of the product"
+                },
+                {
+                  "key": "stock_keeping_unit",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The stock keeping unit of the product"
+                },
+                {
+                  "key": "quantity",
+                  "value": "<number>",
+                  "type": "text",
+                  "description": "The quantity of the product"
+                },
+                {
+                  "key": "quantity_alert_level",
+                  "value": "<number>",
+                  "type": "text",
+                  "description": "The quantity alert level of the product. It is required when quantity alert level is present."
+                },
+                {
+                  "key": "currency",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The currency of the product"
+                },
+                {
+                  "key": "category_ids",
+                  "value": "[\"<uuid>\",\"<uuid>\"]",
+                  "type": "text",
+                  "description": "The list of business product category ids of the product"
+                },
+                {
+                  "key": "channels",
+                  "value": "[\"<string>\",\"<string>\"]",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "location_ids",
+                  "value": "[\"<uuid>\",\"<uuid>\"]",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "locations",
+                  "value": "[{\"id\":\"<uuid>\",\"manage_inventory\":\"1\",\"quantity\":\"<integer>\",\"quantity_alert_level\":\"<integer>\"},{\"id\":\"<uuid>\",\"manage_inventory\":\"1\",\"quantity\":\"<integer>\",\"quantity_alert_level\":\"<integer>\"}]",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "open_amount",
+                  "value": "0",
+                  "type": "text",
+                  "description": "The open amount of the product (This can only be one of 1,0)"
+                },
+                {
+                  "key": "is_manageable",
+                  "value": "1",
+                  "type": "text",
+                  "description": "The is manageable of the product (This can only be one of 1,0)"
+                },
+                {
+                  "key": "is_pinned",
+                  "value": "0",
+                  "type": "text",
+                  "description": "The is pinned of the product (This can only be one of 1,0)"
+                },
+                {
+                  "key": "product_weight",
+                  "value": "<integer>",
+                  "type": "text",
+                  "description": "Weight in gram"
+                },
+                {
+                  "key": "delivery_method_required",
+                  "value": "true",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "variations",
+                  "value": "[{\"price\":\"<number>\",\"quantity\":\"<integer>\",\"quantity_alert_level\":\"<integer>\",\"image\":\"<binary>\",\"product_variation_weight\":\"<integer>\",\"variation_value_1\":\"<string>\",\"variation_value_2\":\"<string>\",\"variation_value_3\":\"<string>\"},{\"price\":\"<number>\",\"quantity\":\"<integer>\",\"quantity_alert_level\":\"<integer>\",\"image\":\"<binary>\",\"product_variation_weight\":\"<integer>\",\"variation_value_1\":\"<string>\",\"variation_value_2\":\"<string>\",\"variation_value_3\":\"<string>\"}]",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "image",
+                  "value": "[{\"image\":\"<binary>\"},{\"image\":\"<binary>\"}]",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "publish",
+                  "value": "1",
+                  "type": "text",
+                  "description": " (This can only be one of 1,0)"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7f5d3ee7-ea45-46e3-8047-b4166a1f22ae",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The name of the product",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "Product Beanie",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) The price of the product",
+                        "type": "text/plain"
+                      },
+                      "key": "price",
+                      "value": "15",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The description of the product",
+                        "type": "text/plain"
+                      },
+                      "key": "description",
+                      "value": "<p>Stylish hat suitable for the winter.</p>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The barcode of the product",
+                        "type": "text/plain"
+                      },
+                      "key": "barcode",
+                      "value": "1234567890123",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The headline of the product",
+                        "type": "text/plain"
+                      },
+                      "key": "headline",
+                      "value": "Stylish hat suitable for the winter.",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The stock keeping unit of the product",
+                        "type": "text/plain"
+                      },
+                      "key": "stock_keeping_unit",
+                      "value": "SKU123456",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The quantity of the product",
+                        "type": "text/plain"
+                      },
+                      "key": "quantity",
+                      "value": "",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The quantity alert level of the product. It is required when quantity alert level is present.",
+                        "type": "text/plain"
+                      },
+                      "key": "quantity_alert_level",
+                      "value": "",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The currency of the product",
+                        "type": "text/plain"
+                      },
+                      "key": "currency",
+                      "value": "sgd",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The list of business product category ids of the product",
+                        "type": "text/plain"
+                      },
+                      "key": "category_ids",
+                      "value": "[\"9a12fab0-d282-4437-9460-c3d26662d11a\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "channels",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "location_ids",
+                      "value": "[\"9a12fab4-d112-48af-9d6b-050d650b0a25\",\"9a12fab4-d112-48af-9d6b-050d650b0a25\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "locations",
+                      "value": "[{\"id\":\"9a12fab4-d112-48af-9d6b-050d650b0a25\",\"manage_inventory\":\"1\",\"quantity\":\"<integer>\",\"quantity_alert_level\":\"<integer>\"},{\"id\":\"9a12fab4-d112-48af-9d6b-050d650b0a25\",\"manage_inventory\":\"1\",\"quantity\":\"<integer>\",\"quantity_alert_level\":\"<integer>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The open amount of the product (This can only be one of 1,0)",
+                        "type": "text/plain"
+                      },
+                      "key": "open_amount",
+                      "value": "0",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The is manageable of the product (This can only be one of 1,0)",
+                        "type": "text/plain"
+                      },
+                      "key": "is_manageable",
+                      "value": "1",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The is pinned of the product (This can only be one of 1,0)",
+                        "type": "text/plain"
+                      },
+                      "key": "is_pinned",
+                      "value": "0",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Weight in gram",
+                        "type": "text/plain"
+                      },
+                      "key": "product_weight",
+                      "value": "250",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "delivery_method_required",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "variations",
+                      "value": "[{\"price\":\"<number>\",\"quantity\":\"<integer>\",\"quantity_alert_level\":\"<integer>\",\"image\":\"<binary>\",\"product_variation_weight\":\"<integer>\",\"variation_value_1\":\"<string>\",\"variation_value_2\":\"<string>\",\"variation_value_3\":\"<string>\"},{\"price\":\"<number>\",\"quantity\":\"<integer>\",\"quantity_alert_level\":\"<integer>\",\"image\":\"<binary>\",\"product_variation_weight\":\"<integer>\",\"variation_value_1\":\"<string>\",\"variation_value_2\":\"<string>\",\"variation_value_3\":\"<string>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "image",
+                      "value": "[{\"image\":\"<binary>\"},{\"image\":\"<binary>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of 1,0)",
+                        "type": "text/plain"
+                      },
+                      "key": "publish",
+                      "value": "1",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"9a12fab4-d112-48af-9d6b-050d650b0a25\",\n  \"business_id\": \"9130c422-bf97-4bd1-b370-07a3a6f40708\",\n  \"category_id\": [\n    \"9a12fab0-d282-4437-9460-c3d26662d11a\"\n  ],\n  \"name\": \"Beanie\",\n  \"headline\": null,\n  \"description\": \"<p>Stylish hat suitable for the winter.</p>\",\n  \"currency\": \"SGD\",\n  \"price\": 15,\n  \"price_display\": \"SGD 15.00\",\n  \"price_stored\": 1500,\n  \"tax_id\": null,\n  \"is_manageable\": 1,\n  \"is_pinned\": false,\n  \"status\": \"published\",\n  \"product_weight\": 250,\n  \"delivery_method_required\": true,\n  \"has_variations\": true,\n  \"is_shopify\": false,\n  \"product_url\": \"<string>\",\n  \"variations_count\": 2,\n  \"variations\": [\n    {\n      \"id\": \"9a12fab4-d998-44ea-ad11-8753be88a1c9\",\n      \"stock_keeping_unit\": null,\n      \"description\": \"Medium\",\n      \"weight\": null,\n      \"length\": null,\n      \"width\": null,\n      \"depth\": null,\n      \"price\": 18,\n      \"price_display\": \"SGD 18.00\",\n      \"price_stored\": 1800,\n      \"quantity\": 150,\n      \"quantity_alert_level\": 10,\n      \"product_variation_weight\": 250,\n      \"variation_value_1\": \"Medium\",\n      \"variation_value_2\": null,\n      \"variation_value_3\": null\n    },\n    {\n      \"id\": \"9a12fab4-dd20-4f8f-9e74-de28629f863a\",\n      \"stock_keeping_unit\": null,\n      \"description\": \"Large\",\n      \"weight\": null,\n      \"length\": null,\n      \"width\": null,\n      \"depth\": null,\n      \"price\": 20,\n      \"price_display\": \"SGD 20.00\",\n      \"price_stored\": 2000,\n      \"quantity\": 148,\n      \"quantity_alert_level\": 10,\n      \"product_variation_weight\": 255,\n      \"variation_value_1\": \"Large\",\n      \"variation_value_2\": null,\n      \"variation_value_3\": null\n    }\n  ],\n  \"variation_key_1\": \"Size\",\n  \"variation_key_2\": null,\n  \"variation_key_3\": null,\n  \"images\": [\n    {\n      \"id\": \"9a12fab6-1e76-448e-8c45-e84e2e38f294\",\n      \"caption\": \"Beanie\",\n      \"url\": \"<string>\",\n      \"other_dimensions\": [\n        {\n          \"size\": \"icon\",\n          \"path\": \"<string>\"\n        },\n        {\n          \"size\": \"large\",\n          \"path\": \"<string>\"\n        },\n        {\n          \"size\": \"small\",\n          \"path\": \"<string>\"\n        },\n        {\n          \"size\": \"medium\",\n          \"path\": \"<string>\"\n        },\n        {\n          \"size\": \"thumbnail\",\n          \"path\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"is_published\": true,\n  \"created_at\": \"2023-09-07T13:04:22+08:00\",\n  \"updated_at\": \"2023-09-18T14:36:54+08:00\",\n  \"starts_at\": null,\n  \"ends_at\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4cc4ab56-e72d-4326-ae5f-ff4d6aa987be",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The name of the product",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "Product Beanie",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) The price of the product",
+                        "type": "text/plain"
+                      },
+                      "key": "price",
+                      "value": "15",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The description of the product",
+                        "type": "text/plain"
+                      },
+                      "key": "description",
+                      "value": "<p>Stylish hat suitable for the winter.</p>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The barcode of the product",
+                        "type": "text/plain"
+                      },
+                      "key": "barcode",
+                      "value": "1234567890123",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The headline of the product",
+                        "type": "text/plain"
+                      },
+                      "key": "headline",
+                      "value": "Stylish hat suitable for the winter.",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The stock keeping unit of the product",
+                        "type": "text/plain"
+                      },
+                      "key": "stock_keeping_unit",
+                      "value": "SKU123456",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The quantity of the product",
+                        "type": "text/plain"
+                      },
+                      "key": "quantity",
+                      "value": "",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The quantity alert level of the product. It is required when quantity alert level is present.",
+                        "type": "text/plain"
+                      },
+                      "key": "quantity_alert_level",
+                      "value": "",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The currency of the product",
+                        "type": "text/plain"
+                      },
+                      "key": "currency",
+                      "value": "sgd",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The list of business product category ids of the product",
+                        "type": "text/plain"
+                      },
+                      "key": "category_ids",
+                      "value": "[\"9a12fab0-d282-4437-9460-c3d26662d11a\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "channels",
+                      "value": "[\"<string>\",\"<string>\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "location_ids",
+                      "value": "[\"9a12fab4-d112-48af-9d6b-050d650b0a25\",\"9a12fab4-d112-48af-9d6b-050d650b0a25\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "locations",
+                      "value": "[{\"id\":\"9a12fab4-d112-48af-9d6b-050d650b0a25\",\"manage_inventory\":\"1\",\"quantity\":\"<integer>\",\"quantity_alert_level\":\"<integer>\"},{\"id\":\"9a12fab4-d112-48af-9d6b-050d650b0a25\",\"manage_inventory\":\"1\",\"quantity\":\"<integer>\",\"quantity_alert_level\":\"<integer>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The open amount of the product (This can only be one of 1,0)",
+                        "type": "text/plain"
+                      },
+                      "key": "open_amount",
+                      "value": "0",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The is manageable of the product (This can only be one of 1,0)",
+                        "type": "text/plain"
+                      },
+                      "key": "is_manageable",
+                      "value": "1",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The is pinned of the product (This can only be one of 1,0)",
+                        "type": "text/plain"
+                      },
+                      "key": "is_pinned",
+                      "value": "0",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Weight in gram",
+                        "type": "text/plain"
+                      },
+                      "key": "product_weight",
+                      "value": "250",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "delivery_method_required",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "variations",
+                      "value": "[{\"price\":\"<number>\",\"quantity\":\"<integer>\",\"quantity_alert_level\":\"<integer>\",\"image\":\"<binary>\",\"product_variation_weight\":\"<integer>\",\"variation_value_1\":\"<string>\",\"variation_value_2\":\"<string>\",\"variation_value_3\":\"<string>\"},{\"price\":\"<number>\",\"quantity\":\"<integer>\",\"quantity_alert_level\":\"<integer>\",\"image\":\"<binary>\",\"product_variation_weight\":\"<integer>\",\"variation_value_1\":\"<string>\",\"variation_value_2\":\"<string>\",\"variation_value_3\":\"<string>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "image",
+                      "value": "[{\"image\":\"<binary>\"},{\"image\":\"<binary>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of 1,0)",
+                        "type": "text/plain"
+                      },
+                      "key": "publish",
+                      "value": "1",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\\"message\\\":\\\"The given data was invalid.\\\",\\\"errors\\\":{\\\"name\\\":[\\\"The name field is required.\\\"]}}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "34d64b1e-67dc-47b6-a598-7b0663e7ed80",
+          "name": "Get Product Detail",
+          "request": {
+            "name": "Get Product Detail",
+            "description": {
+              "content": "This endpoint allows you to get a product detail.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "products",
+                ":product_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "product_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e915be5a-9880-4dc1-8f6a-3948ad6569ce",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "products",
+                    ":product_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"9a12fab4-d112-48af-9d6b-050d650b0a25\",\n  \"business_id\": \"9130c422-bf97-4bd1-b370-07a3a6f40708\",\n  \"category_id\": [\n    \"9a12fab0-d282-4437-9460-c3d26662d11a\"\n  ],\n  \"name\": \"Beanie\",\n  \"headline\": null,\n  \"description\": \"<p>Stylish hat suitable for the winter.</p>\",\n  \"currency\": \"SGD\",\n  \"price\": 15,\n  \"price_display\": \"SGD 15.00\",\n  \"price_stored\": 1500,\n  \"tax_id\": null,\n  \"is_manageable\": 1,\n  \"is_pinned\": false,\n  \"status\": \"published\",\n  \"product_weight\": 250,\n  \"delivery_method_required\": true,\n  \"has_variations\": true,\n  \"is_shopify\": false,\n  \"product_url\": \"<string>\",\n  \"variations_count\": 2,\n  \"variations\": [\n    {\n      \"id\": \"9a12fab4-d998-44ea-ad11-8753be88a1c9\",\n      \"stock_keeping_unit\": null,\n      \"description\": \"Medium\",\n      \"weight\": null,\n      \"length\": null,\n      \"width\": null,\n      \"depth\": null,\n      \"price\": 18,\n      \"price_display\": \"SGD 18.00\",\n      \"price_stored\": 1800,\n      \"quantity\": 150,\n      \"quantity_alert_level\": 10,\n      \"product_variation_weight\": 250,\n      \"variation_value_1\": \"Medium\",\n      \"variation_value_2\": null,\n      \"variation_value_3\": null\n    },\n    {\n      \"id\": \"9a12fab4-dd20-4f8f-9e74-de28629f863a\",\n      \"stock_keeping_unit\": null,\n      \"description\": \"Large\",\n      \"weight\": null,\n      \"length\": null,\n      \"width\": null,\n      \"depth\": null,\n      \"price\": 20,\n      \"price_display\": \"SGD 20.00\",\n      \"price_stored\": 2000,\n      \"quantity\": 148,\n      \"quantity_alert_level\": 10,\n      \"product_variation_weight\": 255,\n      \"variation_value_1\": \"Large\",\n      \"variation_value_2\": null,\n      \"variation_value_3\": null\n    }\n  ],\n  \"variation_key_1\": \"Size\",\n  \"variation_key_2\": null,\n  \"variation_key_3\": null,\n  \"images\": [\n    {\n      \"id\": \"9a12fab6-1e76-448e-8c45-e84e2e38f294\",\n      \"caption\": \"Beanie\",\n      \"url\": \"<string>\",\n      \"other_dimensions\": [\n        {\n          \"size\": \"icon\",\n          \"path\": \"<string>\"\n        },\n        {\n          \"size\": \"large\",\n          \"path\": \"<string>\"\n        },\n        {\n          \"size\": \"small\",\n          \"path\": \"<string>\"\n        },\n        {\n          \"size\": \"medium\",\n          \"path\": \"<string>\"\n        },\n        {\n          \"size\": \"thumbnail\",\n          \"path\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"is_published\": true,\n  \"created_at\": \"2023-09-07T13:04:22+08:00\",\n  \"updated_at\": \"2023-09-18T14:36:54+08:00\",\n  \"starts_at\": null,\n  \"ends_at\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1bb6edad-f754-4c78-ad44-8cf879a7b790",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "products",
+                    ":product_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"message\\\": \\\"No query results for model [App\\\\\\\\Business\\\\\\\\Product].\\\" 973ee456-d28f-4418-93c5-d37e4b311685\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f993c906-5ce4-4602-a73f-5ce165b97665",
+          "name": "Update the product",
+          "request": {
+            "name": "Update the product",
+            "description": {
+              "content": "This endpoint allows you to update the product.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "products",
+                ":product_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "product_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) The name of the product"
+                },
+                {
+                  "key": "price",
+                  "value": "<number>",
+                  "type": "text",
+                  "description": "(Required) The price of the product"
+                },
+                {
+                  "key": "description",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The description of the product"
+                },
+                {
+                  "key": "headline",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The headline of the product"
+                },
+                {
+                  "key": "quantity",
+                  "value": "<number>",
+                  "type": "text",
+                  "description": "The quantity of the product"
+                },
+                {
+                  "key": "quantity_alert_level",
+                  "value": "<number>",
+                  "type": "text",
+                  "description": "The quantity alert level of the product. It is required when quantity alert level is present."
+                },
+                {
+                  "key": "currency",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The currency of the product"
+                },
+                {
+                  "key": "category_ids",
+                  "value": "[\"<uuid>\",\"<uuid>\"]",
+                  "type": "text",
+                  "description": "The list of business product category ids of the product"
+                },
+                {
+                  "key": "is_manageable",
+                  "value": "1",
+                  "type": "text",
+                  "description": "The is manageable of the product (This can only be one of 1,0)"
+                },
+                {
+                  "key": "is_pinned",
+                  "value": "0",
+                  "type": "text",
+                  "description": "The is pinned of the product (This can only be one of 1,0)"
+                },
+                {
+                  "key": "product_weight",
+                  "value": "<integer>",
+                  "type": "text",
+                  "description": "Weight in gram"
+                },
+                {
+                  "key": "delivery_method_required",
+                  "value": "<boolean>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "existing_variation",
+                  "value": "[{\"id\":\"<uuid>\",\"price\":\"<number>\",\"quantity\":\"<integer>\",\"quantity_alert_level\":\"<integer>\",\"image\":\"<binary>\",\"product_variation_weight\":\"<integer>\",\"variation_value_1\":\"<string>\",\"variation_value_2\":\"<string>\",\"variation_value_3\":\"<string>\"},{\"id\":\"<uuid>\",\"price\":\"<number>\",\"quantity\":\"<integer>\",\"quantity_alert_level\":\"<integer>\",\"image\":\"<binary>\",\"product_variation_weight\":\"<integer>\",\"variation_value_1\":\"<string>\",\"variation_value_2\":\"<string>\",\"variation_value_3\":\"<string>\"}]",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "images",
+                  "value": "[{\"image\":\"<binary>\"},{\"image\":\"<binary>\"}]",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "publish",
+                  "value": "1",
+                  "type": "text",
+                  "description": " (This can only be one of 1,0)"
+                },
+                {
+                  "key": "_method",
+                  "value": "PATCH",
+                  "type": "text",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4ab511c1-f544-4ebf-bd09-294b8ce9e31a",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "products",
+                    ":product_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The name of the product",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "Product Beanie",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) The price of the product",
+                        "type": "text/plain"
+                      },
+                      "key": "price",
+                      "value": "<number>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The description of the product",
+                        "type": "text/plain"
+                      },
+                      "key": "description",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The headline of the product",
+                        "type": "text/plain"
+                      },
+                      "key": "headline",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The quantity of the product",
+                        "type": "text/plain"
+                      },
+                      "key": "quantity",
+                      "value": "1",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The quantity alert level of the product. It is required when quantity alert level is present.",
+                        "type": "text/plain"
+                      },
+                      "key": "quantity_alert_level",
+                      "value": "1",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The currency of the product",
+                        "type": "text/plain"
+                      },
+                      "key": "currency",
+                      "value": "sgd",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The list of business product category ids of the product",
+                        "type": "text/plain"
+                      },
+                      "key": "category_ids",
+                      "value": "[\"9a12fab0-d282-4437-9460-c3d26662d11a\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The is manageable of the product (This can only be one of 1,0)",
+                        "type": "text/plain"
+                      },
+                      "key": "is_manageable",
+                      "value": "1",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The is pinned of the product (This can only be one of 1,0)",
+                        "type": "text/plain"
+                      },
+                      "key": "is_pinned",
+                      "value": "0",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Weight in gram",
+                        "type": "text/plain"
+                      },
+                      "key": "product_weight",
+                      "value": "<integer>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "delivery_method_required",
+                      "value": "<boolean>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "existing_variation",
+                      "value": "[{\"id\":\"<uuid>\",\"price\":\"<number>\",\"quantity\":\"<integer>\",\"quantity_alert_level\":\"<integer>\",\"image\":\"<binary>\",\"product_variation_weight\":\"<integer>\",\"variation_value_1\":\"<string>\",\"variation_value_2\":\"<string>\",\"variation_value_3\":\"<string>\"},{\"id\":\"<uuid>\",\"price\":\"<number>\",\"quantity\":\"<integer>\",\"quantity_alert_level\":\"<integer>\",\"image\":\"<binary>\",\"product_variation_weight\":\"<integer>\",\"variation_value_1\":\"<string>\",\"variation_value_2\":\"<string>\",\"variation_value_3\":\"<string>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "images",
+                      "value": "[{\"image\":\"<binary>\"},{\"image\":\"<binary>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of 1,0)",
+                        "type": "text/plain"
+                      },
+                      "key": "publish",
+                      "value": "1",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "_method",
+                      "value": "PATCH",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"9a12fab4-d112-48af-9d6b-050d650b0a25\",\n  \"business_id\": \"9130c422-bf97-4bd1-b370-07a3a6f40708\",\n  \"category_id\": [\n    \"9a12fab0-d282-4437-9460-c3d26662d11a\"\n  ],\n  \"name\": \"Beanie\",\n  \"headline\": null,\n  \"description\": \"<p>Stylish hat suitable for the winter.</p>\",\n  \"currency\": \"SGD\",\n  \"price\": 15,\n  \"price_display\": \"SGD 15.00\",\n  \"price_stored\": 1500,\n  \"tax_id\": null,\n  \"is_manageable\": 1,\n  \"is_pinned\": false,\n  \"status\": \"published\",\n  \"product_weight\": 250,\n  \"delivery_method_required\": true,\n  \"has_variations\": true,\n  \"is_shopify\": false,\n  \"product_url\": \"<string>\",\n  \"variations_count\": 2,\n  \"variations\": [\n    {\n      \"id\": \"9a12fab4-d998-44ea-ad11-8753be88a1c9\",\n      \"stock_keeping_unit\": null,\n      \"description\": \"Medium\",\n      \"weight\": null,\n      \"length\": null,\n      \"width\": null,\n      \"depth\": null,\n      \"price\": 18,\n      \"price_display\": \"SGD 18.00\",\n      \"price_stored\": 1800,\n      \"quantity\": 150,\n      \"quantity_alert_level\": 10,\n      \"product_variation_weight\": 250,\n      \"variation_value_1\": \"Medium\",\n      \"variation_value_2\": null,\n      \"variation_value_3\": null\n    },\n    {\n      \"id\": \"9a12fab4-dd20-4f8f-9e74-de28629f863a\",\n      \"stock_keeping_unit\": null,\n      \"description\": \"Large\",\n      \"weight\": null,\n      \"length\": null,\n      \"width\": null,\n      \"depth\": null,\n      \"price\": 20,\n      \"price_display\": \"SGD 20.00\",\n      \"price_stored\": 2000,\n      \"quantity\": 148,\n      \"quantity_alert_level\": 10,\n      \"product_variation_weight\": 255,\n      \"variation_value_1\": \"Large\",\n      \"variation_value_2\": null,\n      \"variation_value_3\": null\n    }\n  ],\n  \"variation_key_1\": \"Size\",\n  \"variation_key_2\": null,\n  \"variation_key_3\": null,\n  \"images\": [\n    {\n      \"id\": \"9a12fab6-1e76-448e-8c45-e84e2e38f294\",\n      \"caption\": \"Beanie\",\n      \"url\": \"<string>\",\n      \"other_dimensions\": [\n        {\n          \"size\": \"icon\",\n          \"path\": \"<string>\"\n        },\n        {\n          \"size\": \"large\",\n          \"path\": \"<string>\"\n        },\n        {\n          \"size\": \"small\",\n          \"path\": \"<string>\"\n        },\n        {\n          \"size\": \"medium\",\n          \"path\": \"<string>\"\n        },\n        {\n          \"size\": \"thumbnail\",\n          \"path\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"is_published\": true,\n  \"created_at\": \"2023-09-07T13:04:22+08:00\",\n  \"updated_at\": \"2023-09-18T14:36:54+08:00\",\n  \"starts_at\": null,\n  \"ends_at\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "78be5fa6-1af4-4009-8062-ba2db6e6fa2e",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "products",
+                    ":product_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The name of the product",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "Product Beanie",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) The price of the product",
+                        "type": "text/plain"
+                      },
+                      "key": "price",
+                      "value": "<number>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The description of the product",
+                        "type": "text/plain"
+                      },
+                      "key": "description",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The headline of the product",
+                        "type": "text/plain"
+                      },
+                      "key": "headline",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The quantity of the product",
+                        "type": "text/plain"
+                      },
+                      "key": "quantity",
+                      "value": "1",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The quantity alert level of the product. It is required when quantity alert level is present.",
+                        "type": "text/plain"
+                      },
+                      "key": "quantity_alert_level",
+                      "value": "1",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The currency of the product",
+                        "type": "text/plain"
+                      },
+                      "key": "currency",
+                      "value": "sgd",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The list of business product category ids of the product",
+                        "type": "text/plain"
+                      },
+                      "key": "category_ids",
+                      "value": "[\"9a12fab0-d282-4437-9460-c3d26662d11a\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The is manageable of the product (This can only be one of 1,0)",
+                        "type": "text/plain"
+                      },
+                      "key": "is_manageable",
+                      "value": "1",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The is pinned of the product (This can only be one of 1,0)",
+                        "type": "text/plain"
+                      },
+                      "key": "is_pinned",
+                      "value": "0",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Weight in gram",
+                        "type": "text/plain"
+                      },
+                      "key": "product_weight",
+                      "value": "<integer>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "delivery_method_required",
+                      "value": "<boolean>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "existing_variation",
+                      "value": "[{\"id\":\"<uuid>\",\"price\":\"<number>\",\"quantity\":\"<integer>\",\"quantity_alert_level\":\"<integer>\",\"image\":\"<binary>\",\"product_variation_weight\":\"<integer>\",\"variation_value_1\":\"<string>\",\"variation_value_2\":\"<string>\",\"variation_value_3\":\"<string>\"},{\"id\":\"<uuid>\",\"price\":\"<number>\",\"quantity\":\"<integer>\",\"quantity_alert_level\":\"<integer>\",\"image\":\"<binary>\",\"product_variation_weight\":\"<integer>\",\"variation_value_1\":\"<string>\",\"variation_value_2\":\"<string>\",\"variation_value_3\":\"<string>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "images",
+                      "value": "[{\"image\":\"<binary>\"},{\"image\":\"<binary>\"}]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of 1,0)",
+                        "type": "text/plain"
+                      },
+                      "key": "publish",
+                      "value": "1",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "_method",
+                      "value": "PATCH",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\\"message\\\":\\\"The given data was invalid.\\\",\\\"errors\\\":{\\\"name\\\":[\\\"The name field is required.\\\"]}}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d4e0af22-9a7a-445d-aac3-4804b398dbc1",
+          "name": "Delete a Product",
+          "request": {
+            "name": "Delete a Product",
+            "description": {
+              "content": "This endpoint allows you to delete a product.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "products",
+                ":product_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "product_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e5f2a143-c797-4b46-83ac-900d5573f16e",
+              "name": "204",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "products",
+                    ":product_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"1\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.hit-pay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "50d05fdc-2081-4196-94e1-078bb161a989",
+    "name": "HitPay Account Status Products API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com",
+      "type": "text/plain"
+    }
+  }
+}

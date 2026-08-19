@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "HitPay Account Status Readers API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Readers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all card readers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hit-pay.com/v1/readers",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": " The number of items in page."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get all card readers"
+        },
+        {
+          "info": {
+            "name": "Cancel the terminal reader",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hit-pay.com/v1/readers/cancel",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancel the terminal reader."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

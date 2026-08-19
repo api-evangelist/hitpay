@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "HitPay Account Status Charge API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Charge",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Charge the saved card",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hit-pay.com/v1/charge/recurring-billing/:recurring_billing_id",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "recurring_billing_id",
+                "value": "",
+                "type": "path",
+                "description": "id value from the create recurring billing API"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Once the card is saved you can charged the card anytime using the charge API"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

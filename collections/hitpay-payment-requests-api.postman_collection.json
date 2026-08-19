@@ -1,0 +1,1200 @@
+{
+  "item": [
+    {
+      "id": "5854d5b0-4eb0-41c1-8714-c4a8e4ac8e04",
+      "name": "Payment Requests",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ada6ea2c-47ad-4f0e-b0e6-a21f5dd2668c",
+          "name": "Create Payment Request",
+          "request": {
+            "name": "Create Payment Request",
+            "description": {
+              "content": "This endpoint creates a new payment request. This is the first step of the payment flow, once you have all the details from the user and are ready to collect payment use this API to create a payment request.\nSince this is a server-to-server communication, if you have a mobile or Web client that communicates with your REST API, you must have a new endpoint E.g. /create-order, or reuse an existing endpoint. This endpoint will be responsible for making the payment request API call to HitPay.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "payment-requests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<double>\",\n  \"currency\": \"<string>\",\n  \"payment_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"email\": \"<email>\",\n  \"name\": \"<string>\",\n  \"phone\": \"<phone>\",\n  \"wifi_terminal_id\": \"<string>\",\n  \"staff_id\": \"<uuid>\",\n  \"location_id\": \"<uuid>\",\n  \"business_location_id\": \"<uuid>\",\n  \"purpose\": \"<string>\",\n  \"reference_number\": \"<string>\",\n  \"redirect_url\": \"<uri>\",\n  \"webhook\": \"<uri>\",\n  \"allow_repeated_payments\": \"false\",\n  \"expiry_date\": \"<string>\",\n  \"expires_after\": \"<string>\",\n  \"add_admin_fee\": \"false\",\n  \"send_email\": \"false\",\n  \"send_sms\": \"true\",\n  \"address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"line2\": \"<string>\"\n  },\n  \"generate_qr\": false,\n  \"metadata\": {\n    \"key\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0de6c29f-34f3-4a95-a2e3-344d6f7f51ca",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payment-requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"currency\": \"SGD\",\n  \"payment_methods\": [\n    \"card\"\n  ],\n  \"email\": \"<email>\",\n  \"name\": \"<string>\",\n  \"phone\": \"<phone>\",\n  \"wifi_terminal_id\": \"<string>\",\n  \"staff_id\": \"98888a24-d6b2-430d-9063-d2be76d443cd\",\n  \"location_id\": \"9dd07721-d215-4947-9c79-2b8ec25f69db\",\n  \"business_location_id\": \"9dd07721-d215-4947-9c79-2b8ec25f69db\",\n  \"purpose\": \"<string>\",\n  \"reference_number\": \"<string>\",\n  \"redirect_url\": \"https://www.google.com\",\n  \"webhook\": \"https://www.google.com\",\n  \"allow_repeated_payments\": \"false\",\n  \"expiry_date\": \"<string>\",\n  \"expires_after\": \"5 minutes\",\n  \"add_admin_fee\": \"false\",\n  \"send_email\": \"false\",\n  \"send_sms\": \"true\",\n  \"address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"line2\": \"<string>\"\n  },\n  \"generate_qr\": false,\n  \"metadata\": {\n    \"key\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"9ef68e2e-3569-4f69-9f68-04c7e4bb007c\",\n  \"name\": \"Harvey Friesen\",\n  \"email\": \"test@gmail.com\",\n  \"phone\": \"+65489505050\",\n  \"amount\": \"10.00\",\n  \"currency\": \"sgd\",\n  \"is_currency_editable\": false,\n  \"status\": \"pending\",\n  \"purpose\": \"Purpose_1747817845\",\n  \"reference_number\": \"1747817845\",\n  \"payment_methods\": [\n    \"card\"\n  ],\n  \"url\": \"https://securecheckout.sandbox.hit-pay.com/payment-request/@qasg/9ef68e2e-3569-4f69-9f68-04c7e4bb007c/checkout\",\n  \"redirect_url\": \"https://google.com\",\n  \"webhook\": \"https://webhook.site/8cbdef58-cd15-441a-986d-9446235223ea\",\n  \"send_sms\": true,\n  \"send_email\": true,\n  \"sms_status\": \"pending\",\n  \"email_status\": \"pending\",\n  \"allow_repeated_payments\": false,\n  \"expiry_date\": \"2025-05-26T15:10:00\",\n  \"address\": {\n    \"line1\": \"177 River Valley Road\",\n    \"line2\": \"177 River Valley Road\",\n    \"city\": \"Singapore\",\n    \"state\": \"Central\",\n    \"country\": \"SG\",\n    \"postal_code\": \"10015\"\n  },\n  \"line_items\": null,\n  \"executor_id\": 1363,\n  \"created_at\": \"2025-05-21T16:57:25\",\n  \"updated_at\": \"2025-05-21T16:57:25\",\n  \"staff_id\": \"98888a69-2d7a-4695-811d-6df8cee30264\",\n  \"business_location_id\": \"9e42e6be-2ff8-4b37-ac14-07970d2e79ca\",\n  \"metadata\": {\n    \"key1\": \"value1\",\n    \"key2\": \"value2\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "43b246c7-416a-4aec-8eeb-d9790149f3d2",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payment-requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"currency\": \"SGD\",\n  \"payment_methods\": [\n    \"card\"\n  ],\n  \"email\": \"<email>\",\n  \"name\": \"<string>\",\n  \"phone\": \"<phone>\",\n  \"wifi_terminal_id\": \"<string>\",\n  \"staff_id\": \"98888a24-d6b2-430d-9063-d2be76d443cd\",\n  \"location_id\": \"9dd07721-d215-4947-9c79-2b8ec25f69db\",\n  \"business_location_id\": \"9dd07721-d215-4947-9c79-2b8ec25f69db\",\n  \"purpose\": \"<string>\",\n  \"reference_number\": \"<string>\",\n  \"redirect_url\": \"https://www.google.com\",\n  \"webhook\": \"https://www.google.com\",\n  \"allow_repeated_payments\": \"false\",\n  \"expiry_date\": \"<string>\",\n  \"expires_after\": \"5 minutes\",\n  \"add_admin_fee\": \"false\",\n  \"send_email\": \"false\",\n  \"send_sms\": \"true\",\n  \"address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"line2\": \"<string>\"\n  },\n  \"generate_qr\": false,\n  \"metadata\": {\n    \"key\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"The currency field is required.\",\n  \"errors\": {\n    \"currency\": [\n      \"The currency field is required.\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c65b236e-dee2-474f-9834-ebbe1da93817",
+          "name": "Get Payment Requests",
+          "request": {
+            "name": "Get Payment Requests",
+            "description": {
+              "content": "Get all payment requests.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "payment-requests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "10",
+                  "description": "Page size"
+                },
+                {
+                  "disabled": false,
+                  "key": "current_page",
+                  "value": "1",
+                  "description": "Page number (not `page`)"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Partial match on email, id, or reference_number"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_default",
+                  "value": "<boolean>",
+                  "description": "When set, returns only default payment links (channel = custom or link)"
+                },
+                {
+                  "disabled": false,
+                  "key": "key_0",
+                  "value": "<string>",
+                  "description": "Filter by metadata key/value (exact match); only the first key/value pair is used"
+                },
+                {
+                  "disabled": false,
+                  "key": "key_1",
+                  "value": "<string>",
+                  "description": "Filter by metadata key/value (exact match); only the first key/value pair is used"
+                },
+                {
+                  "disabled": false,
+                  "key": "key_2",
+                  "value": "<string>",
+                  "description": "Filter by metadata key/value (exact match); only the first key/value pair is used"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dc03a3b1-6416-4996-9d45-39809db94350",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payment-requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "current_page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_default",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "key_0",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ec5632d-2d3d-4a60-809d-bdc9b9819789",
+          "name": "Update Payment Request",
+          "request": {
+            "name": "Update Payment Request",
+            "description": {
+              "content": "This endpoint is to update the payment request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "payment-requests",
+                ":request_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "request_id",
+                  "description": "(Required) It's payment request id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<double>\",\n  \"currency\": \"<string>\",\n  \"payment_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"email\": \"<email>\",\n  \"name\": \"<string>\",\n  \"phone\": \"<phone>\",\n  \"wifi_terminal_id\": \"<string>\",\n  \"staff_id\": \"<uuid>\",\n  \"purpose\": \"<string>\",\n  \"reference_number\": \"<string>\",\n  \"redirect_url\": \"<uri>\",\n  \"webhook\": \"<uri>\",\n  \"allow_repeated_payments\": \"false\",\n  \"expiry_date\": \"<string>\",\n  \"expires_after\": \"<string>\",\n  \"add_admin_fee\": \"false\",\n  \"send_email\": \"false\",\n  \"send_sms\": \"true\",\n  \"address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"line2\": \"<string>\"\n  },\n  \"generate_qr\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f308817d-1f06-49cd-8e25-ab38ac056603",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payment-requests",
+                    ":request_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "request_id",
+                      "description": "(Required) It's payment request id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"currency\": \"SGD\",\n  \"payment_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"email\": \"<email>\",\n  \"name\": \"<string>\",\n  \"phone\": \"<phone>\",\n  \"wifi_terminal_id\": \"<string>\",\n  \"staff_id\": \"98888a24-d6b2-430d-9063-d2be76d443cd\",\n  \"purpose\": \"<string>\",\n  \"reference_number\": \"<string>\",\n  \"redirect_url\": \"https://www.google.com\",\n  \"webhook\": \"https://www.google.com\",\n  \"allow_repeated_payments\": \"false\",\n  \"expiry_date\": \"<string>\",\n  \"expires_after\": \"5 minutes\",\n  \"add_admin_fee\": \"false\",\n  \"send_email\": \"false\",\n  \"send_sms\": \"true\",\n  \"address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"line2\": \"<string>\"\n  },\n  \"generate_qr\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b5c158ff-cd42-44fa-9916-ea85895e7949",
+          "name": "Delete Payment Request",
+          "request": {
+            "name": "Delete Payment Request",
+            "description": {
+              "content": "This endpoint is to delete a specific payment request.\n\n**Note: We don't allow to delete the completed payment request.**",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "payment-requests",
+                ":request_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "request_id",
+                  "description": "(Required) It's payment request id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "10ca5723-b872-44ec-9d77-8ef25542b86c",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payment-requests",
+                    ":request_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "request_id",
+                      "description": "(Required) It's payment request id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"success\\\": true\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fdcbaf0c-1ea7-4c9c-b0e0-999410aa4147",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payment-requests",
+                    ":request_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "request_id",
+                      "description": "(Required) It's payment request id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"message\\\": \\\"No query results for model [App\\\\\\\\Business\\\\\\\\PaymentRequest] 974ee879-7feb-4bc6-b329-51f32928bd59\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1406b35b-0ad9-459f-b3d7-42ac7ab8c033",
+          "name": "Get Payment Request Status",
+          "request": {
+            "name": "Get Payment Request Status",
+            "description": {
+              "content": "This endpoint is to  get the status of a specific payment request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "payment-requests",
+                ":request_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "request_id",
+                  "description": "(Required) It's required field"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3cd5611e-e8f7-4414-ae41-babcae664904",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payment-requests",
+                    ":request_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "request_id",
+                      "description": "(Required) It's required field"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"9ef68e2e-3569-4f69-9f68-04c7e4bb007c\",\n  \"name\": \"Harvey Friesen\",\n  \"email\": \"test@gmail.com\",\n  \"phone\": \"+65489505050\",\n  \"amount\": \"10.00\",\n  \"currency\": \"sgd\",\n  \"is_currency_editable\": false,\n  \"status\": \"pending\",\n  \"purpose\": \"Purpose_1747817845\",\n  \"reference_number\": \"1747817845\",\n  \"payment_methods\": [\n    \"card\"\n  ],\n  \"url\": \"https://securecheckout.sandbox.hit-pay.com/payment-request/@qasg/9ef68e2e-3569-4f69-9f68-04c7e4bb007c/checkout\",\n  \"redirect_url\": \"https://google.com\",\n  \"webhook\": \"https://webhook.site/8cbdef58-cd15-441a-986d-9446235223ea\",\n  \"send_sms\": true,\n  \"send_email\": true,\n  \"sms_status\": \"pending\",\n  \"email_status\": \"pending\",\n  \"allow_repeated_payments\": false,\n  \"expiry_date\": \"2025-05-26T15:10:00\",\n  \"address\": {\n    \"city\": \"Singapore\",\n    \"line1\": \"177 River Valley Road\",\n    \"line2\": \"177 River Valley Road\",\n    \"state\": \"Central\",\n    \"country\": \"SG\",\n    \"postal_code\": \"10015\"\n  },\n  \"line_items\": null,\n  \"executor_id\": \"1363\",\n  \"created_at\": \"2025-05-21T16:57:25\",\n  \"updated_at\": \"2025-05-21T16:57:25\",\n  \"staff_id\": \"98888a69-2d7a-4695-811d-6df8cee30264\",\n  \"business_location_id\": \"9e42e6be-2ff8-4b37-ac14-07970d2e79ca\",\n  \"location\": {\n    \"id\": \"9e42e6be-2ff8-4b37-ac14-07970d2e79ca\",\n    \"name\": \"API_Location_1740101762910\",\n    \"street\": \"58 Izpod Parkway\",\n    \"postal_code\": 79903,\n    \"city\": \"Singapore\",\n    \"state\": \"Singapore\",\n    \"country\": \"sg\",\n    \"created_at\": \"2025-02-21T01:36:02.000000Z\",\n    \"updated_at\": \"2025-02-21T01:36:02.000000Z\",\n    \"active\": true,\n    \"business_id\": \"98567029-f559-49f9-916b-042a4255b32a\",\n    \"pickups\": []\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a0a9d99-9f64-4b69-b650-faf9a3347b64",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payment-requests",
+                    ":request_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "request_id",
+                      "description": "(Required) It's required field"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"No query results for model [App\\\\Business\\\\PaymentRequest] 9ef68e2e-3569-4f69-9f68-04c7e4bb007c1\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "119c4246-ca8b-4224-aab6-992a132316f8",
+          "name": "Create a payment request",
+          "request": {
+            "name": "Create a payment request",
+            "description": {
+              "content": "Creates a hosted payment request (payment link / checkout page) for the given amount and currency. Returns a URL to redirect the payer to and a payment request id used to track status. Register webhook URLs in the dashboard (the inline `webhook` field is deprecated).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payment-requests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<string>",
+                  "description": "(Required) Amount to collect, e.g. \"199.00\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "<string>",
+                  "description": "(Required) ISO 4217 currency code (lowercase accepted), e.g. \"sgd\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<email>"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "purpose",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "reference_number",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "redirect_url",
+                  "value": "<uri>"
+                },
+                {
+                  "disabled": false,
+                  "key": "payment_methods",
+                  "value": "<string>",
+                  "description": "Restrict to specific methods (paynow_online, card, grabpay, wechat, alipay, shopee, atome)."
+                },
+                {
+                  "disabled": false,
+                  "key": "payment_methods",
+                  "value": "<string>",
+                  "description": "Restrict to specific methods (paynow_online, card, grabpay, wechat, alipay, shopee, atome)."
+                },
+                {
+                  "disabled": false,
+                  "key": "send_email",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "send_sms",
+                  "value": "<boolean>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "75038eef-4761-43e5-9df8-55306be31aac",
+              "name": "Payment request created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment-requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Amount to collect, e.g. \"199.00\".",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "199.00"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ISO 4217 currency code (lowercase accepted), e.g. \"sgd\".",
+                        "type": "text/plain"
+                      },
+                      "key": "currency",
+                      "value": "sgd"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "purpose",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "reference_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "redirect_url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Restrict to specific methods (paynow_online, card, grabpay, wechat, alipay, shopee, atome).",
+                        "type": "text/plain"
+                      },
+                      "key": "payment_methods",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Restrict to specific methods (paynow_online, card, grabpay, wechat, alipay, shopee, atome).",
+                        "type": "text/plain"
+                      },
+                      "key": "payment_methods",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "send_email",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "send_sms",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"completed\",\n  \"amount\": \"string\",\n  \"currency\": \"string\",\n  \"url\": \"http://JiBBeBMgZ.haiizxhew90Msms6SKSBmFXVcE3S8mjkl1u-v-TrXVJTNK\",\n  \"reference_number\": \"string\",\n  \"created_at\": \"1959-04-26T17:27:36.813Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4fb5e74f-6b05-4b9b-8b2f-49163e6d23cf",
+          "name": "List payment requests",
+          "request": {
+            "name": "List payment requests",
+            "description": {},
+            "url": {
+              "path": [
+                "payment-requests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7472da51-a325-4211-9064-2e7380f32736",
+              "name": "A page of payment requests.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment-requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"status\": \"expired\",\n    \"amount\": \"string\",\n    \"currency\": \"string\",\n    \"url\": \"http://fJhQoraqHroXLsCl.fqzdl6WBrfnrlevcjbKKTXyoVqnD+\",\n    \"reference_number\": \"string\",\n    \"created_at\": \"1993-10-05T23:15:24.388Z\"\n  },\n  {\n    \"id\": \"string\",\n    \"status\": \"pending\",\n    \"amount\": \"string\",\n    \"currency\": \"string\",\n    \"url\": \"https://JAqGsFWgJvizKPDamwAGRjg.notigZvD9FbnzDKKKTn4gXiXAT-AxeCJviB9XzVT1-Hb2\",\n    \"reference_number\": \"string\",\n    \"created_at\": \"1962-08-27T03:50:16.469Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cfa98a24-aed2-4537-872c-b9a1fabde89d",
+          "name": "Get a payment request",
+          "request": {
+            "name": "Get a payment request",
+            "description": {},
+            "url": {
+              "path": [
+                "payment-requests",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "10c3a41b-991d-45ae-b6b0-fec9d5244a3c",
+              "name": "The payment request and its current status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment-requests",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"completed\",\n  \"amount\": \"string\",\n  \"currency\": \"string\",\n  \"url\": \"http://JiBBeBMgZ.haiizxhew90Msms6SKSBmFXVcE3S8mjkl1u-v-TrXVJTNK\",\n  \"reference_number\": \"string\",\n  \"created_at\": \"1959-04-26T17:27:36.813Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ccc350ad-fc10-408a-9895-ef75cf0679a5",
+          "name": "Delete / cancel a payment request",
+          "request": {
+            "name": "Delete / cancel a payment request",
+            "description": {
+              "content": "Cancels an open card payment request. QR-based methods (PayNow, GrabPay) cannot be cancelled once generated.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payment-requests",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "adbb1a51-1e0f-4e87-a4f0-5e7c9fb44789",
+              "name": "Payment request deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment-requests",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.hit-pay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2448bb88-ae6b-4a58-b471-b34ef7405e6e",
+    "name": "HitPay Account Status Payment Requests API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com",
+      "type": "text/plain"
+    }
+  }
+}

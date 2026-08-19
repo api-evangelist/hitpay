@@ -1,0 +1,169 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "HitPay Account Status Beneficiaries API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Beneficiaries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the API schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hit-pay.com/v1/beneficiaries/schema",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API returns a dynamic schema that depends on the values of certain parameters. The schema contains the fields and validation rules for each payment scenario. A payment scenario is a combination of these parameters:country, transfer_method,transfer_type, currency, holder_type and bank_swift_code. To get the final schema, you need to submit the field values and re-render the form multiple times until all the fields are completed. For example, if you submit only the country parameter, the API "
+        },
+        {
+          "info": {
+            "name": "Get list of beneficiaries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hit-pay.com/v1/beneficiaries",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Search by holder name / nickname"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get list of beneficiaries"
+        },
+        {
+          "info": {
+            "name": "Create a new beneficiary",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hit-pay.com/v1/beneficiaries",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "A beneficiary is a person or business receiving the funds. HitPay currently supports local beneficiaries, enabling payouts within the same country and region."
+        },
+        {
+          "info": {
+            "name": "Get a beneficiary by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hit-pay.com/v1/beneficiaries/:beneficiary_id",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "beneficiary_id",
+                "value": "",
+                "type": "path",
+                "description": "The Beneficiary id"
+              }
+            ]
+          },
+          "docs": "Get a beneficiary by ID"
+        },
+        {
+          "info": {
+            "name": "Update existing beneficiary",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.hit-pay.com/v1/beneficiaries/:beneficiary_id",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "beneficiary_id",
+                "value": "",
+                "type": "path",
+                "description": "The Beneficiary id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "we only accept to update nickname, remark and is_favourite fields"
+        },
+        {
+          "info": {
+            "name": "Delete existing beneficiary",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.hit-pay.com/v1/beneficiaries/:beneficiary_id",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "beneficiary_id",
+                "value": "",
+                "type": "path",
+                "description": "The Beneficiary id"
+              }
+            ]
+          },
+          "docs": "Delete existing beneficiary"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

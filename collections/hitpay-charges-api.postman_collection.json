@@ -1,0 +1,755 @@
+{
+  "item": [
+    {
+      "id": "653d7b95-809c-4858-8dc6-29673a8192ee",
+      "name": "Charges",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6ba69861-c781-4fa4-b03b-977af065cd8d",
+          "name": "Export Charges",
+          "request": {
+            "name": "Export Charges",
+            "description": {
+              "content": "Export charges",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "charges",
+                "export"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "25"
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "1.0",
+                  "description": "The order version."
+                },
+                {
+                  "disabled": false,
+                  "key": "keywords",
+                  "value": "<string>",
+                  "description": "Search for fields: amount ,created_at ,id remark, customer_name"
+                },
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<string>",
+                  "description": "It's optional field and it's charge_id"
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "It's optional field and it's charge_id"
+                },
+                {
+                  "disabled": false,
+                  "key": "payment_method",
+                  "value": "<string>",
+                  "description": "The payment methods: card, alipay, paypal_card.. etc."
+                },
+                {
+                  "disabled": false,
+                  "key": "statuses[]",
+                  "value": "<string>",
+                  "description": "The statuses are in \"completed\" , \"pending\", \"sent\", \"draft\", \"expired\""
+                },
+                {
+                  "disabled": false,
+                  "key": "dateFrom",
+                  "value": "<string>",
+                  "description": "The from of created order"
+                },
+                {
+                  "disabled": false,
+                  "key": "dateTo",
+                  "value": "<string>",
+                  "description": "The To of created order"
+                },
+                {
+                  "disabled": false,
+                  "key": "with",
+                  "value": "<string>",
+                  "description": "If you want to display more charge and products objects. Example: charges,products"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a709ccd5-be77-4b95-8aa0-1d189c535b49",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "charges",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "perPage",
+                      "value": "25"
+                    },
+                    {
+                      "key": "version",
+                      "value": "1.0"
+                    },
+                    {
+                      "key": "keywords",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "payment_method",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statuses[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateFrom",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "with",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d398d3ba-8ece-4cb6-886f-97936bbda3ea",
+          "name": "Get All Charges",
+          "request": {
+            "name": "Get All Charges",
+            "description": {
+              "content": "Get all charges",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "charges"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "25"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "keywords",
+                  "value": "<string>",
+                  "description": "Search for fields: amount ,charge_id ,customer_email, remark"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "It's charge status"
+                },
+                {
+                  "disabled": false,
+                  "key": "location_ids",
+                  "value": "<uuid>",
+                  "description": "The location ids"
+                },
+                {
+                  "disabled": false,
+                  "key": "location_ids",
+                  "value": "<uuid>",
+                  "description": "The location ids"
+                },
+                {
+                  "disabled": false,
+                  "key": "user_ids",
+                  "value": "<string>",
+                  "description": "The user's id, support both uuid and number id"
+                },
+                {
+                  "disabled": false,
+                  "key": "user_ids",
+                  "value": "<string>",
+                  "description": "The user's id, support both uuid and number id"
+                },
+                {
+                  "disabled": false,
+                  "key": "statuses",
+                  "value": "<string>",
+                  "description": "It's charge status."
+                },
+                {
+                  "disabled": false,
+                  "key": "statuses",
+                  "value": "<string>",
+                  "description": "It's charge status."
+                },
+                {
+                  "disabled": false,
+                  "key": "date_from",
+                  "value": "<string>",
+                  "description": "The from of created order"
+                },
+                {
+                  "disabled": false,
+                  "key": "date_to",
+                  "value": "<string>",
+                  "description": "The to of created order"
+                },
+                {
+                  "disabled": false,
+                  "key": "amount_from",
+                  "value": "<number>",
+                  "description": "The from of amount"
+                },
+                {
+                  "disabled": false,
+                  "key": "amount_to",
+                  "value": "<number>",
+                  "description": "The to of amount"
+                },
+                {
+                  "disabled": false,
+                  "key": "payment_request_id",
+                  "value": "<uuid>",
+                  "description": "The payment request id"
+                },
+                {
+                  "disabled": false,
+                  "key": "customer_id",
+                  "value": "<uuid>",
+                  "description": "The customer id"
+                },
+                {
+                  "disabled": false,
+                  "key": "payout_id",
+                  "value": "<uuid>",
+                  "description": "The payout id"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a0d609d8-a0c1-4947-a909-af9d8ed41785",
+              "name": "Successful payment",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "charges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "keywords",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "location_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "location_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "user_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date_from",
+                      "value": "2024-10-05"
+                    },
+                    {
+                      "key": "date_to",
+                      "value": "2024-10-05"
+                    },
+                    {
+                      "key": "amount_from",
+                      "value": "100"
+                    },
+                    {
+                      "key": "amount_to",
+                      "value": "200"
+                    },
+                    {
+                      "key": "payment_request_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "customer_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "payout_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"9ced76ac-1638-44df-b702-3f43f6592e2a\",\n      \"currency\": \"sgd\",\n      \"home_currency\": \"sgd\",\n      \"exchange_rate\": \"1.00000\",\n      \"amount\": 70.56,\n      \"fixed_fee\": 0.6,\n      \"discount_fee\": 2.57,\n      \"discount_fee_rate\": 3.65,\n      \"remark\": \"Order #9ced76aa-580f-4664-866d-a0d6df1cfc57\",\n      \"status\": \"succeeded\",\n      \"payment_method\": {\n        \"name\": \"card\",\n        \"display_logo\": {\n          \"sm\": \"https://api.hitpayapp.test/icons/methods/sm/visa.png\",\n          \"md\": \"https://api.hitpayapp.test/icons/methods/md/visa.png\",\n          \"lg\": \"https://api.hitpayapp.test/icons/methods/lg/visa.png\",\n          \"svg\": \"https://api.hitpayapp.test/icons/methods/svg/visa.svg\",\n          \"svg_square\": \"https://api.hitpayapp.test/icons/methods/svg_square/visa.svg\",\n          \"png_square\": \"https://api.hitpayapp.test/icons/methods/png_square/visa.png\"\n        },\n        \"method_logo\": {\n          \"sm\": \"https://api.hitpayapp.test/icons/methods/sm/card.png\",\n          \"md\": \"https://api.hitpayapp.test/icons/methods/md/card.png\",\n          \"lg\": \"https://api.hitpayapp.test/icons/methods/lg/card.png\",\n          \"svg\": \"https://api.hitpayapp.test/icons/methods/svg/card.svg\",\n          \"svg_square\": \"https://api.hitpayapp.test/icons/methods/svg_square/card.svg\",\n          \"png_square\": \"https://api.hitpayapp.test/icons/methods/png_square/card.png\"\n        },\n        \"data\": {\n          \"brand\": \"Visa\",\n          \"last4\": \"4242\",\n          \"country_code\": \"US\",\n          \"country\": \"United States of America\"\n        }\n      },\n      \"customer_id\": \"9ce1111d-e6c9-4511-95f9-6277d06299c1\",\n      \"customer\": {\n        \"name\": \"Ari\",\n        \"email\": \"hiaribahtiar@gmail.com\",\n        \"phone_number\": \"6285787995896\"\n      },\n      \"payment_request_id\": \"9ced76aa-ea65-46a1-a13a-16e9ae39620f\",\n      \"webhook_status\": false,\n      \"order_reference_number\": \"1007\",\n      \"executor\": null,\n      \"location\": {\n        \"id\": \"96e21521-3c8a-4c21-b76d-558d2cb8b846\",\n        \"name\": \"location 1\",\n        \"address\": \"jl ampera, west java, sg, 14023\"\n      },\n      \"channel\": \"api_store\",\n      \"admin_fee\": false,\n      \"closed_at\": \"2024-09-04T16:05:37+08:00\",\n      \"created_at\": \"2024-09-04T16:05:21+08:00\",\n      \"updated_at\": \"2024-09-04T16:35:40+08:00\"\n    }\n  ],\n  \"links\": {\n    \"first\": null,\n    \"last\": null,\n    \"prev\": null,\n    \"next\": \"https://api.sandbox.hit-pay.com/v1/charges?apiKey%5Bincrementing%5D=1&apiKey%5BpreventsLazyLoading%5D=0&apiKey%5Bexists%5D=1&apiKey%5BwasRecentlyCreated%5D=0&apiKey%5Btimestamps%5D=1&apiKey%5BusesUniqueIds%5D=0&statuses%5B0%5D=succeeded&statuses%5B1%5D=succeeded_manually&statuses%5B2%5D=refunded&statuses%5B3%5D=void&cursor=eyJidXNpbmVzc19jaGFyZ2VzLmlkIjoiOWQyZjJiYTYtZWQ2Yi00NGVjLWFmMGQtODg2NDk3YTEyMDJlIiwiX3BvaW50c1RvTmV4dEl0ZW1zIjp0cnVlfQ\"\n  },\n  \"meta\": {\n    \"path\": \"https://api.sandbox.hit-pay.com/v1/charges\",\n    \"per_page\": 25,\n    \"next_cursor\": \"eyJidXNpbmVzc19jaGFyZ2VzLmlkIjoiOWQyZjJiYTYtZWQ2Yi00NGVjLWFmMGQtODg2NDk3YTEyMDJlIiwiX3BvaW50c1RvTmV4dEl0ZW1zIjp0cnVlfQ\",\n    \"prev_cursor\": null\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "de2443ae-3a5c-463c-8e54-dcbf63627535",
+          "name": "Get Charge Details",
+          "request": {
+            "name": "Get Charge Details",
+            "description": {
+              "content": "Get charge details",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "charges",
+                ":charge_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "charge_id",
+                  "description": "(Required) The charge id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f0f61ad2-fffa-4005-b2b3-03339008d269",
+              "name": "Successful payment",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "charges",
+                    ":charge_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "charge_id",
+                      "description": "(Required) The charge id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"9cecc92d-9d93-49d6-bd3f-2bb74dcbb283\",\n  \"currency\": \"sgd\",\n  \"home_currency\": \"sgd\",\n  \"exchange_rate\": null,\n  \"amount\": 100,\n  \"amount_without_fees\": 95.85,\n  \"refunded_amount\": 0,\n  \"fixed_fee\": 0.5,\n  \"discount_fee\": 3.65,\n  \"discount_fee_rate\": 3.65,\n  \"remark\": \"NEWUI from 2024-08-31 To 2024-08-31\",\n  \"status\": \"succeeded\",\n  \"payment_method\": {\n    \"code\": \"stripe_sg\",\n    \"display_logo\": {\n      \"sm\": \"https://api.sandbox.hit-pay.com/icons/methods/sm/visa.png\",\n      \"md\": \"https://api.sandbox.hit-pay.com/icons/methods/md/visa.png\",\n      \"lg\": \"https://api.sandbox.hit-pay.com/icons/methods/lg/visa.png\",\n      \"svg\": \"https://api.sandbox.hit-pay.com/icons/methods/svg/visa.svg\",\n      \"svg_square\": \"https://api.sandbox.hit-pay.com/icons/methods/svg_square/visa.svg\",\n      \"png_square\": \"https://api.sandbox.hit-pay.com/icons/methods/png_square/visa.png\",\n      \"method\": \"visa\",\n      \"iconName\": \"visa\",\n      \"displayName\": \"Visa\"\n    },\n    \"provider_reference\": \"ch_3Pv6duAMHowMCIhZ2P9NCA6j\",\n    \"type\": \"charge\",\n    \"name\": \"card\",\n    \"method_logo\": {\n      \"sm\": \"https://api.sandbox.hit-pay.com/icons/methods/sm/card.png\",\n      \"md\": \"https://api.sandbox.hit-pay.com/icons/methods/md/card.png\",\n      \"lg\": \"https://api.sandbox.hit-pay.com/icons/methods/lg/card.png\",\n      \"svg\": \"https://api.sandbox.hit-pay.com/icons/methods/svg/card.svg\",\n      \"svg_square\": \"https://api.sandbox.hit-pay.com/icons/methods/svg_square/card.svg\",\n      \"png_square\": \"https://api.sandbox.hit-pay.com/icons/methods/png_square/card.png\",\n      \"method\": \"card\",\n      \"iconName\": \"card\",\n      \"displayName\": \"Cards\"\n    },\n    \"data\": {\n      \"brand\": \"Visa\",\n      \"last4\": \"4242\",\n      \"country_code\": \"US\",\n      \"country\": \"United States of America\"\n    }\n  },\n  \"customer_id\": \"9a659602-eafd-4731-972d-424aef24fb2f\",\n  \"customer\": {\n    \"name\": \"KimC\",\n    \"email\": \"cherykim@yopmail.com\",\n    \"phone_number\": \"993348342\"\n  },\n  \"payment_request_id\": null,\n  \"webhook_status\": false,\n  \"order_reference_number\": null,\n  \"target_id\": \"9c0fd92e-1cc8-478f-8b2e-71ee8a218ec5\",\n  \"target_type\": \"business_recurring_plan\",\n  \"executor\": null,\n  \"location\": null,\n  \"channel\": \"api_recurring_dashboard\",\n  \"admin_fee\": false,\n  \"refunds\": [],\n  \"webhook_logs\": [],\n  \"terminal_id\": null,\n  \"closed_at\": \"2024-09-04T08:00:16+08:00\",\n  \"created_at\": \"2024-09-04T08:00:17+08:00\",\n  \"updated_at\": \"2024-09-04T08:01:19+08:00\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c3498ddf-972e-47e3-9c71-bc7f5024eba6",
+          "name": "Print Receipt",
+          "request": {
+            "name": "Print Receipt",
+            "description": {
+              "content": "Print out charge and refund receipts. Applicable for Singapore merchants who use an All-in-One Terminal only.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "charges",
+                ":charge_id",
+                "receipt",
+                "print"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "charge_id",
+                  "description": "(Required) The charge_id belongs to the business."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"terminal_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fe4a16f4-f5b1-4e80-b96e-ff5f403c21f2",
+              "name": "204",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "charges",
+                    ":charge_id",
+                    "receipt",
+                    "print"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "charge_id",
+                      "description": "(Required) The charge_id belongs to the business."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"terminal_id\": \"S1F2-000158240536593\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "1",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "35316523-d18b-4ad4-a1df-4f1b636ef846",
+              "name": "422",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "charges",
+                    ":charge_id",
+                    "receipt",
+                    "print"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "charge_id",
+                      "description": "(Required) The charge_id belongs to the business."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"terminal_id\": \"S1F2-000158240536593\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"The given data was invalid. Terminal not found\",\n  \"errors\": {\n    \"terminal_id\": [\n      \"Terminal not found\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.hit-pay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3dc8ade4-f88c-4874-820d-f6eec727eccf",
+    "name": "HitPay Account Status Charges API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com",
+      "type": "text/plain"
+    }
+  }
+}

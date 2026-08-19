@@ -1,0 +1,251 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "HitPay Account Status Charges API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Charges",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Export Charges",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hit-pay.com/v1/charges/export",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "The order version."
+              },
+              {
+                "name": "keywords",
+                "value": "",
+                "type": "query",
+                "description": "Search for fields: amount ,created_at ,id remark, customer_name"
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "It's optional field and it's charge_id"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "It's optional field and it's charge_id"
+              },
+              {
+                "name": "payment_method",
+                "value": "",
+                "type": "query",
+                "description": "The payment methods: card, alipay, paypal_card.. etc."
+              },
+              {
+                "name": "statuses[]",
+                "value": "",
+                "type": "query",
+                "description": "The statuses are in \"completed\" , \"pending\", \"sent\", \"draft\", \"expired\""
+              },
+              {
+                "name": "dateFrom",
+                "value": "",
+                "type": "query",
+                "description": "The from of created order"
+              },
+              {
+                "name": "dateTo",
+                "value": "",
+                "type": "query",
+                "description": "The To of created order"
+              },
+              {
+                "name": "with",
+                "value": "",
+                "type": "query",
+                "description": "If you want to display more charge and products objects. Example: charges,products"
+              }
+            ]
+          },
+          "docs": "Export charges"
+        },
+        {
+          "info": {
+            "name": "Get All Charges",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hit-pay.com/v1/charges",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "keywords",
+                "value": "",
+                "type": "query",
+                "description": "Search for fields: amount ,charge_id ,customer_email, remark"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "It's charge status"
+              },
+              {
+                "name": "location_ids",
+                "value": "",
+                "type": "query",
+                "description": "The location ids"
+              },
+              {
+                "name": "user_ids",
+                "value": "",
+                "type": "query",
+                "description": "The user's id, support both uuid and number id"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "It's charge status."
+              },
+              {
+                "name": "date_from",
+                "value": "",
+                "type": "query",
+                "description": "The from of created order"
+              },
+              {
+                "name": "date_to",
+                "value": "",
+                "type": "query",
+                "description": "The to of created order"
+              },
+              {
+                "name": "amount_from",
+                "value": "",
+                "type": "query",
+                "description": "The from of amount"
+              },
+              {
+                "name": "amount_to",
+                "value": "",
+                "type": "query",
+                "description": "The to of amount"
+              },
+              {
+                "name": "payment_request_id",
+                "value": "",
+                "type": "query",
+                "description": "The payment request id"
+              },
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "query",
+                "description": "The customer id"
+              },
+              {
+                "name": "payout_id",
+                "value": "",
+                "type": "query",
+                "description": "The payout id"
+              }
+            ]
+          },
+          "docs": "Get all charges"
+        },
+        {
+          "info": {
+            "name": "Get Charge Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hit-pay.com/v1/charges/:charge_id",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "charge_id",
+                "value": "",
+                "type": "path",
+                "description": "The charge id"
+              }
+            ]
+          },
+          "docs": "Get charge details"
+        },
+        {
+          "info": {
+            "name": "Print Receipt",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hit-pay.com/v1/charges/:charge_id/receipt/print",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "charge_id",
+                "value": "9f12c35b-ae2a-4a6f-8853-6f1f00830bd7",
+                "type": "path",
+                "description": "The charge_id belongs to the business."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Print out charge and refund receipts. Applicable for Singapore merchants who use an All-in-One Terminal only."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

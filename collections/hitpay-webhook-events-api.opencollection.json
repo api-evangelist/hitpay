@@ -1,0 +1,135 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "HitPay Account Status Webhook Events API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhook Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Webhook Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hit-pay.com/v1/webhook-events",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "This endpoint allows you to get all webhook events. The webhook event will listen to the event types that you specify and send a POST request to the URL that you specify."
+        },
+        {
+          "info": {
+            "name": "Create a Webhook Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hit-pay.com/v1/webhook-events",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint allows you to create a webhook event. The webhook event will listen to the event types that you specify and send a POST request to the URL that you specify."
+        },
+        {
+          "info": {
+            "name": "Get Webhook Event Detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hit-pay.com/v1/webhook-events/:webhook_event_id",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "webhook_event_id",
+                "value": "",
+                "type": "path",
+                "description": "The Webhook Event id"
+              }
+            ]
+          },
+          "docs": "This endpoint allows you to get a webhook event's details. You can use the `webhook_event_id` to get the webhook event's details."
+        },
+        {
+          "info": {
+            "name": "Update Webhook Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.hit-pay.com/v1/webhook-events/:webhook_event_id",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "webhook_event_id",
+                "value": "",
+                "type": "path",
+                "description": "The Webhook Event id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint allows you to update a webhook event. You can use the `webhook_event_id` to update the webhook event's details."
+        },
+        {
+          "info": {
+            "name": "Delete Webhook Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.hit-pay.com/v1/webhook-events/:webhook_event_id",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "webhook_event_id",
+                "value": "",
+                "type": "path",
+                "description": "The Webhook Event id"
+              }
+            ]
+          },
+          "docs": "This endpoint allows you to delete a webhook event. You can use the `webhook_event_id` to delete the webhook event."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

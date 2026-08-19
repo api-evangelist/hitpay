@@ -1,0 +1,65 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "HitPay Account Status Product Category API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Product Category",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Product Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hit-pay.com/v1/product-category",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "active",
+                "value": "",
+                "type": "query",
+                "description": "Filter by active status"
+              },
+              {
+                "name": "parent_id",
+                "value": "",
+                "type": "query",
+                "description": "The parent category id, to list all subcategories of a parent category"
+              },
+              {
+                "name": "keywords",
+                "value": "",
+                "type": "query",
+                "description": "Filter by keywords, name"
+              }
+            ]
+          },
+          "docs": "Use this API to get all product category"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

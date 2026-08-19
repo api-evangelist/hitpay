@@ -1,0 +1,147 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "HitPay Account Status Subscription Plan API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Subscription Plan",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Subscription Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hit-pay.com/v1/subscription-plan",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "The number of per page"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page index"
+              }
+            ]
+          },
+          "docs": "Use this API to get all subscription plans details."
+        },
+        {
+          "info": {
+            "name": "Create a Subscription Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hit-pay.com/v1/subscription-plan",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "A subscription plan consists of basic information like plan name, amount, and frequency. An example of a subscription plan could be “Spotify Premium Membership” which is SGD 9.90 monthly."
+        },
+        {
+          "info": {
+            "name": "Get Subscription Plan Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hit-pay.com/v1/subscription-plan/:plan_id",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Use this API to get the subscription plan details, if you need to make any changes use the Update a Subscription Plan API"
+        },
+        {
+          "info": {
+            "name": "Update Subscription Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.hit-pay.com/v1/subscription-plan/:plan_id",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this API to update the subscription plan, changes made to the plan will not affect current subscription. If you would like to make changes to the current subscriptions use the Update Recurring Billing API."
+        },
+        {
+          "info": {
+            "name": "Delete Subscription Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.hit-pay.com/v1/subscription-plan/:plan_id",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "plan_id",
+                "value": "",
+                "type": "path",
+                "description": "The subscription id"
+              }
+            ]
+          },
+          "docs": "Delete the Subscription plan"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

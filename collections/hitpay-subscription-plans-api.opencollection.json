@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "HitPay Account Status Subscription Plans API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Subscription Plans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List subscription plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hit-pay.com/subscription-plan"
+          },
+          "docs": "List subscription plans"
+        },
+        {
+          "info": {
+            "name": "Create a subscription plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hit-pay.com/subscription-plan",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Create a subscription plan"
+        },
+        {
+          "info": {
+            "name": "Get a subscription plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hit-pay.com/subscription-plan/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a subscription plan"
+        },
+        {
+          "info": {
+            "name": "Delete a subscription plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.hit-pay.com/subscription-plan/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a subscription plan"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

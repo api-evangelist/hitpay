@@ -1,0 +1,236 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "HitPay Account Status Payment Requests API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payment Requests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Payment Requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hit-pay.com/v1/payment-requests",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Page size"
+              },
+              {
+                "name": "current_page",
+                "value": "",
+                "type": "query",
+                "description": "Page number (not `page`)"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Partial match on email, id, or reference_number"
+              },
+              {
+                "name": "is_default",
+                "value": "",
+                "type": "query",
+                "description": "When set, returns only default payment links (channel = custom or link)"
+              },
+              {
+                "name": "metadata",
+                "value": "",
+                "type": "query",
+                "description": "Filter by metadata key/value (exact match); only the first key/value pair is used"
+              }
+            ]
+          },
+          "docs": "Get all payment requests."
+        },
+        {
+          "info": {
+            "name": "Create Payment Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hit-pay.com/v1/payment-requests",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a new payment request. This is the first step of the payment flow, once you have all the details from the user and are ready to collect payment use this API to create a payment request.\nSince this is a server-to-server communication, if you have a mobile or Web client that communicates with your REST API, you must have a new endpoint E.g. /create-order, or reuse an existing endpoint. This endpoint will be responsible for making the payment request API call to HitPay."
+        },
+        {
+          "info": {
+            "name": "Get Payment Request Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hit-pay.com/v1/payment-requests/:request_id",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "path",
+                "description": "It's required field"
+              }
+            ]
+          },
+          "docs": "This endpoint is to  get the status of a specific payment request."
+        },
+        {
+          "info": {
+            "name": "Update Payment Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.hit-pay.com/v1/payment-requests/:request_id",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "path",
+                "description": "It's payment request id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint is to update the payment request."
+        },
+        {
+          "info": {
+            "name": "Delete Payment Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.hit-pay.com/v1/payment-requests/:request_id",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "path",
+                "description": "It's payment request id"
+              }
+            ]
+          },
+          "docs": "This endpoint is to delete a specific payment request.\n\n**Note: We don't allow to delete the completed payment request.**"
+        },
+        {
+          "info": {
+            "name": "List payment requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hit-pay.com/payment-requests",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List payment requests"
+        },
+        {
+          "info": {
+            "name": "Create a payment request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hit-pay.com/payment-requests",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Creates a hosted payment request (payment link / checkout page) for the given amount and currency. Returns a URL to redirect the payer to and a payment request id used to track status. Register webhook URLs in the dashboard (the inline `webhook` field is deprecated)."
+        },
+        {
+          "info": {
+            "name": "Get a payment request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hit-pay.com/payment-requests/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a payment request"
+        },
+        {
+          "info": {
+            "name": "Delete / cancel a payment request",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.hit-pay.com/payment-requests/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancels an open card payment request. QR-based methods (PayNow, GrabPay) cannot be cancelled once generated."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

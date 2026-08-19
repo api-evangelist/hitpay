@@ -1,0 +1,548 @@
+{
+  "item": [
+    {
+      "id": "9cbe29b5-3b94-4579-95f9-5bc6efa56478",
+      "name": "Static Qr",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c27e07d5-a09a-4bae-8628-d1decbed4ae2",
+          "name": "Get All Static QRs",
+          "request": {
+            "name": "Get All Static QRs",
+            "description": {
+              "content": "This endpoint allows you to get all static QR codes. The static QR codes are the QR codes that you can use to receive payments.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "static_qr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "adeede5c-fec0-4392-b480-b99f0881f553",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "static_qr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"reference\": \"string\",\n      \"payment_provider\": \"string\",\n      \"amount\": 4773.384935566144,\n      \"currency\": \"string\",\n      \"payment_provider_method\": \"string\",\n      \"payment_provider_method_logos\": [\n        {\n          \"sm\": \"string\",\n          \"md\": \"string\",\n          \"lg\": \"string\",\n          \"svg\": \"string\",\n          \"svg_square\": \"string\",\n          \"png_square\": \"string\",\n          \"method\": \"string\",\n          \"iconName\": \"string\",\n          \"displayName\": \"string\"\n        },\n        {\n          \"sm\": \"string\",\n          \"md\": \"string\",\n          \"lg\": \"string\",\n          \"svg\": \"string\",\n          \"svg_square\": \"string\",\n          \"png_square\": \"string\",\n          \"method\": \"string\",\n          \"iconName\": \"string\",\n          \"displayName\": \"string\"\n        }\n      ],\n      \"payment_provider_method_main_logo\": {\n        \"sm\": \"string\",\n        \"md\": \"string\",\n        \"lg\": \"string\",\n        \"svg\": \"string\",\n        \"svg_square\": \"string\",\n        \"png_square\": \"string\",\n        \"method\": \"string\",\n        \"iconName\": \"string\",\n        \"displayName\": \"string\"\n      },\n      \"created_by\": {\n        \"id\": \"string\",\n        \"display_name\": \"string\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\"\n      },\n      \"location_id\": \"string\",\n      \"location\": {\n        \"name\": \"string\",\n        \"address\": \"string\"\n      },\n      \"qr_value\": \"string\",\n      \"created_at\": \"string\",\n      \"updated_at\": \"string\",\n      \"device_id\": \"string\",\n      \"device\": {\n        \"label\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"reference\": \"string\",\n      \"payment_provider\": \"string\",\n      \"amount\": 2919.5354823147,\n      \"currency\": \"string\",\n      \"payment_provider_method\": \"string\",\n      \"payment_provider_method_logos\": [\n        {\n          \"sm\": \"string\",\n          \"md\": \"string\",\n          \"lg\": \"string\",\n          \"svg\": \"string\",\n          \"svg_square\": \"string\",\n          \"png_square\": \"string\",\n          \"method\": \"string\",\n          \"iconName\": \"string\",\n          \"displayName\": \"string\"\n        },\n        {\n          \"sm\": \"string\",\n          \"md\": \"string\",\n          \"lg\": \"string\",\n          \"svg\": \"string\",\n          \"svg_square\": \"string\",\n          \"png_square\": \"string\",\n          \"method\": \"string\",\n          \"iconName\": \"string\",\n          \"displayName\": \"string\"\n        }\n      ],\n      \"payment_provider_method_main_logo\": {\n        \"sm\": \"string\",\n        \"md\": \"string\",\n        \"lg\": \"string\",\n        \"svg\": \"string\",\n        \"svg_square\": \"string\",\n        \"png_square\": \"string\",\n        \"method\": \"string\",\n        \"iconName\": \"string\",\n        \"displayName\": \"string\"\n      },\n      \"created_by\": {\n        \"id\": \"string\",\n        \"display_name\": \"string\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\"\n      },\n      \"location_id\": \"string\",\n      \"location\": {\n        \"name\": \"string\",\n        \"address\": \"string\"\n      },\n      \"qr_value\": \"string\",\n      \"created_at\": \"string\",\n      \"updated_at\": \"string\",\n      \"device_id\": \"string\",\n      \"device\": {\n        \"label\": \"string\"\n      }\n    }\n  ],\n  \"links\": {\n    \"first\": \"\",\n    \"last\": \"\",\n    \"prev\": \"\",\n    \"next\": \"\"\n  },\n  \"meta\": {\n    \"path\": \"string\",\n    \"per_page\": 7955.772163599193,\n    \"next_cursor\": \"\",\n    \"prev_cursor\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "81f7e82a-8b0c-41e7-8f88-ec3e1b87074a",
+          "name": "Create a Static QR",
+          "request": {
+            "name": "Create a Static QR",
+            "description": {
+              "content": "This endpoint allows you to create static QR.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "static_qr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"payment_provider_method\": \"<string>\",\n  \"device_id\": \"<uuid>\",\n  \"location_id\": \"<uuid>\",\n  \"amount\": \"<number>\",\n  \"currency\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "97c42a84-b271-4a6e-afba-6420a7c2ed8a",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "static_qr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"payment_provider_method\": \"<string>\",\n  \"device_id\": \"<uuid>\",\n  \"location_id\": \"<uuid>\",\n  \"amount\": 10.99,\n  \"currency\": \"sgd\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"reference\": \"string\",\n  \"payment_provider\": \"string\",\n  \"payment_provider_method\": \"string\",\n  \"amount\": 7866.015114429348,\n  \"currency\": \"string\",\n  \"payment_provider_method_logos\": [\n    {\n      \"sm\": \"string\",\n      \"md\": \"string\",\n      \"lg\": \"string\",\n      \"svg\": \"string\",\n      \"svg_square\": \"string\",\n      \"png_square\": \"string\",\n      \"method\": \"string\",\n      \"iconName\": \"string\",\n      \"displayName\": \"string\"\n    },\n    {\n      \"sm\": \"string\",\n      \"md\": \"string\",\n      \"lg\": \"string\",\n      \"svg\": \"string\",\n      \"svg_square\": \"string\",\n      \"png_square\": \"string\",\n      \"method\": \"string\",\n      \"iconName\": \"string\",\n      \"displayName\": \"string\"\n    }\n  ],\n  \"payment_provider_method_main_logo\": {\n    \"sm\": \"string\",\n    \"md\": \"string\",\n    \"lg\": \"string\",\n    \"svg\": \"string\",\n    \"svg_square\": \"string\",\n    \"png_square\": \"string\",\n    \"method\": \"string\",\n    \"iconName\": \"string\",\n    \"displayName\": \"string\"\n  },\n  \"created_by\": {\n    \"id\": \"string\",\n    \"display_name\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\"\n  },\n  \"location_id\": \"string\",\n  \"location\": {\n    \"name\": \"string\",\n    \"address\": \"string\"\n  },\n  \"device_id\": \"\",\n  \"device\": \"\",\n  \"qr_value\": \"string\",\n  \"created_at\": \"string\",\n  \"updated_at\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "25527e2a-d4a0-433c-8d2c-4be2d3bdd72b",
+          "name": "Get Static QR Detail",
+          "request": {
+            "name": "Get Static QR Detail",
+            "description": {
+              "content": "This endpoint allows you to get a static QR details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "static_qr",
+                ":static_qr_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "static_qr_id",
+                  "description": "(Required) Static QR id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "974eefc7-fd32-4cc7-9894-0d1ea03c6555",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "static_qr",
+                    ":static_qr_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "static_qr_id",
+                      "description": "(Required) Static QR id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"reference\": \"string\",\n  \"payment_provider\": \"string\",\n  \"payment_provider_method\": \"string\",\n  \"amount\": 7866.015114429348,\n  \"currency\": \"string\",\n  \"payment_provider_method_logos\": [\n    {\n      \"sm\": \"string\",\n      \"md\": \"string\",\n      \"lg\": \"string\",\n      \"svg\": \"string\",\n      \"svg_square\": \"string\",\n      \"png_square\": \"string\",\n      \"method\": \"string\",\n      \"iconName\": \"string\",\n      \"displayName\": \"string\"\n    },\n    {\n      \"sm\": \"string\",\n      \"md\": \"string\",\n      \"lg\": \"string\",\n      \"svg\": \"string\",\n      \"svg_square\": \"string\",\n      \"png_square\": \"string\",\n      \"method\": \"string\",\n      \"iconName\": \"string\",\n      \"displayName\": \"string\"\n    }\n  ],\n  \"payment_provider_method_main_logo\": {\n    \"sm\": \"string\",\n    \"md\": \"string\",\n    \"lg\": \"string\",\n    \"svg\": \"string\",\n    \"svg_square\": \"string\",\n    \"png_square\": \"string\",\n    \"method\": \"string\",\n    \"iconName\": \"string\",\n    \"displayName\": \"string\"\n  },\n  \"created_by\": {\n    \"id\": \"string\",\n    \"display_name\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\"\n  },\n  \"location_id\": \"string\",\n  \"location\": {\n    \"name\": \"string\",\n    \"address\": \"string\"\n  },\n  \"device_id\": \"\",\n  \"device\": \"\",\n  \"qr_value\": \"string\",\n  \"created_at\": \"string\",\n  \"updated_at\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fd0df667-d542-44c7-9db6-933905c637c5",
+          "name": "Update Static QR",
+          "request": {
+            "name": "Update Static QR",
+            "description": {
+              "content": "This endpoint allows you to update a static QR.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "static_qr",
+                ":static_qr_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "static_qr_id",
+                  "description": "(Required) The static QR id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"location_id\": \"<uuid>\",\n  \"amount\": \"<number>\",\n  \"currency\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2d602cbb-ec71-4035-825b-e18ac0310221",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "static_qr",
+                    ":static_qr_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "static_qr_id",
+                      "description": "(Required) The static QR id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"location_id\": \"9cc4aee8-c1b4-4401-af57-aea884c780cb\",\n  \"amount\": 10.99,\n  \"currency\": \"sgd\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"reference\": \"string\",\n  \"payment_provider\": \"string\",\n  \"payment_provider_method\": \"string\",\n  \"amount\": 7866.015114429348,\n  \"currency\": \"string\",\n  \"payment_provider_method_logos\": [\n    {\n      \"sm\": \"string\",\n      \"md\": \"string\",\n      \"lg\": \"string\",\n      \"svg\": \"string\",\n      \"svg_square\": \"string\",\n      \"png_square\": \"string\",\n      \"method\": \"string\",\n      \"iconName\": \"string\",\n      \"displayName\": \"string\"\n    },\n    {\n      \"sm\": \"string\",\n      \"md\": \"string\",\n      \"lg\": \"string\",\n      \"svg\": \"string\",\n      \"svg_square\": \"string\",\n      \"png_square\": \"string\",\n      \"method\": \"string\",\n      \"iconName\": \"string\",\n      \"displayName\": \"string\"\n    }\n  ],\n  \"payment_provider_method_main_logo\": {\n    \"sm\": \"string\",\n    \"md\": \"string\",\n    \"lg\": \"string\",\n    \"svg\": \"string\",\n    \"svg_square\": \"string\",\n    \"png_square\": \"string\",\n    \"method\": \"string\",\n    \"iconName\": \"string\",\n    \"displayName\": \"string\"\n  },\n  \"created_by\": {\n    \"id\": \"string\",\n    \"display_name\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\"\n  },\n  \"location_id\": \"string\",\n  \"location\": {\n    \"name\": \"string\",\n    \"address\": \"string\"\n  },\n  \"device_id\": \"\",\n  \"device\": \"\",\n  \"qr_value\": \"string\",\n  \"created_at\": \"string\",\n  \"updated_at\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0ab99e70-476a-4484-abd5-995ea5e3bcbd",
+          "name": "Delete the static QR",
+          "request": {
+            "name": "Delete the static QR",
+            "description": {
+              "content": "This endpoint allows you to delete the static QR",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "static_qr",
+                ":static_qr_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "static_qr_id",
+                  "description": "(Required) The Static QR id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0d460dce-6d8e-45aa-9867-00ebe4495294",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "static_qr",
+                    ":static_qr_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "static_qr_id",
+                      "description": "(Required) The Static QR id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Static QR deleted successfully.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.hit-pay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c9fe246b-db59-4ff0-8bf0-954be37036c0",
+    "name": "HitPay Account Status Static Qr API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com",
+      "type": "text/plain"
+    }
+  }
+}

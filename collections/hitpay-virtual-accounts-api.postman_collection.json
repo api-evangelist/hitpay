@@ -1,0 +1,705 @@
+{
+  "item": [
+    {
+      "id": "a592acd7-2e7d-4e6b-b217-9779b5b5a699",
+      "name": "Virtual Accounts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "85a0a29a-7ef7-40c6-b23d-af109a5fe55a",
+          "name": "Get virtual accounts",
+          "request": {
+            "name": "Get virtual accounts",
+            "description": {
+              "content": "Retrieve the list of virtual accounts for a business. Results are paginated using cursor-based pagination\nand ordered by creation date (newest first).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "virtual-accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string,null>",
+                  "description": "Cursor for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "25",
+                  "description": "Number of results per page"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9f28c03f-cd88-41c7-a8f3-9e3932287d24",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "virtual-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string,null>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"f0953a3a-364a-26f5-59f9-e65455da9600\",\n      \"name\": \"string\",\n      \"reference\": \"string\",\n      \"payment_provider\": \"string\",\n      \"payment_provider_method\": \"string\",\n      \"payment_provider_method_logos\": [\n        {\n          \"method\": \"string\",\n          \"iconName\": \"string\",\n          \"displayName\": \"string\",\n          \"description\": \"string\",\n          \"sm\": \"http://ybrjiZJSMFzRVLuWahnL.kjBySUfwTxMSnn6QdZHkt6,+umxYDlbNLw1UJxJ3HDAH3WX+nupoo2NmNzOLx9wDXDOrBDC,P9i\",\n          \"md\": \"https://VayQxgtrddJquUeSdQeCxSrKc.ydKnT4Et1t4lO.j,0,ux3MlHEVATRd9EXc1\",\n          \"lg\": \"http://KMWuvjbAKoIIeUYyySDLdthP.cbvt.-LfAi+A8zCVlKcoBidrS86pCGuziR+Q7dlJhLbXgqRHe6AMo1J,cwvLKcrD3lsl\",\n          \"svg\": \"https://FXRNOXibHDuNLydgUVnXd.feth5YjVQqMKKMOuK0rl-aaMu46wxxypRpOiRk8ot3yg-yOobkiXTQ0JH0hF\",\n          \"svg_square\": \"https://CbIdIZQUteyCSRDPmoyRzfqeeg.rxiY.NQamelNbCWPcWP6\"\n        },\n        {\n          \"method\": \"string\",\n          \"iconName\": \"string\",\n          \"displayName\": \"string\",\n          \"description\": \"string\",\n          \"sm\": \"http://JoHZrBhNaZsqlqZLTtCGGLkapImMz.impss5qAZp0EmoQp6R9+D.ZEoZ9Bcb4-Hhh\",\n          \"md\": \"https://HIPEnxcKgGOYJzNzXZIuzQopZIDILp.hkmcwVbb6JrPXDPB5IpgD.nWt3aG+HbTWlVd0wG\",\n          \"lg\": \"http://FxsToDFaMDHFIcZsJFbEbhnMCsIDmnuNJ.tfIgeu-gSMXkSMbV\",\n          \"svg\": \"https://vZuYoyziMxkF.rarj1qhdSEBSf1kvktR2dt8t\",\n          \"svg_square\": \"http://WnUYymZmzlYKxlqUsQRaseRBI.pimrB+iNp+uEsFmoGEPAhV444X,YgEhWb6VMdejFkTJ+-tfwPEKvwA3-ijh,Bnl.\"\n        }\n      ],\n      \"payment_provider_method_main_logo\": {\n        \"method\": \"string\",\n        \"iconName\": \"string\",\n        \"displayName\": \"string\",\n        \"description\": \"string\",\n        \"sm\": \"https://PaZvJTYLFncZqZcwErDhN.hsrnG0IdcihmfsZT2AaMVmUkpRY,UJU\",\n        \"md\": \"http://ofDj.fcb2oc7S1Sv5oXxvD4ABF4VtUBRNvkCLwopkQ+uRiIpJrEqtOLHVTAf0R,4sPJYoMF5Md2D\",\n        \"lg\": \"https://FaZ.nleyE4Hikf3dJR3u7oT.FKsBvsNi3t,teKQRUdKTdd,1\",\n        \"svg\": \"https://BSKXhSTWxSXuYBlkVGmmrSmTWDOovDMFB.qoqzpiL\",\n        \"svg_square\": \"http://zbJMecFflNmXwflXGdYUvDMXIOKtV.fqoDeak8tGH9LJ4F4aoYz3xOGvxAsptg8rUa.ZJl+599CZd7x9K2NmdcVlu.tw-i3MPkg0DfgDtdI7D,\"\n      },\n      \"supported_currencies\": [\n        \"string\",\n        \"string\"\n      ],\n      \"transfer_types\": [\n        \"string\",\n        \"string\"\n      ],\n      \"address\": \"string\",\n      \"status\": \"string\",\n      \"created_by\": {\n        \"id\": \"88b87880-06e1-28c4-5684-31f963f81c36\",\n        \"display_name\": \"string\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\"\n      },\n      \"created_at\": \"1960-10-25T00:17:02.592Z\",\n      \"updated_at\": \"1993-09-05T10:58:17.194Z\"\n    },\n    {\n      \"id\": \"a22125ad-7c1c-f89a-4f33-9fdf44dcbb6d\",\n      \"name\": \"string\",\n      \"reference\": \"string\",\n      \"payment_provider\": \"string\",\n      \"payment_provider_method\": \"string\",\n      \"payment_provider_method_logos\": [\n        {\n          \"method\": \"string\",\n          \"iconName\": \"string\",\n          \"displayName\": \"string\",\n          \"description\": \"string\",\n          \"sm\": \"http://ZUSpaTXMEXyENisvDFJAOCtggp.zfvHR0eDYwy7t.rLkPuPNJ6cpitbSX42GJogRzZJFfwyH2Wzn2+FUErRF8bKhk\",\n          \"md\": \"https://epbKyFgeBaVxpVeZCQbkWFwowCJgMQuUI.haIUK3fOdQ,HEl4UQJgSMNiS7fe6YDXPy\",\n          \"lg\": \"https://gDcVOQtarDdlGzzGXfkBbUTDB.wzbwy1oUoUlbsEOdc6GL5IWwUqWQPxsm3qaSGlhqdsUnfj\",\n          \"svg\": \"http://SgenQAxSWvAKdSnaHcZVfvwHCc.goyn3Pg2SRuGXAHIcUlvjDahj\",\n          \"svg_square\": \"http://xEqzRGjuiHtLFRmBUrWqxyqFMFVi.olrsarGx4hjL-kE6pDerY\"\n        },\n        {\n          \"method\": \"string\",\n          \"iconName\": \"string\",\n          \"displayName\": \"string\",\n          \"description\": \"string\",\n          \"sm\": \"http://FhhjnPqsPdVqjLBSGMEaoG.khphkIQ8sAqMoreN7YE-2Aoyw5d0ZDLITkoXxEf.YonlPELvepNP6hYc.33s\",\n          \"md\": \"https://pqAmsOUdshjYnKNtiRzgZbCavLgVqwha.cknrxr4zsZfeJx4--QcpRqH6IT2i-cEFeIWmfBw47zqMP-p0v-P\",\n          \"lg\": \"https://FqtWeQHmJtHDlVcJYunqjtLreeLAUGgZ.xmWD1GM39dYAgHKTXE.,7,ivsJgnrersFID0TchYtWb.1hwOqSTE8gUMIaHDzznRnUL2Uo8aKxQQ7e3M3jW\",\n          \"svg\": \"https://LoB.wxwd2dqo+h2g+IHFKDKHevGHypjrrkApgRV3qFtDZ\",\n          \"svg_square\": \"http://oclsrhsAhiAwePLAjLFWTlCGnQSP.ivCrxRZuRaMeuekvKRANt44MdBWQVe2qrZHPfVCxibVFDD\"\n        }\n      ],\n      \"payment_provider_method_main_logo\": {\n        \"method\": \"string\",\n        \"iconName\": \"string\",\n        \"displayName\": \"string\",\n        \"description\": \"string\",\n        \"sm\": \"https://aXbvmdtXjDOLzqzPah.uxmtHyEid9ANPz.xUofGjddlaHSjdUGc8dv+w9ndq7x\",\n        \"md\": \"http://cUddUdSKFSmRudXWmRVQeZRxU.wxh\",\n        \"lg\": \"http://bdSKomQzQmCT.vqsrSLEqs+9XRol7X4DZljsklvgSC80b,d1HZUHr2,lLDtuHAajkWX,1Ms\",\n        \"svg\": \"https://I.sjef,X9GFGuhmAmyVfa9rJaY+fpQQZY-mtGy\",\n        \"svg_square\": \"http://M.pepms-BwIo5DLCDL0X3C-RM49\"\n      },\n      \"supported_currencies\": [\n        \"string\",\n        \"string\"\n      ],\n      \"transfer_types\": [\n        \"string\",\n        \"string\"\n      ],\n      \"address\": \"string\",\n      \"status\": \"string\",\n      \"created_by\": {\n        \"id\": \"e82e4948-6976-0f87-a2a3-9b1bfb16f807\",\n        \"display_name\": \"string\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\"\n      },\n      \"created_at\": \"1996-06-14T03:06:25.534Z\",\n      \"updated_at\": \"2005-12-16T12:09:44.986Z\"\n    }\n  ],\n  \"links\": {\n    \"first\": \"string\",\n    \"last\": \"string\",\n    \"prev\": \"string\",\n    \"next\": \"string\"\n  },\n  \"meta\": {\n    \"path\": \"string\",\n    \"per_page\": 9099,\n    \"next_cursor\": \"string\",\n    \"prev_cursor\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c9222a13-d9d8-4bee-aa62-0ea0986857b5",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "virtual-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string,null>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "89e1caa5-eda8-46d3-8b1b-7cdb845da67e",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "virtual-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string,null>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5cf0032c-59fd-4b8a-91c2-9324c265087e",
+          "name": "Create a virtual account",
+          "request": {
+            "name": "Create a virtual account",
+            "description": {
+              "content": "Create a new virtual account for the business. The payment provider and method are automatically\ndetermined based on the business configuration.\n\nA business can only have one virtual account per payment provider method. If a virtual account\nalready exists for the same provider method, a 409 Conflict error is returned.\n\nThe business must have payments enabled to create a virtual account.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "virtual-accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ee965b6f-085c-42ea-b07f-b2d499ce9655",
+              "name": "Virtual account created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "virtual-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"c9a4d537-25d3-ea9f-88f3-7d1358b6a9cf\",\n    \"name\": \"string\",\n    \"reference\": \"string\",\n    \"payment_provider\": \"string\",\n    \"payment_provider_method\": \"string\",\n    \"payment_provider_method_logos\": [\n      {\n        \"method\": \"string\",\n        \"iconName\": \"string\",\n        \"displayName\": \"string\",\n        \"description\": \"string\",\n        \"sm\": \"https://FRhypDSgcqnL.ccexd6XatmhuJvWMKKm,-vGVlvJ35GOsu2ud2ypCVgCg8o0-YDhD.H\",\n        \"md\": \"http://DXZHwWOULAEREaAAGNFUaOLmA.mcseRHW8gPgbyzfZ5i5jAimUgatQkpiBULAuzoApffdxnh+jDLRtvN\",\n        \"lg\": \"https://AycqOLPfEZxtkaTsDjDWQYQd.lahvGZaKs.x0bL31RP5iZ\",\n        \"svg\": \"https://uYWiumsvYJJQF.mfniwIZM7GwAoZcF3n5x,ZomCS.Y3\",\n        \"svg_square\": \"https://CVMBdGTwMNpxfJtjUZahrGjdFLCSjYjmN.fgvxo\"\n      },\n      {\n        \"method\": \"string\",\n        \"iconName\": \"string\",\n        \"displayName\": \"string\",\n        \"description\": \"string\",\n        \"sm\": \"http://ovMJSNFBXacKSYkwzlgscWUPqUMNEwGI.zpFn.ob\",\n        \"md\": \"http://qnXJUCLTMjJpJYpj.tnJym.ISpQdCltedpRgvoq2VdjauasnJL921ZKASJvXjbiEU\",\n        \"lg\": \"http://CZSwuoObsrOZvphXLJmi.wuiSCvDC3Q\",\n        \"svg\": \"http://ggbzJIlcFejdEPdof.rvh,QtRfoSxstuBTg7RVyi-Z7fHya9NBLdSgvxmw\",\n        \"svg_square\": \"http://tbDAjBJfeaQRySlb.uvokO4LBaNSFaIoSgMkIyY6Ycn8oeBhQy29v+vQ4Wgc\"\n      }\n    ],\n    \"payment_provider_method_main_logo\": {\n      \"method\": \"string\",\n      \"iconName\": \"string\",\n      \"displayName\": \"string\",\n      \"description\": \"string\",\n      \"sm\": \"http://jDGOVfncayTdi.btpvVkKDTYapd,7gHyUCIVc0ODLJDV5yJBL2MNnyvmgYtx7miHRTyuv6iILe25fdWHKFT2MFbJIibhK6C2K\",\n      \"md\": \"https://qIJZMUAHhGhaVJhScxWIDcIrlTQ.dpwhLXzOWfibLjd\",\n      \"lg\": \"http://zJpDBOxkwpPlIxXmqeOEsy.jqpfPn.oXuG3YXdtStPENHTJbdkDUuzplJf8O.rUv1wKwUpJJlLkW8\",\n      \"svg\": \"http://iw.dkqgCPB7Fso3NEJLboxULsIJLyCF7k-G1OkDULPdwKB89E4t\",\n      \"svg_square\": \"https://pWqCUpDUf.tnvmRSTT4gpcnz1f-fsSssj+nBUEmMG85aRNfKqRvARE8RllEj16\"\n    },\n    \"supported_currencies\": [\n      \"string\",\n      \"string\"\n    ],\n    \"transfer_types\": [\n      \"string\",\n      \"string\"\n    ],\n    \"address\": \"string\",\n    \"status\": \"string\",\n    \"created_by\": {\n      \"id\": \"c52994dd-3768-1335-59b3-df751ce1bb87\",\n      \"display_name\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\"\n    },\n    \"created_at\": \"1977-08-12T06:36:32.371Z\",\n    \"updated_at\": \"1976-07-26T16:58:19.961Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0fc944f8-8d88-44e8-9f12-9f3735ee24f8",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "virtual-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6f507a81-5efe-4974-960a-1003226f69b5",
+              "name": "Forbidden — business does not have payments enabled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "virtual-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba70ebfb-87ee-4ed8-ae45-5c169b7950f7",
+              "name": "Conflict — a virtual account already exists for this provider method",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "virtual-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "98652481-fe42-4c0b-bbdc-d6c02961636f",
+          "name": "Get virtual account details",
+          "request": {
+            "name": "Get virtual account details",
+            "description": {
+              "content": "Retrieve detailed information about a specific virtual account.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "virtual-accounts",
+                ":virtual_account_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "virtual_account_id",
+                  "description": "(Required) The virtual account ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b91b2e43-2d3e-485c-b4f3-2a9d170fbac2",
+              "name": "Successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "virtual-accounts",
+                    ":virtual_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "virtual_account_id",
+                      "description": "(Required) The virtual account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"c9a4d537-25d3-ea9f-88f3-7d1358b6a9cf\",\n    \"name\": \"string\",\n    \"reference\": \"string\",\n    \"payment_provider\": \"string\",\n    \"payment_provider_method\": \"string\",\n    \"payment_provider_method_logos\": [\n      {\n        \"method\": \"string\",\n        \"iconName\": \"string\",\n        \"displayName\": \"string\",\n        \"description\": \"string\",\n        \"sm\": \"https://FRhypDSgcqnL.ccexd6XatmhuJvWMKKm,-vGVlvJ35GOsu2ud2ypCVgCg8o0-YDhD.H\",\n        \"md\": \"http://DXZHwWOULAEREaAAGNFUaOLmA.mcseRHW8gPgbyzfZ5i5jAimUgatQkpiBULAuzoApffdxnh+jDLRtvN\",\n        \"lg\": \"https://AycqOLPfEZxtkaTsDjDWQYQd.lahvGZaKs.x0bL31RP5iZ\",\n        \"svg\": \"https://uYWiumsvYJJQF.mfniwIZM7GwAoZcF3n5x,ZomCS.Y3\",\n        \"svg_square\": \"https://CVMBdGTwMNpxfJtjUZahrGjdFLCSjYjmN.fgvxo\"\n      },\n      {\n        \"method\": \"string\",\n        \"iconName\": \"string\",\n        \"displayName\": \"string\",\n        \"description\": \"string\",\n        \"sm\": \"http://ovMJSNFBXacKSYkwzlgscWUPqUMNEwGI.zpFn.ob\",\n        \"md\": \"http://qnXJUCLTMjJpJYpj.tnJym.ISpQdCltedpRgvoq2VdjauasnJL921ZKASJvXjbiEU\",\n        \"lg\": \"http://CZSwuoObsrOZvphXLJmi.wuiSCvDC3Q\",\n        \"svg\": \"http://ggbzJIlcFejdEPdof.rvh,QtRfoSxstuBTg7RVyi-Z7fHya9NBLdSgvxmw\",\n        \"svg_square\": \"http://tbDAjBJfeaQRySlb.uvokO4LBaNSFaIoSgMkIyY6Ycn8oeBhQy29v+vQ4Wgc\"\n      }\n    ],\n    \"payment_provider_method_main_logo\": {\n      \"method\": \"string\",\n      \"iconName\": \"string\",\n      \"displayName\": \"string\",\n      \"description\": \"string\",\n      \"sm\": \"http://jDGOVfncayTdi.btpvVkKDTYapd,7gHyUCIVc0ODLJDV5yJBL2MNnyvmgYtx7miHRTyuv6iILe25fdWHKFT2MFbJIibhK6C2K\",\n      \"md\": \"https://qIJZMUAHhGhaVJhScxWIDcIrlTQ.dpwhLXzOWfibLjd\",\n      \"lg\": \"http://zJpDBOxkwpPlIxXmqeOEsy.jqpfPn.oXuG3YXdtStPENHTJbdkDUuzplJf8O.rUv1wKwUpJJlLkW8\",\n      \"svg\": \"http://iw.dkqgCPB7Fso3NEJLboxULsIJLyCF7k-G1OkDULPdwKB89E4t\",\n      \"svg_square\": \"https://pWqCUpDUf.tnvmRSTT4gpcnz1f-fsSssj+nBUEmMG85aRNfKqRvARE8RllEj16\"\n    },\n    \"supported_currencies\": [\n      \"string\",\n      \"string\"\n    ],\n    \"transfer_types\": [\n      \"string\",\n      \"string\"\n    ],\n    \"address\": \"string\",\n    \"status\": \"string\",\n    \"created_by\": {\n      \"id\": \"c52994dd-3768-1335-59b3-df751ce1bb87\",\n      \"display_name\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\"\n    },\n    \"created_at\": \"1977-08-12T06:36:32.371Z\",\n    \"updated_at\": \"1976-07-26T16:58:19.961Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "edcf920f-df05-44dd-a821-29ea6f377079",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "virtual-accounts",
+                    ":virtual_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "virtual_account_id",
+                      "description": "(Required) The virtual account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4faead06-fdf9-4b30-8e41-6c3c5bb58a93",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "virtual-accounts",
+                    ":virtual_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "virtual_account_id",
+                      "description": "(Required) The virtual account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f45b8dbb-de5b-423e-829e-bf7394588fba",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "virtual-accounts",
+                    ":virtual_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "virtual_account_id",
+                      "description": "(Required) The virtual account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.hit-pay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4dbf4f35-3124-4cb9-9ec8-690a433f4d89",
+    "name": "HitPay Account Status Virtual Accounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com",
+      "type": "text/plain"
+    }
+  }
+}

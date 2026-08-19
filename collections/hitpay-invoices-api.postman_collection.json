@@ -1,0 +1,594 @@
+{
+  "item": [
+    {
+      "id": "388369ca-7767-4ad5-9652-1e1eec5d3a2a",
+      "name": "Invoices",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "13aa5e62-54fe-4448-8dae-a031f5f8e638",
+          "name": "Delete Invoice",
+          "request": {
+            "name": "Delete Invoice",
+            "description": {
+              "content": "Delete Invoice",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "invoices",
+                ":invoice_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "invoice_id",
+                  "description": "(Required) The invoice id belongs to business."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a398fcb7-ca1d-4fe6-854a-5a9eac8bd03e",
+              "name": "204",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "invoices",
+                    ":invoice_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoice_id",
+                      "description": "(Required) The invoice id belongs to business."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "1",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4fb53e4a-f7d6-48fd-9ea8-9cfa6ad00948",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "invoices",
+                    ":invoice_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoice_id",
+                      "description": "(Required) The invoice id belongs to business."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"No query results for model [App\\\\Business\\\\Invoice] 9ef5f219-8c72-488b-997d-a0906d2f81181\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4045a103-3417-4fa6-9518-2e4f0c86e646",
+          "name": "Update the invoice",
+          "request": {
+            "name": "Update the invoice",
+            "description": {
+              "content": "Update the invoice",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "invoices",
+                ":invoice_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "invoice_id",
+                  "description": "(Required) The invoice id belongs to the business."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoice_date\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"payment_by\": \"<string>\",\n  \"customer\": {\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"address\": {\n      \"name\": {},\n      \"city\": {},\n      \"state\": {},\n      \"postal_code\": {},\n      \"country\": {}\n    }\n  },\n  \"customer_id\": \"<string>\",\n  \"due_date\": \"<string>\",\n  \"auto_invoice_number\": \"<string>\",\n  \"invoice_number\": \"<string>\",\n  \"payment_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"subtotal\": \"<double>\",\n  \"tax_setting\": \"<string>\",\n  \"send_email\": 0,\n  \"webhook\": \"<string>\",\n  \"reference\": \"<string>\",\n  \"footer\": \"<string>\",\n  \"allow_partial_payments\": 0,\n  \"partial_payments\": [\n    {\n      \"amount\": 0,\n      \"due_date\": \"<string>\"\n    },\n    {\n      \"amount\": 0,\n      \"due_date\": \"<string>\"\n    }\n  ],\n  \"products\": [\n    {\n      \"product_id\": \"<string>\",\n      \"quantity\": \"<string>\",\n      \"variation_id\": \"<string>\",\n      \"discount\": \"<string>\"\n    },\n    {\n      \"product_id\": \"<string>\",\n      \"quantity\": \"<string>\",\n      \"variation_id\": \"<string>\",\n      \"discount\": \"<string>\"\n    }\n  ],\n  \"stackable_discounts\": [\n    {\n      \"name\": \"<string>\",\n      \"discount\": \"<string>\",\n      \"percentage_discount\": \"<string>\",\n      \"order\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"discount\": \"<string>\",\n      \"percentage_discount\": \"<string>\",\n      \"order\": \"<string>\"\n    }\n  ],\n  \"recipients\": [\n    {\n      \"email\": \"<string>\",\n      \"customer_id\": \"<string>\"\n    },\n    {\n      \"email\": \"<string>\",\n      \"customer_id\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "da2cec0c-8e81-4fed-985e-906ee4fdfddd",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "invoices",
+                    ":invoice_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoice_id",
+                      "description": "(Required) The invoice id belongs to the business."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoice_date\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"payment_by\": \"<string>\",\n  \"customer\": {\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"address\": {\n      \"name\": {},\n      \"city\": {},\n      \"state\": {},\n      \"postal_code\": {},\n      \"country\": {}\n    }\n  },\n  \"customer_id\": \"<string>\",\n  \"due_date\": \"<string>\",\n  \"auto_invoice_number\": \"<string>\",\n  \"invoice_number\": \"<string>\",\n  \"payment_methods\": [\n    \"paynow_online\",\n    \"paynow_online\"\n  ],\n  \"subtotal\": \"<double>\",\n  \"tax_setting\": \"<string>\",\n  \"send_email\": 0,\n  \"webhook\": \"<string>\",\n  \"reference\": \"<string>\",\n  \"footer\": \"<string>\",\n  \"allow_partial_payments\": 0,\n  \"partial_payments\": [\n    {\n      \"amount\": 0,\n      \"due_date\": \"<string>\"\n    },\n    {\n      \"amount\": 0,\n      \"due_date\": \"<string>\"\n    }\n  ],\n  \"products\": [\n    {\n      \"product_id\": \"<string>\",\n      \"quantity\": \"<string>\",\n      \"variation_id\": \"<string>\",\n      \"discount\": \"<string>\"\n    },\n    {\n      \"product_id\": \"<string>\",\n      \"quantity\": \"<string>\",\n      \"variation_id\": \"<string>\",\n      \"discount\": \"<string>\"\n    }\n  ],\n  \"stackable_discounts\": [\n    {\n      \"name\": \"<string>\",\n      \"discount\": \"<string>\",\n      \"percentage_discount\": \"<string>\",\n      \"order\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"discount\": \"<string>\",\n      \"percentage_discount\": \"<string>\",\n      \"order\": \"<string>\"\n    }\n  ],\n  \"recipients\": [\n    {\n      \"email\": \"<string>\",\n      \"customer_id\": \"<string>\"\n    },\n    {\n      \"email\": \"<string>\",\n      \"customer_id\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "16696ec3-ff22-4213-b01b-5c5c7d415df1",
+          "name": "Get all invoice",
+          "request": {
+            "name": "Get all invoice",
+            "description": {
+              "content": "Get the invoice and filter",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "invoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "customer_email",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Invoice status, options [draft, sent, pending, overdue, paid]"
+                },
+                {
+                  "disabled": false,
+                  "key": "reference",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "10",
+                  "description": "The number of per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page index"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "20d1dac4-9cec-42d6-8934-1746b36d2701",
+              "name": "204",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "customer_email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "reference",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f71c4b86-fc80-46d1-baa4-0829175596a9",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "customer_email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "reference",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "84866d6f-f504-4a58-a81b-80ddd1c215a6",
+          "name": "Create the invoice",
+          "request": {
+            "name": "Create the invoice",
+            "description": {
+              "content": "Create the invoice",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "invoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoice_date\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"payment_by\": \"<string>\",\n  \"customer\": {\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"address\": {\n      \"name\": {},\n      \"city\": {},\n      \"state\": {},\n      \"postal_code\": {},\n      \"country\": {}\n    }\n  },\n  \"customer_id\": \"<string>\",\n  \"due_date\": \"<string>\",\n  \"auto_invoice_number\": \"<string>\",\n  \"invoice_number\": \"<string>\",\n  \"payment_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"subtotal\": \"<double>\",\n  \"tax_setting\": \"<string>\",\n  \"send_email\": 0,\n  \"webhook\": \"<string>\",\n  \"reference\": \"<string>\",\n  \"footer\": \"<string>\",\n  \"allow_partial_payments\": 0,\n  \"partial_payments\": [\n    {\n      \"amount\": 0,\n      \"due_date\": \"<string>\"\n    },\n    {\n      \"amount\": 0,\n      \"due_date\": \"<string>\"\n    }\n  ],\n  \"products\": [\n    {\n      \"product_id\": \"<string>\",\n      \"quantity\": \"<string>\",\n      \"variation_id\": \"<string>\",\n      \"discount\": \"<string>\"\n    },\n    {\n      \"product_id\": \"<string>\",\n      \"quantity\": \"<string>\",\n      \"variation_id\": \"<string>\",\n      \"discount\": \"<string>\"\n    }\n  ],\n  \"stackable_discounts\": [\n    {\n      \"name\": \"<string>\",\n      \"discount\": \"<string>\",\n      \"percentage_discount\": \"<string>\",\n      \"order\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"discount\": \"<string>\",\n      \"percentage_discount\": \"<string>\",\n      \"order\": \"<string>\"\n    }\n  ],\n  \"recipients\": [\n    {\n      \"email\": \"<string>\",\n      \"customer_id\": \"<string>\"\n    },\n    {\n      \"email\": \"<string>\",\n      \"customer_id\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "671d7188-34f2-4a21-9011-158dd14e1969",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoice_date\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"payment_by\": \"<string>\",\n  \"customer\": {\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"address\": {\n      \"name\": {},\n      \"city\": {},\n      \"state\": {},\n      \"postal_code\": {},\n      \"country\": {}\n    }\n  },\n  \"customer_id\": \"<string>\",\n  \"due_date\": \"<string>\",\n  \"auto_invoice_number\": \"<string>\",\n  \"invoice_number\": \"<string>\",\n  \"payment_methods\": [\n    \"paynow_online\",\n    \"paynow_online\"\n  ],\n  \"subtotal\": \"<double>\",\n  \"tax_setting\": \"<string>\",\n  \"send_email\": 0,\n  \"webhook\": \"<string>\",\n  \"reference\": \"<string>\",\n  \"footer\": \"<string>\",\n  \"allow_partial_payments\": 0,\n  \"partial_payments\": [\n    {\n      \"amount\": 0,\n      \"due_date\": \"<string>\"\n    },\n    {\n      \"amount\": 0,\n      \"due_date\": \"<string>\"\n    }\n  ],\n  \"products\": [\n    {\n      \"product_id\": \"<string>\",\n      \"quantity\": \"<string>\",\n      \"variation_id\": \"<string>\",\n      \"discount\": \"<string>\"\n    },\n    {\n      \"product_id\": \"<string>\",\n      \"quantity\": \"<string>\",\n      \"variation_id\": \"<string>\",\n      \"discount\": \"<string>\"\n    }\n  ],\n  \"stackable_discounts\": [\n    {\n      \"name\": \"<string>\",\n      \"discount\": \"<string>\",\n      \"percentage_discount\": \"<string>\",\n      \"order\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"discount\": \"<string>\",\n      \"percentage_discount\": \"<string>\",\n      \"order\": \"<string>\"\n    }\n  ],\n  \"recipients\": [\n    {\n      \"email\": \"<string>\",\n      \"customer_id\": \"<string>\"\n    },\n    {\n      \"email\": \"<string>\",\n      \"customer_id\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.hit-pay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b98c96ee-706f-4c29-a9c7-3d1fae20ba3c",
+    "name": "HitPay Account Status Invoices API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,232 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "HitPay Account Status Recurring Billing API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Recurring Billing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Recurring Billing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hit-pay.com/v1/recurring-billing",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customer_email",
+                "value": "",
+                "type": "query",
+                "description": "Customer Email"
+              },
+              {
+                "name": "reference",
+                "value": "",
+                "type": "query",
+                "description": "Reference number"
+              },
+              {
+                "name": "business_recurring_plans_id",
+                "value": "",
+                "type": "query",
+                "description": "Recurring Plan ID"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Recurring billing status, options [active, scheduled, retrying, inactive, canceled]"
+              }
+            ]
+          },
+          "docs": "Use this API to get the a list of all recurring billings"
+        },
+        {
+          "info": {
+            "name": "Create Recurring Billing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hit-pay.com/v1/recurring-billing",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Once your customer has decided to start the subscription this endpoint will create the recurring billing request.\nSince this is a server-to-server communication, if you have a mobile or Web client that communicates with your REST API, you must have a new endpoint E.g. /create-subscription or reuse an existing endpoint. This endpoint will be responsible for making the recurring billing API call to HitPay."
+        },
+        {
+          "info": {
+            "name": "Get saved card details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hit-pay.com/v1/recurring-billing/:recurring_billing_id",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "recurring_billing_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Use this API to get the detail of recurring billing with a saved card. If the card is saved the response will have the card details (The last 4 digits and card brand). You can use the card details to display it to the users so they are aware of which card is saved and give them the option to change the card by navigating to the “url”"
+        },
+        {
+          "info": {
+            "name": "Update Recurring Billing",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.hit-pay.com/v1/recurring-billing/:recurring_billing_id",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "recurring_billing_id",
+                "value": "",
+                "type": "path",
+                "description": "id value from the create recurring billing API"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this API to update the recurring billing, any changes made to the cycle will only be effective at the end of the current cycle."
+        },
+        {
+          "info": {
+            "name": "Delete Recurring Billing",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.hit-pay.com/v1/recurring-billing/:recurring_billing_id",
+            "headers": [
+              {
+                "name": "X-BUSINESS-API-KEY",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "recurring_billing_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Use this API to cancel the recurring billing subscription"
+        },
+        {
+          "info": {
+            "name": "Create a recurring billing subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hit-pay.com/recurring-billing",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Starts a subscription against a saved card. Provide a `plan_id`, or pass `plan_id=null` with `name`, `cycle`, `amount`, `customer_email` and `start_date` to define an ad-hoc plan inline."
+        },
+        {
+          "info": {
+            "name": "Get a recurring billing subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hit-pay.com/recurring-billing/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a recurring billing subscription"
+        },
+        {
+          "info": {
+            "name": "Cancel a recurring billing subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.hit-pay.com/recurring-billing/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel a recurring billing subscription"
+        },
+        {
+          "info": {
+            "name": "Charge a saved card",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hit-pay.com/charge/:recurring_billing_id",
+            "params": [
+              {
+                "name": "recurring_billing_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Charges the saved card associated with a recurring billing subscription for an ad-hoc amount."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

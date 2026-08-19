@@ -1,0 +1,166 @@
+{
+  "item": [
+    {
+      "id": "afd282c2-8eaf-4c3b-8315-3b0a9b3e5c8c",
+      "name": "Product Category",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "81be5d13-3681-4bb5-bded-63c8ed4a39e5",
+          "name": "Get All Product Category",
+          "request": {
+            "name": "Get All Product Category",
+            "description": {
+              "content": "Use this API to get all product category",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "product-category"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "20"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "active",
+                  "value": "<boolean>",
+                  "description": "Filter by active status"
+                },
+                {
+                  "disabled": false,
+                  "key": "parent_id",
+                  "value": "<string>",
+                  "description": "The parent category id, to list all subcategories of a parent category"
+                },
+                {
+                  "disabled": false,
+                  "key": "keywords",
+                  "value": "<string>",
+                  "description": "Filter by keywords, name"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "X-BUSINESS-API-KEY",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ef94304f-fa74-4794-bb39-545ebf657c63",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "product-category"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "perPage",
+                      "value": "20"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "active",
+                      "value": "true"
+                    },
+                    {
+                      "key": "parent_id",
+                      "value": "9a12fab0-d282-4437-9460-c3d26662d11a"
+                    },
+                    {
+                      "key": "keywords",
+                      "value": "Beanie"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "X-BUSINESS-API-KEY",
+                    "value": "b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"9d8cbab5-13fe-4102-8bf5-3b13668ab811\",\n      \"name\": \"mens hat example\",\n      \"description\": \"mens hat example\",\n      \"is_active\": true,\n      \"order\": 1,\n      \"children\": [],\n      \"is_parent\": true,\n      \"image\": null,\n      \"emoji\": null,\n      \"pos_color\": null\n    }\n  ],\n  \"links\": {\n    \"first\": \"https://api.sandbox.hit-pay.com/v1/product-category?page=1\",\n    \"last\": \"https://api.sandbox.hit-pay.com/v1/product-category?page=4\",\n    \"prev\": null,\n    \"next\": \"https://api.sandbox.hit-pay.com/v1/product-category?page=2\"\n  },\n  \"meta\": {\n    \"current_page\": 1,\n    \"from\": 1,\n    \"last_page\": 4,\n    \"links\": [\n      {\n        \"url\": null,\n        \"label\": \"&larr; Previous\",\n        \"active\": false\n      },\n      {\n        \"url\": \"https://api.sandbox.hit-pay.com/v1/product-category?page=2\",\n        \"label\": \"Next &rarr;\",\n        \"active\": false\n      }\n    ],\n    \"path\": \"https://api.sandbox.hit-pay.com/v1/product-category\",\n    \"per_page\": 20,\n    \"to\": 20,\n    \"total\": 66\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.hit-pay.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "86d17352-a1c9-4bcc-b5ce-f0b098e66d09",
+    "name": "HitPay Account Status Product Category API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com",
+      "type": "text/plain"
+    }
+  }
+}
