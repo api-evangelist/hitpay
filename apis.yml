@@ -30,7 +30,7 @@ tags:
 - SMB
 created: '2026-07-17'
 modified: '2026-07-17'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: hitpay:hitpay-account-status-api
   name: HitPay Account Status API
