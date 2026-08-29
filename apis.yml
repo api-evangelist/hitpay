@@ -8,6 +8,18 @@ description: HitPay is a Singapore-headquartered all-in-one payments platform fo
   Recurring Billing on saved cards, and issues Refunds, with first-class Southeast
   Asian local methods (PayNow, GrabPay, WeChat Pay, Alipay, ShopeePay, Atome)
   alongside cards. Requests authenticate with the X-BUSINESS-API-KEY header.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
