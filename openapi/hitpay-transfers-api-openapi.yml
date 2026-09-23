@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: HitPay Account Status Transfers API
+  title: HitPay Transfers API
   description: 'Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com'
   version: '1.0'
 servers:
@@ -14,7 +14,6 @@ paths:
   /v1/transfers:
     get:
       summary: Get list of transfers
-      description: Get list of transfers
       operationId: get-transfers
       parameters:
       - name: X-BUSINESS-API-KEY
@@ -316,7 +315,6 @@ paths:
       - Transfers
     post:
       summary: Create a new transfer
-      description: Create a new transfer
       operationId: create-transfer
       parameters:
       - name: X-BUSINESS-API-KEY
@@ -685,7 +683,6 @@ paths:
   /v1/transfers/{transfer_id}:
     get:
       summary: Get transfer by ID
-      description: Get transfer by ID
       operationId: get-transfer-detail
       parameters:
       - name: X-BUSINESS-API-KEY

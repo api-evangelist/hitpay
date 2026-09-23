@@ -1,13 +1,19 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: HitPay Account Status Refunds API
-  description: 'Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com'
+  title: HitPay Payments Refunds API
+  description: HitPay is an all-in-one payments platform for small and medium businesses across Asia-Pacific (Singapore HQ).
+  termsOfService: https://www.hitpayapp.com/terms
+  contact:
+    name: HitPay Support
+    url: https://docs.hitpayapp.com/apis
   version: '1.0'
 servers:
-- url: https://api.hit-pay.com
+- url: https://api.hit-pay.com/v1
   description: Production
-- url: https://api.sandbox.hit-pay.com
-  description: Sandbox
+- url: https://api.sandbox.hit-pay.com/v1
+  description: Sandbox (test)
+security:
+- businessApiKey: []
 tags:
 - name: Refunds
   description: Refund completed PayNow or card charges.
@@ -62,9 +68,9 @@ components:
         amount:
           type: string
           description: Amount to refund (full or partial).
-x-readme:
-  headers: []
-  explorer-enabled: true
-  proxy-enabled: true
-  samples-enabled: true
-x-readme-fauxas: true
+  securitySchemes:
+    businessApiKey:
+      type: apiKey
+      in: header
+      name: X-BUSINESS-API-KEY
+      description: Per-merchant business API key from Dashboard > Settings > Payment Gateway > API Keys. Platform/aggregator requests additionally send X-PLATFORM-KEY.

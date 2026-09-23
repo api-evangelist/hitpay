@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: HitPay Account Status Invoices API
+  title: HitPay Invoices API
   description: 'Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com'
   version: '1.0'
 servers:
@@ -14,7 +14,6 @@ paths:
   /v1/invoices/{invoice_id}:
     delete:
       summary: Delete Invoice
-      description: Delete Invoice
       operationId: delete-invoice
       parameters:
       - name: X-BUSINESS-API-KEY
@@ -62,7 +61,6 @@ paths:
       - Invoices
     put:
       summary: Update the invoice
-      description: Update the invoice
       operationId: update-the-invoice
       parameters:
       - name: X-BUSINESS-API-KEY
@@ -317,7 +315,6 @@ paths:
       - Invoices
     post:
       summary: Create the invoice
-      description: Create the invoice
       operationId: create-invoice
       parameters:
       - name: X-BUSINESS-API-KEY

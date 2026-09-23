@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: HitPay Account Status Balances API
+  title: HitPay Balances API
   description: 'Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com'
   version: '1.0'
 servers:
@@ -14,7 +14,6 @@ paths:
   /v1/balances:
     get:
       summary: Get Balances
-      description: Get Balances
       operationId: get-balances
       parameters:
       - name: X-BUSINESS-API-KEY

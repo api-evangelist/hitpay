@@ -1,13 +1,17 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: HitPay Account Status Recurring Billing API
-  description: 'Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com'
+  title: Hitpay Recurring Billing API
   version: '1.0'
+  description: 'Operations tagged Recurring Billing across 2 of this provider''s published API definitions: hitpay-openapi-original.json, hitpay-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.hit-pay.com
   description: Production
 - url: https://api.sandbox.hit-pay.com
   description: Sandbox
+- url: https://api.hit-pay.com/v1
+  description: Production
+- url: https://api.sandbox.hit-pay.com/v1
+  description: Sandbox (test)
 tags:
 - name: Recurring Billing
 paths:
@@ -247,6 +251,11 @@ paths:
         - curl
       tags:
       - Recurring Billing
+    servers:
+    - url: https://api.hit-pay.com
+      description: Production
+    - url: https://api.sandbox.hit-pay.com
+      description: Sandbox
   /v1/recurring-billing/{recurring_billing_id}:
     get:
       summary: Get saved card details
@@ -875,6 +884,11 @@ paths:
         - curl
       tags:
       - Recurring Billing
+    servers:
+    - url: https://api.hit-pay.com
+      description: Production
+    - url: https://api.sandbox.hit-pay.com
+      description: Sandbox
   /recurring-billing:
     post:
       operationId: createRecurringBilling
@@ -895,6 +909,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RecurringBilling'
+      security:
+      - businessApiKey: []
+    servers:
+    - url: https://api.hit-pay.com/v1
+      description: Production
+    - url: https://api.sandbox.hit-pay.com/v1
+      description: Sandbox (test)
   /recurring-billing/{id}:
     parameters:
     - name: id
@@ -914,6 +935,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RecurringBilling'
+      security:
+      - businessApiKey: []
     delete:
       operationId: cancelRecurringBilling
       tags:
@@ -922,6 +945,13 @@ paths:
       responses:
         '200':
           description: Recurring billing cancelled.
+      security:
+      - businessApiKey: []
+    servers:
+    - url: https://api.hit-pay.com/v1
+      description: Production
+    - url: https://api.sandbox.hit-pay.com/v1
+      description: Sandbox (test)
   /charge/{recurring_billing_id}:
     post:
       operationId: chargeRecurringBilling
@@ -948,54 +978,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Charge'
+      security:
+      - businessApiKey: []
+    servers:
+    - url: https://api.hit-pay.com/v1
+      description: Production
+    - url: https://api.sandbox.hit-pay.com/v1
+      description: Sandbox (test)
 components:
   schemas:
-    RecurringBilling:
-      type: object
-      properties:
-        id:
-          type: string
-        status:
-          type: string
-        customer_email:
-          type: string
-        plan_id:
-          type: string
-          nullable: true
-        amount:
-          type: string
-        currency:
-          type: string
-        url:
-          type: string
-          format: uri
-        created_at:
-          type: string
-          format: date-time
-    ChargeCreate:
-      type: object
-      required:
-      - amount
-      - currency
-      properties:
-        amount:
-          type: string
-        currency:
-          type: string
-    Charge:
-      type: object
-      properties:
-        id:
-          type: string
-        status:
-          type: string
-        amount:
-          type: string
-        currency:
-          type: string
-        created_at:
-          type: string
-          format: date-time
     RecurringBillingCreate:
       type: object
       required:
@@ -1003,8 +994,9 @@ components:
       - start_date
       properties:
         plan_id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Existing plan id, or null to define an inline plan.
         customer_email:
           type: string
@@ -1029,6 +1021,62 @@ components:
         redirect_url:
           type: string
           format: uri
+    ChargeCreate:
+      type: object
+      required:
+      - amount
+      - currency
+      properties:
+        amount:
+          type: string
+        currency:
+          type: string
+    Charge:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        amount:
+          type: string
+        currency:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    RecurringBilling:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        customer_email:
+          type: string
+        plan_id:
+          type:
+          - string
+          - 'null'
+        amount:
+          type: string
+        currency:
+          type: string
+        url:
+          type: string
+          format: uri
+        created_at:
+          type: string
+          format: date-time
+  securitySchemes:
+    businessApiKey:
+      type: apiKey
+      in: header
+      name: X-BUSINESS-API-KEY
+      description: Per-merchant business API key from Dashboard > Settings > Payment Gateway > API Keys. Platform/aggregator requests additionally send X-PLATFORM-KEY.
+x-refined-from:
+- hitpay-openapi-original.json
+- hitpay-openapi.yml
 x-readme:
   headers: []
   explorer-enabled: true

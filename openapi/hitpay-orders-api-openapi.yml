@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: HitPay Account Status Orders API
+  title: HitPay Orders API
   description: 'Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com'
   version: '1.0'
 servers:
@@ -706,7 +706,6 @@ paths:
       - Orders
     patch:
       summary: Update the order
-      description: Update the order
       operationId: update-the-order
       parameters:
       - name: X-BUSINESS-API-KEY
@@ -987,7 +986,6 @@ paths:
       - Orders
     delete:
       summary: Delete Order
-      description: Delete Order
       operationId: delete-order
       parameters:
       - name: X-BUSINESS-API-KEY

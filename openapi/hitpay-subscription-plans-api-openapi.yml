@@ -1,13 +1,19 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: HitPay Account Status Subscription Plans API
-  description: 'Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com'
+  title: HitPay Payments Subscription Plans API
+  description: HitPay is an all-in-one payments platform for small and medium businesses across Asia-Pacific (Singapore HQ).
+  termsOfService: https://www.hitpayapp.com/terms
+  contact:
+    name: HitPay Support
+    url: https://docs.hitpayapp.com/apis
   version: '1.0'
 servers:
-- url: https://api.hit-pay.com
+- url: https://api.hit-pay.com/v1
   description: Production
-- url: https://api.sandbox.hit-pay.com
-  description: Sandbox
+- url: https://api.sandbox.hit-pay.com/v1
+  description: Sandbox (test)
+security:
+- businessApiKey: []
 tags:
 - name: Subscription Plans
   description: Reusable recurring-billing plan templates.
@@ -74,22 +80,6 @@ paths:
           description: Subscription plan deleted.
 components:
   schemas:
-    SubscriptionPlan:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        amount:
-          type: string
-        currency:
-          type: string
-        cycle:
-          type: string
-        created_at:
-          type: string
-          format: date-time
     SubscriptionPlanCreate:
       type: object
       required:
@@ -112,9 +102,25 @@ components:
           - yearly
         reference:
           type: string
-x-readme:
-  headers: []
-  explorer-enabled: true
-  proxy-enabled: true
-  samples-enabled: true
-x-readme-fauxas: true
+    SubscriptionPlan:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        amount:
+          type: string
+        currency:
+          type: string
+        cycle:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+  securitySchemes:
+    businessApiKey:
+      type: apiKey
+      in: header
+      name: X-BUSINESS-API-KEY
+      description: Per-merchant business API key from Dashboard > Settings > Payment Gateway > API Keys. Platform/aggregator requests additionally send X-PLATFORM-KEY.

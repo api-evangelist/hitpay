@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: HitPay Account Status Beneficiaries API
+  title: HitPay Beneficiaries API
   description: 'Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com'
   version: '1.0'
 servers:
@@ -463,7 +463,6 @@ paths:
       - Beneficiaries
     get:
       summary: Get list of beneficiaries
-      description: Get list of beneficiaries
       operationId: get-all-beneficiary
       parameters:
       - name: X-BUSINESS-API-KEY
@@ -946,7 +945,6 @@ paths:
       - Beneficiaries
     get:
       summary: Get a beneficiary by ID
-      description: Get a beneficiary by ID
       operationId: get-beneficiary-detail
       parameters:
       - name: X-BUSINESS-API-KEY
@@ -1258,6 +1256,114 @@ components:
         holder_name: Moulude Hossain
         district: BD-03
         account_number: '+8801914538413'
+    beneficiary-php-local:
+      type: object
+      required:
+      - country
+      - transfer_method
+      - currency
+      - holder_type
+      - holder_name
+      - bank_id
+      - account_number
+      - address
+      properties:
+        country:
+          type: string
+          required: true
+          description: Beneficiary bank country/region
+          enum:
+          - ph
+        transfer_method:
+          type: string
+          required: true
+          description: The transfer method needs to be specified to ensure that accurate banking details are captured and validated for the specified transfer method. This is required for timely and accurate delivery of funds to the beneficiary account
+          enum:
+          - bank_transfer
+          example: bank_transfer
+        transfer_type:
+          type: string
+          required: true
+          enum:
+          - local
+          example: local
+        currency:
+          type: string
+          required: true
+          enum:
+          - php
+          description: It is beneficiary bank account currency.
+        holder_type:
+          type: string
+          required: true
+          enum:
+          - individual
+          example: individual
+          description: The Holder Type
+        holder_name:
+          type: string
+          required: true
+          example: John Doe
+          description: The Holder Name
+          maxLength: 255
+        bank_id:
+          type: string
+          required: true
+          description: 'It''s bank id. To obtain a list of supported values for `bank_id`, call `Get the API schema` API with the following parameters: `country: ph`, currency: `php`,transfer_method: `bank_transfer`, transfer_type: `local` and holder_type: `individual` to get the the correct supported bank id.'
+          example: '10419995'
+          maxLength: 255
+        account_number:
+          type: string
+          required: true
+          example: '14098377'
+          description: The account number
+          maxLength: 255
+        address:
+          type: object
+          required:
+          - street
+          - postcode
+          - city
+          properties:
+            street:
+              type: string
+              example: Pedro Gil, cor Adriatico St
+            postcode:
+              type: string
+              example: '1000'
+            city:
+              type: string
+              example: Manila
+        nickname:
+          type: string
+          example: John
+          description: Nickname
+          maxLength: 255
+        remark:
+          type: string
+          description: Remark
+          maxLength: 255
+          example: This is a remark
+        is_favourite:
+          type: boolean
+        email:
+          type: string
+          format: email
+          description: Email address
+          example: abc@gmail.com
+      example:
+        country: ph
+        transfer_method: bank_transfer
+        transfer_type: local
+        currency: php
+        holder_type: individual
+        holder_name: Ben Yu
+        bank_id: '10419995'
+        account_number: '14098377'
+        address:
+          street: Pedro Gil, cor Adriatico St
+          postcode: '1000'
+          city: Manila
     beneficiary-sqd-fast:
       type: object
       required:
@@ -1423,114 +1529,6 @@ components:
         holder_name: Moulude Hossain
         district: BD-04
         account_number: '+8801914538413'
-    beneficiary-php-local:
-      type: object
-      required:
-      - country
-      - transfer_method
-      - currency
-      - holder_type
-      - holder_name
-      - bank_id
-      - account_number
-      - address
-      properties:
-        country:
-          type: string
-          required: true
-          description: Beneficiary bank country/region
-          enum:
-          - ph
-        transfer_method:
-          type: string
-          required: true
-          description: The transfer method needs to be specified to ensure that accurate banking details are captured and validated for the specified transfer method. This is required for timely and accurate delivery of funds to the beneficiary account
-          enum:
-          - bank_transfer
-          example: bank_transfer
-        transfer_type:
-          type: string
-          required: true
-          enum:
-          - local
-          example: local
-        currency:
-          type: string
-          required: true
-          enum:
-          - php
-          description: It is beneficiary bank account currency.
-        holder_type:
-          type: string
-          required: true
-          enum:
-          - individual
-          example: individual
-          description: The Holder Type
-        holder_name:
-          type: string
-          required: true
-          example: John Doe
-          description: The Holder Name
-          maxLength: 255
-        bank_id:
-          type: string
-          required: true
-          description: 'It''s bank id. To obtain a list of supported values for `bank_id`, call `Get the API schema` API with the following parameters: `country: ph`, currency: `php`,transfer_method: `bank_transfer`, transfer_type: `local` and holder_type: `individual` to get the the correct supported bank id.'
-          example: '10419995'
-          maxLength: 255
-        account_number:
-          type: string
-          required: true
-          example: '14098377'
-          description: The account number
-          maxLength: 255
-        address:
-          type: object
-          required:
-          - street
-          - postcode
-          - city
-          properties:
-            street:
-              type: string
-              example: Pedro Gil, cor Adriatico St
-            postcode:
-              type: string
-              example: '1000'
-            city:
-              type: string
-              example: Manila
-        nickname:
-          type: string
-          example: John
-          description: Nickname
-          maxLength: 255
-        remark:
-          type: string
-          description: Remark
-          maxLength: 255
-          example: This is a remark
-        is_favourite:
-          type: boolean
-        email:
-          type: string
-          format: email
-          description: Email address
-          example: abc@gmail.com
-      example:
-        country: ph
-        transfer_method: bank_transfer
-        transfer_type: local
-        currency: php
-        holder_type: individual
-        holder_name: Ben Yu
-        bank_id: '10419995'
-        account_number: '14098377'
-        address:
-          street: Pedro Gil, cor Adriatico St
-          postcode: '1000'
-          city: Manila
     beneficiary-bd-local:
       type: object
       required:

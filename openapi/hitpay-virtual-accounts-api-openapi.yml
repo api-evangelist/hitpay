@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: HitPay Account Status Virtual Accounts API
+  title: HitPay Virtual Accounts API
   description: 'Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com'
   version: '1.0'
 servers:
@@ -18,9 +18,7 @@ paths:
       summary: Get virtual accounts
       description: 'Retrieve the list of virtual accounts for a business. Results are paginated using cursor-based pagination
 
-        and ordered by creation date (newest first).
-
-        '
+        and ordered by creation date (newest first).'
       parameters:
       - name: X-BUSINESS-API-KEY
         in: header
@@ -255,6 +253,8 @@ paths:
                     description: Error message
                   errors:
                     type: array
+      operationId: getV1VirtualAccounts
+      x-operation-id-source: derived
     post:
       tags:
       - Virtual Accounts
@@ -269,9 +269,7 @@ paths:
         already exists for the same provider method, a 409 Conflict error is returned.
 
 
-        The business must have payments enabled to create a virtual account.
-
-        '
+        The business must have payments enabled to create a virtual account.'
       parameters:
       - name: X-BUSINESS-API-KEY
         in: header
@@ -462,14 +460,14 @@ paths:
                     description: Error message
                   errors:
                     type: array
+      operationId: postV1VirtualAccounts
+      x-operation-id-source: derived
   /v1/virtual-accounts/{virtual_account_id}:
     get:
       tags:
       - Virtual Accounts
       summary: Get virtual account details
-      description: 'Retrieve detailed information about a specific virtual account.
-
-        '
+      description: Retrieve detailed information about a specific virtual account.
       parameters:
       - name: X-BUSINESS-API-KEY
         in: header
@@ -667,6 +665,8 @@ paths:
                     description: Error message
                   errors:
                     type: array
+      operationId: getV1VirtualAccountsByVirtualAccountId
+      x-operation-id-source: derived
 x-readme:
   headers: []
   explorer-enabled: true
