@@ -1364,89 +1364,6 @@ components:
           street: Pedro Gil, cor Adriatico St
           postcode: '1000'
           city: Manila
-    beneficiary-sqd-fast:
-      type: object
-      required:
-      - country
-      - transfer_method
-      - currency
-      - transfer_type
-      - holder_type
-      - holder_name
-      - account_number
-      properties:
-        country:
-          type: string
-          description: Beneficiary bank country/region
-          example: sg
-          enum:
-          - sg
-        transfer_method:
-          type: string
-          description: The transfer method needs to be specified to ensure that accurate banking details are captured and validated for the specified transfer method. This is required for timely and accurate delivery of funds to the beneficiary account
-          enum:
-          - bank_transfer
-          example: bank_transfer
-        transfer_type:
-          type: string
-          enum:
-          - local
-          example: local
-        currency:
-          type: string
-          enum:
-          - sgd
-          example: sgd
-          description: It is beneficiary bank account currency.
-        holder_type:
-          type: string
-          description: The Holder Type
-          enum:
-          - individual
-          example: individual
-        holder_name:
-          type: string
-          required: true
-          description: The Holder Name
-          example: John Doe
-          maxLength: 255
-        bank_swift_code:
-          type: string
-          required: true
-          description: 'It''s bank swift code. To obtain a list of supported SWIFT codes, call `Get the API schema` API with the following parameters: `country: sg`, currency: `sgd`,transfer_method: `bank_transfer`, transfer_type: `local` and holder_type: `individual`.'
-          maxLength: 255
-          example: BOFASG2XXXX
-        account_number:
-          type: string
-          required: true
-          description: The account number
-          maxLength: 255
-          example: '1409827'
-        nickname:
-          type: string
-          description: Nickname
-          maxLength: 255
-        remark:
-          type: string
-          description: Remark
-          maxLength: 255
-          example: This is a remark
-        is_favourite:
-          type: boolean
-        email:
-          type: string
-          format: email
-          description: Email address
-          example: abc@gmail.com
-      example:
-        country: sg
-        transfer_method: bank_transfer
-        transfer_type: local
-        currency: sgd
-        holder_type: individual
-        holder_name: John Tan
-        bank_id: BOFASG2XXXX[7065]
-        account_number: '1409827'
     beneficiary-bd-tap:
       type: object
       required:
@@ -1626,6 +1543,89 @@ components:
         bank_id: brc-20
         bank_routing_number: '060261726'
         account_number: '1503201781283001'
+    beneficiary-sqd-fast:
+      type: object
+      required:
+      - country
+      - transfer_method
+      - currency
+      - transfer_type
+      - holder_type
+      - holder_name
+      - account_number
+      properties:
+        country:
+          type: string
+          description: Beneficiary bank country/region
+          example: sg
+          enum:
+          - sg
+        transfer_method:
+          type: string
+          description: The transfer method needs to be specified to ensure that accurate banking details are captured and validated for the specified transfer method. This is required for timely and accurate delivery of funds to the beneficiary account
+          enum:
+          - bank_transfer
+          example: bank_transfer
+        transfer_type:
+          type: string
+          enum:
+          - local
+          example: local
+        currency:
+          type: string
+          enum:
+          - sgd
+          example: sgd
+          description: It is beneficiary bank account currency.
+        holder_type:
+          type: string
+          description: The Holder Type
+          enum:
+          - individual
+          example: individual
+        holder_name:
+          type: string
+          required: true
+          description: The Holder Name
+          example: John Doe
+          maxLength: 255
+        bank_swift_code:
+          type: string
+          required: true
+          description: 'It''s bank swift code. To obtain a list of supported SWIFT codes, call `Get the API schema` API with the following parameters: `country: sg`, currency: `sgd`,transfer_method: `bank_transfer`, transfer_type: `local` and holder_type: `individual`.'
+          maxLength: 255
+          example: BOFASG2XXXX
+        account_number:
+          type: string
+          required: true
+          description: The account number
+          maxLength: 255
+          example: '1409827'
+        nickname:
+          type: string
+          description: Nickname
+          maxLength: 255
+        remark:
+          type: string
+          description: Remark
+          maxLength: 255
+          example: This is a remark
+        is_favourite:
+          type: boolean
+        email:
+          type: string
+          format: email
+          description: Email address
+          example: abc@gmail.com
+      example:
+        country: sg
+        transfer_method: bank_transfer
+        transfer_type: local
+        currency: sgd
+        holder_type: individual
+        holder_name: John Tan
+        bank_id: BOFASG2XXXX[7065]
+        account_number: '1409827'
 x-readme:
   headers: []
   explorer-enabled: true
