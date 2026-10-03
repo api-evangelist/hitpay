@@ -1004,31 +1004,6 @@ paths:
       description: Sandbox (test)
 components:
   schemas:
-    PaymentRequest:
-      type: object
-      properties:
-        id:
-          type: string
-        status:
-          type: string
-          enum:
-          - pending
-          - completed
-          - failed
-          - expired
-        amount:
-          type: string
-        currency:
-          type: string
-        url:
-          type: string
-          format: uri
-          description: Hosted checkout URL to redirect the payer to.
-        reference_number:
-          type: string
-        created_at:
-          type: string
-          format: date-time
     PaymentRequestCreate:
       type: object
       required:
@@ -1064,6 +1039,31 @@ components:
           type: boolean
         send_sms:
           type: boolean
+    PaymentRequest:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          enum:
+          - pending
+          - completed
+          - failed
+          - expired
+        amount:
+          type: string
+        currency:
+          type: string
+        url:
+          type: string
+          format: uri
+          description: Hosted checkout URL to redirect the payer to.
+        reference_number:
+          type: string
+        created_at:
+          type: string
+          format: date-time
   securitySchemes:
     businessApiKey:
       type: apiKey

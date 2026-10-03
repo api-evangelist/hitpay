@@ -997,40 +997,6 @@ components:
           type: string
         currency:
           type: string
-    RecurringBillingCreate:
-      type: object
-      required:
-      - customer_email
-      - start_date
-      properties:
-        plan_id:
-          type:
-          - string
-          - 'null'
-          description: Existing plan id, or null to define an inline plan.
-        customer_email:
-          type: string
-          format: email
-        start_date:
-          type: string
-          format: date
-        name:
-          type: string
-        cycle:
-          type: string
-          enum:
-          - weekly
-          - monthly
-          - yearly
-        amount:
-          type: string
-        currency:
-          type: string
-        save_card:
-          type: boolean
-        redirect_url:
-          type: string
-          format: uri
     Charge:
       type: object
       properties:
@@ -1068,6 +1034,40 @@ components:
         created_at:
           type: string
           format: date-time
+    RecurringBillingCreate:
+      type: object
+      required:
+      - customer_email
+      - start_date
+      properties:
+        plan_id:
+          type:
+          - string
+          - 'null'
+          description: Existing plan id, or null to define an inline plan.
+        customer_email:
+          type: string
+          format: email
+        start_date:
+          type: string
+          format: date
+        name:
+          type: string
+        cycle:
+          type: string
+          enum:
+          - weekly
+          - monthly
+          - yearly
+        amount:
+          type: string
+        currency:
+          type: string
+        save_card:
+          type: boolean
+        redirect_url:
+          type: string
+          format: uri
   securitySchemes:
     businessApiKey:
       type: apiKey

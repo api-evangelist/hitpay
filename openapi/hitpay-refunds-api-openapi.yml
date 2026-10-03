@@ -40,6 +40,18 @@ paths:
                 $ref: '#/components/schemas/Refund'
 components:
   schemas:
+    RefundCreate:
+      type: object
+      required:
+      - amount
+      - payment_id
+      properties:
+        payment_id:
+          type: string
+          description: The id of the completed payment to refund.
+        amount:
+          type: string
+          description: Amount to refund (full or partial).
     Refund:
       type: object
       properties:
@@ -56,18 +68,6 @@ components:
         created_at:
           type: string
           format: date-time
-    RefundCreate:
-      type: object
-      required:
-      - amount
-      - payment_id
-      properties:
-        payment_id:
-          type: string
-          description: The id of the completed payment to refund.
-        amount:
-          type: string
-          description: Amount to refund (full or partial).
   securitySchemes:
     businessApiKey:
       type: apiKey
