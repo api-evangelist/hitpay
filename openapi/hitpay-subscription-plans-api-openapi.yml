@@ -80,6 +80,22 @@ paths:
           description: Subscription plan deleted.
 components:
   schemas:
+    SubscriptionPlan:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        amount:
+          type: string
+        currency:
+          type: string
+        cycle:
+          type: string
+        created_at:
+          type: string
+          format: date-time
     SubscriptionPlanCreate:
       type: object
       required:
@@ -102,22 +118,6 @@ components:
           - yearly
         reference:
           type: string
-    SubscriptionPlan:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        amount:
-          type: string
-        currency:
-          type: string
-        cycle:
-          type: string
-        created_at:
-          type: string
-          format: date-time
   securitySchemes:
     businessApiKey:
       type: apiKey
