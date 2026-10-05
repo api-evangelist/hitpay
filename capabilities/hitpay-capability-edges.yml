@@ -1,0 +1,86 @@
+slug: hitpay
+provider: HitPay
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 7
+edges:
+- tag: Charge
+  spec_file: hitpay-charge-api-openapi.yml
+  capability_id: BC-4250.40
+  capability_id_l1: BC-4250
+  capability_name: Payment Collection & Dunning
+  confidence: 0.75
+  evidence: POST /v1/charge/recurring-billing/{recurring_billing_id}  charge-the-saved-card  Charge the
+    saved card
+  reason: Authorises a charge against a stored card for an existing recurring-billing agreement — payment-method-based
+    collection on a recurring plan, matching 'Payment-method management, payment authorisation'. Some
+    ambiguity vs Rating & Charging, but the operation collects rather than prices.
+- tag: Customers
+  spec_file: hitpay-customers-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.75
+  evidence: POST /v1/customers  create-customer  Create a customer; PATCH /v1/customers/{customer_id}  update-customer
+  reason: Plain CRUD over a customer master record (create, read, update, delete), which realises customer
+    data management rather than any payment-specific function.
+- tag: Recurring Billing
+  spec_file: hitpay-recurring-billing-api-openapi.yml
+  capability_id: BC-4250
+  capability_id_l1: BC-4250
+  capability_name: Subscription Billing & Revenue Management
+  confidence: 0.72
+  evidence: POST /recurring-billing  createRecurringBilling  Create a recurring billing subscription;
+    POST /charge/{recurring_billing_id}  chargeRecurringBilling  Charge a saved card
+  reason: Creates, cancels and charges recurring billing subscriptions against saved cards — recurring-revenue
+    billing. L1 only because the surface straddles subscription lifecycle (create/cancel) and payment
+    collection (charge saved card).
+- tag: Webhook Events
+  spec_file: hitpay-webhook-events-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.72
+  evidence: POST /v1/webhook-events  create-webhook-event  Create a Webhook Event; PUT /v1/webhook-events/{webhook_event_id}  update-webhook-event
+  reason: HitPay is the API provider here, and these endpoints let developers register, update and delete
+    outbound webhook subscriptions — the explicit Webhook & Event Subscription Management capability.
+    Held below 0.8 because webhook endpoints are often pure plumbing.
+- tag: Payment Requests
+  spec_file: hitpay-payment-requests-api-openapi.yml
+  capability_id: BC-4250.40
+  capability_id_l1: BC-4250
+  capability_name: Payment Collection & Dunning
+  confidence: 0.7
+  evidence: POST /v1/payment-requests  create-payment-request  Create Payment Request; GET /v1/payment-requests/{request_id}  get-payment-status  Get
+    Payment Request Status
+  reason: Creating hosted payment requests and tracking their payment status is the act of authorising
+    and collecting customer payments; the vendor description confirms 'creates hosted Payment Requests'.
+- tag: Subscription Plan
+  spec_file: hitpay-subscription-plan-api-openapi.yml
+  capability_id: BC-4240.10
+  capability_id_l1: BC-4240
+  capability_name: Plan & Entitlement Design
+  confidence: 0.7
+  evidence: POST /v1/subscription-plan  create-subscription-plan  Create a Subscription Plan; PUT .../{plan_id}  update-recurring-billing-plan
+  reason: CRUD over recurring-billing subscription plans corresponds to plan definition in the subscription
+    commercial lifecycle (Plan & Entitlement Design). Ambiguity remains between plan design and rating/charging,
+    hence 0.7.
+- tag: Subscription Plans
+  spec_file: hitpay-subscription-plans-api-openapi.yml
+  capability_id: BC-4240.10
+  capability_id_l1: BC-4240
+  capability_name: Plan & Entitlement Design
+  confidence: 0.7
+  evidence: 'createSubscriptionPlan  Create a subscription plan; schemas: SubscriptionPlanCreate, SubscriptionPlan'
+  reason: 'Same surface as the other subscription-plan tag: lifecycle CRUD over subscription plan definitions,
+    i.e. plan design for recurring billing. Could alternatively be read as rating/tariff configuration,
+    so 0.7.'
