@@ -16,9 +16,40 @@ edges:
   detected: '2026-10-18'
   detected_by: mirror-platform-listings.py
   category: Google Workspace app
+- partner_name: MAS Financial Institutions Directory
+  partner: null
+  partner_match: register
+  type: register
+  channel: regulator-register
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://eservices.mas.gov.sg/fid
+  category: open finance (Singapore)
+  contract_reference:
+    register: MAS Financial Institutions Directory
+    spec_file: null
+    standard: MAS licensing (Banking Act / Payment Services Act, Singapore)
+    role: licensed-participant
+    registrations:
+    - registered_name: HITPAY PAYMENT SOLUTIONS PTE. LTD.
+      licences:
+      - Major Payment Institution
+      matched_domain: hitpayapp.com
+      matched_by: domain
+      evidence: https://eservices.mas.gov.sg/fid/institution/detail/250313-HITPAY-PAYMENT-SOLUTIONS-PTE-LTD
+      register_id: 250313-HITPAY-PAYMENT-SOLUTIONS-PTE-LTD
+    signal_note: 'participation only: a regulator licence; no API conformance is published by this register'
+    detected_by: sweep-gulf-asean-open-finance.py
+    detected: '2026-10-18'
+  detected_by: sweep-gulf-asean-open-finance.py
+  first_seen: '2026-10-18'
 generated: '2026-10-18'
 method: searched
 source:
 - google-workspace/integrations/google-workspace-integration-edges.yml
 checked:
 - google-workspace/integrations/google-workspace-integration-edges.yml
+- https://eservices.mas.gov.sg/fid
+- https://www.bi.go.id/id/layanan/informasi-perizinan/sistem-pembayaran/default.aspx
+- https://www.bnm.gov.my/list-of-regulatees
+- https://www.ojk.go.id/id/kanal/iknb/data-dan-statistik/direktori/fintech/Default.aspx
