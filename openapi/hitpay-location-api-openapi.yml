@@ -1,0 +1,905 @@
+openapi: 3.2.0
+info:
+  title: HitPay Location API
+  description: 'Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com'
+  version: '1.0'
+servers:
+- url: https://api.hit-pay.com
+  description: Production
+- url: https://api.sandbox.hit-pay.com
+  description: Sandbox
+tags:
+- name: Location
+paths:
+  /v1/locations:
+    get:
+      tags:
+      - Location
+      summary: List locations
+      description: 'Returns a paginated list of locations for the authenticated business.
+
+
+        The business is resolved from the API key (`X-BUSINESS-API-KEY`) or OAuth bearer token.
+
+        Cashiers and managers only see locations assigned to them.'
+      operationId: PublicGetLocations
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: keywords
+        in: query
+        schema:
+          type: string
+        description: Filter by location name (space-separated keywords) or exact UUID
+        example: Main Store
+      - name: perPage
+        in: query
+        schema:
+          type: integer
+          default: 500
+          minimum: 1
+        description: Number of results per page
+      responses:
+        '200':
+          description: Paginated list of locations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                          description: Location ID
+                          example: 9c484458-b2a3-4f49-87ed-ad9ea71b0df3
+                        business_id:
+                          type: string
+                          format: uuid
+                          description: Business that owns this location
+                          example: 8a1f2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d
+                        name:
+                          type: string
+                          description: Name of the location
+                          example: Main Store
+                        street:
+                          type: string
+                          description: Street address
+                          example: 123 Main St
+                        city:
+                          type: string
+                          description: City
+                          example: Singapore
+                        state:
+                          type: string
+                          description: State or region
+                          example: Singapore
+                        country:
+                          type: string
+                          description: Country code or name
+                          example: SG
+                        postal_code:
+                          type: string
+                          description: Postal code
+                          example: '123456'
+                        active:
+                          type: boolean
+                          description: Whether the location is active
+                          example: true
+                        pickups:
+                          type: array
+                          description: Pickup configurations linked to this location (empty when not loaded)
+                          items:
+                            type: object
+                        created_at:
+                          type: string
+                          format: date-time
+                        updated_at:
+                          type: string
+                          format: date-time
+                      required:
+                      - id
+                      - business_id
+                      - name
+                      - street
+                      - city
+                      - state
+                      - country
+                      - postal_code
+                      - active
+                  links:
+                    type: object
+                    description: pagination links according to current page and per_page value
+                    properties:
+                      first:
+                        type: string
+                        description: the url of the first page according to current base url
+                      last:
+                        type: string
+                        description: the url of the last page according to current `per_page` value
+                      prev:
+                        type: string
+                        description: the url of the previous page of the current `page`, NULL if not exists
+                      next:
+                        type: string
+                        description: the url of the next page of the current `page`, NULL if not exists
+                  meta:
+                    type: object
+                    description: meta values for listing operations
+                    properties:
+                      current_page:
+                        type: number
+                        description: the current page number
+                        example: 5
+                      per_page:
+                        type: number
+                        description: the number of items for show for the current listing response
+                        example: 10
+                      from:
+                        type: number
+                        description: the index that current listing page starts
+                        example: 1
+                      to:
+                        type: number
+                        description: the index that current listing page ends
+                        example: 10
+                      total:
+                        type: number
+                        description: the total of items found that match current listing filter
+                        example: 100
+                      last_page:
+                        type: number
+                        description: the number that represents the last page of the listing according to the current `per_page` and filter
+                        example: 10
+                      path:
+                        type: string
+                        description: the base listing url that doesn't contain params
+                      links:
+                        type: array
+                        description: the array of pagination link
+                        items:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                              description: the url of the paginated link
+                            label:
+                              type: string
+                              description: label for this link
+                            active:
+                              type: boolean
+                              description: is the current link the active page or not
+        '401':
+          description: Missing or invalid API key / OAuth token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error message
+                  errors:
+                    type: array
+    post:
+      tags:
+      - Location
+      summary: Create location
+      description: 'Create a new location for the authenticated business. The business is resolved from the API key
+
+        or OAuth bearer token. Newly created locations are active by default.'
+      operationId: PublicCreateLocation
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              - street
+              - city
+              - state
+              - country
+              - postal_code
+              properties:
+                name:
+                  type: string
+                  description: Location name
+                  maxLength: 255
+                  example: Main Store
+                street:
+                  type: string
+                  description: Street address
+                  maxLength: 255
+                  example: 123 Main St
+                city:
+                  type: string
+                  description: City
+                  maxLength: 255
+                  example: Singapore
+                state:
+                  type: string
+                  description: State or region
+                  maxLength: 255
+                  example: Singapore
+                country:
+                  type: string
+                  description: Country code or name
+                  maxLength: 255
+                  example: SG
+                postal_code:
+                  type: string
+                  description: Postal code
+                  maxLength: 16
+                  example: '123456'
+            example:
+              name: Main Store
+              street: 123 Main St
+              city: Singapore
+              state: Singapore
+              country: SG
+              postal_code: '123456'
+      responses:
+        '200':
+          description: Location created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    description: Location ID
+                    example: 9c484458-b2a3-4f49-87ed-ad9ea71b0df3
+                  business_id:
+                    type: string
+                    format: uuid
+                    description: Business that owns this location
+                    example: 8a1f2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d
+                  name:
+                    type: string
+                    description: Name of the location
+                    example: Main Store
+                  street:
+                    type: string
+                    description: Street address
+                    example: 123 Main St
+                  city:
+                    type: string
+                    description: City
+                    example: Singapore
+                  state:
+                    type: string
+                    description: State or region
+                    example: Singapore
+                  country:
+                    type: string
+                    description: Country code or name
+                    example: SG
+                  postal_code:
+                    type: string
+                    description: Postal code
+                    example: '123456'
+                  active:
+                    type: boolean
+                    description: Whether the location is active
+                    example: true
+                  pickups:
+                    type: array
+                    description: Pickup configurations linked to this location (empty when not loaded)
+                    items:
+                      type: object
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+                required:
+                - id
+                - business_id
+                - name
+                - street
+                - city
+                - state
+                - country
+                - postal_code
+                - active
+        '401':
+          description: Missing or invalid API key / OAuth token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error message
+                  errors:
+                    type: array
+        '403':
+          description: Authenticated user cannot manage locations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error message
+                  errors:
+                    type: array
+        '422':
+          description: Validation error — required fields are missing or invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error message
+                  errors:
+                    type: array
+  /v1/locations/{location}:
+    get:
+      tags:
+      - Location
+      summary: Get location
+      description: 'Retrieve a single location by ID for the authenticated business.
+
+        Returns `404` if the location does not exist or belongs to another business.'
+      operationId: PublicGetLocation
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: location
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: Location ID
+      responses:
+        '200':
+          description: Location retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    description: Location ID
+                    example: 9c484458-b2a3-4f49-87ed-ad9ea71b0df3
+                  business_id:
+                    type: string
+                    format: uuid
+                    description: Business that owns this location
+                    example: 8a1f2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d
+                  name:
+                    type: string
+                    description: Name of the location
+                    example: Main Store
+                  street:
+                    type: string
+                    description: Street address
+                    example: 123 Main St
+                  city:
+                    type: string
+                    description: City
+                    example: Singapore
+                  state:
+                    type: string
+                    description: State or region
+                    example: Singapore
+                  country:
+                    type: string
+                    description: Country code or name
+                    example: SG
+                  postal_code:
+                    type: string
+                    description: Postal code
+                    example: '123456'
+                  active:
+                    type: boolean
+                    description: Whether the location is active
+                    example: true
+                  pickups:
+                    type: array
+                    description: Pickup configurations linked to this location (empty when not loaded)
+                    items:
+                      type: object
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+                required:
+                - id
+                - business_id
+                - name
+                - street
+                - city
+                - state
+                - country
+                - postal_code
+                - active
+        '401':
+          description: Missing or invalid API key / OAuth token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error message
+                  errors:
+                    type: array
+        '404':
+          description: Location not found or does not belong to this business
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error message
+                  errors:
+                    type: array
+    put:
+      tags:
+      - Location
+      summary: Update location
+      description: Update an existing location's address fields. All fields are required.
+      operationId: PublicUpdateLocation
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: location
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: Location ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              - street
+              - city
+              - state
+              - country
+              - postal_code
+              properties:
+                name:
+                  type: string
+                  maxLength: 255
+                  example: Main Store
+                street:
+                  type: string
+                  maxLength: 255
+                  example: 123 Main St
+                city:
+                  type: string
+                  maxLength: 255
+                  example: Singapore
+                state:
+                  type: string
+                  maxLength: 255
+                  example: Singapore
+                country:
+                  type: string
+                  maxLength: 255
+                  example: SG
+                postal_code:
+                  type: string
+                  maxLength: 16
+                  example: '123456'
+            example:
+              name: Main Store
+              street: 123 Main St
+              city: Singapore
+              state: Singapore
+              country: SG
+              postal_code: '123456'
+      responses:
+        '200':
+          description: Location updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    description: Location ID
+                    example: 9c484458-b2a3-4f49-87ed-ad9ea71b0df3
+                  business_id:
+                    type: string
+                    format: uuid
+                    description: Business that owns this location
+                    example: 8a1f2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d
+                  name:
+                    type: string
+                    description: Name of the location
+                    example: Main Store
+                  street:
+                    type: string
+                    description: Street address
+                    example: 123 Main St
+                  city:
+                    type: string
+                    description: City
+                    example: Singapore
+                  state:
+                    type: string
+                    description: State or region
+                    example: Singapore
+                  country:
+                    type: string
+                    description: Country code or name
+                    example: SG
+                  postal_code:
+                    type: string
+                    description: Postal code
+                    example: '123456'
+                  active:
+                    type: boolean
+                    description: Whether the location is active
+                    example: true
+                  pickups:
+                    type: array
+                    description: Pickup configurations linked to this location (empty when not loaded)
+                    items:
+                      type: object
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+                required:
+                - id
+                - business_id
+                - name
+                - street
+                - city
+                - state
+                - country
+                - postal_code
+                - active
+        '401':
+          description: Missing or invalid API key / OAuth token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error message
+                  errors:
+                    type: array
+        '403':
+          description: Authenticated user cannot manage locations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error message
+                  errors:
+                    type: array
+        '404':
+          description: Location not found or does not belong to this business
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error message
+                  errors:
+                    type: array
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error message
+                  errors:
+                    type: array
+    patch:
+      tags:
+      - Location
+      summary: Toggle location active status
+      description: 'Activate or deactivate a location. A location must be deactivated before it can be deleted.
+
+
+        Deactivation is blocked if:
+
+        - the location is the only active location, or
+
+        - the location is set as the main or back-order location'
+      operationId: PublicUpdateLocationActive
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: location
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: Location ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - active
+              properties:
+                active:
+                  type: boolean
+                  description: Set to `false` to deactivate, `true` to activate
+                  example: false
+            example:
+              active: false
+      responses:
+        '200':
+          description: Location active status updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    description: Location ID
+                    example: 9c484458-b2a3-4f49-87ed-ad9ea71b0df3
+                  business_id:
+                    type: string
+                    format: uuid
+                    description: Business that owns this location
+                    example: 8a1f2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d
+                  name:
+                    type: string
+                    description: Name of the location
+                    example: Main Store
+                  street:
+                    type: string
+                    description: Street address
+                    example: 123 Main St
+                  city:
+                    type: string
+                    description: City
+                    example: Singapore
+                  state:
+                    type: string
+                    description: State or region
+                    example: Singapore
+                  country:
+                    type: string
+                    description: Country code or name
+                    example: SG
+                  postal_code:
+                    type: string
+                    description: Postal code
+                    example: '123456'
+                  active:
+                    type: boolean
+                    description: Whether the location is active
+                    example: true
+                  pickups:
+                    type: array
+                    description: Pickup configurations linked to this location (empty when not loaded)
+                    items:
+                      type: object
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+                required:
+                - id
+                - business_id
+                - name
+                - street
+                - city
+                - state
+                - country
+                - postal_code
+                - active
+        '400':
+          description: Cannot deactivate — only active location
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error message
+                  errors:
+                    type: array
+        '401':
+          description: Missing or invalid API key / OAuth token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error message
+                  errors:
+                    type: array
+        '403':
+          description: Authenticated user cannot manage locations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error message
+                  errors:
+                    type: array
+        '422':
+          description: Validation error (e.g. main/back-order location cannot be deactivated)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error message
+                  errors:
+                    type: array
+    delete:
+      tags:
+      - Location
+      summary: Delete location
+      description: 'Permanently delete a location. The location must be **inactive** before deletion — call
+
+        `PATCH /v1/locations/{location}` with `{"active": false}` first.
+
+
+        Deletion is blocked if the location is still active, or if it is the last remaining location.'
+      operationId: PublicDeleteLocation
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: location
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: Location ID
+      responses:
+        '204':
+          description: Location deleted successfully
+        '400':
+          description: Location is still active, or is the last remaining location
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error message
+                  errors:
+                    type: array
+        '401':
+          description: Missing or invalid API key / OAuth token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error message
+                  errors:
+                    type: array
+        '403':
+          description: Authenticated user cannot manage locations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error message
+                  errors:
+                    type: array
+        '404':
+          description: Location not found or does not belong to this business
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error message
+                  errors:
+                    type: array
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true
+x-readme-fauxas: true

@@ -421,30 +421,6 @@ apis:
     url: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
   - type: Documentation
     url: https://docs.hitpayapp.com/apis/guide/platform-apis
-- aid: hitpay:hitpay-refunds-api
-  name: HitPay Refunds API
-  description: Refund completed PayNow or card charges.
-  humanURL: https://docs.hitpayapp.com/apis/guide/online-payments
-  baseURL: https://api.hit-pay.com/v1
-  tags:
-  - Refunds
-  properties:
-  - type: OpenAPI
-    url: openapi/hitpay-refunds-api-openapi.yml
-  - type: Documentation
-    url: https://docs.hitpayapp.com/apis/guide/online-payments
-  - type: APIReference
-    url: https://docs.hitpayapp.com/apis
-  - type: PostmanCollection
-    url: collections/hitpay.postman_collection.json
-  - type: Documentation
-    url: https://docs.hitpayapp.com/apis/guide/recurring-billing
-  - type: APIReference
-    url: https://docs.hitpayapp.com/apis/recurring-billing/create-billing
-  - type: Documentation
-    url: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
-  - type: Documentation
-    url: https://docs.hitpayapp.com/apis/guide/platform-apis
 - aid: hitpay:hitpay-remitters-api
   name: HitPay Remitters API
   description: The Remitters API from HitPay — 2 operation(s) for remitters.
@@ -541,30 +517,6 @@ apis:
     url: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
   - type: Documentation
     url: https://docs.hitpayapp.com/apis/guide/platform-apis
-- aid: hitpay:hitpay-subscription-plans-api
-  name: HitPay Subscription Plans API
-  description: Reusable recurring-billing plan templates.
-  humanURL: https://docs.hitpayapp.com/apis/guide/online-payments
-  baseURL: https://api.hit-pay.com/v1
-  tags:
-  - Subscription Plans
-  properties:
-  - type: OpenAPI
-    url: openapi/hitpay-subscription-plans-api-openapi.yml
-  - type: Documentation
-    url: https://docs.hitpayapp.com/apis/guide/online-payments
-  - type: APIReference
-    url: https://docs.hitpayapp.com/apis
-  - type: PostmanCollection
-    url: collections/hitpay.postman_collection.json
-  - type: Documentation
-    url: https://docs.hitpayapp.com/apis/guide/recurring-billing
-  - type: APIReference
-    url: https://docs.hitpayapp.com/apis/recurring-billing/create-billing
-  - type: Documentation
-    url: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
-  - type: Documentation
-    url: https://docs.hitpayapp.com/apis/guide/platform-apis
 - aid: hitpay:hitpay-transfers-api
   name: HitPay Transfers API
   description: The Transfers API from HitPay — 3 operation(s) for transfers.
@@ -623,6 +575,54 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/hitpay-webhook-events-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/online-payments
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis
+  - type: PostmanCollection
+    url: collections/hitpay.postman_collection.json
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/recurring-billing
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis/recurring-billing/create-billing
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/platform-apis
+- aid: hitpay:hitpay-location-api
+  name: HitPay Location API
+  description: The Location API from HitPay — 2 operation(s) for location.
+  humanURL: https://docs.hitpayapp.com/apis/guide/online-payments
+  baseURL: https://api.hit-pay.com/v1
+  tags:
+  - Location
+  properties:
+  - type: OpenAPI
+    url: openapi/hitpay-location-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/online-payments
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis
+  - type: PostmanCollection
+    url: collections/hitpay.postman_collection.json
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/recurring-billing
+  - type: APIReference
+    url: https://docs.hitpayapp.com/apis/recurring-billing/create-billing
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans
+  - type: Documentation
+    url: https://docs.hitpayapp.com/apis/guide/platform-apis
+- aid: hitpay:hitpay-payouts-api
+  name: HitPay Payouts API
+  description: The Payouts API from HitPay — 3 operation(s) for payouts.
+  humanURL: https://docs.hitpayapp.com/apis/guide/online-payments
+  baseURL: https://api.hit-pay.com/v1
+  tags:
+  - Payouts
+  properties:
+  - type: OpenAPI
+    url: openapi/hitpay-payouts-api-openapi.yml
   - type: Documentation
     url: https://docs.hitpayapp.com/apis/guide/online-payments
   - type: APIReference

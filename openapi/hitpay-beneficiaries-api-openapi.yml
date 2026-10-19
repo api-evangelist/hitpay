@@ -1092,6 +1092,170 @@ paths:
       - Beneficiaries
 components:
   schemas:
+    beneficiary-bd-upay:
+      type: object
+      required:
+      - country
+      - transfer_method
+      - currency
+      - holder_type
+      - holder_name
+      - district
+      - account_number
+      properties:
+        country:
+          type: string
+          required: true
+          description: Beneficiary bank country/region
+          enum:
+          - bd
+        transfer_method:
+          type: string
+          required: true
+          description: The transfer method needs to be specified to ensure that accurate banking details are captured and validated for the specified transfer method. This is required for timely and accurate delivery of funds to the beneficiary account
+          enum:
+          - upay
+          example: upay
+        currency:
+          type: string
+          required: true
+          enum:
+          - bdt
+          example: bdt
+          description: It is beneficiary bank account currency.
+        holder_type:
+          type: string
+          required: true
+          enum:
+          - individual
+          example: individual
+          description: The Holder Type
+        holder_name:
+          type: string
+          required: true
+          example: John Doe
+          description: The Holder Name
+          maxLength: 255
+        district:
+          type: string
+          required: true
+          description: District
+          maxLength: 255
+          example: BD-03
+        account_number:
+          type: string
+          required: true
+          description: The account number
+          maxLength: 255
+          example: '+8801914538413'
+        nickname:
+          type: string
+          example: John
+          description: Nickname
+          maxLength: 255
+        remark:
+          type: string
+          description: Remark
+          maxLength: 255
+          example: This is a remark
+        is_favourite:
+          type: boolean
+          description: Remark
+        email:
+          type: string
+          format: email
+          description: Email address
+          example: abc@gmail.com
+      example:
+        country: bd
+        transfer_method: upay
+        currency: bdt
+        holder_type: individual
+        holder_name: Moulude Hossain
+        district: BD-03
+        account_number: '+8801914538413'
+    beneficiary-bd-tap:
+      type: object
+      required:
+      - country
+      - transfer_method
+      - currency
+      - holder_type
+      - holder_name
+      - district
+      - account_number
+      properties:
+        country:
+          type: string
+          required: true
+          description: Beneficiary bank country/region
+          enum:
+          - bd
+        transfer_method:
+          type: string
+          required: true
+          description: The transfer method needs to be specified to ensure that accurate banking details are captured and validated for the specified transfer method. This is required for timely and accurate delivery of funds to the beneficiary account
+          enum:
+          - tap
+          example: tap
+        currency:
+          type: string
+          required: true
+          emum:
+          - bdt
+          example: bdt
+          description: It is beneficiary bank account currency.
+        holder_type:
+          type: string
+          required: true
+          enum:
+          - individual
+          example: individual
+          description: The Holder Type
+        holder_name:
+          type: string
+          required: true
+          example: Rashid
+          description: The Holder Name
+          maxLength: 255
+        district:
+          type: string
+          required: true
+          example: BD-03
+          description: District
+          maxLength: 255
+        account_number:
+          type: string
+          required: true
+          example: '+8801721940130'
+          description: The account number
+          maxLength: 255
+        nickname:
+          type: string
+          example: John
+          description: Nickname
+          maxLength: 255
+        remark:
+          type: string
+          description: Remark
+          maxLength: 255
+          example: This is a remark
+        is_favourite:
+          type: boolean
+          description: Remark
+        email:
+          type: string
+          format: email
+          description: Email address
+          example: abc@gmail.com
+      example:
+        country: bd
+        transfer_method: tap
+        currency: bdt
+        holder_type: individual
+        holder_name: Moulude Hossain
+        district: BD-04
+        account_number: '+8801914538413'
     beneficiary-php-local:
       type: object
       required:
@@ -1200,7 +1364,7 @@ components:
           street: Pedro Gil, cor Adriatico St
           postcode: '1000'
           city: Manila
-    beneficiary-bd-upay:
+    beneficiary-bd-bkash:
       type: object
       required:
       - country
@@ -1222,12 +1386,12 @@ components:
           required: true
           description: The transfer method needs to be specified to ensure that accurate banking details are captured and validated for the specified transfer method. This is required for timely and accurate delivery of funds to the beneficiary account
           enum:
-          - upay
-          example: upay
+          - bkash
+          example: bkash
         currency:
           type: string
           required: true
-          enum:
+          emum:
           - bdt
           example: bdt
           description: It is beneficiary bank account currency.
@@ -1241,21 +1405,21 @@ components:
         holder_name:
           type: string
           required: true
-          example: John Doe
+          example: Rashid
           description: The Holder Name
           maxLength: 255
         district:
           type: string
           required: true
+          example: BD-03
           description: District
           maxLength: 255
-          example: BD-03
         account_number:
           type: string
           required: true
+          example: '+8801721940130'
           description: The account number
           maxLength: 255
-          example: '+8801914538413'
         nickname:
           type: string
           example: John
@@ -1276,12 +1440,12 @@ components:
           example: abc@gmail.com
       example:
         country: bd
-        transfer_method: upay
+        transfer_method: bkash
         currency: bdt
         holder_type: individual
-        holder_name: Moulude Hossain
+        holder_name: Rashid
         district: BD-03
-        account_number: '+8801914538413'
+        account_number: '+8801721940130'
     beneficiary-sqd-fast:
       type: object
       required:
@@ -1365,170 +1529,6 @@ components:
         holder_name: John Tan
         bank_id: BOFASG2XXXX[7065]
         account_number: '1409827'
-    beneficiary-bd-tap:
-      type: object
-      required:
-      - country
-      - transfer_method
-      - currency
-      - holder_type
-      - holder_name
-      - district
-      - account_number
-      properties:
-        country:
-          type: string
-          required: true
-          description: Beneficiary bank country/region
-          enum:
-          - bd
-        transfer_method:
-          type: string
-          required: true
-          description: The transfer method needs to be specified to ensure that accurate banking details are captured and validated for the specified transfer method. This is required for timely and accurate delivery of funds to the beneficiary account
-          enum:
-          - tap
-          example: tap
-        currency:
-          type: string
-          required: true
-          emum:
-          - bdt
-          example: bdt
-          description: It is beneficiary bank account currency.
-        holder_type:
-          type: string
-          required: true
-          enum:
-          - individual
-          example: individual
-          description: The Holder Type
-        holder_name:
-          type: string
-          required: true
-          example: Rashid
-          description: The Holder Name
-          maxLength: 255
-        district:
-          type: string
-          required: true
-          example: BD-03
-          description: District
-          maxLength: 255
-        account_number:
-          type: string
-          required: true
-          example: '+8801721940130'
-          description: The account number
-          maxLength: 255
-        nickname:
-          type: string
-          example: John
-          description: Nickname
-          maxLength: 255
-        remark:
-          type: string
-          description: Remark
-          maxLength: 255
-          example: This is a remark
-        is_favourite:
-          type: boolean
-          description: Remark
-        email:
-          type: string
-          format: email
-          description: Email address
-          example: abc@gmail.com
-      example:
-        country: bd
-        transfer_method: tap
-        currency: bdt
-        holder_type: individual
-        holder_name: Moulude Hossain
-        district: BD-04
-        account_number: '+8801914538413'
-    beneficiary-bd-bkash:
-      type: object
-      required:
-      - country
-      - transfer_method
-      - currency
-      - holder_type
-      - holder_name
-      - district
-      - account_number
-      properties:
-        country:
-          type: string
-          required: true
-          description: Beneficiary bank country/region
-          enum:
-          - bd
-        transfer_method:
-          type: string
-          required: true
-          description: The transfer method needs to be specified to ensure that accurate banking details are captured and validated for the specified transfer method. This is required for timely and accurate delivery of funds to the beneficiary account
-          enum:
-          - bkash
-          example: bkash
-        currency:
-          type: string
-          required: true
-          emum:
-          - bdt
-          example: bdt
-          description: It is beneficiary bank account currency.
-        holder_type:
-          type: string
-          required: true
-          enum:
-          - individual
-          example: individual
-          description: The Holder Type
-        holder_name:
-          type: string
-          required: true
-          example: Rashid
-          description: The Holder Name
-          maxLength: 255
-        district:
-          type: string
-          required: true
-          example: BD-03
-          description: District
-          maxLength: 255
-        account_number:
-          type: string
-          required: true
-          example: '+8801721940130'
-          description: The account number
-          maxLength: 255
-        nickname:
-          type: string
-          example: John
-          description: Nickname
-          maxLength: 255
-        remark:
-          type: string
-          description: Remark
-          maxLength: 255
-          example: This is a remark
-        is_favourite:
-          type: boolean
-          description: Remark
-        email:
-          type: string
-          format: email
-          description: Email address
-          example: abc@gmail.com
-      example:
-        country: bd
-        transfer_method: bkash
-        currency: bdt
-        holder_type: individual
-        holder_name: Rashid
-        district: BD-03
-        account_number: '+8801721940130'
     beneficiary-bd-local:
       type: object
       required:

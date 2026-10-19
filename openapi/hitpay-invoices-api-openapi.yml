@@ -279,27 +279,89 @@ paths:
           type: string
       - name: per_page
         in: query
-        description: The number of per page
+        description: Number of invoices per page. Must be one of 5, 10, 20, 25, 50, 100 or 1000.
         schema:
-          type: string
-          default: '10'
-      - name: page
+          type: integer
+          enum:
+          - 5
+          - 10
+          - 20
+          - 25
+          - 50
+          - 100
+          - 1000
+          default: 25
+      - name: cursor
         in: query
-        description: The page index
+        description: This endpoint uses cursor pagination, not page numbers (a `page` parameter is ignored). Leave `cursor` empty for the first page. For the next page, pass the `meta.next_cursor` value from the previous response (or follow `links.next`). Keep the same `per_page` and filters, and stop when `meta.next_cursor` is `null`.
         schema:
           type: string
-          default: '1'
       responses:
-        '204':
-          description: '204'
+        '200':
+          description: '200'
           content:
             application/json:
-              examples:
-                Result:
-                  value: '{}'
               schema:
                 type: object
-                properties: {}
+                properties:
+                  data:
+                    type: array
+                    description: Invoices on this page.
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        invoice_number:
+                          type: string
+                        reference:
+                          type: string
+                        email:
+                          type: string
+                        currency:
+                          type: string
+                        amount:
+                          type: number
+                        invoice_date:
+                          type: string
+                        due_date:
+                          type: string
+                        invoice_link:
+                          type: string
+                        created_at:
+                          type: string
+                        updated_at:
+                          type: string
+                  links:
+                    type: object
+                    properties:
+                      first: {}
+                      last: {}
+                      prev:
+                        type:
+                        - string
+                        - 'null'
+                      next:
+                        type:
+                        - string
+                        - 'null'
+                        description: URL of the next page, or null on the last page.
+                  meta:
+                    type: object
+                    properties:
+                      path:
+                        type: string
+                      per_page:
+                        type: integer
+                      next_cursor:
+                        type:
+                        - string
+                        - 'null'
+                        description: Pass this as `cursor` to get the next page. `null` when there are no more invoices.
+                      prev_cursor:
+                        type:
+                        - string
+                        - 'null'
         '404':
           description: '404'
           content:

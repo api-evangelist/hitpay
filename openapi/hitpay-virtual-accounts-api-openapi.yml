@@ -48,6 +48,19 @@ paths:
           - 100
           default: 25
         description: Number of results per page
+      - name: bank_country
+        in: query
+        schema:
+          type: string
+        description: Only return virtual accounts held in this bank country (two-letter lowercase ISO 3166-1 code, e.g. `sg`)
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - open
+          - closed
+        description: Only return open or closed virtual accounts. A closed account is one that has been closed; this is separate from the `status` field in the response, which is the provisioning status. Omit to return both.
       responses:
         '200':
           description: Successful operation
@@ -64,137 +77,114 @@ paths:
                         id:
                           type: string
                           format: uuid
+                          description: Virtual account ID
+                          example: 9b3f1a2c-1d4e-4f6a-8b2c-7e9d0a1b2c3d
                         name:
                           type: string
                           description: Display name of the virtual account
+                          example: Acme Pte Ltd
                         reference:
                           type: string
-                          description: Virtual account reference number
-                        payment_provider:
+                          description: Virtual account reference issued by the bank. For DBS Singapore this is the 7-digit VA number that forms the tail of `account_number`.
+                          example: '1234567'
+                        status:
+                          type:
+                          - string
+                          - 'null'
+                          description: 'Provisioning status of the virtual account: `pending`, `success`, or `rejected`. `pending` means the bank has acknowledged the request but has not activated the account yet.'
+                          example: success
+                        country:
                           type: string
-                          description: Payment provider identifier (e.g., dbs_sg)
-                        payment_provider_method:
-                          type: string
-                          description: Payment provider method identifier (e.g., dbs_sg_virtual_account)
-                        payment_provider_method_logos:
-                          type: array
-                          items:
-                            type: object
-                            properties:
-                              method:
-                                type: string
-                                description: Payment method identifier
-                              iconName:
-                                type: string
-                                description: Icon file name
-                              displayName:
-                                type: string
-                                description: Human-readable method name
-                              description:
-                                type: string
-                                description: Method description
-                              sm:
-                                type: string
-                                format: uri
-                                description: Small PNG logo URL
-                              md:
-                                type: string
-                                format: uri
-                                description: Medium PNG logo URL
-                              lg:
-                                type: string
-                                format: uri
-                                description: Large PNG logo URL
-                              svg:
-                                type: string
-                                format: uri
-                                description: SVG logo URL
-                              svg_square:
-                                type: string
-                                format: uri
-                                description: Square SVG logo URL
-                          description: Array of logo objects for the payment method
-                        payment_provider_method_main_logo:
-                          oneOf:
-                          - type: object
-                            properties:
-                              method:
-                                type: string
-                                description: Payment method identifier
-                              iconName:
-                                type: string
-                                description: Icon file name
-                              displayName:
-                                type: string
-                                description: Human-readable method name
-                              description:
-                                type: string
-                                description: Method description
-                              sm:
-                                type: string
-                                format: uri
-                                description: Small PNG logo URL
-                              md:
-                                type: string
-                                format: uri
-                                description: Medium PNG logo URL
-                              lg:
-                                type: string
-                                format: uri
-                                description: Large PNG logo URL
-                              svg:
-                                type: string
-                                format: uri
-                                description: SVG logo URL
-                              svg_square:
-                                type: string
-                                format: uri
-                                description: Square SVG logo URL
-                          - type: 'null'
-                          description: Main logo object for the payment method, or null
+                          description: Two-letter lowercase ISO 3166-1 country code of the business the virtual account belongs to
+                          example: sg
                         supported_currencies:
                           type:
                           - array
                           - 'null'
                           items:
                             type: string
-                          description: List of supported currency codes
+                          description: Uppercase currency codes that can be received into this virtual account
+                          example:
+                          - SGD
+                          - USD
+                        holder_name:
+                          type: string
+                          description: Account holder name, i.e. the registered name of the business
+                          example: Acme Pte Ltd
+                        account_number:
+                          type: string
+                          description: Full account number to transfer funds to. For DBS Singapore this is the VA prefix and corporate code prepended to `reference`.
+                          example: '8854911234567'
+                        bank_name:
+                          type:
+                          - string
+                          - 'null'
+                          description: Name of the bank holding the virtual account
+                          example: DBS Bank
+                        bank_swift_code:
+                          type:
+                          - string
+                          - 'null'
+                          description: SWIFT/BIC code of the bank. `null` for providers that settle without one, such as Philippine accounts on InstaPay and PESONet.
+                          example: DBSSSGSG
+                        bank_country:
+                          type: string
+                          description: Two-letter lowercase ISO 3166-1 country code of the country the bank account is held in. Can differ from `country`, e.g. a Singapore business can hold an account in `gb`.
+                          example: sg
+                        bank_attributes:
+                          type:
+                          - object
+                          - 'null'
+                          description: Bank details for paying into the account. `type` names the account identifier that applies (`local`, `iban`, `sort_code` or `bsb`) and the other keys depend on it. `null` while the bank is still issuing the account.
+                          properties:
+                            type:
+                              type: string
+                              example: local
+                            account_number:
+                              type: string
+                              example: '8854911234567'
+                            bank_name:
+                              type: string
+                              example: DBS Bank
+                            bank_address:
+                              type: string
+                            swift_code:
+                              type: string
+                              example: DBSSSGSG
+                            iban:
+                              type: string
+                            sort_code:
+                              type: string
+                            bsb:
+                              type: string
+                            bic:
+                              type: string
+                            transfer_types:
+                              type: array
+                              items:
+                                type: string
+                              example:
+                              - FAST
+                              - SWIFT
+                          additionalProperties: true
                         transfer_types:
                           type: array
                           items:
                             type: string
-                          description: Supported transfer types for this virtual account
-                        address:
-                          type: string
-                          description: Business address
-                        status:
-                          type:
-                          - string
-                          - 'null'
-                          description: Current status of the virtual account
-                        created_by:
-                          oneOf:
-                          - type: object
-                            properties:
-                              id:
-                                type: string
-                                format: uuid
-                              display_name:
-                                type: string
-                              first_name:
-                                type: string
-                              last_name:
-                                type: string
-                          - type: 'null'
-                          description: User who created the virtual account, or null
+                          description: Transfer rails the virtual account can receive funds over
+                          example:
+                          - FAST
+                          - SWIFT
                         created_at:
                           type: string
                           format: date-time
-                          description: Creation timestamp (Atom format)
+                          description: ISO 8601 timestamp of when the virtual account was created
+                          example: '2026-06-08T15:30:10+08:00'
                         updated_at:
                           type: string
                           format: date-time
-                          description: Last update timestamp (Atom format)
+                          description: ISO 8601 timestamp of when the virtual account was last updated
+                          example: '2026-06-08T15:30:10+08:00'
                   links:
                     type: object
                     properties:
@@ -259,17 +249,38 @@ paths:
       tags:
       - Virtual Accounts
       summary: Create a virtual account
-      description: 'Create a new virtual account for the business. The payment provider and method are automatically
-
-        determined based on the business configuration.
+      description: 'Create a virtual account for the business in the bank country given by `bank_country`. HitPay picks the bank that serves that location.
 
 
-        A business can only have one virtual account per payment provider method. If a virtual account
-
-        already exists for the same provider method, a 409 Conflict error is returned.
+        The locations a business can request depend on the business''s own country:
 
 
-        The business must have payments enabled to create a virtual account.'
+        | Business country | `bank_country` | Currencies received |
+
+        |---|---|---|
+
+        | `sg` | `sg` | SGD, USD, EUR, GBP, CAD, CHF, CNH, CNY, HKD, NOK, NZD, SEK |
+
+        | `sg` | `ph` | PHP |
+
+        | `sg` | `gb` | GBP, EUR |
+
+        | `sg` | `dk` | EUR |
+
+        | `sg` | `lu` | EUR |
+
+        | `ph` | `ph` | PHP |
+
+        | `au` | `au` | AUD |
+
+
+        The payment provider serving the location must have completed onboarding for the business, or the request returns 400. For `sg` and `ph` the business enables it under Settings > Payment Methods. HitPay sets up the provider for `gb`, `dk`, `lu` and `au`.
+
+
+        A business can hold one virtual account per location. If one already exists, the request returns 409 Conflict. The business must have payments enabled.
+
+
+        **Migration note:** `bank_country` is required. A request without it used to create the default virtual account for the business''s country. It now returns 422. To keep the old behaviour, send the business''s own country, for example `{"bank_country": "sg"}` for a Singapore business.'
       parameters:
       - name: X-BUSINESS-API-KEY
         in: header
@@ -279,6 +290,27 @@ paths:
         schema:
           type: string
           example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - bank_country
+              properties:
+                bank_country:
+                  type: string
+                  description: Two-letter lowercase ISO 3166-1 code of the country the account is held in. See the table above.
+                  example: sg
+                payment_provider_method:
+                  type: string
+                  description: Optional. Pins the location to one payment method, e.g. `dbs_va`. Rejected with 400 if that method does not serve `bank_country`.
+                  example: dbs_va
+                currency:
+                  type: string
+                  description: Optional. The currency to receive, e.g. `sgd`. Only needed when more than one provider serves `bank_country` for the business.
+                  example: sgd
       responses:
         '201':
           description: Virtual account created successfully
@@ -287,143 +319,129 @@ paths:
               schema:
                 type: object
                 properties:
-                  data:
-                    type: object
+                  id:
+                    type: string
+                    format: uuid
+                    description: Virtual account ID
+                    example: 9b3f1a2c-1d4e-4f6a-8b2c-7e9d0a1b2c3d
+                  name:
+                    type: string
+                    description: Display name of the virtual account
+                    example: Acme Pte Ltd
+                  reference:
+                    type: string
+                    description: Virtual account reference issued by the bank. For DBS Singapore this is the 7-digit VA number that forms the tail of `account_number`.
+                    example: '1234567'
+                  status:
+                    type:
+                    - string
+                    - 'null'
+                    description: 'Provisioning status of the virtual account: `pending`, `success`, or `rejected`. `pending` means the bank has acknowledged the request but has not activated the account yet.'
+                    example: success
+                  country:
+                    type: string
+                    description: Two-letter lowercase ISO 3166-1 country code of the business the virtual account belongs to
+                    example: sg
+                  supported_currencies:
+                    type:
+                    - array
+                    - 'null'
+                    items:
+                      type: string
+                    description: Uppercase currency codes that can be received into this virtual account
+                    example:
+                    - SGD
+                    - USD
+                  holder_name:
+                    type: string
+                    description: Account holder name, i.e. the registered name of the business
+                    example: Acme Pte Ltd
+                  account_number:
+                    type: string
+                    description: Full account number to transfer funds to. For DBS Singapore this is the VA prefix and corporate code prepended to `reference`.
+                    example: '8854911234567'
+                  bank_name:
+                    type:
+                    - string
+                    - 'null'
+                    description: Name of the bank holding the virtual account
+                    example: DBS Bank
+                  bank_swift_code:
+                    type:
+                    - string
+                    - 'null'
+                    description: SWIFT/BIC code of the bank. `null` for providers that settle without one, such as Philippine accounts on InstaPay and PESONet.
+                    example: DBSSSGSG
+                  bank_country:
+                    type: string
+                    description: Two-letter lowercase ISO 3166-1 country code of the country the bank account is held in. Can differ from `country`, e.g. a Singapore business can hold an account in `gb`.
+                    example: sg
+                  bank_attributes:
+                    type:
+                    - object
+                    - 'null'
+                    description: Bank details for paying into the account. `type` names the account identifier that applies (`local`, `iban`, `sort_code` or `bsb`) and the other keys depend on it. `null` while the bank is still issuing the account.
                     properties:
-                      id:
+                      type:
                         type: string
-                        format: uuid
-                      name:
+                        example: local
+                      account_number:
                         type: string
-                        description: Display name of the virtual account
-                      reference:
+                        example: '8854911234567'
+                      bank_name:
                         type: string
-                        description: Virtual account reference number
-                      payment_provider:
+                        example: DBS Bank
+                      bank_address:
                         type: string
-                        description: Payment provider identifier (e.g., dbs_sg)
-                      payment_provider_method:
+                      swift_code:
                         type: string
-                        description: Payment provider method identifier (e.g., dbs_sg_virtual_account)
-                      payment_provider_method_logos:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            method:
-                              type: string
-                              description: Payment method identifier
-                            iconName:
-                              type: string
-                              description: Icon file name
-                            displayName:
-                              type: string
-                              description: Human-readable method name
-                            description:
-                              type: string
-                              description: Method description
-                            sm:
-                              type: string
-                              format: uri
-                              description: Small PNG logo URL
-                            md:
-                              type: string
-                              format: uri
-                              description: Medium PNG logo URL
-                            lg:
-                              type: string
-                              format: uri
-                              description: Large PNG logo URL
-                            svg:
-                              type: string
-                              format: uri
-                              description: SVG logo URL
-                            svg_square:
-                              type: string
-                              format: uri
-                              description: Square SVG logo URL
-                        description: Array of logo objects for the payment method
-                      payment_provider_method_main_logo:
-                        oneOf:
-                        - type: object
-                          properties:
-                            method:
-                              type: string
-                              description: Payment method identifier
-                            iconName:
-                              type: string
-                              description: Icon file name
-                            displayName:
-                              type: string
-                              description: Human-readable method name
-                            description:
-                              type: string
-                              description: Method description
-                            sm:
-                              type: string
-                              format: uri
-                              description: Small PNG logo URL
-                            md:
-                              type: string
-                              format: uri
-                              description: Medium PNG logo URL
-                            lg:
-                              type: string
-                              format: uri
-                              description: Large PNG logo URL
-                            svg:
-                              type: string
-                              format: uri
-                              description: SVG logo URL
-                            svg_square:
-                              type: string
-                              format: uri
-                              description: Square SVG logo URL
-                        - type: 'null'
-                        description: Main logo object for the payment method, or null
-                      supported_currencies:
-                        type:
-                        - array
-                        - 'null'
-                        items:
-                          type: string
-                        description: List of supported currency codes
+                        example: DBSSSGSG
+                      iban:
+                        type: string
+                      sort_code:
+                        type: string
+                      bsb:
+                        type: string
+                      bic:
+                        type: string
                       transfer_types:
                         type: array
                         items:
                           type: string
-                        description: Supported transfer types for this virtual account
-                      address:
-                        type: string
-                        description: Business address
-                      status:
-                        type:
-                        - string
-                        - 'null'
-                        description: Current status of the virtual account
-                      created_by:
-                        oneOf:
-                        - type: object
-                          properties:
-                            id:
-                              type: string
-                              format: uuid
-                            display_name:
-                              type: string
-                            first_name:
-                              type: string
-                            last_name:
-                              type: string
-                        - type: 'null'
-                        description: User who created the virtual account, or null
-                      created_at:
-                        type: string
-                        format: date-time
-                        description: Creation timestamp (Atom format)
-                      updated_at:
-                        type: string
-                        format: date-time
-                        description: Last update timestamp (Atom format)
+                        example:
+                        - FAST
+                        - SWIFT
+                    additionalProperties: true
+                  transfer_types:
+                    type: array
+                    items:
+                      type: string
+                    description: Transfer rails the virtual account can receive funds over
+                    example:
+                    - FAST
+                    - SWIFT
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: ISO 8601 timestamp of when the virtual account was created
+                    example: '2026-06-08T15:30:10+08:00'
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: ISO 8601 timestamp of when the virtual account was last updated
+                    example: '2026-06-08T15:30:10+08:00'
+        '400':
+          description: Bad Request — the business cannot hold a virtual account in that location, the location is ambiguous without `currency`, or its payment provider has not completed onboarding
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error message
+                  errors:
+                    type: array
         '401':
           description: Unauthorized
           content:
@@ -449,7 +467,7 @@ paths:
                   errors:
                     type: array
         '409':
-          description: Conflict — a virtual account already exists for this provider method
+          description: Conflict — the business already holds a virtual account in this location
           content:
             application/json:
               schema:
@@ -460,6 +478,25 @@ paths:
                     description: Error message
                   errors:
                     type: array
+        '422':
+          description: Unprocessable Entity — `bank_country` is missing or not a country code
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: The bank country field is required.
+                  errors:
+                    type: object
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: string
+                    example:
+                      bank_country:
+                      - The bank country field is required.
       operationId: postV1VirtualAccounts
       x-operation-id-source: derived
   /v1/virtual-accounts/{virtual_account_id}:
@@ -492,143 +529,117 @@ paths:
               schema:
                 type: object
                 properties:
-                  data:
-                    type: object
+                  id:
+                    type: string
+                    format: uuid
+                    description: Virtual account ID
+                    example: 9b3f1a2c-1d4e-4f6a-8b2c-7e9d0a1b2c3d
+                  name:
+                    type: string
+                    description: Display name of the virtual account
+                    example: Acme Pte Ltd
+                  reference:
+                    type: string
+                    description: Virtual account reference issued by the bank. For DBS Singapore this is the 7-digit VA number that forms the tail of `account_number`.
+                    example: '1234567'
+                  status:
+                    type:
+                    - string
+                    - 'null'
+                    description: 'Provisioning status of the virtual account: `pending`, `success`, or `rejected`. `pending` means the bank has acknowledged the request but has not activated the account yet.'
+                    example: success
+                  country:
+                    type: string
+                    description: Two-letter lowercase ISO 3166-1 country code of the business the virtual account belongs to
+                    example: sg
+                  supported_currencies:
+                    type:
+                    - array
+                    - 'null'
+                    items:
+                      type: string
+                    description: Uppercase currency codes that can be received into this virtual account
+                    example:
+                    - SGD
+                    - USD
+                  holder_name:
+                    type: string
+                    description: Account holder name, i.e. the registered name of the business
+                    example: Acme Pte Ltd
+                  account_number:
+                    type: string
+                    description: Full account number to transfer funds to. For DBS Singapore this is the VA prefix and corporate code prepended to `reference`.
+                    example: '8854911234567'
+                  bank_name:
+                    type:
+                    - string
+                    - 'null'
+                    description: Name of the bank holding the virtual account
+                    example: DBS Bank
+                  bank_swift_code:
+                    type:
+                    - string
+                    - 'null'
+                    description: SWIFT/BIC code of the bank. `null` for providers that settle without one, such as Philippine accounts on InstaPay and PESONet.
+                    example: DBSSSGSG
+                  bank_country:
+                    type: string
+                    description: Two-letter lowercase ISO 3166-1 country code of the country the bank account is held in. Can differ from `country`, e.g. a Singapore business can hold an account in `gb`.
+                    example: sg
+                  bank_attributes:
+                    type:
+                    - object
+                    - 'null'
+                    description: Bank details for paying into the account. `type` names the account identifier that applies (`local`, `iban`, `sort_code` or `bsb`) and the other keys depend on it. `null` while the bank is still issuing the account.
                     properties:
-                      id:
+                      type:
                         type: string
-                        format: uuid
-                      name:
+                        example: local
+                      account_number:
                         type: string
-                        description: Display name of the virtual account
-                      reference:
+                        example: '8854911234567'
+                      bank_name:
                         type: string
-                        description: Virtual account reference number
-                      payment_provider:
+                        example: DBS Bank
+                      bank_address:
                         type: string
-                        description: Payment provider identifier (e.g., dbs_sg)
-                      payment_provider_method:
+                      swift_code:
                         type: string
-                        description: Payment provider method identifier (e.g., dbs_sg_virtual_account)
-                      payment_provider_method_logos:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            method:
-                              type: string
-                              description: Payment method identifier
-                            iconName:
-                              type: string
-                              description: Icon file name
-                            displayName:
-                              type: string
-                              description: Human-readable method name
-                            description:
-                              type: string
-                              description: Method description
-                            sm:
-                              type: string
-                              format: uri
-                              description: Small PNG logo URL
-                            md:
-                              type: string
-                              format: uri
-                              description: Medium PNG logo URL
-                            lg:
-                              type: string
-                              format: uri
-                              description: Large PNG logo URL
-                            svg:
-                              type: string
-                              format: uri
-                              description: SVG logo URL
-                            svg_square:
-                              type: string
-                              format: uri
-                              description: Square SVG logo URL
-                        description: Array of logo objects for the payment method
-                      payment_provider_method_main_logo:
-                        oneOf:
-                        - type: object
-                          properties:
-                            method:
-                              type: string
-                              description: Payment method identifier
-                            iconName:
-                              type: string
-                              description: Icon file name
-                            displayName:
-                              type: string
-                              description: Human-readable method name
-                            description:
-                              type: string
-                              description: Method description
-                            sm:
-                              type: string
-                              format: uri
-                              description: Small PNG logo URL
-                            md:
-                              type: string
-                              format: uri
-                              description: Medium PNG logo URL
-                            lg:
-                              type: string
-                              format: uri
-                              description: Large PNG logo URL
-                            svg:
-                              type: string
-                              format: uri
-                              description: SVG logo URL
-                            svg_square:
-                              type: string
-                              format: uri
-                              description: Square SVG logo URL
-                        - type: 'null'
-                        description: Main logo object for the payment method, or null
-                      supported_currencies:
-                        type:
-                        - array
-                        - 'null'
-                        items:
-                          type: string
-                        description: List of supported currency codes
+                        example: DBSSSGSG
+                      iban:
+                        type: string
+                      sort_code:
+                        type: string
+                      bsb:
+                        type: string
+                      bic:
+                        type: string
                       transfer_types:
                         type: array
                         items:
                           type: string
-                        description: Supported transfer types for this virtual account
-                      address:
-                        type: string
-                        description: Business address
-                      status:
-                        type:
-                        - string
-                        - 'null'
-                        description: Current status of the virtual account
-                      created_by:
-                        oneOf:
-                        - type: object
-                          properties:
-                            id:
-                              type: string
-                              format: uuid
-                            display_name:
-                              type: string
-                            first_name:
-                              type: string
-                            last_name:
-                              type: string
-                        - type: 'null'
-                        description: User who created the virtual account, or null
-                      created_at:
-                        type: string
-                        format: date-time
-                        description: Creation timestamp (Atom format)
-                      updated_at:
-                        type: string
-                        format: date-time
-                        description: Last update timestamp (Atom format)
+                        example:
+                        - FAST
+                        - SWIFT
+                    additionalProperties: true
+                  transfer_types:
+                    type: array
+                    items:
+                      type: string
+                    description: Transfer rails the virtual account can receive funds over
+                    example:
+                    - FAST
+                    - SWIFT
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: ISO 8601 timestamp of when the virtual account was created
+                    example: '2026-06-08T15:30:10+08:00'
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: ISO 8601 timestamp of when the virtual account was last updated
+                    example: '2026-06-08T15:30:10+08:00'
         '401':
           description: Unauthorized
           content:

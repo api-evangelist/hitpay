@@ -1,17 +1,13 @@
 openapi: 3.2.0
 info:
-  title: Hitpay Payment Requests API
+  title: HitPay Payment Requests API
+  description: 'Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com'
   version: '1.0'
-  description: 'Operations tagged Payment Requests across 2 of this provider''s published API definitions: hitpay-openapi-original.json, hitpay-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.hit-pay.com
   description: Production
 - url: https://api.sandbox.hit-pay.com
   description: Sandbox
-- url: https://api.hit-pay.com/v1
-  description: Production
-- url: https://api.sandbox.hit-pay.com/v1
-  description: Sandbox (test)
 tags:
 - name: Payment Requests
 paths:
@@ -37,12 +33,11 @@ paths:
             schema:
               type: object
               required:
-              - amount
               - currency
               properties:
                 amount:
                   type: number
-                  description: 'It''s required field. Amount related to the payment. Example: 2500'
+                  description: 'It''s optional field. Amount related to the payment. Example: 2500. If we pass, it should be greater than 0.3 and less than 999999999.99'
                   format: double
                   example: 100
                   minimum: 0.3
@@ -69,7 +64,8 @@ paths:
                 phone:
                   type: string
                   format: phone
-                  description: Buyer’s phone number
+                  length: 15
+                  description: 'Buyer’s phone number and should be in E.164 format. Example: +6591234567'
                 wifi_terminal_id:
                   type: string
                   description: It's terminal id and it's required if payment method is wifi_card_reader
@@ -441,11 +437,6 @@ paths:
       security: []
       tags:
       - Payment Requests
-    servers:
-    - url: https://api.hit-pay.com
-      description: Production
-    - url: https://api.sandbox.hit-pay.com
-      description: Sandbox
   /v1/payment-requests/{request_id}:
     put:
       summary: Update Payment Request
@@ -473,7 +464,6 @@ paths:
             schema:
               type: object
               required:
-              - amount
               - currency
               properties:
                 amount:
@@ -911,168 +901,6 @@ paths:
       security: []
       tags:
       - Payment Requests
-    servers:
-    - url: https://api.hit-pay.com
-      description: Production
-    - url: https://api.sandbox.hit-pay.com
-      description: Sandbox
-  /payment-requests:
-    post:
-      operationId: createPaymentRequest
-      tags:
-      - Payment Requests
-      summary: Create a payment request
-      description: Creates a hosted payment request (payment link / checkout page) for the given amount and currency. Returns a URL to redirect the payer to and a payment request id used to track status. Register webhook URLs in the dashboard (the inline `webhook` field is deprecated).
-      requestBody:
-        required: true
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PaymentRequestCreate'
-      responses:
-        '201':
-          description: Payment request created.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PaymentRequest'
-      security:
-      - businessApiKey: []
-    get:
-      operationId: listPaymentRequests
-      tags:
-      - Payment Requests
-      summary: List payment requests
-      parameters:
-      - name: limit
-        in: query
-        schema:
-          type: integer
-          default: 50
-      responses:
-        '200':
-          description: A page of payment requests.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/PaymentRequest'
-      security:
-      - businessApiKey: []
-    servers:
-    - url: https://api.hit-pay.com/v1
-      description: Production
-    - url: https://api.sandbox.hit-pay.com/v1
-      description: Sandbox (test)
-  /payment-requests/{id}:
-    parameters:
-    - name: id
-      in: path
-      required: true
-      schema:
-        type: string
-    get:
-      operationId: getPaymentRequest
-      tags:
-      - Payment Requests
-      summary: Get a payment request
-      responses:
-        '200':
-          description: The payment request and its current status.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PaymentRequest'
-      security:
-      - businessApiKey: []
-    delete:
-      operationId: deletePaymentRequest
-      tags:
-      - Payment Requests
-      summary: Delete / cancel a payment request
-      description: Cancels an open card payment request. QR-based methods (PayNow, GrabPay) cannot be cancelled once generated.
-      responses:
-        '200':
-          description: Payment request deleted.
-      security:
-      - businessApiKey: []
-    servers:
-    - url: https://api.hit-pay.com/v1
-      description: Production
-    - url: https://api.sandbox.hit-pay.com/v1
-      description: Sandbox (test)
-components:
-  schemas:
-    PaymentRequestCreate:
-      type: object
-      required:
-      - amount
-      - currency
-      properties:
-        amount:
-          type: string
-          description: Amount to collect, e.g. "199.00".
-          example: '199.00'
-        currency:
-          type: string
-          description: ISO 4217 currency code (lowercase accepted), e.g. "sgd".
-          example: sgd
-        email:
-          type: string
-          format: email
-        name:
-          type: string
-        purpose:
-          type: string
-        reference_number:
-          type: string
-        redirect_url:
-          type: string
-          format: uri
-        payment_methods:
-          type: array
-          description: Restrict to specific methods (paynow_online, card, grabpay, wechat, alipay, shopee, atome).
-          items:
-            type: string
-        send_email:
-          type: boolean
-        send_sms:
-          type: boolean
-    PaymentRequest:
-      type: object
-      properties:
-        id:
-          type: string
-        status:
-          type: string
-          enum:
-          - pending
-          - completed
-          - failed
-          - expired
-        amount:
-          type: string
-        currency:
-          type: string
-        url:
-          type: string
-          format: uri
-          description: Hosted checkout URL to redirect the payer to.
-        reference_number:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-  securitySchemes:
-    businessApiKey:
-      type: apiKey
-      in: header
-      name: X-BUSINESS-API-KEY
-      description: Per-merchant business API key from Dashboard > Settings > Payment Gateway > API Keys. Platform/aggregator requests additionally send X-PLATFORM-KEY.
-x-refined-from:
-- hitpay-openapi-original.json
-- hitpay-openapi.yml
 x-readme:
   headers: []
   explorer-enabled: true

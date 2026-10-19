@@ -1,0 +1,309 @@
+openapi: 3.2.0
+info:
+  title: HitPay Payouts API
+  description: 'Accept PayNow, FPX, QRIS, GrabPay, cards, and 40+ payment methods with a single API. Production base URL: https://api.hit-pay.com, Sandbox: https://api.sandbox.hit-pay.com'
+  version: '1.0'
+servers:
+- url: https://api.hit-pay.com
+  description: Production
+- url: https://api.sandbox.hit-pay.com
+  description: Sandbox
+tags:
+- name: Payouts
+paths:
+  /v1/payouts:
+    get:
+      tags:
+      - Payouts
+      summary: List payouts
+      description: List payouts of the business's available balance to its linked bank account, newest first. This is settlement to your own bank account, not send-money transfers to third parties.
+      operationId: list-payouts
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: status
+        in: query
+        description: Filter by the public payout status returned in the payload.
+        schema:
+          type: string
+          enum:
+          - scheduled
+          - processing
+          - paid
+          - failed
+          - canceled
+          - pending
+      - name: created_at_from
+        in: query
+        description: Include payouts created on or after this date (YYYY-MM-DD, business timezone).
+        schema:
+          type: string
+          format: date
+          example: '2026-09-01'
+      - name: created_at_to
+        in: query
+        description: Include payouts created on or before this date (YYYY-MM-DD, business timezone).
+        schema:
+          type: string
+          format: date
+          example: '2026-09-17'
+      - name: per_page
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 25
+      - name: cursor
+        in: query
+        schema:
+          type: string
+          description: The cursor parameter accepts a next_cursor value obtained from the previous response's meta object (meta.next_cursor).
+      responses:
+        '200':
+          description: Paginated list of payouts
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Payout'
+                  meta:
+                    type: object
+                    properties:
+                      per_page:
+                        type: integer
+                        example: 25
+                      next_cursor:
+                        type: string
+                        nullable: true
+                      prev_cursor:
+                        type: string
+                        nullable: true
+              examples:
+                Result:
+                  value:
+                    data:
+                    - id: 9e10fcd2-f657-489b-947e-1383790b53bf
+                      status: paid
+                      currency: sgd
+                      amount: 150.25
+                      source_currency: sgd
+                      source_amount: 150.25
+                      bank_name: DBS Bank
+                      bank_account: •••1234
+                      remark: null
+                      reference: HITPAY-PAYOUT-001
+                      arrival_date: '2026-09-18'
+                      created_at: '2026-09-17T14:18:42+08:00'
+                      updated_at: '2026-09-17T16:02:11+08:00'
+                    meta:
+                      per_page: 25
+                      next_cursor: null
+                      prev_cursor: null
+      deprecated: false
+    post:
+      tags:
+      - Payouts
+      summary: Mock a payout
+      description: Mocks a payout of the available balance so you can test `payout.created` webhooks and list charges on a payout. This is not a production payout. Sandbox only. Returns 404 in production.
+      operationId: mock-payout
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                currency:
+                  type: string
+                  description: Wallet currency to pay out. Defaults to the business home currency.
+                  example: sgd
+      responses:
+        '201':
+          description: Payout created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payout'
+              examples:
+                Result:
+                  value:
+                    id: 9e10fcd2-f657-489b-947e-1383790b53bf
+                    status: scheduled
+                    currency: sgd
+                    amount: 15000
+                    source_currency: sgd
+                    source_amount: 15000
+                    bank_name: DBS Bank
+                    bank_account: •••1234
+                    remark: null
+                    reference: null
+                    arrival_date: null
+                    created_at: '2026-09-17T14:18:42+08:00'
+                    updated_at: '2026-09-17T14:18:42+08:00'
+        '404':
+          description: Not available in production
+      deprecated: false
+  /v1/payouts/{payout_id}:
+    get:
+      tags:
+      - Payouts
+      summary: Get payout details
+      description: Retrieve a single payout by ID. Returns 404 if the ID is not a payout for this business.
+      operationId: get-payout-details
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: payout_id
+        in: path
+        required: true
+        description: Payout ID
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Payout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payout'
+        '404':
+          description: Payout not found
+      deprecated: false
+  /v1/payouts/{payout_id}/charges:
+    get:
+      tags:
+      - Payouts
+      summary: List payout charges
+      description: List charges settled by this payout. Response shape matches `GET /v1/charges`. You can also pass `payout_id` as a query parameter on `GET /v1/charges`.
+      operationId: list-payout-charges
+      parameters:
+      - name: X-BUSINESS-API-KEY
+        in: header
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
+      - name: payout_id
+        in: path
+        required: true
+        description: Payout ID
+        schema:
+          type: string
+          format: uuid
+      - name: per_page
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 25
+      - name: cursor
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Paginated list of charges settled by the payout
+        '404':
+          description: Payout not found
+      deprecated: false
+components:
+  schemas:
+    Payout:
+      type: object
+      description: Settlement of the business's available balance to its linked bank account.
+      properties:
+        id:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum:
+          - scheduled
+          - processing
+          - paid
+          - failed
+          - canceled
+          - pending
+        currency:
+          type: string
+          example: sgd
+        amount:
+          type: number
+          description: Payout amount in major units
+        source_currency:
+          type: string
+          example: sgd
+        source_amount:
+          type: number
+        bank_name:
+          type: string
+          nullable: true
+        bank_account:
+          type: string
+          nullable: true
+          description: Masked bank account number
+        remark:
+          type: string
+          nullable: true
+        reference:
+          type: string
+          nullable: true
+        failure_code:
+          type: string
+          nullable: true
+          description: Present when status is failed
+        failure_message:
+          type: string
+          nullable: true
+        arrival_date:
+          type: string
+          format: date
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - status
+      - currency
+      - amount
+      - source_currency
+      - source_amount
+      - created_at
+      - updated_at
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true
+x-readme-fauxas: true

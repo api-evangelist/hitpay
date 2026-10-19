@@ -1225,7 +1225,7 @@ paths:
         - curl
       tags:
       - Products
-    post:
+    patch:
       summary: Update the product
       description: This endpoint allows you to update the product.
       operationId: update-product

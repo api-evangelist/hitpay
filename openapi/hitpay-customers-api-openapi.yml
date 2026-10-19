@@ -25,16 +25,24 @@ paths:
         schema:
           type: string
           example: b286daabf9921b5a01a4621f026c111e046f8911feba212996c92159b98427d
-      - name: page
-        in: query
-        schema:
-          type: number
-          default: 1
       - name: per_page
         in: query
+        description: Number of customers per page. Must be one of 5, 10, 20, 25, 50 or 100.
         schema:
-          type: number
-          default: 10
+          type: integer
+          enum:
+          - 5
+          - 10
+          - 20
+          - 25
+          - 50
+          - 100
+          default: 25
+      - name: cursor
+        in: query
+        description: This endpoint uses cursor pagination, not page numbers (a `page` parameter is ignored). Leave `cursor` empty for the first page. For the next page, pass the `meta.next_cursor` value from the previous response (or follow `links.next`). Keep the same `per_page`, and stop when `meta.next_cursor` is `null`.
+        schema:
+          type: string
       responses:
         '200':
           description: '200'
