@@ -1,0 +1,1479 @@
+{
+  "endpoint": "https://hitpay-mcp.vercel.app/api/mcp",
+  "captured": "2026-10-20",
+  "method": "initialize + tools/list (anonymous, no tool called; roadmap#992)",
+  "protocol_version": "2025-06-18",
+  "server_info": {
+    "name": "hitpay-mcp",
+    "version": "1.0.0"
+  },
+  "result": {
+    "tools": [
+      {
+        "name": "create_payment_request",
+        "description": "Create a new HitPay payment request. Returns a checkout URL where the customer can complete payment. Supports card, PayNow, GrabPay, FPX, GCash, QRIS, and 10+ other Southeast Asian payment methods. Set generate_qr: true for embedded QR codes — supported methods: paynow_online, shopee_pay, qris, doku_qris, ifpay_qris, wechat, wechat_pay, promptpay, opn_prompt_pay, truemoney, opn_true_money_qr, grabpay_direct, grabpay, grabpay_paylater, upi, upi_qr, gcash, gcash_qr, touch_n_go, atome, vietqr, vietqr_zalopay, zalopay.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "amount": {
+              "type": "number",
+              "minimum": 0.3,
+              "maximum": 999999999.99,
+              "description": "Payment amount (min 0.30)"
+            },
+            "currency": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 3,
+              "description": "3-letter currency code (SGD, MYR, PHP, USD, etc.)"
+            },
+            "payment_methods": {
+              "description": "Allowed payment methods (e.g., [\"card\", \"paynow_online\", \"grabpay_direct\"]). Defaults to all enabled methods.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "generate_qr": {
+              "description": "Generate QR code for QR-based methods (PayNow, GrabPay, etc.)",
+              "type": "boolean"
+            },
+            "email": {
+              "description": "Customer email address",
+              "type": "string",
+              "format": "email",
+              "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+            },
+            "name": {
+              "description": "Customer name",
+              "type": "string"
+            },
+            "phone": {
+              "description": "Customer phone number",
+              "type": "string"
+            },
+            "purpose": {
+              "description": "Payment description shown to customer",
+              "type": "string",
+              "maxLength": 255
+            },
+            "reference_number": {
+              "description": "Your internal order/reference ID",
+              "type": "string",
+              "maxLength": 255
+            },
+            "redirect_url": {
+              "description": "URL to redirect after payment completion",
+              "type": "string",
+              "format": "uri"
+            },
+            "webhook": {
+              "description": "URL for payment confirmation webhook",
+              "type": "string",
+              "format": "uri"
+            },
+            "allow_repeated_payments": {
+              "description": "Allow multiple payments on same request",
+              "type": "boolean"
+            },
+            "expiry_date": {
+              "description": "Expiration datetime (YYYY-MM-DD HH:mm:ss, Singapore timezone)",
+              "type": "string"
+            },
+            "expires_after": {
+              "description": "Relative expiry: \"5 minutes\", \"30 mins\", \"2 hours\", \"7 days\"",
+              "type": "string"
+            },
+            "send_email": {
+              "description": "Email receipt to customer after payment",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "amount",
+            "currency"
+          ]
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "get_payment_request",
+        "description": "Get the status and details of a payment request by its ID. Shows payment status, amount, checkout URL, and any completed payments.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Payment request ID (UUID format)"
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "list_payment_requests",
+        "description": "List payment requests with optional filters. Returns paginated results sorted by creation date.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "page": {
+              "description": "Page number (default: 1)",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            },
+            "per_page": {
+              "description": "Results per page (default: 25). Allowed: 10, 15, 20, 25, 40, 50, 75, 99",
+              "type": "string",
+              "enum": [
+                "10",
+                "15",
+                "20",
+                "25",
+                "40",
+                "50",
+                "75",
+                "99"
+              ]
+            },
+            "status": {
+              "description": "Filter by status",
+              "type": "string",
+              "enum": [
+                "pending",
+                "completed",
+                "failed",
+                "expired",
+                "canceled"
+              ]
+            }
+          }
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "update_payment_request",
+        "description": "Update a pending payment request. Only pending requests can be updated. You can change the amount, purpose, or customer details. Currency is required even if not changing it.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Payment request ID to update"
+            },
+            "currency": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 3,
+              "description": "Currency code (required, e.g., SGD, MYR)"
+            },
+            "amount": {
+              "description": "New payment amount",
+              "type": "number",
+              "minimum": 0.3
+            },
+            "purpose": {
+              "description": "New payment description",
+              "type": "string",
+              "maxLength": 255
+            },
+            "reference_number": {
+              "description": "New reference number",
+              "type": "string",
+              "maxLength": 255
+            },
+            "allow_repeated_payments": {
+              "description": "Allow multiple payments",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "id",
+            "currency"
+          ]
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "delete_payment_request",
+        "description": "Delete an incomplete/pending payment request. Only requests that have NOT been paid can be deleted. This action is permanent and cannot be undone.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "payment_request_id": {
+              "type": "string",
+              "description": "Payment request ID to delete"
+            }
+          },
+          "required": [
+            "payment_request_id"
+          ]
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "list_charges",
+        "description": "List payment charges with optional date, status, and keyword filters. Shows transaction history with amounts, fees, payment methods, and customer details. Uses cursor-based pagination.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "per_page": {
+              "description": "Results per page (default: 25). Allowed: 10, 15, 20, 25, 40, 50, 75, 99",
+              "type": "string",
+              "enum": [
+                "10",
+                "15",
+                "20",
+                "25",
+                "40",
+                "50",
+                "75",
+                "99"
+              ]
+            },
+            "cursor": {
+              "description": "Cursor for next page (from previous response next_cursor)",
+              "type": "string"
+            },
+            "date_from": {
+              "description": "Filter charges from this date (YYYY-MM-DD)",
+              "type": "string"
+            },
+            "date_to": {
+              "description": "Filter charges up to this date (YYYY-MM-DD)",
+              "type": "string"
+            },
+            "status": {
+              "description": "Filter by charge status (e.g., succeeded, refunded, failed)",
+              "type": "string"
+            },
+            "keywords": {
+              "description": "Search keyword to filter charges",
+              "type": "string"
+            }
+          }
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "get_charge_detail",
+        "description": "Get detailed information about a specific charge by its ID. Shows full transaction details including fees, payment method, and customer info.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Charge ID"
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "get_balances",
+        "description": "Get current account balances grouped by currency. Shows available, deposit, and pending amounts.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "get_account_status",
+        "description": "Get account verification status and payment provider availability. Shows bank account status, KYC verification progress, and which payment methods are enabled.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "create_customer",
+        "description": "Create a new customer record in HitPay. Customers can be associated with payment requests and invoices.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "name": {
+              "description": "Customer full name",
+              "type": "string"
+            },
+            "email": {
+              "description": "Customer email address",
+              "type": "string",
+              "format": "email",
+              "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+            },
+            "phone": {
+              "description": "Customer phone number",
+              "type": "string"
+            },
+            "street": {
+              "description": "Street address",
+              "type": "string"
+            },
+            "city": {
+              "description": "City",
+              "type": "string"
+            },
+            "state": {
+              "description": "State or province",
+              "type": "string"
+            },
+            "zip_code": {
+              "description": "Postal/ZIP code",
+              "type": "string"
+            },
+            "country": {
+              "description": "Country code (e.g., SG, MY, PH)",
+              "type": "string"
+            }
+          }
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "list_customers",
+        "description": "List customers with optional search. Returns customer names, emails, and contact info. Uses cursor-based pagination.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "per_page": {
+              "description": "Results per page (default: 25). Allowed: 10, 15, 20, 25, 40, 50, 75, 99",
+              "type": "string",
+              "enum": [
+                "10",
+                "15",
+                "20",
+                "25",
+                "40",
+                "50",
+                "75",
+                "99"
+              ]
+            },
+            "cursor": {
+              "description": "Cursor for next page (from previous response next_cursor)",
+              "type": "string"
+            },
+            "search": {
+              "description": "Search by name, email, or phone",
+              "type": "string"
+            }
+          }
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "get_customer",
+        "description": "Get detailed information about a specific customer by ID.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Customer ID"
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "create_invoice",
+        "description": "Create a new invoice. Optionally emails it to the customer. Returns the invoice URL for payment.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "amount": {
+              "type": "number",
+              "minimum": 0.01,
+              "description": "Invoice total amount"
+            },
+            "currency": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 3,
+              "description": "3-letter currency code (SGD, MYR, etc.)"
+            },
+            "customer_email": {
+              "type": "string",
+              "format": "email",
+              "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$",
+              "description": "Customer email address"
+            },
+            "customer_name": {
+              "description": "Customer name",
+              "type": "string"
+            },
+            "customer_id": {
+              "description": "Existing customer ID (use instead of email/name)",
+              "type": "string"
+            },
+            "invoice_number": {
+              "type": "string",
+              "description": "Invoice number (e.g., \"INV-001\")"
+            },
+            "invoice_date": {
+              "description": "Invoice date (YYYY-MM-DD, defaults to today)",
+              "type": "string"
+            },
+            "due_date": {
+              "description": "Due date (YYYY-MM-DD)",
+              "type": "string"
+            },
+            "reference": {
+              "description": "Internal reference",
+              "type": "string"
+            },
+            "memo": {
+              "description": "Note or memo on the invoice",
+              "type": "string"
+            },
+            "send_email": {
+              "description": "Email the invoice to the customer",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "amount",
+            "currency",
+            "customer_email",
+            "invoice_number"
+          ]
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "list_invoices",
+        "description": "List invoices with optional filters. Shows invoice amounts, statuses, and customer info. Uses cursor-based pagination.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "per_page": {
+              "description": "Results per page (default: 25). Allowed: 10, 15, 20, 25, 40, 50, 75, 99",
+              "type": "string",
+              "enum": [
+                "10",
+                "15",
+                "20",
+                "25",
+                "40",
+                "50",
+                "75",
+                "99"
+              ]
+            },
+            "cursor": {
+              "description": "Cursor for next page (from previous response next_cursor)",
+              "type": "string"
+            },
+            "status": {
+              "description": "Filter by status (e.g., pending, paid, overdue)",
+              "type": "string"
+            }
+          }
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "create_embedded_qr",
+        "description": "Create a QR code to collect a payment. Recommended for all QR-based payment collection. Generates a one-time dynamic QR via a payment request — expires after payment. Also supports borderless (cross-border) QR — pass a foreign payment method (e.g., gcash_qr from SG) and the response includes borderless_fx with customer_pays, merchant_receives, fx_rate, and display_rate. Webhook event: payment_request.completed.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "currency": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 3,
+              "description": "3-letter currency code (SGD, MYR, PHP, THB, IDR, INR, etc.)"
+            },
+            "payment_method": {
+              "type": "string",
+              "description": "Payment method code for the QR. Supported: paynow_online, shopee_pay, doku_qris (ID merchants), ifpay_qris (other merchants), wechat_pay, opn_prompt_pay, opn_true_money_qr, grabpay_direct, grabpay_paylater, upi_qr, gcash_qr, qrph_netbank, touch_n_go, atome"
+            },
+            "amount": {
+              "type": "number",
+              "minimum": 0.3,
+              "description": "Payment amount in merchant currency"
+            },
+            "purpose": {
+              "description": "Payment description",
+              "type": "string"
+            },
+            "reference_number": {
+              "description": "Internal reference",
+              "type": "string"
+            },
+            "email": {
+              "description": "Customer email",
+              "type": "string",
+              "format": "email",
+              "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+            },
+            "name": {
+              "description": "Customer name",
+              "type": "string"
+            },
+            "phone": {
+              "description": "Customer phone number",
+              "type": "string"
+            }
+          },
+          "required": [
+            "currency",
+            "payment_method",
+            "amount"
+          ]
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "create_static_qr",
+        "description": "Create a permanent static QR code. Reusable physical QR where customers manually enter the amount. Best for in-store, donation drives, or multi-location use. Only supports: paynow_online, upi_qr, qrph_netbank. Webhook event: charge.created (includes static_qr.id and static_qr.reference for reconciliation). For one-time payment QR codes, use create_embedded_qr instead.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Display name for the static QR code"
+            },
+            "payment_provider_method": {
+              "type": "string",
+              "enum": [
+                "paynow_online",
+                "upi_qr",
+                "qrph_netbank"
+              ],
+              "description": "Payment method: paynow_online, upi_qr, or qrph_netbank"
+            },
+            "amount": {
+              "description": "Fixed payment amount (optional — if omitted, customer enters amount)",
+              "type": "number",
+              "minimum": 0.01
+            },
+            "currency": {
+              "description": "3-letter currency code (required if amount is set)",
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 3
+            },
+            "device_id": {
+              "description": "Device identifier",
+              "type": "string"
+            },
+            "location_id": {
+              "description": "Location identifier",
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "payment_provider_method"
+          ]
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "list_static_qrs",
+        "description": "List all static QR codes. Returns permanent, reusable QR codes created via create_static_qr.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "cursor": {
+              "description": "Pagination cursor from previous response",
+              "type": "string"
+            },
+            "per_page": {
+              "description": "Results per page (10, 15, 20, 25, 40, 50, 75, 99)",
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            }
+          }
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "get_static_qr",
+        "description": "Get full details of a static QR code by its ID. Returns name, QR value, payment method, amount, device_id, and location_id.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "static_qr_id": {
+              "type": "string",
+              "description": "Static QR code ID"
+            }
+          },
+          "required": [
+            "static_qr_id"
+          ]
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "update_static_qr",
+        "description": "Update a static QR code. You can change the name, amount, currency, device_id, or location_id.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "static_qr_id": {
+              "type": "string",
+              "description": "Static QR code ID to update"
+            },
+            "name": {
+              "description": "New display name",
+              "type": "string"
+            },
+            "amount": {
+              "description": "New fixed amount (omit to keep customer-entered)",
+              "type": "number",
+              "minimum": 0.01
+            },
+            "currency": {
+              "description": "Currency code (required if amount is set)",
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 3
+            },
+            "device_id": {
+              "description": "Device identifier",
+              "type": "string"
+            },
+            "location_id": {
+              "description": "Location identifier",
+              "type": "string"
+            }
+          },
+          "required": [
+            "static_qr_id"
+          ]
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "delete_static_qr",
+        "description": "Delete a static QR code permanently. This action cannot be undone.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "static_qr_id": {
+              "type": "string",
+              "description": "Static QR code ID to delete"
+            }
+          },
+          "required": [
+            "static_qr_id"
+          ]
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "list_products",
+        "description": "List products in the HitPay product catalog. Shows product names, prices, and stock levels.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "page": {
+              "description": "Page number (default: 1)",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            }
+          }
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "get_account_info",
+        "description": "Get account balance summary. Shows available balance by currency.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "list_subscription_plans",
+        "description": "List recurring billing / subscription plans. Shows plan names, amounts, billing cycles, and status.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "page": {
+              "description": "Page number (default: 1)",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            },
+            "per_page": {
+              "description": "Results per page (default: 10). Allowed: 10, 15, 20, 25, 40, 50, 75, 99",
+              "type": "string",
+              "enum": [
+                "10",
+                "15",
+                "20",
+                "25",
+                "40",
+                "50",
+                "75",
+                "99"
+              ]
+            }
+          }
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "get_sales_summary",
+        "description": "Get aggregated sales analytics for a time period. Shows total sales, fees, average transaction value by currency, top payment methods, and transaction status breakdown. Use period presets or explicit date range.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "period": {
+              "description": "Preset period (default: last_30_days). Ignored if date_from/date_to are set.",
+              "type": "string",
+              "enum": [
+                "today",
+                "last_7_days",
+                "last_30_days",
+                "this_month",
+                "last_month",
+                "this_year"
+              ]
+            },
+            "date_from": {
+              "description": "Start date (YYYY-MM-DD). Overrides period.",
+              "type": "string"
+            },
+            "date_to": {
+              "description": "End date (YYYY-MM-DD). Overrides period.",
+              "type": "string"
+            }
+          }
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "estimate_transfer",
+        "description": "Preview transfer fees and exchange rate before sending money. Provide either source_amount (how much to send from your account) or payment_amount (how much the beneficiary receives) — not both.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "beneficiary_id": {
+              "type": "string",
+              "description": "Beneficiary ID to estimate transfer for"
+            },
+            "source_currency": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 3,
+              "description": "Source currency from your HitPay balance (SGD, MYR, etc.)"
+            },
+            "source_amount": {
+              "description": "Amount to debit from your account (provide this OR payment_amount)",
+              "type": "number",
+              "minimum": 0.01
+            },
+            "payment_amount": {
+              "description": "Amount beneficiary receives (provide this OR source_amount)",
+              "type": "number",
+              "minimum": 0.01
+            }
+          },
+          "required": [
+            "beneficiary_id",
+            "source_currency"
+          ]
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "create_transfer",
+        "description": "Send money to a beneficiary. IMPORTANT: This initiates a real money transfer from your HitPay balance. Use estimate_transfer first to preview fees and exchange rates. You can reference a saved beneficiary by ID, or provide inline beneficiary details for a one-time transfer.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "source_currency": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 3,
+              "description": "Source currency from your HitPay balance"
+            },
+            "payment_amount": {
+              "type": "number",
+              "minimum": 0.01,
+              "description": "Amount the beneficiary receives"
+            },
+            "beneficiary_id": {
+              "description": "Saved beneficiary ID (use this OR provide inline beneficiary fields below)",
+              "type": "string"
+            },
+            "beneficiary_country": {
+              "description": "Inline beneficiary: 2-letter country code",
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 2
+            },
+            "beneficiary_transfer_method": {
+              "description": "Inline beneficiary: transfer method",
+              "type": "string",
+              "enum": [
+                "bank_transfer",
+                "local"
+              ]
+            },
+            "beneficiary_transfer_type": {
+              "description": "Inline beneficiary: transfer type",
+              "type": "string",
+              "enum": [
+                "local",
+                "swift"
+              ]
+            },
+            "beneficiary_currency": {
+              "description": "Inline beneficiary: currency code",
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 3
+            },
+            "beneficiary_holder_type": {
+              "description": "Inline beneficiary: holder type",
+              "type": "string",
+              "enum": [
+                "individual",
+                "company"
+              ]
+            },
+            "beneficiary_holder_name": {
+              "description": "Inline beneficiary: account holder name",
+              "type": "string"
+            },
+            "beneficiary_bank_swift_code": {
+              "description": "Inline beneficiary: bank SWIFT code",
+              "type": "string"
+            },
+            "beneficiary_account_number": {
+              "description": "Inline beneficiary: bank account number",
+              "type": "string"
+            },
+            "remark": {
+              "description": "Transfer note/memo",
+              "type": "string"
+            }
+          },
+          "required": [
+            "source_currency",
+            "payment_amount"
+          ]
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "get_transfer",
+        "description": "Get the status and details of a transfer by ID. Use this to verify delivery after creating a transfer.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "transfer_id": {
+              "type": "string",
+              "description": "Transfer ID"
+            }
+          },
+          "required": [
+            "transfer_id"
+          ]
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "list_transfers",
+        "description": "List transfers with optional filters. Uses cursor-based pagination.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "beneficiary_id": {
+              "description": "Filter by beneficiary ID",
+              "type": "string"
+            },
+            "status": {
+              "description": "Filter by status",
+              "type": "string",
+              "enum": [
+                "scheduled",
+                "processing",
+                "paid",
+                "failed",
+                "canceled"
+              ]
+            },
+            "keywords": {
+              "description": "Search by keywords",
+              "type": "string"
+            },
+            "per_page": {
+              "description": "Results per page",
+              "type": "string",
+              "enum": [
+                "10",
+                "15",
+                "20",
+                "25",
+                "40",
+                "50",
+                "75",
+                "99"
+              ]
+            },
+            "cursor": {
+              "description": "Pagination cursor from previous response",
+              "type": "string"
+            }
+          }
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "create_beneficiary",
+        "description": "Create a new transfer beneficiary (recipient) for sending money. The beneficiary can be reused across multiple transfers.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "country": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 2,
+              "description": "2-letter country code (SG, MY, PH, US, etc.)"
+            },
+            "transfer_method": {
+              "type": "string",
+              "enum": [
+                "bank_transfer",
+                "local"
+              ],
+              "description": "Transfer method"
+            },
+            "transfer_type": {
+              "type": "string",
+              "enum": [
+                "local",
+                "swift"
+              ],
+              "description": "Transfer type"
+            },
+            "currency": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 3,
+              "description": "3-letter currency code (SGD, MYR, USD, etc.)"
+            },
+            "holder_type": {
+              "type": "string",
+              "enum": [
+                "individual",
+                "company"
+              ],
+              "description": "Account holder type"
+            },
+            "holder_name": {
+              "type": "string",
+              "description": "Full name of the account holder"
+            },
+            "bank_swift_code": {
+              "type": "string",
+              "description": "Bank SWIFT/BIC code"
+            },
+            "account_number": {
+              "type": "string",
+              "description": "Bank account number"
+            },
+            "email": {
+              "description": "Beneficiary email for notifications",
+              "type": "string",
+              "format": "email",
+              "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+            },
+            "nickname": {
+              "description": "Friendly nickname for this beneficiary",
+              "type": "string"
+            }
+          },
+          "required": [
+            "country",
+            "transfer_method",
+            "transfer_type",
+            "currency",
+            "holder_type",
+            "holder_name",
+            "bank_swift_code",
+            "account_number"
+          ]
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "get_beneficiary",
+        "description": "Get details of a transfer beneficiary by ID. Account numbers are redacted for security.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "beneficiary_id": {
+              "type": "string",
+              "description": "Beneficiary ID"
+            }
+          },
+          "required": [
+            "beneficiary_id"
+          ]
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "list_beneficiaries",
+        "description": "List all transfer beneficiaries. Uses cursor-based pagination.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "per_page": {
+              "description": "Results per page",
+              "type": "string",
+              "enum": [
+                "10",
+                "15",
+                "20",
+                "25",
+                "40",
+                "50",
+                "75",
+                "99"
+              ]
+            },
+            "cursor": {
+              "description": "Pagination cursor from previous response",
+              "type": "string"
+            }
+          }
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "create_refund",
+        "description": "Issue a full or partial refund for a completed payment. IMPORTANT: Refunds are irreversible — confirm the charge ID and amount with the user before executing. The payment_id is the charge ID (not the payment request ID).",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "payment_id": {
+              "type": "string",
+              "description": "The charge/payment ID to refund (UUID format)"
+            },
+            "amount": {
+              "type": "number",
+              "minimum": 0.01,
+              "description": "Amount to refund. Must be <= original charge amount. Use the full amount for a complete refund."
+            },
+            "webhook": {
+              "description": "Webhook URL for refund status notifications",
+              "type": "string",
+              "format": "uri"
+            },
+            "send_email": {
+              "description": "Send refund confirmation email to customer",
+              "type": "boolean"
+            },
+            "email": {
+              "description": "Customer email (overrides the one on the original charge)",
+              "type": "string",
+              "format": "email",
+              "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+            }
+          },
+          "required": [
+            "payment_id",
+            "amount"
+          ]
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "create_recurring_billing",
+        "description": "Create a new recurring billing subscription. Links a customer to a billing cycle. If plan_id is provided, the plan's amount/currency/cycle will be used. Otherwise, provide name, amount, currency, and cycle directly.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "customer_email": {
+              "type": "string",
+              "format": "email",
+              "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$",
+              "description": "Customer email address"
+            },
+            "start_date": {
+              "type": "string",
+              "description": "Subscription start date (YYYY-MM-DD)"
+            },
+            "plan_id": {
+              "description": "Existing subscription plan ID (if set, uses plan amount/currency/cycle)",
+              "type": "string"
+            },
+            "name": {
+              "description": "Subscription name (required if no plan_id)",
+              "type": "string"
+            },
+            "amount": {
+              "description": "Billing amount per cycle (required if no plan_id)",
+              "type": "number",
+              "minimum": 0.01
+            },
+            "currency": {
+              "description": "Currency code (required if no plan_id)",
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 3
+            },
+            "cycle": {
+              "description": "Billing cycle (required if no plan_id)",
+              "type": "string",
+              "enum": [
+                "weekly",
+                "monthly",
+                "yearly",
+                "custom"
+              ]
+            },
+            "cycle_repeat": {
+              "description": "Number of cycles to repeat (for custom cycle)",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            },
+            "cycle_frequency": {
+              "description": "Frequency unit (for custom cycle)",
+              "type": "string",
+              "enum": [
+                "day",
+                "week",
+                "month",
+                "year"
+              ]
+            },
+            "customer_name": {
+              "type": "string",
+              "description": "Customer name"
+            },
+            "redirect_url": {
+              "description": "Redirect URL after payment",
+              "type": "string",
+              "format": "uri"
+            },
+            "webhook": {
+              "description": "Webhook URL for billing events",
+              "type": "string",
+              "format": "uri"
+            },
+            "reference": {
+              "description": "Your internal reference",
+              "type": "string"
+            },
+            "payment_methods": {
+              "description": "Allowed payment methods",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "save_card": {
+              "description": "Save card for future charges",
+              "type": "boolean"
+            },
+            "send_email": {
+              "description": "Email billing notification to customer",
+              "type": "boolean"
+            },
+            "times_to_be_charged": {
+              "description": "Total number of charges before auto-cancellation",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "customer_email",
+            "start_date",
+            "customer_name"
+          ]
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "cancel_recurring_billing",
+        "description": "Cancel a recurring billing subscription. This stops all future charges. This action is permanent and cannot be undone.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "recurring_billing_id": {
+              "type": "string",
+              "description": "Recurring billing subscription ID to cancel"
+            }
+          },
+          "required": [
+            "recurring_billing_id"
+          ]
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "charge_saved_card",
+        "description": "Charge a saved card on demand for an existing recurring billing subscription. The subscription must have a saved card from a previous payment.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "recurring_billing_id": {
+              "type": "string",
+              "description": "Recurring billing subscription ID"
+            },
+            "amount": {
+              "type": "number",
+              "minimum": 0.01,
+              "description": "Amount to charge"
+            }
+          },
+          "required": [
+            "recurring_billing_id",
+            "amount"
+          ]
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "create_webhook_event",
+        "description": "Register a webhook URL to receive event notifications. You can subscribe to specific event types like charge.created, transfer.paid, payment_request.completed, etc.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "format": "uri",
+              "description": "Webhook endpoint URL (must be HTTPS in production)"
+            },
+            "event_types": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "charge.created",
+                  "charge.updated",
+                  "payout.created",
+                  "order.created",
+                  "order.updated",
+                  "invoice.created",
+                  "transfer.created",
+                  "transfer.updated",
+                  "transfer.processing",
+                  "transfer.scheduled",
+                  "transfer.paid",
+                  "transfer.failed",
+                  "transfer.canceled",
+                  "payment_request.completed",
+                  "payment_request.failed"
+                ]
+              },
+              "description": "Event types to subscribe to: charge.created, charge.updated, payout.created, order.created, order.updated, invoice.created, transfer.created/updated/processing/scheduled/paid/failed/canceled, payment_request.completed/failed"
+            },
+            "name": {
+              "description": "Friendly name for this webhook",
+              "type": "string"
+            }
+          },
+          "required": [
+            "url",
+            "event_types"
+          ]
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "delete_webhook_event",
+        "description": "Delete a webhook event subscription. This stops all notifications to the webhook URL. This action is permanent.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "webhook_event_id": {
+              "type": "string",
+              "description": "Webhook event ID to delete"
+            }
+          },
+          "required": [
+            "webhook_event_id"
+          ]
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "get_remitter",
+        "description": "Get details of a remitter by ID. Remitters are the sending parties in incoming transfers.",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "remitter_id": {
+              "type": "string",
+              "description": "Remitter ID"
+            }
+          },
+          "required": [
+            "remitter_id"
+          ]
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      },
+      {
+        "name": "get_supported_qr_methods",
+        "description": "Discover which QR payment methods are available for a given country or currency. Cross-references a static country→provider→method map against your live account status to show exactly which QR methods you can use with create_embedded_qr or create_static_qr. Set borderless=true to discover cross-border QR methods (e.g., SG merchant accepting GCash PHP payments).",
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "country": {
+              "description": "ISO 3166-1 alpha-2 country code (SG, MY, PH, IN, ID, VN, CN, TH)",
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 2
+            },
+            "currency": {
+              "description": "3-letter currency code (SGD, MYR, PHP, INR, IDR, VND, CNY, THB)",
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 3
+            },
+            "borderless": {
+              "description": "Set true to discover cross-border QR methods available to your merchant country. Shows foreign payment methods you can accept with automatic FX conversion.",
+              "type": "boolean"
+            }
+          }
+        },
+        "execution": {
+          "taskSupport": "forbidden"
+        }
+      }
+    ]
+  }
+}

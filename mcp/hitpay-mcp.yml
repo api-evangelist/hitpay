@@ -100,3 +100,45 @@ deployment:
   tools: 39
   checked: '2026-08-12'
   source: catalog MCP census
+tool_quality:
+  tool_count: 39
+  tokens_total: 8627
+  tokens_per_tool_median: 178
+  heavy_tools: []
+  heavy_tool_count: 0
+  params_total: 157
+  params_undescribed: 0
+  params_described_pct: 100.0
+  tools_with_undescribed_params: 0
+  tools_annotated: 0
+  annotated_pct: 0.0
+  state_changing_unhinted:
+  - create_payment_request
+  - update_payment_request
+  - delete_payment_request
+  - create_customer
+  - create_invoice
+  - create_embedded_qr
+  - create_static_qr
+  - update_static_qr
+  - delete_static_qr
+  - create_transfer
+  - create_beneficiary
+  - create_refund
+  - create_recurring_billing
+  - cancel_recurring_billing
+  - charge_saved_card
+  - create_webhook_event
+  - delete_webhook_event
+  tools_missing_schema: 0
+  short_descriptions: 0
+  duplicate_descriptions: 0
+  duplicate_names: 0
+  nonportable_names: []
+  output_schema_count: 0
+  token_estimate: chars/3.6 of each compact tool definition
+  source: mcp/hitpay-mcp-tools.json
+  measured: '2026-10-20'
+  scored: false
+  note: Facts from the saved tools/list capture (mcp_tool_quality.py); recorded, not scored. Checks learned
+    from Glimind's agent-readiness audit.
