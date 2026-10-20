@@ -23,66 +23,147 @@ notes: Official HitPay hosted MCP server. The published Claude Code plugin adver
   are intentionally excluded from the skill/tool surface). Tools are grounded in real OpenAPI operationIds
   from openapi/hitpay-openapi-original.json.
 tools:
-- name: get_account_status
-  description: Check KYC status and enabled providers.
-  source_operation: openapi/hitpay-openapi-original.json#get-account-status
-- name: get_balances
-  description: Current account balances.
-  source_operation: openapi/hitpay-openapi-original.json#get-balances
+- name: create_payment_request
+  description: 'Create a new HitPay payment request. Returns a checkout URL where the customer can complete
+    payment. Supports card, PayNow, GrabPay, FPX, GCash, QRIS, and 10+ other Southeast Asian payment methods.
+    Set generate_qr: true for embedded QR codes — supported methods: paynow_online, shopee_pay, qris,
+    doku_qris, ifpay_qris, wechat, wechat_pay, promptpay, opn_prompt_pay, truemoney, opn_true_money_qr,
+    grabpay_direct, grabpay, grabpay_paylater, upi, upi_qr, gcash, gcash_qr, touch_n_go, atome, vietqr,
+    vietqr_zalopay, zalopay.'
+  source_operation: openapi/hitpay-openapi-original.json#create-payment-request
 - name: get_payment_request
-  description: Payment request details.
+  description: Get the status and details of a payment request by its ID. Shows payment status, amount,
+    checkout URL, and any completed payments.
   source_operation: openapi/hitpay-openapi-original.json#get-payment-status
 - name: list_payment_requests
-  description: List payment requests.
+  description: List payment requests with optional filters. Returns paginated results sorted by creation
+    date.
   source_operation: openapi/hitpay-openapi-original.json#get-payment-requests
+- name: update_payment_request
+  description: Update a pending payment request. Only pending requests can be updated. You can change
+    the amount, purpose, or customer details. Currency is required even if not changing it.
+- name: delete_payment_request
+  description: Delete an incomplete/pending payment request. Only requests that have NOT been paid can
+    be deleted. This action is permanent and cannot be undone.
 - name: list_charges
-  description: List charges with filters.
+  description: List payment charges with optional date, status, and keyword filters. Shows transaction
+    history with amounts, fees, payment methods, and customer details. Uses cursor-based pagination.
   source_operation: openapi/hitpay-openapi-original.json#get-all-charges
 - name: get_charge_detail
-  description: Charge details incl. fee breakdown.
+  description: Get detailed information about a specific charge by its ID. Shows full transaction details
+    including fees, payment method, and customer info.
   source_operation: openapi/hitpay-openapi-original.json#get-charge
+- name: get_balances
+  description: Get current account balances grouped by currency. Shows available, deposit, and pending
+    amounts.
+  source_operation: openapi/hitpay-openapi-original.json#get-balances
+- name: get_account_status
+  description: Get account verification status and payment provider availability. Shows bank account status,
+    KYC verification progress, and which payment methods are enabled.
+  source_operation: openapi/hitpay-openapi-original.json#get-account-status
+- name: create_customer
+  description: Create a new customer record in HitPay. Customers can be associated with payment requests
+    and invoices.
+  source_operation: openapi/hitpay-openapi-original.json#create-customer
 - name: list_customers
-  description: List customers.
+  description: List customers with optional search. Returns customer names, emails, and contact info.
+    Uses cursor-based pagination.
   source_operation: openapi/hitpay-openapi-original.json#get-all-customers
 - name: get_customer
-  description: Customer details.
+  description: Get detailed information about a specific customer by ID.
   source_operation: openapi/hitpay-openapi-original.json#get-customer-details
-- name: list_invoices
-  description: List invoices.
-  source_operation: openapi/hitpay-openapi-original.json#get-invoices
-- name: list_subscription_plans
-  description: List subscription plans.
-  source_operation: openapi/hitpay-openapi-original.json#get-all-subscription-plan
-- name: list_static_qrs
-  description: List static QR codes.
-  source_operation: openapi/hitpay-openapi-original.json#get-static-qr
-- name: get_supported_qr_methods
-  description: Available QR payment methods.
-  source_operation: docs
-- name: get_account_info
-  description: Account summary.
-  source_operation: openapi/hitpay-openapi-original.json#get-account-status
-- name: create_payment_request
-  description: Create a payment request with a checkout URL.
-  source_operation: openapi/hitpay-openapi-original.json#create-payment-request
-- name: create_customer
-  description: Create a customer record.
-  source_operation: openapi/hitpay-openapi-original.json#create-customer
 - name: create_invoice
-  description: Create an invoice.
+  description: Create a new invoice. Optionally emails it to the customer. Returns the invoice URL for
+    payment.
   source_operation: openapi/hitpay-openapi-original.json#create-invoice
+- name: list_invoices
+  description: List invoices with optional filters. Shows invoice amounts, statuses, and customer info.
+    Uses cursor-based pagination.
+  source_operation: openapi/hitpay-openapi-original.json#get-invoices
 - name: create_embedded_qr
-  description: Generate a QR for payment collection.
+  description: 'Create a QR code to collect a payment. Recommended for all QR-based payment collection.
+    Generates a one-time dynamic QR via a payment request — expires after payment. Also supports borderless
+    (cross-border) QR — pass a foreign payment method (e.g., gcash_qr from SG) and the response includes
+    borderless_fx with customer_pays, merchant_receives, fx_rate, and display_rate. Webhook event: payment_request.completed.'
   source_operation: docs
 - name: create_static_qr
-  description: Create a permanent (POS) QR.
+  description: 'Create a permanent static QR code. Reusable physical QR where customers manually enter
+    the amount. Best for in-store, donation drives, or multi-location use. Only supports: paynow_online,
+    upi_qr, qrph_netbank. Webhook event: charge.created (includes static_qr.id and static_qr.reference
+    for reconciliation). For one-time payment QR codes, use create_embedded_qr instead.'
   source_operation: openapi/hitpay-openapi-original.json#create-static-qr
-- name: create_webhook_event
-  description: Register a webhook URL.
-  source_operation: openapi/hitpay-openapi-original.json#create-webhook-event
+- name: list_static_qrs
+  description: List all static QR codes. Returns permanent, reusable QR codes created via create_static_qr.
+  source_operation: openapi/hitpay-openapi-original.json#get-static-qr
+- name: get_static_qr
+  description: Get full details of a static QR code by its ID. Returns name, QR value, payment method,
+    amount, device_id, and location_id.
+- name: update_static_qr
+  description: Update a static QR code. You can change the name, amount, currency, device_id, or location_id.
+- name: delete_static_qr
+  description: Delete a static QR code permanently. This action cannot be undone.
+- name: list_products
+  description: List products in the HitPay product catalog. Shows product names, prices, and stock levels.
+- name: get_account_info
+  description: Get account balance summary. Shows available balance by currency.
+  source_operation: openapi/hitpay-openapi-original.json#get-account-status
+- name: list_subscription_plans
+  description: List recurring billing / subscription plans. Shows plan names, amounts, billing cycles,
+    and status.
+  source_operation: openapi/hitpay-openapi-original.json#get-all-subscription-plan
+- name: get_sales_summary
+  description: Get aggregated sales analytics for a time period. Shows total sales, fees, average transaction
+    value by currency, top payment methods, and transaction status breakdown. Use period presets or explicit
+    date range.
+- name: estimate_transfer
+  description: Preview transfer fees and exchange rate before sending money. Provide either source_amount
+    (how much to send from your account) or payment_amount (how much the beneficiary receives) — not both.
+- name: create_transfer
+  description: 'Send money to a beneficiary. IMPORTANT: This initiates a real money transfer from your
+    HitPay balance. Use estimate_transfer first to preview fees and exchange rates. You can reference
+    a saved beneficiary by ID, or provide inline beneficiary details for a one-time transfer.'
+- name: get_transfer
+  description: Get the status and details of a transfer by ID. Use this to verify delivery after creating
+    a transfer.
+- name: list_transfers
+  description: List transfers with optional filters. Uses cursor-based pagination.
+- name: create_beneficiary
+  description: Create a new transfer beneficiary (recipient) for sending money. The beneficiary can be
+    reused across multiple transfers.
+- name: get_beneficiary
+  description: Get details of a transfer beneficiary by ID. Account numbers are redacted for security.
+- name: list_beneficiaries
+  description: List all transfer beneficiaries. Uses cursor-based pagination.
+- name: create_refund
+  description: 'Issue a full or partial refund for a completed payment. IMPORTANT: Refunds are irreversible
+    — confirm the charge ID and amount with the user before executing. The payment_id is the charge ID
+    (not the payment request ID).'
 - name: create_recurring_billing
-  description: Set up a subscription.
+  description: Create a new recurring billing subscription. Links a customer to a billing cycle. If plan_id
+    is provided, the plan's amount/currency/cycle will be used. Otherwise, provide name, amount, currency,
+    and cycle directly.
   source_operation: openapi/hitpay-openapi-original.json#create-a-recurring-billing
+- name: cancel_recurring_billing
+  description: Cancel a recurring billing subscription. This stops all future charges. This action is
+    permanent and cannot be undone.
+- name: charge_saved_card
+  description: Charge a saved card on demand for an existing recurring billing subscription. The subscription
+    must have a saved card from a previous payment.
+- name: create_webhook_event
+  description: Register a webhook URL to receive event notifications. You can subscribe to specific event
+    types like charge.created, transfer.paid, payment_request.completed, etc.
+  source_operation: openapi/hitpay-openapi-original.json#create-webhook-event
+- name: delete_webhook_event
+  description: Delete a webhook event subscription. This stops all notifications to the webhook URL. This
+    action is permanent.
+- name: get_remitter
+  description: Get details of a remitter by ID. Remitters are the sending parties in incoming transfers.
+- name: get_supported_qr_methods
+  description: Discover which QR payment methods are available for a given country or currency. Cross-references
+    a static country→provider→method map against your live account status to show exactly which QR methods
+    you can use with create_embedded_qr or create_static_qr. Set borderless=true to discover cross-border
+    QR methods (e.g., SG merchant accepting GCash PHP payments).
+  source_operation: docs
 commands:
 - name: /hitpay:init
   description: Scaffold a complete integration (e.g. `/hitpay:init nextjs sg,my`).
@@ -142,3 +223,4 @@ tool_quality:
   scored: false
   note: Facts from the saved tools/list capture (mcp_tool_quality.py); recorded, not scored. Checks learned
     from Glimind's agent-readiness audit.
+tools_count: 39
