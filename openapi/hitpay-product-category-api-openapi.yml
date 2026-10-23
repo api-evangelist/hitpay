@@ -245,3 +245,9 @@ x-readme:
   proxy-enabled: true
   samples-enabled: true
 x-readme-fauxas: true
+x-provenance:
+  method: harvested
+  publisher: HitPay
+  source: https://docs.hitpayapp.com/openapi.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
