@@ -1,4 +1,4 @@
-# HitPay (hitpay)
+# HitPay
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,128 +66,192 @@
 
 HitPay is a Singapore-headquartered all-in-one payments platform for small and medium businesses across Asia-Pacific, unifying online checkout, point of sale, and B2B billing. Its REST API creates hosted Payment Requests, runs Recurring Billing on saved cards, and issues Refunds, with first-class Southeast Asian local methods (PayNow, GrabPay, WeChat Pay, Alipay, ShopeePay, Atome) alongside cards. Requests authenticate with the X-BUSINESS-API-KEY header.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/hitpay/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/hitpay/refs/heads/main/apis.yml)
+**Areas:** Payments · Fintech · PayNow · Southeast Asia · Small Business
 
-## Tags
+## HitPay on APIs.io
 
-- Payments
-- Fintech
-- PayNow
-- Southeast Asia
-- SMB
+Everything profiled for HitPay is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/hitpay/](https://apis.io/providers/hitpay/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (24)
 
-- **Created:** 2026-07-17
-- **Modified:** 2026-07-17
+- [HitPay Account Status API](https://apis.io/apis/hitpay/hitpay-account-status-api/) — The Account Status API from HitPay — 1 operation(s) for account status.
+- [HitPay Balances API](https://apis.io/apis/hitpay/hitpay-balances-api/) — The Balances API from HitPay — 3 operation(s) for balances.
+- [HitPay Beneficiaries API](https://apis.io/apis/hitpay/hitpay-beneficiaries-api/) — The Beneficiaries API from HitPay — 3 operation(s) for beneficiaries.
+- [HitPay Charge API](https://apis.io/apis/hitpay/hitpay-charge-api/) — The Charge API from HitPay — 1 operation(s) for charge.
+- [HitPay Charges API](https://apis.io/apis/hitpay/hitpay-charges-api/) — The Charges API from HitPay — 4 operation(s) for charges.
+- [HitPay Customers API](https://apis.io/apis/hitpay/hitpay-customers-api/) — The Customers API from HitPay — 2 operation(s) for customers.
+- [HitPay Invoices API](https://apis.io/apis/hitpay/hitpay-invoices-api/) — The Invoices API from HitPay — 2 operation(s) for invoices.
+- [HitPay Notifications API](https://apis.io/apis/hitpay/hitpay-notifications-api/) — The Notifications API from HitPay — 1 operation(s) for notifications.
+- [HitPay Orders API](https://apis.io/apis/hitpay/hitpay-orders-api/) — The Orders API from HitPay — 2 operation(s) for orders.
+- [HitPay Payment Requests API](https://apis.io/apis/hitpay/hitpay-payment-requests-api/) — The Payment Requests API from HitPay — 4 operation(s) for payment requests.
+- [HitPay Product Category API](https://apis.io/apis/hitpay/hitpay-product-category-api/) — The Product Category API from HitPay — 1 operation(s) for product category.
+- [HitPay Products API](https://apis.io/apis/hitpay/hitpay-products-api/) — The Products API from HitPay — 2 operation(s) for products.
+- [HitPay Readers API](https://apis.io/apis/hitpay/hitpay-readers-api/) — The Readers API from HitPay — 2 operation(s) for readers.
+- [HitPay Recurring Billing API](https://apis.io/apis/hitpay/hitpay-recurring-billing-api/) — The Recurring Billing API from HitPay — 5 operation(s) for recurring billing.
+- [HitPay Refund API](https://apis.io/apis/hitpay/hitpay-refund-api/) — The Refund API from HitPay — 2 operation(s) for refund.
+- [HitPay Refunds API](https://apis.io/apis/hitpay/hitpay-refunds-api/) — Refund completed PayNow or card charges.
+- [HitPay Remitters API](https://apis.io/apis/hitpay/hitpay-remitters-api/) — The Remitters API from HitPay — 2 operation(s) for remitters.
+- [HitPay Staffs API](https://apis.io/apis/hitpay/hitpay-staffs-api/) — The Staffs API from HitPay — 2 operation(s) for staffs.
+- [HitPay Static Qr API](https://apis.io/apis/hitpay/hitpay-static-qr-api/) — The Static Qr API from HitPay — 2 operation(s) for static qr.
+- [HitPay Subscription Plan API](https://apis.io/apis/hitpay/hitpay-subscription-plan-api/) — The Subscription Plan API from HitPay — 2 operation(s) for subscription plan.
+- [HitPay Subscription Plans API](https://apis.io/apis/hitpay/hitpay-subscription-plans-api/) — Reusable recurring-billing plan templates.
+- [HitPay Transfers API](https://apis.io/apis/hitpay/hitpay-transfers-api/) — The Transfers API from HitPay — 3 operation(s) for transfers.
+- [HitPay Virtual Accounts API](https://apis.io/apis/hitpay/hitpay-virtual-accounts-api/) — The Virtual Accounts API from HitPay — 2 operation(s) for virtual accounts.
+- [HitPay Webhook Events API](https://apis.io/apis/hitpay/hitpay-webhook-events-api/) — The Webhook Events API from HitPay — 2 operation(s) for webhook events.
 
-## APIs
+### Published properties
 
-### HitPay Payment Requests API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Creates hosted payment requests (payment links and checkout pages) for a given amount and currency, returning a redirect URL and a payment id to track status. Supports PayNow, GrabPay, WeChat Pay, Alipay, ShopeePay, Atome and cards; payment status is delivered via dashboard-registered webhooks.
+#### AsyncAPI (1)
 
-- **Human URL:** [https://docs.hitpayapp.com/apis/guide/online-payments](https://docs.hitpayapp.com/apis/guide/online-payments)
-- **Base URL:** `https://api.hit-pay.com/v1`
+Event-driven and webhook contracts.
 
-#### Tags
+- [Hitpay Events Webhooks](https://apis.io/asyncapis/hitpay/hitpay-events-webhooks/)
 
-- Payments
-- Checkout
-- Payment Links
+#### MCP servers (1)
 
-#### Properties
+Model Context Protocol servers that expose the API to agents.
 
-- [Documentation](https://docs.hitpayapp.com/apis/guide/online-payments)
-- [API Reference](https://docs.hitpayapp.com/apis)
-- [OpenAPI](openapi/hitpay-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/hitpay.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [hitpay-api](https://apis.io/servers/hitpay/hitpay-api/)
 
-### HitPay Recurring Billing API
+#### Agentic access (1)
 
-Starts and manages subscriptions billed against saved cards, either from a reusable subscription plan or an inline ad-hoc plan (name/cycle/amount), and charges saved cards for one-off amounts.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- **Human URL:** [https://docs.hitpayapp.com/apis/guide/recurring-billing](https://docs.hitpayapp.com/apis/guide/recurring-billing)
-- **Base URL:** `https://api.hit-pay.com/v1`
+- [Hitpay Agentic Access](https://apis.io/agentic-access/hitpay/hitpay-agentic-access/)
 
-#### Tags
+#### Collections (48)
 
-- Recurring
-- Subscriptions
-- Saved Cards
+Postman and Open Collection request collections.
 
-#### Properties
+- [HitPay Account Status API](https://apis.io/collections/hitpay/open-hitpay-account-status-api/)
+- [HitPay Account Status Balances API](https://apis.io/collections/hitpay/open-hitpay-balances-api/)
+- [HitPay Account Status Beneficiaries API](https://apis.io/collections/hitpay/open-hitpay-beneficiaries-api/)
+- [HitPay Account Status Charge API](https://apis.io/collections/hitpay/open-hitpay-charge-api/)
+- [HitPay Account Status Charges API](https://apis.io/collections/hitpay/open-hitpay-charges-api/)
+- [HitPay Account Status Customers API](https://apis.io/collections/hitpay/open-hitpay-customers-api/)
+- [HitPay Account Status Invoices API](https://apis.io/collections/hitpay/open-hitpay-invoices-api/)
+- [HitPay Account Status Notifications API](https://apis.io/collections/hitpay/open-hitpay-notifications-api/)
+- [HitPay Account Status Orders API](https://apis.io/collections/hitpay/open-hitpay-orders-api/)
+- [HitPay Account Status Payment Requests API](https://apis.io/collections/hitpay/open-hitpay-payment-requests-api/)
+- [HitPay Account Status Product Category API](https://apis.io/collections/hitpay/open-hitpay-product-category-api/)
+- [HitPay Account Status Products API](https://apis.io/collections/hitpay/open-hitpay-products-api/)
+- [HitPay Account Status Readers API](https://apis.io/collections/hitpay/open-hitpay-readers-api/)
+- [HitPay Account Status Recurring Billing API](https://apis.io/collections/hitpay/open-hitpay-recurring-billing-api/)
+- [HitPay Account Status Refund API](https://apis.io/collections/hitpay/open-hitpay-refund-api/)
+- [HitPay Account Status Refunds API](https://apis.io/collections/hitpay/open-hitpay-refunds-api/)
+- [HitPay Account Status Remitters API](https://apis.io/collections/hitpay/open-hitpay-remitters-api/)
+- [HitPay Account Status Staffs API](https://apis.io/collections/hitpay/open-hitpay-staffs-api/)
+- [HitPay Account Status Static Qr API](https://apis.io/collections/hitpay/open-hitpay-static-qr-api/)
+- [HitPay Account Status Subscription Plan API](https://apis.io/collections/hitpay/open-hitpay-subscription-plan-api/)
+- [HitPay Account Status Subscription Plans API](https://apis.io/collections/hitpay/open-hitpay-subscription-plans-api/)
+- [HitPay Account Status Transfers API](https://apis.io/collections/hitpay/open-hitpay-transfers-api/)
+- [HitPay Account Status Virtual Accounts API](https://apis.io/collections/hitpay/open-hitpay-virtual-accounts-api/)
+- [HitPay Account Status Webhook Events API](https://apis.io/collections/hitpay/open-hitpay-webhook-events-api/)
+- [HitPay Account Status API](https://apis.io/collections/hitpay/postman-hitpay-account-status-api/)
+- …and 23 more published on APIs.io
 
-- [Documentation](https://docs.hitpayapp.com/apis/guide/recurring-billing)
-- [API Reference](https://docs.hitpayapp.com/apis/recurring-billing/create-billing)
-- [OpenAPI](openapi/hitpay-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/hitpay.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+#### Overlays (1)
 
-### HitPay Subscription Plans API
+OpenAPI overlays, including conversational phrasing for each operation.
 
-Creates and lists reusable subscription plan templates (name, amount, currency, billing cycle) referenced by recurring billing subscriptions.
+- [Hitpay Openapi Overlay](https://apis.io/overlays/hitpay/hitpay-openapi-overlay/)
 
-- **Human URL:** [https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans](https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans)
-- **Base URL:** `https://api.hit-pay.com/v1`
+#### Security (4)
 
-#### Tags
+Authentication, trust centre, and vulnerability disclosure.
 
-- Plans
-- Subscriptions
+- [Hitpay Authentication](https://apis.io/security/hitpay/hitpay-authentication/)
+- [Hitpay Domain Security](https://apis.io/security/hitpay/hitpay-domain-security/)
+- [Hitpay Trust Center](https://apis.io/security/hitpay/hitpay-trust-center/)
+- [Hitpay Vulnerability Disclosure](https://apis.io/security/hitpay/hitpay-vulnerability-disclosure/)
 
-#### Properties
+#### Plans and pricing (1)
 
-- [Documentation](https://docs.hitpayapp.com/apis/recurring-billing/get-all-plans)
-- [OpenAPI](openapi/hitpay-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/hitpay.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+Published plans, tiers and prices.
 
-### HitPay Refunds API
+- [Hitpay Plans Pricing](https://apis.io/plans/hitpay/hitpay-plans-pricing/)
 
-Issues full or partial refunds against completed payments. One refund is allowed per transaction and only PayNow or card charges are refundable; original transaction fees are non-refundable.
+#### Rate limits (1)
 
-- **Human URL:** [https://docs.hitpayapp.com/apis/guide/online-payments](https://docs.hitpayapp.com/apis/guide/online-payments)
-- **Base URL:** `https://api.hit-pay.com/v1`
+Published request limits.
 
-#### Tags
+- [Hitpay Rate Limits](https://apis.io/rate-limits/hitpay/hitpay-rate-limits/)
 
-- Refunds
-- Payments
+#### FinOps (1)
 
-#### Properties
+What the API costs to run, by operation.
 
-- [Documentation](https://docs.hitpayapp.com/apis/guide/online-payments)
-- [OpenAPI](openapi/hitpay-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/hitpay.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Hitpay Finops](https://apis.io/finops/hitpay/hitpay-finops/)
 
-### HitPay Platform API
+## Where to find this API
 
-Extension of the Payment Request APIs for e-commerce platforms and aggregators that host sub-merchants, allowing a platform to create payment requests on behalf of onboarded merchants using an additional X-PLATFORM-KEY header.
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- **Human URL:** [https://docs.hitpayapp.com/apis/guide/platform-apis](https://docs.hitpayapp.com/apis/guide/platform-apis)
-- **Base URL:** `https://api.hit-pay.com/v1`
-
-#### Tags
-
-- Platform
-- Aggregator
-- Marketplace
-
-#### Properties
-
-- [Documentation](https://docs.hitpayapp.com/apis/guide/platform-apis)
-- [OpenAPI](openapi/hitpay-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/hit-pay)
-- [LinkedIn](https://www.linkedin.com/company/hit-pay)
 - [Website](https://www.hitpayapp.com/)
 - [Documentation](https://docs.hitpayapp.com/apis)
-- [Plans](plans/hitpay-plans-pricing.yml)
-- [Rate Limits](rate-limits/hitpay-rate-limits.yml)
-- [Fin Ops](finops/hitpay-finops.yml)
+- [Getting started](https://docs.hitpayapp.com/apis/overview)
+- [Pricing](https://hitpayapp.com/pricing)
+- [Sign up](https://dashboard.hit-pay.com)
+- [Support](https://hitpay.zendesk.com/hc/en-us)
+- [Blog](https://www.hitpayapp.com/blog)
+- [Compliance](https://www.hitpayapp.com/security)
+- [Terms of service](https://hitpayapp.com/terms-of-service)
+- [Privacy policy](https://hitpayapp.com/privacy-policy)
+- [GitHub](https://github.com/hit-pay)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 56.9** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 55.9 |
+| Contract governance | 18.2 |
+| Operational transparency | 42.1 |
+| Developer ergonomics | 69.6 |
+| Access clarity | 47.4 |
+
+**Agent readiness 40.8** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | verified |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 34.8** — Payments
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/hitpay/](https://apis.io/providers/hitpay/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for HitPay: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/hitpay/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
